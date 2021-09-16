@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader, Input, Label } from 'reactstrap';
 const ProjectCard = () => {
   return (
     <Card>
-      <CardHeader className="bw-bolder color-dark">Project Information</CardHeader>
+      <CardHeader className="fw-bolder color-dark">Project Information</CardHeader>
       <CardBody>
         <Label>Name of Researcher</Label>
         <Input />
