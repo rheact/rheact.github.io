@@ -1,5 +1,4 @@
 import { Card, CardBody, CardHeader, Input, Label } from 'reactstrap';
-import { useState } from 'react';
 
 const ReactionCard = () => {
   return (
