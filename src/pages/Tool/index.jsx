@@ -1,45 +1,40 @@
 import { Col, Container, Row } from 'reactstrap';
+import { MemoryRouter, Route, Switch } from 'react-router-dom';
 import Submenu from './Submenu';
-import ProjectCard from './cards/ProjectCard';
-import ReactionCard from './cards/ReactionCard';
-import ChemicalDetails from './cards/ChemicalDetails';
-import AlertReportOnly from './cards/AlertReportOnly';
+import R from './routes';
+import Guide from './Guide';
+import ReportDetails from './ReportDetails';
+import OperatingParams from './OperatingParams';
 
 const ToolPage = () => {
   return (
-    <Container fluid>
-      <Row>
-        <Col md={3}>
-          <Submenu/>
-        </Col>
-        <Col>
-          {/* This is a page */}
-          <Container>
-            <Row>
-              <Col>
-                <AlertReportOnly />
-              </Col>
-            </Row>
+    <MemoryRouter
+      initialEntries={Object.keys(R)}
+      initialIndex={0}
+    >
+      <Container fluid>
+        <Row>
+          <Col md={3}>
+            <Submenu />
+          </Col>
+          <Col>
+            <Switch>
+              <Route path={R.ROUTE_REPORT_DETAILS}>
+                <ReportDetails />
+              </Route>
 
-            <Row className="my-1">
-              <Col md={6}>
-                <ProjectCard />
-              </Col>
-              <Col md={6}>
-                <ChemicalDetails />
-              </Col>
-            </Row>
+              <Route path={R.ROUTE_OPERATION_DETAILS}>
+                <OperatingParams />
+              </Route>
 
-            <Row className="my-1">
-              <Col>
-                <ReactionCard />
-              </Col>
-            </Row>
-          </Container>
-          {/* ! This is a page */}
-        </Col>
-      </Row>
-    </Container>
+              <Route>
+                <Guide />
+              </Route>
+            </Switch>
+          </Col>
+        </Row>
+      </Container>
+    </MemoryRouter>
   );
 };
 
