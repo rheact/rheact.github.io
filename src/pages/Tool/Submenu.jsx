@@ -10,7 +10,7 @@ const Submenu = () => {
         Report Details
       </ListGroupItem>
 
-      <ListGroupItem tag={NavLink} to={R.ROUTE_OPERATION_DETAILS}>
+      <ListGroupItem tag={NavLink} to={R.ROUTE_OPERATION_DETAILS} className="text-danger">
         <i className="bi-box me-2" />
         Operating Parameters
       </ListGroupItem>
@@ -20,7 +20,7 @@ const Submenu = () => {
         Side Reactions
       </ListGroupItem>
 
-      <ListGroupItem tag={NavLink} to={R.ROUTE_SDS}>
+      <ListGroupItem tag={NavLink} to={R.ROUTE_SDS} className="text-danger">
         <i class="bi bi-exclamation-diamond-fill me-2"></i>
         Safety Data Sheets
       </ListGroupItem>

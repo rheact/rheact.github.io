@@ -13,18 +13,18 @@ const ReportDetails = () => {
         </Col>
       </Row>
 
+      <Row>
+        <Col>
+          <ReactionCard />
+        </Col>
+      </Row>
+
       <Row className="my-1">
         <Col md={6}>
           <ProjectCard />
         </Col>
         <Col md={6}>
           <ChemicalDetails />
-        </Col>
-      </Row>
-
-      <Row className="my-1">
-        <Col>
-          <ReactionCard />
         </Col>
       </Row>
     </Container>

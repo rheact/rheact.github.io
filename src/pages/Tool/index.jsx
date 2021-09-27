@@ -1,10 +1,13 @@
 import { Col, Container, Row } from 'reactstrap';
 import { MemoryRouter, Route, Switch } from 'react-router-dom';
+
 import Submenu from './Submenu';
+
 import R from './routes';
 import Guide from './Guide';
 import ReportDetails from './ReportDetails';
 import OperatingParams from './OperatingParams';
+import SdsPage from './Sds';
 
 const ToolPage = () => {
   return (
@@ -14,7 +17,7 @@ const ToolPage = () => {
     >
       <Container fluid>
         <Row>
-          <Col md={3}>
+          <Col md={2}>
             <Submenu />
           </Col>
           <Col>
@@ -25,6 +28,10 @@ const ToolPage = () => {
 
               <Route path={R.ROUTE_OPERATION_DETAILS}>
                 <OperatingParams />
+              </Route>
+
+              <Route path={R.ROUTE_SDS}>
+                <SdsPage />
               </Route>
 
               <Route>

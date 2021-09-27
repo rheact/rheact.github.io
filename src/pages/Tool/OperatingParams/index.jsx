@@ -32,7 +32,7 @@ const ParamCard = ({ label, unit, icon }) => {
 const OperatingParams = () => {
   return (
     <Container>
-      <Row className="py-2">
+      <Row>
         <Col>
           <ParamCard label="Temperature" unit="&deg; C" icon={TemperatureIcon} />
         </Col>
@@ -41,7 +41,7 @@ const OperatingParams = () => {
         </Col>
       </Row>
 
-      <Row className="py-2">
+      <Row className="mt-2">
         <Col>
           <ParamCard label="Heat of Reaction" unit="cal/g" icon={HeatIcon} />
         </Col>

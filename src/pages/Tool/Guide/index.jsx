@@ -8,7 +8,16 @@ const Guide = () => {
           <Card className="p-1">
             <div className="text-center">
               <h1 className="display-1 fw-bolder">RHEACT</h1>
-              <img width="200px" src="https://sites.utexas.edu/ils/files/2019/08/CISTAR-Logo-Medium-768x301.jpg" />
+              <h2 className="text-muted">Reactive Hazards Evaluation & Analysis Compilation Tool</h2>
+
+              <hr />
+
+              <div>
+              Developed by:
+              </div>
+
+              <img height="100px" src="https://sites.utexas.edu/ils/files/2019/08/CISTAR-Logo-Medium-768x301.jpg" />
+              <img height="60px" src="https://marcom.purdue.edu/app/uploads/2020/01/2_UniversityLogo_Horizontal.png" />
             </div>
 
           </Card>

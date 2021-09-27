@@ -1,4 +1,5 @@
-import { Button, Collapse, Nav, Navbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
+import { Button, Collapse, Nav, Navbar, NavbarBrand, NavItem } from 'reactstrap';
+import { NavLink } from 'reactstrap';
 
 const ToolNavbar = () => {
   return (
@@ -7,13 +8,13 @@ const ToolNavbar = () => {
         <Collapse isOpen>
           <Nav navbar>
             <NavItem>
-              <NavLink>Tool</NavLink>
+              <NavLink to="/">Tool</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink>Guide</NavLink>
+              <NavLink to="/guide">Guide</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink>About</NavLink>
+              <NavLink to="/about">About</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
