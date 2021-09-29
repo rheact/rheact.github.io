@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import ToolPage from './pages/Tool';
+import "./App.css";
 
 function App() {
   return (

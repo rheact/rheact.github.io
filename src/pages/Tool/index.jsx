@@ -8,6 +8,7 @@ import Guide from './Guide';
 import ReportDetails from './ReportDetails';
 import OperatingParams from './OperatingParams';
 import SdsPage from './Sds';
+import Results from './Results';
 
 const ToolPage = () => {
   return (
@@ -32,6 +33,10 @@ const ToolPage = () => {
 
               <Route path={R.ROUTE_SDS}>
                 <SdsPage />
+              </Route>
+
+              <Route path={R.ROUTE_RESULTS}>
+                <Results />
               </Route>
 
               <Route>
