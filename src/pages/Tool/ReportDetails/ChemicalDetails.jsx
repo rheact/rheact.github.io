@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Input, InputGroup, InputGroupAddon, Label } from 'reactstrap';
+import { Card, CardBody, CardHeader, Input, InputGroup, InputGroupText, Label } from 'reactstrap';
 
 const ChemicalDetails = () => {
   return (
@@ -10,16 +10,16 @@ const ChemicalDetails = () => {
         <Label>Reaction Scale</Label>
         <InputGroup>
           <Input />
-          <InputGroupAddon addonType="append">
+          <InputGroupText>
             kg
-          </InputGroupAddon>
+          </InputGroupText>
         </InputGroup>
         <Label>Key Reagent Quantity</Label>
         <InputGroup>
           <Input />
-          <InputGroupAddon addonType="append">
+          <InputGroupText>
             moles
-          </InputGroupAddon>
+          </InputGroupText>
         </InputGroup>
         <Label>State</Label>
         <Input type="select">

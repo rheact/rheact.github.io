@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
-import { Alert, Button, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { useDropzone } from 'react-dropzone';
+import { Alert, Button, Col, Container, Form, Input, InputGroup, InputGroupText, Row } from 'reactstrap';
 import { useInput } from '../../../hooks';
+import './dropzone.css';
 import SigmaLogo from './sigma.png';
 
 
@@ -13,6 +15,8 @@ const SdsPage = () => {
     window.open(st);
   }, [searchInput.value]);
 
+  const { getRootProps, getInputProps, isDragActive } = useDropzone();
+
   return (
     <Container>
       <Row>
@@ -20,7 +24,7 @@ const SdsPage = () => {
           <Alert color="light">
             <Row>
               <Col xs={1}>
-                <img width="100%" src={SigmaLogo}/>
+                <img width="100%" src={SigmaLogo} />
               </Col>
               <Col className="fst-italic">
                 RHEACT currently only supports SDS from Sigma-Aldrich. You can use the searchbar below to go to Sigma-Aldrich's SDS lookup website and download the SDS PDFs.
@@ -29,23 +33,37 @@ const SdsPage = () => {
           </Alert>
         </Col>
       </Row>
+
       <Row>
         <Col>
           <Form onSubmit={onSearch}>
             <InputGroup>
-              <InputGroupAddon addonType="prepend">
-                <InputGroupText className="bg-info text-light">
-                  <i className="bi-search" />
-                </InputGroupText>
-              </InputGroupAddon>
+              <InputGroupText className="bg-info text-light">
+                <i className="bi-search" />
+              </InputGroupText>
 
               <Input {...searchInput} placeholder="Name or CAS number" />
 
-              <InputGroupAddon addonType="append">
-                <Button color="dark" type="submit">Search</Button>
-              </InputGroupAddon>
+              <Button color="dark" type="submit">Search</Button>
             </InputGroup>
           </Form>
+        </Col>
+      </Row>
+
+      <Row className="mt-2">
+        <Col>
+          <div {...getRootProps({ className: 'dropzone' })}>
+            <input {...getInputProps()} />
+            <center>
+              <i className="bi-file-earmark-medical-fill" />
+            </center>
+            <p>
+              <br />
+              Drag and drop SDS files here
+              <br />
+              Or click to open file selector
+            </p>
+          </div>
         </Col>
       </Row>
     </Container>

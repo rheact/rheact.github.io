@@ -1,8 +1,8 @@
-import { Card, CardBody, CardHeader, Col, Container, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, Row } from 'reactstrap';
+import CpIcon from './cp.png';
+import HeatIcon from './heat.png';
 import PressureIcon from './pressure.png';
 import TemperatureIcon from './temperature.png';
-import HeatIcon from './heat.png';
-import CpIcon from './cp.png';
 
 const ParamCard = ({ label, unit, icon }) => {
   return (
@@ -18,9 +18,18 @@ const ParamCard = ({ label, unit, icon }) => {
           <Col xs={11}>
             <InputGroup>
               <Input />
-              <InputGroupAddon addonType="append">
-                {unit}
-              </InputGroupAddon>
+              <Dropdown group>
+                <DropdownToggle outline caret>
+                  {unit}
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem header>Header</DropdownItem>
+                  <DropdownItem disabled>Action</DropdownItem>
+                  <DropdownItem>Another Action</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Another Action</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </InputGroup>
           </Col>
         </Row>
