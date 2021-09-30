@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Alert, Button, Col, Container, Form, Input, InputGroup, InputGroupText, Row } from 'reactstrap';
+import { Alert, Button, Col, Container, Form, Input, InputGroup, InputGroupText, Row, Table } from 'reactstrap';
 import { useInput } from '../../../hooks';
 import './dropzone.css';
 import SigmaLogo from './sigma.png';
@@ -64,6 +64,39 @@ const SdsPage = () => {
               Or click to open file selector
             </p>
           </div>
+        </Col>
+      </Row>
+
+      <Row className="mt-2">
+        <Col>
+          <Table size="lg" className="bg-light" bordered>
+            <tbody>
+              <tr>
+                <th scope="row" width="1rem">Reactant</th>
+                <td width="1rem"> 1 </td>
+                <td>Benzene</td>
+                <td width="80px" className="text-center"><i className="bi bi-pencil-fill" /> Edit</td>
+              </tr>
+              <tr>
+                <th scope="row" width="1rem">Reactant</th>
+                <td width="1rem"> 2 </td>
+                <td>Methanol</td>
+                <td width="80px" className="text-center"><i className="bi bi-pencil-fill" /> Edit</td>
+              </tr>
+              <tr>
+                <th scope="row" width="1rem">Product</th>
+                <td width="1rem"> 1 </td>
+                <td>Ethanol</td>
+                <td width="80px" className="text-center"><i className="bi bi-pencil-fill" /> Edit</td>
+              </tr>
+              <tr>
+                <th scope="row" width="1rem">Product</th>
+                <td width="1rem"> 2 </td>
+                <td>Methane</td>
+                <td width="80px" className="text-center"><i className="bi bi-pencil-fill" /> Edit</td>
+              </tr>
+            </tbody>
+          </Table>
         </Col>
       </Row>
     </Container>

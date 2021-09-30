@@ -8,8 +8,11 @@
   }
 
   #printable {
+    -webkit-print-color-adjust: exact !important;
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
+    width: auto;
+    justify-content: center;
   }
 }

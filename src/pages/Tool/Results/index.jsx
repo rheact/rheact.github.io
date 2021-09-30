@@ -1,4 +1,4 @@
-import { Button, Col, Container, Navbar, Row, Table } from "reactstrap";
+import { Alert, Button, Col, Container, Navbar, Row, Table } from "reactstrap";
 import { useCallback } from "react";
 
 const Results = () => {
@@ -24,7 +24,6 @@ const Results = () => {
       <Container id="printable" className="px-5">
         <Row>
           <Col className="text-center">
-            <hr />
             <h1 className="fw-bolder display-2">Report</h1>
             <hr />
           </Col>
@@ -33,7 +32,71 @@ const Results = () => {
         <Row>
           <Col>
             <h2>Calculations</h2>
-            <hr />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <Table dark bordered>
+
+              <tbody>
+                <tr>
+                  <td>Adiabatic temperature change</td>
+                  <td>62 &deg;C</td>
+                </tr>
+                <tr>
+                  <td>Calculated final temperature</td>
+                  <td>502 &deg;C</td>
+                </tr>
+                <tr>
+                  <td>Calculated final pressure</td>
+                  <td>5 bars</td>
+                </tr>
+              </tbody>
+
+            </Table>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <h2>Alerts</h2>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <Alert color="danger" className="fw-bolder">
+              <Row>
+                <Col xs={1}>
+                  <i className="bi bi-exclamation-diamond-fill"/>
+                </Col>
+                <Col>
+                  Final temperature exceeds Benzene's boiling point
+                </Col>
+                <Col xs={3}>
+                  502 &deg;C
+                  exceeds
+                  300 &deg;C
+                </Col>
+              </Row>
+            </Alert>
+
+            <Alert color="danger" className="fw-bolder">
+              <Row>
+                <Col xs={1}>
+                  <i className="bi bi-exclamation-diamond-fill"/>
+                </Col>
+                <Col>
+                  Final temperature exceeds Reactant 2 boiling point
+                </Col>
+                <Col xs={3}>
+                  502 &deg;C
+                  exceeds
+                  300 &deg;C
+                </Col>
+              </Row>
+            </Alert>
           </Col>
         </Row>
 
