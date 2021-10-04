@@ -1,7 +1,7 @@
 import { Card, Col, Container, Row } from 'reactstrap';
 import P2SACLogo from './P2SAC.jpg';
 
-const Guide = () => {
+const GuidePage = () => {
   return (
     <Container>
       <Row>
@@ -29,4 +29,4 @@ const Guide = () => {
   );
 };
 
-export default Guide;
+export default GuidePage;

@@ -3,6 +3,7 @@ import ProjectCard from './ProjectCard';
 import ReactionCard from './ReactionCard';
 import ChemicalDetails from './ChemicalDetails';
 import AlertReportOnly from './AlertReportOnly';
+import SideReactions from './SideReactionsCard';
 
 const ReportDetails = () => {
   return (
@@ -25,6 +26,12 @@ const ReportDetails = () => {
         </Col>
         <Col md={6}>
           <ChemicalDetails />
+        </Col>
+      </Row>
+
+      <Row className="my-1">
+        <Col>
+          <SideReactions />
         </Col>
       </Row>
     </Container>

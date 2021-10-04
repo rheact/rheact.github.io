@@ -1,21 +1,20 @@
 import { Alert, Button, Col, Container, Navbar, Row, Table } from "reactstrap";
 import { useCallback } from "react";
 
-const Results = () => {
+const ResultsPage = () => {
   const onPrint = useCallback(() => {
     window.print();
   }, []);
 
-
   return (
     <>
-      <Navbar>
-        <Button outline color="secondary">
+      <Navbar className="border-bottom">
+        <Button className="ms-auto"  color="secondary">
           <i className="bi bi-person-lines-fill me-1" />
           Send Feedback
         </Button>
 
-        <Button color="primary" className="ms-auto" onClick={onPrint}>
+        <Button color="primary" className="ms-1" onClick={onPrint}>
           <i className="bi bi-printer-fill me-1" />
           Print
         </Button>
@@ -138,4 +137,4 @@ const Results = () => {
   );
 };
 
-export default Results;
+export default ResultsPage;

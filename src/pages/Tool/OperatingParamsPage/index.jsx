@@ -1,8 +1,11 @@
 import { Card, CardBody, CardHeader, Col, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, Row } from 'reactstrap';
-import CpIcon from './cp.png';
-import HeatIcon from './heat.png';
-import PressureIcon from './pressure.png';
-import TemperatureIcon from './temperature.png';
+import SectionSds from './SectionSds';
+import AlertAldrichOnly from './AlertAldrichOnly';
+
+import CpIcon from './icons/cp.png';
+import HeatIcon from './icons/heat.png';
+import PressureIcon from './icons/pressure.png';
+import TemperatureIcon from './icons/temperature.png';
 
 const ParamCard = ({ label, unit, icon }) => {
   return (
@@ -38,10 +41,16 @@ const ParamCard = ({ label, unit, icon }) => {
   );
 };
 
-const OperatingParams = () => {
+const OperatingParamsPage = () => {
   return (
     <Container>
       <Row>
+        <Col>
+          <AlertAldrichOnly />
+        </Col>
+      </Row>
+
+      <Row className="mt-2">
         <Col>
           <ParamCard label="Temperature" unit="&deg; C" icon={TemperatureIcon} />
         </Col>
@@ -58,9 +67,13 @@ const OperatingParams = () => {
           <ParamCard label="Cp (mix)" unit="cal/g/&deg; C" icon={CpIcon} />
         </Col>
       </Row>
+
+      <Row className="mt-2">
+        <SectionSds />
+      </Row>
     </Container>
   );
 
 }
 
-export default OperatingParams;
+export default OperatingParamsPage;

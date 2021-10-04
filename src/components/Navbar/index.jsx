@@ -4,29 +4,25 @@ import { NavLink } from 'reactstrap';
 const ToolNavbar = () => {
   return (
     <>
-      <Navbar color="primary" dark expand="xs" className="px-2 d-flex justify-content-between">
+      <Navbar className="d-flex justify-content-center p-0 shadow-sm" style={{ zIndex: 10, backgroundColor: "goldenrod" }}>
+        <span className="fs-5 fw-bold" style={{ fontFamily: "Futura" }}>RHEACT</span>
+      </Navbar>
+      <Navbar color="light" light expand="xs" className="px-2 d-flex justify-content-between">
         <Collapse isOpen>
           <Nav navbar>
             <NavItem>
               <NavLink to="/">Tool</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink to="/guide">Guide</NavLink>
-            </NavItem>
+
             <NavItem>
               <NavLink to="/about">About</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
 
-        <div className="d-flex align-items-center">
-          <img alt="rheact" src="/rheact.png" height="32px" width="32px" />
-          <NavbarBrand className="fw-bolder">RHEACT</NavbarBrand>
-        </div>
-
         <div>
-          <Button size="sm" outline color="success"> <i className="bi-save-fill" /> Save </Button>
-          <Button size="sm" outline color="info" className="ms-1"> <i className="bi-cloud-upload-fill" /> Load </Button>
+          <Button size="sm" color="success"> <i className="bi-save-fill" /> Save </Button>
+          <Button size="sm" color="info" className="ms-1"> <i className="bi-cloud-upload-fill" /> Load </Button>
         </div>
       </Navbar>
     </>

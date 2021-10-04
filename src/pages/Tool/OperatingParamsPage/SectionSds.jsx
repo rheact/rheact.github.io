@@ -1,10 +1,30 @@
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Alert, Button, Col, Container, Form, Input, InputGroup, InputGroupText, Row, Table } from 'reactstrap';
+import { Container, Row, Col, Button, Form, Input, InputGroup, InputGroupText, Table } from 'reactstrap';
 import { useInput } from '../../../hooks';
 import './dropzone.css';
-import SigmaLogo from './sigma.png';
 
+/*
+ {
+    "autoIgnitionTemp": "498",
+    "boilingPt": "80.1",
+    "casNo": "71-43-2",
+    "cp": 1.237333,
+    "decompositionTemp": "No data available",
+    "flashPt": "11.0",
+    "hNumbers": "H225, H315, H319, H340, H350, H372, H304, H401, H412",
+    "hStatements": "Flammable liquids (Category 2)\nSkin irritation (Category 2)\nEye irritation (Category 2A)\nGerm cell mutagenicity (Category 1B)\nCarcinogenicity (Category 1A)\nSpecific target organ toxicity - repeated exposure (Category 1), Blood\nAspiration hazard (Category 1)\nShort-term (acute) aquatic hazard (Category 2)\nLong-term (chronic) aquatic hazard (Category 3)",
+    "lowerExplosionLim": "1.4",
+    "molWt": "78.11 ",
+    "ph": "No data available",
+    "productName": "Benzene ",
+    "relDensity": "No data available",
+    "upperExplosionLim": "8.0",
+    "vapourDensity": "No data available",
+    "vapourPressure": "221.3",
+    "viscosity": "0.78"
+}
+ */
 
 const SdsPage = () => {
   const searchInput = useInput();
@@ -18,22 +38,7 @@ const SdsPage = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone();
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Alert color="light">
-            <Row>
-              <Col xs={1}>
-                <img width="100%" src={SigmaLogo} />
-              </Col>
-              <Col className="fst-italic">
-                RHEACT currently only supports SDS from Sigma-Aldrich. You can use the searchbar below to go to Sigma-Aldrich's SDS lookup website and download the SDS PDFs.
-              </Col>
-            </Row>
-          </Alert>
-        </Col>
-      </Row>
-
+    <Container fluid>
       <Row>
         <Col>
           <Form onSubmit={onSearch}>
