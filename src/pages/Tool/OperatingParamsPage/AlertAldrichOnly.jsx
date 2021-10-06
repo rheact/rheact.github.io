@@ -5,7 +5,7 @@ const AlertAldrichOnly = () => {
   return (
       <Alert color="light">
         <Row>
-          <Col xs={1}>
+          <Col sm={1}>
             <img width="100%" src={SigmaLogo} />
           </Col>
           <Col className="fst-italic">

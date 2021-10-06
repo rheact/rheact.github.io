@@ -1,47 +1,9 @@
-import { Card, CardBody, CardHeader, Col, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, Row, Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { Button, Col, Container, Row } from 'reactstrap';
 import R from '../routes';
-import SectionSds from './SectionSds';
 import AlertAldrichOnly from './AlertAldrichOnly';
-
-import CpIcon from './icons/cp.png';
-import HeatIcon from './icons/heat.png';
-import PressureIcon from './icons/pressure.png';
-import TemperatureIcon from './icons/temperature.png';
-
-const ParamCard = ({ label, unit, icon }) => {
-  return (
-    <Card>
-      <CardHeader className="fw-bolder">
-        {label}
-      </CardHeader>
-      <CardBody tag={Container}>
-        <Row>
-          <Col xs={1}>
-            <img src={icon} width={32} />
-          </Col>
-          <Col xs={11}>
-            <InputGroup>
-              <Input />
-              <Dropdown group>
-                <DropdownToggle outline caret>
-                  {unit}
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem header>Header</DropdownItem>
-                  <DropdownItem disabled>Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </InputGroup>
-          </Col>
-        </Row>
-      </CardBody>
-    </Card>
-  );
-};
+import { CpCard, HeatCard, PressureCard, TemperatureCard } from './ParamCards';
+import SectionSds from './SectionSds';
 
 const OperatingParamsPage = () => {
   return (
@@ -63,23 +25,24 @@ const OperatingParamsPage = () => {
 
       <Row className="mt-2">
         <Col>
-          <ParamCard label="Temperature" unit="&deg; C" icon={TemperatureIcon} />
+          <TemperatureCard />
         </Col>
         <Col>
-          <ParamCard label="Pressure" unit="bars" icon={PressureIcon} />
+          <PressureCard />
         </Col>
       </Row>
 
       <Row className="mt-2">
         <Col>
-          <ParamCard label="Heat of Reaction" unit="cal/g" icon={HeatIcon} />
+          <HeatCard />
         </Col>
         <Col>
-          <ParamCard label="Cp (mix)" unit="cal/g/&deg; C" icon={CpIcon} />
+          <CpCard />
         </Col>
       </Row>
 
       {/* Navigation Buttons */}
+
       <Row className="mt-2">
         <Col className="d-flex justify-content-end">
           <NavLink to={R.ROUTE_REPORT_DETAILS}>

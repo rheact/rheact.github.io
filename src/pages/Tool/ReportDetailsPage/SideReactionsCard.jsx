@@ -13,7 +13,7 @@ const SideReaction = ({ index }) => {
         <i>Side Reaction {index + 1}</i>
 
         <Button outline color="danger" onClick={() => dispatch(REMOVE_SIDE_REACTION(index))}>
-          <i className="bi bi-x-lg" />
+          <i className="bi bi-x-lg me-1" />
           Delete
         </Button>
       </CardHeader>
