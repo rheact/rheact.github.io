@@ -77,28 +77,32 @@ const SdsPage = () => {
           <Table size="lg" className="bg-light" bordered>
             <tbody>
               <tr>
-                <th scope="row" width="1rem">Reactant</th>
-                <td width="1rem"> 1 </td>
+                <th scope="row" width="60px">Reactant</th>
+                <td width="40px"> 1 </td>
                 <td>Benzene</td>
-                <td width="80px" className="text-center"><i className="bi bi-pencil-fill" /> Edit</td>
+                <td width="80px" className="text-center text-success"><i className="bi bi-pencil-fill" /> Edit</td>
+                <td width="100px" className="text-center text-danger"><i className="bi bi-x-lg" /> Remove</td>
               </tr>
               <tr>
-                <th scope="row" width="1rem">Reactant</th>
-                <td width="1rem"> 2 </td>
+                <th scope="row" width="60px">Reactant</th>
+                <td width="40px"> 2 </td>
                 <td>Methanol</td>
-                <td width="80px" className="text-center"><i className="bi bi-pencil-fill" /> Edit</td>
+                <td width="80px" className="text-center text-success"><i className="bi bi-pencil-fill" /> Edit</td>
+                <td width="100px" className="text-center text-danger"><i className="bi bi-x-lg" /> Remove</td>
               </tr>
               <tr>
-                <th scope="row" width="1rem">Product</th>
-                <td width="1rem"> 1 </td>
+                <th scope="row" width="60px">Product</th>
+                <td width="40px"> 1 </td>
                 <td>Ethanol</td>
-                <td width="80px" className="text-center"><i className="bi bi-pencil-fill" /> Edit</td>
+                <td width="80px" className="text-center text-success"><i className="bi bi-pencil-fill" /> Edit</td>
+                <td width="100px" className="text-center text-danger"><i className="bi bi-x-lg" /> Remove</td>
               </tr>
               <tr>
-                <th scope="row" width="1rem">Product</th>
-                <td width="1rem"> 2 </td>
+                <th scope="row" width="60px">Product</th>
+                <td width="40px"> 2 </td>
                 <td>Methane</td>
-                <td width="80px" className="text-center"><i className="bi bi-pencil-fill" /> Edit</td>
+                <td width="80px" className="text-center text-success"><i className="bi bi-pencil-fill" /> Edit</td>
+                <td width="100px" className="text-center text-danger"><i className="bi bi-x-lg" /> Remove</td>
               </tr>
             </tbody>
           </Table>

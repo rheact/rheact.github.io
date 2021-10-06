@@ -1,5 +1,7 @@
 import { Col, Container, Row } from 'reactstrap';
 import { MemoryRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 import Submenu from './Submenu';
 
@@ -15,32 +17,34 @@ const ToolPage = () => {
       initialEntries={Object.keys(R)}
       initialIndex={1}
     >
-      <Container fluid className="animate__animated animate__slideInUp">
-        <Row>
-          <Col md={2}>
-            <Submenu />
-          </Col>
-          <Col>
-            <Switch>
-              <Route path={R.ROUTE_REPORT_DETAILS}>
-                <ReportDetailsPage />
-              </Route>
+      <Provider store={store}>
+        <Container fluid>
+          <Row>
+            <Col md={2}>
+              <Submenu />
+            </Col>
+            <Col>
+              <Switch>
+                <Route path={R.ROUTE_REPORT_DETAILS}>
+                  <ReportDetailsPage />
+                </Route>
 
-              <Route path={R.ROUTE_OPERATION_DETAILS}>
-                <OperatingParamsPage />
-              </Route>
+                <Route path={R.ROUTE_OPERATION_DETAILS}>
+                  <OperatingParamsPage />
+                </Route>
 
-              <Route path={R.ROUTE_RESULTS}>
-                <ResultsPage />
-              </Route>
+                <Route path={R.ROUTE_RESULTS}>
+                  <ResultsPage />
+                </Route>
 
-              <Route>
-                <GuidePage />
-              </Route>
-            </Switch>
-          </Col>
-        </Row>
-      </Container>
+                <Route>
+                  <GuidePage />
+                </Route>
+              </Switch>
+            </Col>
+          </Row>
+        </Container>
+      </Provider>
     </MemoryRouter>
   );
 };

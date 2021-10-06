@@ -10,14 +10,14 @@ const Submenu = () => {
         Guide
       </ListGroupItem>
 
+      <ListGroupItem tag={NavLink} to={R.ROUTE_OPERATION_DETAILS} className="text-danger">
+        <i className="bi-box me-2" />
+        Operation Details ★
+      </ListGroupItem>
+
       <ListGroupItem tag={NavLink} to={R.ROUTE_REPORT_DETAILS}>
         <i className="bi-pencil-fill me-2" />
         Report Details
-      </ListGroupItem>
-
-      <ListGroupItem tag={NavLink} to={R.ROUTE_OPERATION_DETAILS} className="text-danger">
-        <i className="bi-box me-2" />
-        Operating Parameters ★
       </ListGroupItem>
 
       <ListGroupItem tag={NavLink} to={R.ROUTE_RESULTS}>

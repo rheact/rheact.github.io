@@ -1,13 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { Card, CardBody, CardHeader, Input, Label } from 'reactstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { SET_DESCRIPTION, SET_CHEMICAL_SCHEME  } from '../store';
 
 const ReactionCard = () => {
-  const [eq, setEq] = useState("");
+  const dispatch = useDispatch();
+  const {
+    description,
+    chemicalScheme,
+  } = useSelector(store => store);
   const katexRef = useRef();
 
+
   useEffect(() => {
-    if(eq) {
-      window.katex.render(`\\ce\{ ${eq} \}`, katexRef.current, {
+    if(chemicalScheme) {
+      window.katex.render(`\\ce\{ ${chemicalScheme} \}`, katexRef.current, {
         throwOnError: false
       });
     }
@@ -16,7 +23,7 @@ const ReactionCard = () => {
         throwOnError: false
       });
     }
-  }, [eq]);
+  }, [chemicalScheme]);
 
   return (
     <Card>
@@ -26,14 +33,19 @@ const ReactionCard = () => {
 
       <CardBody>
         <Label>Complete Balanced Reaction</Label>
-        <Input type="textarea" value={eq} onChange={e => setEq(e.target.value)}  />
+        <Input type="textarea"
+               value={chemicalScheme}
+               onChange={e => dispatch(SET_CHEMICAL_SCHEME(e.target.value))}  />
+
         <div className="d-flex justify-content-end">
           <small className="text-muted">We use <a href="https://mhchem.github.io/MathJax-mhchem/">mhchem</a> chemical equations for rendering. </small>
         </div>
         <div className="text-center py-2" ref={katexRef} />
 
         <Label>Description of scope of project</Label>
-        <Input type="textarea" />
+        <Input type="textarea"
+               value={description}
+               onChange={e => dispatch(SET_DESCRIPTION(e.target.value))}  />
       </CardBody>
     </Card>
   );
