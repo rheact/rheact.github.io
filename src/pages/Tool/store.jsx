@@ -68,6 +68,9 @@ const rheactSlice = createSlice({
         },
 
         // Compound
+        ADD_REACTANT(state, action) {
+
+        }
     }
 });
 

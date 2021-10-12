@@ -1,7 +1,10 @@
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Container, Row, Col, Button, Form, Input, InputGroup, InputGroupText, Table } from 'reactstrap';
+import { useDispatch } from 'react-redux';
+import { Button, Col, Container, Form, Input, InputGroup, InputGroupText, Row, Table } from 'reactstrap';
+import {  } from '../store';
 import { useInput } from '../../../hooks';
+import server from '../../../api';
 import './dropzone.css';
 
 /*
@@ -28,14 +31,20 @@ import './dropzone.css';
 
 const SdsPage = () => {
   const searchInput = useInput();
-
   const onSearch = useCallback((e) => {
     e.preventDefault();
     const st = `https://www.sigmaaldrich.com/US/en/search/${searchInput.value}?focus=products&page=1&perPage=30&sort=relevance&term=${searchInput.value}&type=product`;
     window.open(st);
   }, [searchInput.value]);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone();
+  const dispatch = useDispatch();
+
+  const { getRootProps, getInputProps } = useDropzone({
+    maxFiles: 1,
+    onDrop: async (f) => {
+      const data = server.parsePDF(f, temperature);
+    },
+  });
 
   return (
     <Container fluid>
