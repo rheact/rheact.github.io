@@ -1,27 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import { Button, Col, Container, Row } from 'reactstrap';
 import R from '../routes';
-import AlertAldrichOnly from './AlertAldrichOnly';
+import { AlertAldrichOnly, SearchBox } from './SearchBox';
 import { CpCard, HeatCard, PressureCard, TemperatureCard } from './ParamCards';
 import SectionSds from './SectionSds';
 
 const OperatingParamsPage = () => {
   return (
     <Container>
-
-      {/* SDS Upload */}
-
-      <Row>
-        <Col>
-          <AlertAldrichOnly />
-        </Col>
-      </Row>
-
-      <Row className="mt-2">
-        <SectionSds />
-      </Row>
-
+    
       {/* Operating Parameters */}
+
+      <h4>Operation Parameters</h4>
 
       <Row className="mt-2">
         <Col>
@@ -39,6 +29,24 @@ const OperatingParamsPage = () => {
         <Col>
           <CpCard />
         </Col>
+      </Row>
+
+      {/* SDS Upload */}
+
+      <h4 className="mt-5">SDS Upload</h4>
+
+      <Row className="mt-2">
+        <SearchBox />
+      </Row>
+
+      <Row className="mt-2">
+        <Col>
+          <AlertAldrichOnly />
+        </Col>
+      </Row>
+
+      <Row className="mt-2">
+        <SectionSds />
       </Row>
 
       {/* Navigation Buttons */}

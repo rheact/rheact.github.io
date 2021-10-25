@@ -49,7 +49,6 @@ const rheactSlice = createSlice({
             }
 
             state.operatingParams.sideReactions.splice(action.payload, 1);
-
         },
 
         SET_SR_TEMPERATURE(state, action) {
@@ -69,8 +68,21 @@ const rheactSlice = createSlice({
 
         // Compound
         ADD_REACTANT(state, action) {
+            state.compound.numReactants += 1;
+            state.compound.reactants.push(action.payload);
+        },
+        REMOVE_REACTANT(state, action) {
+            if(state.compound.numReactants > 0) {
+                state.compound.numReactants -= 1;
+            }
 
-        }
+            state.compound.reactants.splice(action.payload, 1);
+        },
+        CHANGE_REACTANT(state, action) {
+            const { index, update } = action.payload;
+            state.compound.reactants[index] = update;
+        },
+
     }
 });
 
@@ -103,4 +115,8 @@ export const {
     SET_SR_TEMPERATURE,
     SET_SR_PRESSURE,
     SET_SR_DETAILS,
+
+    ADD_REACTANT,
+    CHANGE_REACTANT,
+    REMOVE_REACTANT,
 } = rheactSlice.actions;

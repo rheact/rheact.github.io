@@ -7,18 +7,18 @@ import HeatIcon from './icons/heat.png';
 import PressureIcon from './icons/pressure.png';
 import TemperatureIcon from './icons/temperature.png';
 
-const ParamCard = ({ label, icon, unitList, key, valueAction }) => {
-  const value = useSelector(store => store.operatingParams[key]);
+const ParamCard = ({ label, icon, unitList, name, valueAction }) => {
+  const value = useSelector(state => state.operatingParams[name]);
   const dispatch = useDispatch();
   const [unit, setCurrUnit] = useState(unitList[0]);
 
   const onValueChange = useCallback((e) => {
     dispatch(valueAction(e.target.value));
-  }, [unit]);
+  }, []);
 
   return (
     <Card>
-      <CardHeader className="fw-bolder bg-warning text-white">
+      <CardHeader className={"fw-bolder " + (!value ? "bg-danger text-white" : "bg-success")}>
         {label}
       </CardHeader>
       <CardBody tag={Container}>
@@ -28,7 +28,7 @@ const ParamCard = ({ label, icon, unitList, key, valueAction }) => {
           </Col>
           <Col>
             <InputGroup>
-              <Input value={value} onChange={onValueChange} placeholder={`Enter ${label} in ${unit}`} />
+              <Input value={value} invalid={!value} onChange={onValueChange} placeholder={`Enter ${label} in ${unit}`} />
                 {unitList && unitList.map((e =>
                   (<Button color="dark" outline active={e === unit} onClick={() => (e)}>{e}</Button>)
                 ))}
@@ -44,7 +44,7 @@ export const TemperatureCard = () => {
   const props = {
     label: 'Temperature',
     icon: TemperatureIcon,
-    key: 'temperature',
+    name: 'temperature',
     valueAction: SET_TEMPERATURE,
     unitList: ['°C', '°F', 'K'],
   };
@@ -56,7 +56,7 @@ export const PressureCard = () => {
   const props = {
     label: 'Pressure',
     icon: PressureIcon,
-    key: 'pressure',
+    name: 'pressure',
     valueAction: SET_PRESSURE,
     unitList: ['bar'],
   };
@@ -68,7 +68,7 @@ export const CpCard = () => {
   const props = {
     label: 'Cp (mix)',
     icon: CpIcon,
-    key: 'cp',
+    name: 'cp',
     valueAction: SET_CP,
     unitList: ['cal/g/°C'],
   };
@@ -80,7 +80,7 @@ export const HeatCard = () => {
   const props = {
     label: 'Heat of Reaction',
     icon: HeatIcon,
-    key: 'heatOfReaction',
+    name: 'heatOfReaction',
     valueAction: SET_HEAT_OF_REACTION,
     unitList: ['cal/g'],
   };

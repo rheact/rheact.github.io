@@ -1,18 +1,23 @@
 @media print {
-  body * {
-    visibility: hidden;
-  }
+    body * {
+        visibility: hidden;
+    }
+    #printable,
+    #printable * {
+        visibility: visible;
+    }
+    #printable {
+        -webkit-print-color-adjust: exact !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0;
+    }
+}
 
-  #printable, #printable * {
-    visibility: visible;
-  }
-
-  #printable {
-    -webkit-print-color-adjust: exact !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    justify-content: center;
-  }
+#printable {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
 }

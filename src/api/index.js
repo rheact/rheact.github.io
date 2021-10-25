@@ -19,6 +19,7 @@ server.parsePDF = async (f, temperature) => {
       temperature,
     },
   });
+  
   return res.data;
 }
 
