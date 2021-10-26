@@ -15,6 +15,10 @@ const rheactSlice = createSlice({
     name: "rheact",
     initialState,
     reducers: {
+        LOAD_JSON(_state, action) {
+            return action.payload;
+        },
+
         // State
         SET_NAME_OF_RESEARCHER: setStateThunk("nameOfResearcher"),
         SET_PROJECT_TITLE: setStateThunk("projectTitle"),
@@ -158,4 +162,6 @@ export const {
     ADD_DILUENT,
     CHANGE_DILUENT,
     REMOVE_DILUENT,
+
+    LOAD_JSON,
 } = rheactSlice.actions;

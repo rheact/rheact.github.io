@@ -1,7 +1,5 @@
 import { Col, Container, Row } from 'reactstrap';
 import { MemoryRouter, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from './store';
 
 import Submenu from './Submenu';
 
@@ -17,7 +15,6 @@ const ToolPage = () => {
       initialEntries={Object.keys(R)}
       initialIndex={1}
     >
-      <Provider store={store}>
         <Container fluid>
           <Row>
             <Col md={2}>
@@ -44,7 +41,6 @@ const ToolPage = () => {
             </Col>
           </Row>
         </Container>
-      </Provider>
     </MemoryRouter>
   );
 };

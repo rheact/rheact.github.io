@@ -1,5 +1,46 @@
-import { Button, Collapse, Nav, Navbar, NavItem } from 'reactstrap';
-import { NavLink } from 'reactstrap';
+import { useCallback, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { Button, Collapse, Nav, Navbar, NavItem, NavLink } from 'reactstrap';
+import { store, LOAD_JSON } from '../../pages/Tool/store';
+
+const LoadButton = ({ className }) => {
+  const fileUploadRef = useRef();
+
+  const onClick = useCallback(() => {
+    fileUploadRef.current.click();
+  }, [fileUploadRef]);
+
+  const onUpload = useCallback(async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const text = (await file.text());
+    const json = JSON.parse(text);
+    store.dispatch(LOAD_JSON(json));
+  }, []);
+
+  return (
+    <>
+      <Button onClick={onClick} size="sm" color="info" className={className}> <i className="bi-cloud-upload-fill" /> Load </Button>
+      <input onClick={onUpload} ref={fileUploadRef} type="file" id="imgupload" style={{ display: "none" }} />
+    </>
+  );
+};
+
+const SaveButton = ({ className }) => {
+  const state = useSelector(state => state);
+  const onClick = useCallback(() => {
+    const a = document.createElement("a");
+    const file = new Blob([JSON.stringify(state)], {type: 'text/json'});
+    a.href = URL.createObjectURL(file);
+    a.download = state.projectTitle + '.json';
+    a.click(); 
+  }, [state, state.projectTitle]);
+
+  return (
+    <Button size="sm" color="success" className={className} onClick={onClick}> <i className="bi-save-fill" /> Save </Button>
+  );
+};
+
 
 const ToolNavbar = () => {
   return (
@@ -21,8 +62,8 @@ const ToolNavbar = () => {
         </Collapse>
 
         <div>
-          <Button size="sm" color="success"> <i className="bi-save-fill" /> Save </Button>
-          <Button size="sm" color="info" className="ms-1"> <i className="bi-cloud-upload-fill" /> Load </Button>
+          <SaveButton />
+          <LoadButton className="ms-1" />
         </div>
       </Navbar>
     </>

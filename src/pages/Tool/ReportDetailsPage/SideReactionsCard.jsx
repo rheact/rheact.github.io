@@ -8,7 +8,7 @@ const SideReaction = ({ index }) => {
   const dispatch = useDispatch();
 
   return (
-    <Card className="mt-2">
+    <Card color="light" className="mt-2">
       <CardHeader className="d-flex justify-content-between align-items-center">
         <i>Side Reaction {index + 1}</i>
 

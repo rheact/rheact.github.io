@@ -105,11 +105,11 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
         </div>
 
         <div>
-          <Button className="me-2" color="info" onClick={toggleProps}>
+          <Button outline className="me-2" color="info" onClick={toggleProps}>
             <i className="bi bi-pencil me-1" />
             Edit Properties
           </Button>
-          <Button color="danger" onClick={onRemove}>
+          <Button outline color="danger" onClick={onRemove}>
             <i className="bi bi-x-lg me-1" />
             Delete
           </Button>
@@ -169,6 +169,15 @@ const CompoundDropzone = ({ label, name, addAction, changeAction, removeAction, 
     <Card>
       <CardHeader className={ "fw-bolder text-white " + (bg || "") }>{label}</CardHeader>
       <CardBody>
+        <Row>
+          <Col md={4}>
+            <div className="d-flex flex-column align-items-center justify-content-center h-100">
+              <span className="display-2">{num}</span>
+              <span>{label} uploaded</span>
+            </div>
+          </Col>
+
+          <Col md={8}>
         <div {...getRootProps({ className: 'dropzone' })}>
           <input {...getInputProps()} />
           <center>
@@ -181,10 +190,12 @@ const CompoundDropzone = ({ label, name, addAction, changeAction, removeAction, 
             Or click to open file selector
           </p>
         </div>
+          </Col>
+        </Row>
 
         <div className="mt-2">
           {_.range(num).map(i => (
-            <div className="mt-1">
+            <div className="mt-2">
               <CompoundCard name={name} changeAction={changeAction} removeAction={removeAction} index={i} />
             </div>
           ))}

@@ -1,5 +1,6 @@
 import { Alert, Button, Col, Container, Navbar, Row, Table } from "reactstrap";
 import { useCallback } from "react";
+import './results.css';
 
 const ResultsPage = () => {
   const onPrint = useCallback(() => {
