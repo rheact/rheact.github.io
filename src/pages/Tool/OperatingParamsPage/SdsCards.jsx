@@ -1,27 +1,28 @@
+import _ from 'lodash';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToggle } from 'react-use';
 import { Button, Card, CardBody, CardHeader, Col, Collapse, Container, FormFeedback, FormGroup, Input, InputGroup, Label, Row, Table } from 'reactstrap';
-import _ from 'lodash';
 import server from '../../../api';
-import { ADD_REACTANT, CHANGE_REACTANT, REMOVE_REACTANT } from '../store';
+import { ADD_DILUENT, ADD_PRODUCT, ADD_REACTANT, CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT, REMOVE_DILUENT, REMOVE_PRODUCT, REMOVE_REACTANT } from '../store';
 import './dropzone.css';
 
-const CompoundCard = ({ type, index }) => {
-  /**
-   * @type {import('../state').Chemical}
-   */
-  const compound = useSelector(state => state.compound[type][index]);
+const CompoundCard = ({ name, index, changeAction, removeAction }) => {
+  /** @type {import('../state').Chemical} */
+  const compound = useSelector(state => state.compound[name][index]);
   const dispatch = useDispatch();
+
   const getChangeProp = useCallback((key) => (e) => {
     const update = {...compound};
     update[key] = e.target.value;
-    dispatch(CHANGE_REACTANT({
+    dispatch(changeAction({
       index,
       update,
     }));
   }, [compound]);
+  const onRemove = useCallback(() => dispatch(removeAction(index)), [index]);
+
   const [viewProps, toggleProps] = useToggle();
 
   const propMap = [
@@ -108,7 +109,7 @@ const CompoundCard = ({ type, index }) => {
             <i className="bi bi-pencil me-1" />
             Edit Properties
           </Button>
-          <Button color="danger" onClick={() => dispatch(REMOVE_REACTANT(index))}>
+          <Button color="danger" onClick={onRemove}>
             <i className="bi bi-x-lg me-1" />
             Delete
           </Button>
@@ -151,22 +152,22 @@ const CompoundCard = ({ type, index }) => {
   );
 };
 
-export const ReactantsDrop = () => {
+const CompoundDropzone = ({ label, name, addAction, changeAction, removeAction, bg }) => {
   const temperature = useSelector(state => state.operatingParams.temperature);
-  const num = useSelector(state => state.compound.numReactants);
+  const num = useSelector(state => state.compound["num" + label]);
   const dispatch = useDispatch();
 
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
     onDrop: async (f) => {
       const data = await server.parsePDF(f, temperature || 0);
-      dispatch(ADD_REACTANT(data));
+      dispatch(addAction(data));
     },
   });
 
   return (
     <Card>
-      <CardHeader className="fw-bolder bg-danger text-white">Reactants</CardHeader>
+      <CardHeader className={ "fw-bolder text-white " + (bg || "") }>{label}</CardHeader>
       <CardBody>
         <div {...getRootProps({ className: 'dropzone' })}>
           <input {...getInputProps()} />
@@ -184,7 +185,7 @@ export const ReactantsDrop = () => {
         <div className="mt-2">
           {_.range(num).map(i => (
             <div className="mt-1">
-              <CompoundCard type="reactants" index={i} />
+              <CompoundCard name={name} changeAction={changeAction} removeAction={removeAction} index={i} />
             </div>
           ))}
         </div>
@@ -193,17 +194,41 @@ export const ReactantsDrop = () => {
   );
 }
 
-const SdsPage = () => {
+export const ReactantDropzone = () => {
+  const props = {
+    label: 'Reactants',
+    name: 'reactants',
+    bg: 'bg-warning',
+    addAction: ADD_REACTANT,
+    changeAction: CHANGE_REACTANT,
+    removeAction: REMOVE_REACTANT,
+  };
 
-  return (
-    <Container fluid>
-      <Row>
-        <Col>
-          <ReactantsDrop />
-        </Col>
-      </Row>
-    </Container>
-  );
+  return (<CompoundDropzone {...props} />);
 };
 
-export default SdsPage;
+export const ProductDropzone = () => {
+  const props = {
+    label: 'Products',
+    name: 'products',
+    bg: 'bg-success',
+    addAction: ADD_PRODUCT,
+    changeAction: CHANGE_PRODUCT,
+    removeAction: REMOVE_PRODUCT,
+  };
+
+  return (<CompoundDropzone {...props} />);
+};
+
+export const DiluentDropzone = () => {
+  const props = {
+    label: 'Diluents',
+    name: 'diluents',
+    bg: 'bg-info',
+    addAction: ADD_DILUENT,
+    changeAction: CHANGE_DILUENT,
+    removeAction: REMOVE_DILUENT,
+  };
+
+  return (<CompoundDropzone {...props} />);
+};

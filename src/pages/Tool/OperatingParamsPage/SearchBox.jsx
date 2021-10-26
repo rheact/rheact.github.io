@@ -15,7 +15,7 @@ export const SearchBox = () => {
   return (
     <Form onSubmit={onSearch}>
       <InputGroup>
-        <InputGroupText className="bg-info fw-bolder text-light">
+        <InputGroupText className="bg-primary text-white fw-bolder">
           <i className="bi-search me-2" />  SEARCH
         </InputGroupText>
 

@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from 'reactstrap';
 import R from '../routes';
 import { AlertAldrichOnly, SearchBox } from './SearchBox';
 import { CpCard, HeatCard, PressureCard, TemperatureCard } from './ParamCards';
-import SectionSds from './SectionSds';
+import { DiluentDropzone, ProductDropzone, ReactantDropzone } from './SdsCards';
 
 const OperatingParamsPage = () => {
   return (
@@ -45,9 +45,17 @@ const OperatingParamsPage = () => {
         </Col>
       </Row>
 
-      <Row className="mt-2">
-        <SectionSds />
-      </Row>
+      <div className="mt-2">
+        <ReactantDropzone />
+      </div>
+
+      <div className="mt-2">
+        <ProductDropzone />
+      </div>
+
+      <div className="mt-2">
+        <DiluentDropzone />
+      </div>
 
       {/* Navigation Buttons */}
 

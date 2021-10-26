@@ -83,6 +83,37 @@ const rheactSlice = createSlice({
             state.compound.reactants[index] = update;
         },
 
+        ADD_PRODUCT(state, action) {
+            state.compound.numProducts += 1;
+            state.compound.products.push(action.payload);
+        },
+        REMOVE_PRODUCT(state, action) {
+            if(state.compound.numProducts > 0) {
+                state.compound.numProducts -= 1;
+            }
+
+            state.compound.products.splice(action.payload, 1);
+        },
+        CHANGE_PRODUCT(state, action) {
+            const { index, update } = action.payload;
+            state.compound.products[index] = update;
+        },
+
+        ADD_DILUENT(state, action) {
+            state.compound.numDiluents += 1;
+            state.compound.diluents.push(action.payload);
+        },
+        REMOVE_DILUENT(state, action) {
+            if(state.compound.numDiluents > 0) {
+                state.compound.numDiluents -= 1;
+            }
+
+            state.compound.diluents.splice(action.payload, 1);
+        },
+        CHANGE_DILUENT(state, action) {
+            const { index, update } = action.payload;
+            state.compound.diluents[index] = update;
+        },
     }
 });
 
@@ -119,4 +150,12 @@ export const {
     ADD_REACTANT,
     CHANGE_REACTANT,
     REMOVE_REACTANT,
+
+    ADD_PRODUCT,
+    CHANGE_PRODUCT,
+    REMOVE_PRODUCT,
+
+    ADD_DILUENT,
+    CHANGE_DILUENT,
+    REMOVE_DILUENT,
 } = rheactSlice.actions;

@@ -18,7 +18,7 @@ const ParamCard = ({ label, icon, unitList, name, valueAction }) => {
 
   return (
     <Card>
-      <CardHeader className={"fw-bolder " + (!value ? "bg-danger text-white" : "bg-success")}>
+      <CardHeader className={"fw-bolder " + (!value ? "bg-danger text-white" : "")}>
         {label}
       </CardHeader>
       <CardBody tag={Container}>

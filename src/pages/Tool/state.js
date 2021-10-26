@@ -33,7 +33,7 @@
  * @property {number} numDiluents
  * @property {Chemical[]} reactants
  * @property {Chemical[]} products
- * @property {Chemical[]} dilutents
+ * @property {Chemical[]} diluents
  *
  * SideReactions are additional data in the report.
  *
@@ -77,19 +77,19 @@
  * @type {RheactState}
  * */
 const initialState = {
-  type: "CISTAR_REACTIONv2",
-  compound: {
-    numReactants: 0,
-    numProducts: 0,
-    numDiluents: 0,
-    reactants: [],
-    products: [],
-    dilutents: [],
-  },
-  operatingParams: {
-    numSideReactions: 0,
-    sideReactions: [],
-  },
+    type: "CISTAR_REACTIONv2",
+    compound: {
+        numReactants: 0,
+        numProducts: 0,
+        numDiluents: 0,
+        reactants: [],
+        products: [],
+        diluents: [],
+    },
+    operatingParams: {
+        numSideReactions: 0,
+        sideReactions: [],
+    },
 };
 
 export default initialState;
