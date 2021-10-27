@@ -1,6 +1,26 @@
-import { Alert, Button, Col, Container, Navbar, Row, Table } from "reactstrap";
+import { Alert, Button, Col, Container, Navbar, Progress, Row, Table } from "reactstrap";
 import { useCallback } from "react";
 import './results.css';
+import { useSelector } from "react-redux";
+
+const GenerateButton = () => {
+  const state = useSelector(s => s);
+  const onClick = useCallback(() => {
+    
+  }, [state]);
+
+  return (
+    <Container className="py-2">
+      <Row>
+        <Button className="w-100" color="success" size="lg">Click Here to Generate Report</Button>
+      </Row>
+      <Row className="mt-2">
+        <Progress striped color="success" value="25" />
+        {JSON.stringify(state, '4')}
+      </Row>
+    </Container>
+  );
+};
 
 const ResultsPage = () => {
   const onPrint = useCallback(() => {
@@ -9,7 +29,7 @@ const ResultsPage = () => {
 
   return (
     <>
-      <Navbar className="border-bottom">
+      <Navbar className="border-bottom sticky-top" style={{ backgroundColor: 'white' }}>
         <Button className="ms-auto"  color="secondary">
           <i className="bi bi-person-lines-fill me-1" />
           Send Feedback
@@ -20,6 +40,8 @@ const ResultsPage = () => {
           Print
         </Button>
       </Navbar>
+
+      <GenerateButton />
 
       <Container id="printable" className="px-5">
         <Row>

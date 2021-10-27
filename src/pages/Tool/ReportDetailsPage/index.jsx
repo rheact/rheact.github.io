@@ -1,14 +1,13 @@
-import { Col, Container, Row, Button } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Button, Col, Container, Row } from 'reactstrap';
 import R from '../routes';
-import { actions as A } from '../store';
-
+import AlertReportOnly from './AlertReportOnly';
+import ChemicalDetails from './ChemicalDetails';
 import ProjectCard from './ProjectCard';
 import ReactionCard from './ReactionCard';
-import ChemicalDetails from './ChemicalDetails';
-import AlertReportOnly from './AlertReportOnly';
 import SideReactions from './SideReactionsCard';
+
 
 const ReportDetails = () => {
   const {
@@ -23,14 +22,28 @@ const ReportDetails = () => {
     compound,
   } = useSelector(store => store);
 
-
   return (
     <Container>
-      <Row>
-        <Col>
+
+      {/* Navigation Buttons */}
+
+      <div className="sticky-top w-100 d-flex align-items-center p-2 border" style={{ backgroundColor: 'white' }}>
+        <i className="bi bi-arrow-left h3 m-0 ms-2" />
+        <Button tag={NavLink} to={R.ROUTE_OPERATION_DETAILS} size="lg" color="primary" className="ms-2">
+          <i className="bi bi-box me-1" />
+          Change Operation Parameters
+        </Button>
+
+        <Button tag={NavLink} to={R.ROUTE_RESULTS} size="lg" color="danger" className="ms-auto">
+          <i className="bi bi-file-earmark-bar-graph-fill me-1" />
+          Generate Report
+        </Button>
+        <i className="bi bi-arrow-right h3 m-0 ms-2" />
+      </div>
+
+      <div className="mt-2">
           <AlertReportOnly />
-        </Col>
-      </Row>
+      </div>
 
       <Row>
         <Col>
@@ -50,17 +63,6 @@ const ReportDetails = () => {
       <Row className="mt-1">
         <Col>
           <SideReactions />
-        </Col>
-      </Row>
-
-      <Row className="mt-2">
-        <Col className="d-flex justify-content-end">
-          <NavLink to={R.ROUTE_RESULTS}>
-            <Button size="lg" color="danger">
-              <i className="bi bi-file-earmark-bar-graph-fill me-1" />
-              Generate Report
-            </Button>
-          </NavLink>
         </Col>
       </Row>
     </Container>

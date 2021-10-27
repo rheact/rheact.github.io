@@ -26,6 +26,7 @@ const SideReaction = ({ index }) => {
               <InputGroupText><i className="bi bi-thermometer-half" /></InputGroupText>
               <Input value={tempOnset}
                 onChange={e => dispatch(SET_SR_TEMPERATURE({ index, text: e.target.value }))} />
+              <Button color="dark">&deg;C</Button>
             </InputGroup>
           </Col>
           <Col>
@@ -34,6 +35,7 @@ const SideReaction = ({ index }) => {
               <InputGroupText><i className="bi bi-speedometer" /></InputGroupText>
               <Input value={pressureOnset}
                 onChange={e => dispatch(SET_SR_PRESSURE({ index, text: e.target.value }))} />
+              <Button color="dark">bar</Button>
             </InputGroup>
           </Col>
         </Row>

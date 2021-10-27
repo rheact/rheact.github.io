@@ -17,7 +17,7 @@ const ToolPage = () => {
     >
         <Container fluid>
           <Row>
-            <Col md={2}>
+            <Col md={1}>
               <Submenu />
             </Col>
             <Col>

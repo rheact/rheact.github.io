@@ -40,7 +40,7 @@ const ReactionCard = () => {
         <div className="d-flex justify-content-end">
           <small className="text-muted">We use <a href="https://mhchem.github.io/MathJax-mhchem/">mhchem</a> chemical equations for rendering. </small>
         </div>
-        <div className="text-center py-2" ref={katexRef} />
+        <div className="text-center py-5" ref={katexRef} />
 
         <Label>Description of scope of project</Label>
         <Input type="textarea"
