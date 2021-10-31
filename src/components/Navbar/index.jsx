@@ -45,9 +45,9 @@ const SaveButton = ({ className }) => {
 const ToolNavbar = () => {
   return (
     <>
-      <Navbar className="d-flex justify-content-center p-0 shadow-sm" style={{ zIndex: 10, background: "linear-gradient(180deg, rgba(239,255,0,1) 0%, rgba(255,186,0,1) 100%)" }}>
+      <div className="bg-info d-flex justify-content-center p-0 shadow-sm">
         <span className="fs-5 fw-bold" style={{ fontFamily: "Futura" }}>RHEACT</span>
-      </Navbar>
+      </div>
       <Navbar color="light" light expand="xs" className="px-2 d-flex justify-content-between">
         <Collapse isOpen>
           <Nav navbar>

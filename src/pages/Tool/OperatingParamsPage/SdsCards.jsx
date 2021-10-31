@@ -95,7 +95,7 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
     ];
 
   return (
-    <Card color="light">
+    <Card key={name} color="light">
       <CardHeader className="h5 d-flex justify-content-between align-items-center">
         <div>
           <span className="text-primary">{index + 1}. </span>
@@ -158,7 +158,6 @@ const CompoundDropzone = ({ label, name, addAction, changeAction, removeAction, 
   const dispatch = useDispatch();
 
   const { getRootProps, getInputProps } = useDropzone({
-    maxFiles: 1,
     onDrop: async (f) => {
       const data = await server.parsePDF(f, temperature || 0);
       dispatch(addAction(data));
@@ -235,7 +234,7 @@ export const DiluentDropzone = () => {
   const props = {
     label: 'Diluents',
     name: 'diluents',
-    bg: 'bg-info',
+    bg: 'bg-primary',
     addAction: ADD_DILUENT,
     changeAction: CHANGE_DILUENT,
     removeAction: REMOVE_DILUENT,

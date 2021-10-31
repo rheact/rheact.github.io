@@ -1,8 +1,12 @@
 import axios from 'axios';
+import _ from 'lodash';
 
 const HOST = process.env.REACT_APP_BACKEND_URL || '';
 const server = new axios.Axios({
-    url: HOST,
+    baseURL: HOST,
+    headers: {
+        'Content-Type': 'application/json',
+    },
 });
 
 // export value
@@ -24,62 +28,56 @@ api.parsePDF = async(f, temperature) => {
         },
     });
 
-    return res.data;
+    return JSON.parse(res.data);
 };
 
-api.getHazardMatrix = async(hNums) => {
+/**
+ * @param {import('../pages/Tool/state').Compound} compound
+ */
+api.getHazardMatrix = async(compound) => {
+    const allCompounds = _.concat(compound.reactants, compound.products, compound.diluents);
+    const filteredCompounds = allCompounds.filter(c => !!c.productName);
+    const hNums = {};
+    filteredCompounds.forEach(c => {
+        hNums[c.productName] = {
+            hNumbers: c.hNumbers,
+            hStatements: c.hStatements
+        };
+    })
+    console.log("HNUMS: ", hNums)
+
     const promises = Object.keys(hNums).map(async name => {
         const res = await server.post('/graph', hNums[name]['hNumbers'], {
             headers: { 'Content-Type': 'text/plain' },
-        })
-        const data = res.data
-        data['name'] = name
-        return data
+        });
+        const data = JSON.parse(res.data);
+        data['name'] = name;
+        return data;
     });
 
     return await Promise.all(promises);
 };
 
-api.calculationBlock = async(operatingParams, reactants, products) => {
-    const res = await server.post('/calculate', {
+api.getCalculationBlock = async(operatingParams, compound) => {
+    const data = {
         operatingParams: operatingParams,
-        reactants: reactants,
-        products: products
-    })
-
+        reactants: compound.reactants,
+        products: compound.products,
+    };
+    const res = await server.post('/calculate', JSON.stringify(data));
     return res.data;
 };
 
-api.getCameoTable = async(reactants, products, diluents) => {
+api.getCameoTable = async(compound) => {
     // strip irrelevant data to reduce amount sent to server
-    const reactantsStripped = reactants.map(reactant => {
-        return {
-            productName: reactant.productName,
-            casNo: reactant.casNo
-        }
-    });
-
-    const productsStripped = products.map(product => {
-        return {
-            productName: product.productName,
-            casNo: product.casNo
-        }
-    });
-
-    const diluentsStripped = diluents.map(diluent => {
-        return {
-            productName: diluent.productName,
-            casNo: diluent.casNo
-        }
-    });
-
-    const response = await server.post('/cameo', {
-        reactants: reactantsStripped,
-        products: productsStripped,
-        diluents: diluentsStripped,
-    });
-
-    return response.data;
+    const mapPick = (lst) => _(lst).map(x => _.pick(x, ['productName', 'casNo']));
+    const data = {
+        reactants: mapPick(compound.reactants),
+        products: mapPick(compound.products),
+        diluents: mapPick(compound.diluents),
+    };
+    const res = await server.post('/cameo', JSON.stringify(data));
+    return res.data;
 }
 
 export default api;

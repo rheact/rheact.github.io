@@ -1,24 +1,56 @@
-import { Alert, Button, Col, Container, Navbar, Progress, Row, Table } from "reactstrap";
-import { useCallback } from "react";
-import './results.css';
+import { useCallback, useReducer } from "react";
 import { useSelector } from "react-redux";
+import { Button, Card, CardBody, CardHeader, Progress, Table } from "reactstrap";
+import server from '../../../api';
+import './results.css';
 
 const GenerateButton = () => {
   const state = useSelector(s => s);
-  const onClick = useCallback(() => {
-    
-  }, [state]);
+  const [pending, changePending] = useReducer((s, delta) => s + delta, 0);
+  const maxJobs = 3;
+
+  const onClick = useCallback(async () => {
+    changePending(maxJobs);
+
+    const calculationBlock = server
+      .getCalculationBlock(state.operatingParams, state.compound)
+      .then((data) => {
+        changePending(-1);
+        return data;
+      });
+
+    const cameoMatrix = server
+      .getCameoTable(state.compound)
+      .then((data) => {
+        changePending(-1);
+        return data;
+      });
+
+    const hazardMatrix = server
+      .getHazardMatrix(state.compound)
+      .then((data) => {
+        changePending(-1);
+        return data;
+      });
+  }, [state, pending]);
 
   return (
-    <Container className="py-2">
-      <Row>
-        <Button className="w-100" color="success" size="lg">Click Here to Generate Report</Button>
-      </Row>
-      <Row className="mt-2">
-        <Progress striped color="success" value="25" />
-        {JSON.stringify(state, '4')}
-      </Row>
-    </Container>
+    <Card color="light">
+      <CardHeader className="fw-bold">Generating Results</CardHeader>
+
+      <CardBody>
+
+        <div className="w-100 d-flex flex-column align-items-center">
+          <i className="bi bi-gear-wide-connected display-1" />
+          <Button color="success" className="circle" size="lg" onClick={onClick}>Click Here to Generate Report</Button>
+          {pending > 0 && (
+            <div className="w-100 mt-2">
+              <Progress animated striped color="danger" value={((maxJobs - pending) / maxJobs) * 100} className="px-0" />
+            </div>
+          )}
+        </div>
+      </CardBody>
+    </Card>
   );
 };
 
@@ -29,8 +61,8 @@ const ResultsPage = () => {
 
   return (
     <>
-      <Navbar className="border-bottom sticky-top" style={{ backgroundColor: 'white' }}>
-        <Button className="ms-auto"  color="secondary">
+      <div className="sticky-top w-100 d-flex align-items-center p-2 border" style={{ backgroundColor: 'white' }}>
+        <Button className="ms-auto" color="secondary">
           <i className="bi bi-person-lines-fill me-1" />
           Send Feedback
         </Button>
@@ -39,123 +71,73 @@ const ResultsPage = () => {
           <i className="bi bi-printer-fill me-1" />
           Print
         </Button>
-      </Navbar>
+      </div>
 
-      <GenerateButton />
+      <div className="mt-2">
+        <GenerateButton />
+      </div>
 
-      <Container id="printable" className="px-5">
-        <Row>
-          <Col className="text-center">
-            <h1 className="fw-bolder display-2">Report</h1>
-            <hr />
-          </Col>
-        </Row>
+      <section id="printable" className="px-5">
+        <div className="text-center">
+          <h1 className="fw-bolder display-2">Report</h1>
+          <hr />
+        </div>
 
-        <Row>
-          <Col>
-            <h2>Calculations</h2>
-          </Col>
-        </Row>
+        <div>
+          <h2>Calculations</h2>
+        </div>
 
-        <Row>
-          <Col>
-            <Table dark bordered>
+        <div>
+          <Table dark bordered>
 
-              <tbody>
-                <tr>
-                  <td>Adiabatic temperature change</td>
-                  <td>62 &deg;C</td>
-                </tr>
-                <tr>
-                  <td>Calculated final temperature</td>
-                  <td>502 &deg;C</td>
-                </tr>
-                <tr>
-                  <td>Calculated final pressure</td>
-                  <td>5 bars</td>
-                </tr>
-              </tbody>
+            <tbody>
+              <tr>
+                <td>Adiabatic temperature change</td>
+                <td>62 &deg;C</td>
+              </tr>
+              <tr>
+                <td>Calculated final temperature</td>
+                <td>502 &deg;C</td>
+              </tr>
+              <tr>
+                <td>Calculated final pressure</td>
+                <td>5 bars</td>
+              </tr>
+            </tbody>
 
-            </Table>
-          </Col>
-        </Row>
+          </Table>
+        </div>
 
-        <Row>
-          <Col>
-            <h2>Alerts</h2>
-          </Col>
-        </Row>
+        <div>
+          <h2>Cameo Matrix</h2>
+          <hr />
+        </div>
 
-        <Row>
-          <Col>
-            <Alert color="danger" className="fw-bolder">
-              <Row>
-                <Col xs={1}>
-                  <i className="bi bi-exclamation-diamond-fill"/>
-                </Col>
-                <Col>
-                  Final temperature exceeds Benzene's boiling point
-                </Col>
-                <Col xs={3}>
-                  502 &deg;C
-                  exceeds
-                  300 &deg;C
-                </Col>
-              </Row>
-            </Alert>
+        <div>
+          <Table bordered>
+            <tbody>
 
-            <Alert color="danger" className="fw-bolder">
-              <Row>
-                <Col xs={1}>
-                  <i className="bi bi-exclamation-diamond-fill"/>
-                </Col>
-                <Col>
-                  Final temperature exceeds Reactant 2 boiling point
-                </Col>
-                <Col xs={3}>
-                  502 &deg;C
-                  exceeds
-                  300 &deg;C
-                </Col>
-              </Row>
-            </Alert>
-          </Col>
-        </Row>
+              <tr>
+                <td></td>
+                <td className="bg-success fw-bolder text-center py-4">Hydrogen</td>
+              </tr>
 
-        <Row>
-          <Col>
-            <h2>Cameo Matrix</h2>
-            <hr />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <Table bordered>
-              <tbody>
-
-                <tr>
-                  <td></td>
-                  <td className="bg-success fw-bolder text-center py-4">Hydrogen</td>
-                </tr>
-
-                <tr>
-                  <td className="bg-success fw-bolder text-center py-4">Oxygen</td>
-                  <td className="text-center py-4">Incompatible <i className="bg-danger bi-x-lg" /></td>
-                  <th className="bg-success fw-bolder text-center py-4">Oxygen</th>
-                </tr>
+              <tr>
+                <td className="bg-success fw-bolder text-center py-4">Oxygen</td>
+                <td className="text-center py-4">Incompatible <i className="bg-danger bi-x-lg" /></td>
+                <th className="bg-success fw-bolder text-center py-4">Oxygen</th>
+              </tr>
 
 
-                <tr>
-                  <td className="bg-success fw-bolder text-center py-4">Carbon Dioxide</td>
-                  <td className="text-center py-4">Compatible <i className="bg-success bi-check-lg" /></td>
-                  <td className="text-center py-4">Compatible <i className="bg-success bi-check-lg" /></td>
-                </tr>
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
-      </Container>
+              <tr>
+                <td className="bg-success fw-bolder text-center py-4">Carbon Dioxide</td>
+                <td className="text-center py-4">Compatible <i className="bg-success bi-check-lg" /></td>
+                <td className="text-center py-4">Compatible <i className="bg-success bi-check-lg" /></td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+      </section>
     </>
   );
 };
