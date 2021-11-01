@@ -34,18 +34,7 @@ api.parsePDF = async(f, temperature) => {
 /**
  * @param {import('../pages/Tool/state').Compound} compound
  */
-api.getHazardMatrix = async(compound) => {
-    const allCompounds = _.concat(compound.reactants, compound.products, compound.diluents);
-    const filteredCompounds = allCompounds.filter(c => !!c.productName);
-    const hNums = {};
-    filteredCompounds.forEach(c => {
-        hNums[c.productName] = {
-            hNumbers: c.hNumbers,
-            hStatements: c.hStatements
-        };
-    })
-    console.log("HNUMS: ", hNums)
-
+api.getHazardMatrix = async(hNums) => {
     const promises = Object.keys(hNums).map(async name => {
         const res = await server.post('/graph', hNums[name]['hNumbers'], {
             headers: { 'Content-Type': 'text/plain' },

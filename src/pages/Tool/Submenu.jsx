@@ -13,10 +13,10 @@ const Submenu = () => {
         </span>
       </ListGroupItem>
 
-      <ListGroupItem action color="warning" className="text-center" tag={NavLink} to={R.ROUTE_OPERATION_DETAILS}>
+      <ListGroupItem action color="danger" className="text-center" tag={NavLink} to={R.ROUTE_OPERATION_DETAILS}>
         <i className="bi-box h4" />
         <br />
-        <span className="h6">
+        <span className="h6 text-break">
           Operation Details
         </span>
       </ListGroupItem>
@@ -24,7 +24,7 @@ const Submenu = () => {
       <ListGroupItem action className="text-center" tag={NavLink} to={R.ROUTE_REPORT_DETAILS}>
         <i className="bi-pencil-fill h4" />
         <br />
-        <span className="h6">
+        <span className="h6 text-break">
           Report Details
         </span>
       </ListGroupItem>

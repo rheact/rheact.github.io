@@ -53,13 +53,11 @@ const OperatingParamsPage = () => {
         <h4 className="mt-5">SDS Upload</h4>
 
         <Row className="mt-2">
-          <SearchBox />
+          <AlertAldrichOnly />
         </Row>
 
         <Row className="mt-2">
-          <div>
-            <AlertAldrichOnly />
-          </div>
+          <SearchBox />
         </Row>
 
         <div className="mt-2">

@@ -55,6 +55,31 @@
  * @property {string=} keyReactantQuantity
  * @property {number} numSideReactions
  * @property {SideReaction[]} sideReactions
+ * 
+ * Hazard Matrix
+ *
+ * @typedef {Object} hazardRow
+ * @property {string} carcinogen
+ * @property {string} eyeContact
+ * @property {string} flammability
+ * @property {string} ingestion
+ * @property {string} other
+ * @property {string} reactivity
+ * @property {string} reproductiveHazard
+ * @property {string} respiratory
+ * @property {string} sensitizer
+ * @property {string} skinAbsorption
+ * @property {string} skinContact
+ * 
+ * Results
+ * 
+ * @typedef {Object} Results
+ * @property {string} adiabaticPressure
+ * @property {string} adiabaticTemp
+ * @property {string} finalTemp
+ * @property {string} cameoMatrix
+ * @property {hazardRow[]} hazardMatrix
+ * @property {any} hNums
  *
  * RheactState is the root state of Rheact's user input.
  *
@@ -69,6 +94,7 @@
  * @property {string=} description
  * @property {Compound} compound
  * @property {OperatingParams} operatingParams
+ * @property {Results} results
  *
  *****************************************
  */
@@ -90,6 +116,7 @@ const initialState = {
         numSideReactions: 0,
         sideReactions: [],
     },
+    results: {},
 };
 
 export default initialState;

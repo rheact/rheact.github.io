@@ -118,6 +118,38 @@ const rheactSlice = createSlice({
             const { index, update } = action.payload;
             state.compound.diluents[index] = update;
         },
+
+        // Results
+        SET_CALCULATIONS(state, action) { 
+            const { adiabaticPressure, adiabaticTemp, finalTemp } = action.payload;
+            if(!state.results) {
+                state.results = {};
+            }
+            state.results.adiabaticPressure = adiabaticPressure;
+            state.results.adiabaticTemp = adiabaticTemp;
+            state.results.finalTemp = finalTemp;
+        },
+
+        SET_CAMEO(state, action) {
+            if(!state.results) {
+                state.results = {};
+            }
+            state.results.cameoMatrix = action.payload;
+        },
+
+        SET_HAZARDS(state, action) {
+            if(!state.results) {
+                state.results = {};
+            }
+            state.results.hazardMatrix = action.payload;
+        },
+
+        SET_HNUMS(state, action) {
+            if(!state.results) {
+                state.results = {};
+            }
+            state.results.hNums = action.payload;
+        }
     }
 });
 
@@ -162,6 +194,11 @@ export const {
     ADD_DILUENT,
     CHANGE_DILUENT,
     REMOVE_DILUENT,
+
+    SET_CALCULATIONS,
+    SET_CAMEO,
+    SET_HAZARDS,
+    SET_HNUMS,
 
     LOAD_JSON,
 } = rheactSlice.actions;

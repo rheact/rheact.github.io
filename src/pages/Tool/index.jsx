@@ -1,5 +1,5 @@
 import { Col, Container, Row } from 'reactstrap';
-import { MemoryRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter as MemoryRouter, Route, Switch } from 'react-router-dom';
 
 import Submenu from './Submenu';
 

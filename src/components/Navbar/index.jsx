@@ -1,10 +1,12 @@
 import { useCallback, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Button, Collapse, Nav, Navbar, NavItem, NavLink } from 'reactstrap';
-import { store, LOAD_JSON } from '../../pages/Tool/store';
+import { LOAD_JSON } from '../../pages/Tool/store';
 
 const LoadButton = ({ className }) => {
   const fileUploadRef = useRef();
+  const dispatch = useDispatch();
 
   const onClick = useCallback(() => {
     fileUploadRef.current.click();
@@ -15,7 +17,7 @@ const LoadButton = ({ className }) => {
     if (!file) return;
     const text = (await file.text());
     const json = JSON.parse(text);
-    store.dispatch(LOAD_JSON(json));
+    dispatch(LOAD_JSON(json));
   }, []);
 
   return (
@@ -45,9 +47,10 @@ const SaveButton = ({ className }) => {
 const ToolNavbar = () => {
   return (
     <>
-      <div className="bg-info d-flex justify-content-center p-0 shadow-sm">
+      <div className="d-flex justify-content-center p-0 shadow-sm" style={{ backgroundColor: "lime" }}>
         <span className="fs-5 fw-bold" style={{ fontFamily: "Futura" }}>RHEACT</span>
       </div>
+      
       <Navbar color="light" light expand="xs" className="px-2 d-flex justify-content-between">
         <Collapse isOpen>
           <Nav navbar>
