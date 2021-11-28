@@ -10,7 +10,6 @@ import {
     InputGroupText,
     Row,
 } from "reactstrap";
-import "./dropzone.css";
 import SigmaLogo from "./icons/sigma.png";
 
 const SearchBox = () => {

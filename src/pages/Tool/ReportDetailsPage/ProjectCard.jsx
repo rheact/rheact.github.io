@@ -1,6 +1,6 @@
 import { Card, CardBody, CardHeader, Input, Label } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { SET_NAME_OF_RESEARCHER, SET_PROJECT_TITLE, SET_PRINCIPAL_INVESTIGATOR, SET_LAB_LOCATION, SET_ORGANIZATION } from '../store';
+import { SET_NAME_OF_RESEARCHER, SET_PROJECT_TITLE, SET_PRINCIPAL_INVESTIGATOR, SET_LAB_LOCATION, SET_ORGANIZATION } from '../store/reducer';
 
 const ProjectCard = () => {
   const dispatch = useDispatch();

@@ -9,7 +9,7 @@ import {
   SET_HEAT_OF_REACTION,
   SET_PRESSURE,
   SET_TEMPERATURE
-} from "../store";
+} from "../store/reducer";
 import CpIcon from "./icons/cp.png";
 import HeatIcon from "./icons/heat.png";
 import PressureIcon from "./icons/pressure.png";

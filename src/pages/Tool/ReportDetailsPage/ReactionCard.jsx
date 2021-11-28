@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, CardHeader, Input, Label } from "reactstrap";
-import { SET_CHEMICAL_SCHEME, SET_DESCRIPTION } from "../store";
+import { SET_CHEMICAL_SCHEME, SET_DESCRIPTION } from "../store/reducer";
 
 const ReactionCard = () => {
     const dispatch = useDispatch();

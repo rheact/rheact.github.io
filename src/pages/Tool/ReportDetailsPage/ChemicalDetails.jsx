@@ -1,6 +1,6 @@
 import { Card, CardBody, CardHeader, Input, InputGroup, InputGroupText, Label } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { SET_REACTION_CLASS, SET_REACTION_SCALE, SET_KEY_REAGENT_QUANTITY, SET_PHYSICAL_STATE } from '../store';
+import { SET_REACTION_CLASS, SET_REACTION_SCALE, SET_KEY_REAGENT_QUANTITY, SET_PHYSICAL_STATE } from '../store/reducer';
 
 const ChemicalDetails = () => {
   const dispatch = useDispatch();

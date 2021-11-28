@@ -1,4 +1,4 @@
-import { createSlice, createStore } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import initialState from './state';
 
@@ -49,7 +49,7 @@ const rheactSlice = createSlice({
             });
         },
         REMOVE_SIDE_REACTION(state, action) {
-            if(state.operatingParams.numSideReactions > 0) {
+            if (state.operatingParams.numSideReactions > 0) {
                 state.operatingParams.numSideReactions -= 1;
             }
 
@@ -77,7 +77,7 @@ const rheactSlice = createSlice({
             state.compound.reactants.push(action.payload);
         },
         REMOVE_REACTANT(state, action) {
-            if(state.compound.numReactants > 0) {
+            if (state.compound.numReactants > 0) {
                 state.compound.numReactants -= 1;
             }
 
@@ -93,7 +93,7 @@ const rheactSlice = createSlice({
             state.compound.products.push(action.payload);
         },
         REMOVE_PRODUCT(state, action) {
-            if(state.compound.numProducts > 0) {
+            if (state.compound.numProducts > 0) {
                 state.compound.numProducts -= 1;
             }
 
@@ -109,7 +109,7 @@ const rheactSlice = createSlice({
             state.compound.diluents.push(action.payload);
         },
         REMOVE_DILUENT(state, action) {
-            if(state.compound.numDiluents > 0) {
+            if (state.compound.numDiluents > 0) {
                 state.compound.numDiluents -= 1;
             }
 
@@ -121,9 +121,9 @@ const rheactSlice = createSlice({
         },
 
         // Results
-        SET_CALCULATIONS(state, action) { 
+        SET_CALCULATIONS(state, action) {
             const { adiabaticPressure, adiabaticTemp, finalTemp } = action.payload;
-            if(!state.results) {
+            if (!state.results) {
                 state.results = {};
             }
             state.results.adiabaticPressure = adiabaticPressure;
@@ -132,33 +132,27 @@ const rheactSlice = createSlice({
         },
 
         SET_CAMEO(state, action) {
-            if(!state.results) {
+            if (!state.results) {
                 state.results = {};
             }
             state.results.cameoMatrix = action.payload;
         },
 
         SET_HAZARDS(state, action) {
-            if(!state.results) {
+            if (!state.results) {
                 state.results = {};
             }
             state.results.hazardMatrix = action.payload;
         },
 
         SET_HNUMS(state, action) {
-            if(!state.results) {
+            if (!state.results) {
                 state.results = {};
             }
             state.results.hNums = action.payload;
         }
     }
 });
-
-/** Store to be passed to provider. */
-export const store = createStore(
-    rheactSlice.reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-);
 
 export const {
     SET_NAME_OF_RESEARCHER,
@@ -203,3 +197,5 @@ export const {
 
     LOAD_JSON,
 } = rheactSlice.actions;
+
+export const reducer = rheactSlice.reducer;

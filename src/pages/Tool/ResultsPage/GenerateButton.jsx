@@ -2,7 +2,7 @@ import { useCallback, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Progress } from "reactstrap";
 import server from "../../../api";
-import { SET_CALCULATIONS, SET_CAMEO, SET_HAZARDS, SET_HNUMS } from "../store";
+import { SET_CALCULATIONS, SET_CAMEO, SET_HAZARDS, SET_HNUMS } from "../store/reducer";
 
 const GenerateButton = () => {
     const state = useSelector((s) => s);

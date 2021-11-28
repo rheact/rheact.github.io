@@ -21,3 +21,11 @@
 .dropzone:hover {
     border-color: #2196f3;
 }
+
+
+/* WHYYY DOES THIS HAPPEN */
+
+.modal-open,
+.modal {
+    padding-right: 0px !important;
+}

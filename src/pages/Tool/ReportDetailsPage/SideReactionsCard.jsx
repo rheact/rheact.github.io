@@ -1,6 +1,6 @@
 import { Button, Card, CardBody, CardHeader, Col, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { ADD_SIDE_REACTION, SET_SR_TEMPERATURE, SET_SR_PRESSURE, SET_SR_DETAILS, REMOVE_SIDE_REACTION } from '../store';
+import { ADD_SIDE_REACTION, SET_SR_TEMPERATURE, SET_SR_PRESSURE, SET_SR_DETAILS, REMOVE_SIDE_REACTION } from '../store/reducer';
 import _ from 'lodash';
 
 const SideReaction = ({ index }) => {
