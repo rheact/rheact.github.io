@@ -1,11 +1,10 @@
-import { Col, Container, Row } from "reactstrap";
 import { HashRouter as MemoryRouter, Route, Switch } from "react-router-dom";
-import ToolBar from "./ToolBar";
-import R from "./routes";
 import GuidePage from "./GuidePage";
-import ReportDetailsPage from "./ReportDetailsPage";
 import OperatingParamsPage from "./OperatingParamsPage";
+import ReportDetailsPage from "./ReportDetailsPage";
 import ResultsPage from "./ResultsPage";
+import R from "./routes";
+import ToolBar from "./ToolBar";
 
 const ToolPage = () => {
     return (

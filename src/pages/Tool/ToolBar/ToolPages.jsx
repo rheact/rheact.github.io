@@ -1,9 +1,16 @@
 import { NavLink } from "react-router-dom";
-import { ButtonGroup, Button } from "reactstrap";
+import { Button, ButtonGroup } from "reactstrap";
 import R from "../routes";
 
 const FormatButton = ({ icon, route, children }) => (
-    <Button className="text-center" size="sm" tag={NavLink} to={route} outline color="dark">
+    <Button
+        className="text-center"
+        size="sm"
+        tag={NavLink}
+        to={route}
+        outline
+        color="dark"
+    >
         <i className={icon} /> {children}
     </Button>
 );
