@@ -28,6 +28,10 @@ api.parsePDF = async(f, temperature) => {
         },
     });
 
+    if (res.status === 400) {
+        throw Error("Error 400, please inform CISTAR developers");
+    }
+
     return JSON.parse(res.data);
 };
 
