@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToggle } from 'react-use';
-import { Button, Card, CardBody, CardHeader, Col, Collapse, Container, FormFeedback, FormGroup, Input, InputGroup, Label, Row, Table } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Collapse, FormFeedback, FormGroup, Input, InputGroup, Label, Row, Table } from 'reactstrap';
 import server from '../../../api';
 import { ADD_DILUENT, ADD_PRODUCT, ADD_REACTANT, CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT, REMOVE_DILUENT, REMOVE_PRODUCT, REMOVE_REACTANT } from '../store';
 import './dropzone.css';
@@ -20,8 +20,8 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
       index,
       update,
     }));
-  }, [compound]);
-  const onRemove = useCallback(() => dispatch(removeAction(index)), [index]);
+  }, [changeAction, compound, dispatch, index]);
+  const onRemove = useCallback(() => dispatch(removeAction(index)), [dispatch, index, removeAction]);
 
   const [viewProps, toggleProps] = useToggle();
 
@@ -105,7 +105,7 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
         </div>
 
         <div>
-          <Button outline className="me-2" color="info" onClick={toggleProps}>
+          <Button outline className="me-2" color="primary" onClick={toggleProps}>
             <i className="bi bi-pencil me-1" />
             Edit Properties
           </Button>
@@ -165,8 +165,8 @@ const CompoundDropzone = ({ label, name, addAction, changeAction, removeAction, 
   });
 
   return (
-    <Card>
-      <CardHeader className={ "fw-bolder text-white " + (bg || "") }>{label}</CardHeader>
+    <Card className={"border-"+bg}>
+      <CardHeader className={ "fw-bolder text-" + (bg || "") }>{label}</CardHeader>
       <CardBody>
         <Row>
           <Col md={4}>
@@ -208,7 +208,7 @@ export const ReactantDropzone = () => {
   const props = {
     label: 'Reactants',
     name: 'reactants',
-    bg: 'bg-warning',
+    bg: 'warning',
     addAction: ADD_REACTANT,
     changeAction: CHANGE_REACTANT,
     removeAction: REMOVE_REACTANT,
@@ -221,7 +221,7 @@ export const ProductDropzone = () => {
   const props = {
     label: 'Products',
     name: 'products',
-    bg: 'bg-success',
+    bg: 'success',
     addAction: ADD_PRODUCT,
     changeAction: CHANGE_PRODUCT,
     removeAction: REMOVE_PRODUCT,
@@ -234,7 +234,7 @@ export const DiluentDropzone = () => {
   const props = {
     label: 'Diluents',
     name: 'diluents',
-    bg: 'bg-primary',
+    bg: 'primary',
     addAction: ADD_DILUENT,
     changeAction: CHANGE_DILUENT,
     removeAction: REMOVE_DILUENT,

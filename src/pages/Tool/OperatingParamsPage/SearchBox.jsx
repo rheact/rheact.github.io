@@ -5,7 +5,7 @@ import { } from '../store';
 import './dropzone.css';
 import SigmaLogo from './icons/sigma.png';
 
-export const SearchBox = () => {
+const SearchBox = () => {
   const searchInput = useInput();
   const onSearch = useCallback((e) => {
     e.preventDefault();
@@ -15,13 +15,13 @@ export const SearchBox = () => {
   return (
     <Form onSubmit={onSearch}>
       <InputGroup>
-        <InputGroupText className="bg-primary text-white fw-bolder">
-          <i className="bi-search me-2" />  SEARCH
+        <InputGroupText>
+          <img width="64px" src={SigmaLogo} alt="sigma-algrich-logo" />
         </InputGroupText>
 
-        <Input {...searchInput} placeholder="Name or CAS number" />
+        <Input {...searchInput} placeholder="Search Name or CAS number" />
 
-        <Button outline color="dark" type="submit">Go</Button>
+        <Button color="dark" type="submit">Go</Button>
       </InputGroup>
     </Form>
   );
@@ -31,12 +31,13 @@ export const AlertAldrichOnly = () => {
   return (
       <Alert color="light">
         <Row>
-          <Col sm={1}>
-            <img width="100%" src={SigmaLogo} />
-          </Col>
           <Col className="fst-italic">
             RHEACT currently only supports SDS from Sigma-Aldrich. You can use the searchbar below to go to Sigma-Aldrich's SDS lookup website and download the SDS PDFs.
           </Col>
+        </Row>
+
+        <Row className="mt-2">
+          <SearchBox />
         </Row>
       </Alert>
   );

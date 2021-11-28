@@ -1,4 +1,5 @@
 import { createSlice, createStore } from '@reduxjs/toolkit';
+import _ from 'lodash';
 import initialState from './state';
 
 /**
@@ -16,7 +17,7 @@ const rheactSlice = createSlice({
     initialState,
     reducers: {
         LOAD_JSON(_state, action) {
-            return action.payload;
+            return _.cloneDeep(action.payload);
         },
 
         // State

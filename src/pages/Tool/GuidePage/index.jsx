@@ -1,32 +1,31 @@
-import { Card, Col, Container, Row } from 'reactstrap';
-import P2SACLogo from './P2SAC.jpg';
+import P2SACLogo from "./P2SAC.jpg";
+
+// Black Text
+const B = ({ t }) => (
+  <span className="fw-bold text-dark">
+    {t}
+  </span>
+);
 
 const GuidePage = () => {
-  return (
-    <Container>
-      <Row>
-        <Col>
-          <Card className="p-1">
-            <div className="text-center">
-              <h1 className="display-1 fw-bolder">RHEACT</h1>
-              <h2 className="text-muted">Reactive Hazards Evaluation & Analysis Compilation Tool</h2>
+    return (
+        <article className="p-lg-5">
+            <h1 className="text-muted text-center">
+                <B t="R" />eactive <B t="H" />azards <B t="E" />valuation & <B t="A" />nalysis <B t="C" />ompilation <B t="T" />ool
+            </h1>
 
-              <hr />
+            <hr />
 
-              <div>
-              Developed by:
-              </div>
+            <div>Developed by:</div>
 
-              <img height="100px" src="https://sites.utexas.edu/ils/files/2019/08/CISTAR-Logo-Medium-768x301.jpg" />
-              {/* <img height="60px" src="https://marcom.purdue.edu/app/uploads/2020/01/2_UniversityLogo_Horizontal.png" /> */}
-              <img height="100px" src={P2SACLogo} />
-            </div>
-
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-  );
+            <img
+                height="64px"
+                src="https://sites.utexas.edu/ils/files/2019/08/CISTAR-Logo-Medium-768x301.jpg"
+                alt="cistar-logo"
+            />
+            <img height="64px" src={P2SACLogo} alt="p2sac-logo" />
+        </article>
+    );
 };
 
 export default GuidePage;

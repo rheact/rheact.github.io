@@ -33,7 +33,7 @@ const ResultsPage = () => {
 
   return (
     <>
-      <div className="sticky-top w-100 d-flex align-items-center p-2 border" style={{ backgroundColor: 'white' }}>
+      <div className="w-100 d-flex align-items-center p-2 border" style={{ backgroundColor: 'white' }}>
         <Button className="ms-auto" color="secondary">
           <i className="bi bi-person-lines-fill me-1" />
           Send Feedback

@@ -8,7 +8,7 @@ function App() {
     <>
       <Provider store={store}>
         <Navbar />
-        <main className="p-2">
+        <main>
           <ToolPage />
         </main>
         <footer className="py-5 d-flex justify-content-center align-items-center text-muted">
