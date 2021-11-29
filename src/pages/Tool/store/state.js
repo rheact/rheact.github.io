@@ -46,9 +46,13 @@
  *
  * @typedef {Object} OperatingParams
  * @property {string} temperature
+ * @property {string} temperatureUnit
  * @property {string} pressure
+ * @property {string} pressureUnit
  * @property {string} heatOfReaction
+ * @property {string} heatOfReactionUnit
  * @property {string} cp
+ * @property {string} cpUnit
  * @property {string=} physicalState
  * @property {string=} reactionClass
  * @property {string=} reactionScale

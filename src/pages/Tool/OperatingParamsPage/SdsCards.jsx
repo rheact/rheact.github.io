@@ -29,15 +29,15 @@ const CompoundDropzone = ({
     removeAction,
     bg,
 }) => {
-    const temperature = useSelector(
-        (state) => state.operatingParams.temperature
+    const operatingParams = useSelector(
+        (state) => state.operatingParams
     );
     const num = useSelector((state) => state.compound["num" + label]);
     const dispatch = useDispatch();
 
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: (f) => {
-            server.parsePDF(f, temperature || 0)
+            server.parsePDF(f, operatingParams)
             .then(data => dispatch(addAction(data)))
             .catch(e => alert(e));
         },

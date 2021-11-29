@@ -1,5 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
+import { standardizeTemperature, standardizeOperatingParams } from '../units';
 
 const HOST = process.env.REACT_APP_BACKEND_URL || '';
 const server = new axios.Axios({
@@ -15,16 +16,17 @@ const api = {};
 /**
  * @argument f {File[]}
  */
-api.parsePDF = async(f, temperature) => {
+api.parsePDF = async(f, operatingParams) => {
     const formData = new FormData();
     formData.append("file", f[0], f[0].name);
+    const temperature = standardizeTemperature(operatingParams.temperatureUnit, operatingParams.temperature);
 
     const res = await server.post('/pdf', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
         params: {
-            temperature,
+            temperature: parseInt(temperature),
         },
     });
 
@@ -52,8 +54,9 @@ api.getHazardMatrix = async(hNums) => {
 };
 
 api.getCalculationBlock = async(operatingParams, compound) => {
+    const standardized = standardizeOperatingParams(operatingParams);
     const data = {
-        operatingParams: operatingParams,
+        operatingParams: standardized,
         reactants: compound.reactants,
         products: compound.products,
     };
