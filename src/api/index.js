@@ -14,11 +14,11 @@ const server = new axios.Axios({
 const api = {};
 
 /**
- * @argument f {File[]}
+ * @argument f {File}
  */
 api.parsePDF = async(f, operatingParams) => {
     const formData = new FormData();
-    formData.append("file", f[0], f[0].name);
+    formData.append("file", f, f.name);
     const temperature = standardizeTemperature(operatingParams.temperatureUnit, operatingParams.temperature);
 
     const res = await server.post('/pdf', formData, {

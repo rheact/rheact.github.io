@@ -1,7 +1,9 @@
+import { useMemo } from 'react';
 import _ from "lodash";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import {
+    Alert,
     Card,
     CardBody,
     CardHeader,
@@ -32,14 +34,17 @@ const CompoundDropzone = ({
     const operatingParams = useSelector(
         (state) => state.operatingParams
     );
-    const num = useSelector((state) => state.compound["num" + label]);
     const dispatch = useDispatch();
+    const num = useSelector((state) => state.compound["num" + label]);
+    const noTemperature = useMemo(() => !operatingParams.temperature && operatingParams.temperature !== 0, [operatingParams.temperature])
 
     const { getRootProps, getInputProps } = useDropzone({
-        onDrop: (f) => {
-            server.parsePDF(f, operatingParams)
+        disabled: noTemperature,
+        onDrop: (files) => {
+            const parseFile = (f) => server.parsePDF(f, operatingParams)
             .then(data => dispatch(addAction(data)))
             .catch(e => alert(e));
+            files.forEach(parseFile);
         },
     });
 
@@ -72,6 +77,12 @@ const CompoundDropzone = ({
                         </div>
                     </Col>
                 </Row>
+                {noTemperature && (
+                    <Alert color="danger" className="my-1">
+                        You need to enter a temperature value to upload SDS
+                        files!
+                    </Alert>
+                )}
 
                 <div className="mt-2">
                     {_.range(num).map((i) => (
