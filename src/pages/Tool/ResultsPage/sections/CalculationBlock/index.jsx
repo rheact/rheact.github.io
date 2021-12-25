@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
-import { Card } from "reactstrap";
+import { useSelector } from 'react-redux';
+import { Card } from 'reactstrap';
 
-const CalculationBlock = ({ className }) => {
-    const results = useSelector(state => state.results);
+const CalculationBlock = function ({ className }) {
+    const results = useSelector((state) => state.results);
 
-    if(!results || !results.finalTemp || !results.adiabaticTemp || !results.adiabaticPressure) {
-        return (<h2 className={"text-muted " + className}>No calculations.</h2>);
+    if (!results || !results.finalTemp || !results.adiabaticTemp || !results.adiabaticPressure) {
+        return (<h2 className={`text-muted ${className}`}>No calculations.</h2>);
     }
 
     return (
@@ -14,17 +14,29 @@ const CalculationBlock = ({ className }) => {
             <div className="d-flex justify-content-center">
                 <Card color="secondary" className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Final Temperature</span>
-                    <span className="h5 text-center">{results.finalTemp.toFixed(3)} &deg;C</span>
+                    <span className="h5 text-center">
+                        {results.finalTemp.toFixed(3)}
+                        {' '}
+&deg;C
+                    </span>
                 </Card>
 
                 <Card color="secondary" className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Adiabatic Temperature Change</span>
-                    <span className="h5 text-center">{results.adiabaticTemp.toFixed(3)} &deg;C</span>
+                    <span className="h5 text-center">
+                        {results.adiabaticTemp.toFixed(3)}
+                        {' '}
+&deg;C
+                    </span>
                 </Card>
 
                 <Card color="secondary" className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Adiabatic Pressure Change</span>
-                    <span className="h5 text-center">{results.adiabaticPressure.toFixed(3)} bar</span>
+                    <span className="h5 text-center">
+                        {results.adiabaticPressure.toFixed(3)}
+                        {' '}
+bar
+                    </span>
                 </Card>
             </div>
         </div>

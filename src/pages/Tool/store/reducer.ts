@@ -1,51 +1,68 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import initialState from './state';
+import initialState, { OperatingParams, RheactState } from './state';
+
+type RheactReducer = (a: RheactState, b: { type: string, payload: any }) => void;
 
 /**
- * @returns {Function} A setter function that changes the key to passed payload.
+ * @returns A setter function that changes the key to passed payload.
  */
-const setStateThunk = (key) => (state, action) => { state[key] = action.payload; };
+const setStateThunk = (key: keyof RheactState): RheactReducer => (state, action) => {
+    state[key] = action.payload;
+};
 
 /**
- * @returns {Function} A setter function that changes the key of OperatingParams to passed payload.
+ * @returns A setter function that changes the key of OperatingParams to passed payload.
  */
-const setParamThunk = (key) => (state, action) => { state["operatingParams"][key] = action.payload; };
+const setParamThunk = (key: keyof OperatingParams): RheactReducer => (state, action) => {
+    state.operatingParams[key] = action.payload;
+};
 
 const rheactSlice = createSlice({
-    name: "rheact",
+    name: 'rheact',
     initialState,
     reducers: {
         LOAD_JSON(_state, action) {
-            return _.cloneDeep(action.payload);
+            const loaded = _.cloneDeep(action.payload);
+            if (!loaded.results) {
+                loaded.results = {};
+            }
+            return loaded;
         },
 
         // State
-        SET_NAME_OF_RESEARCHER: setStateThunk("nameOfResearcher"),
-        SET_PROJECT_TITLE: setStateThunk("projectTitle"),
-        SET_LAB_LOCATION: setStateThunk("labLocation"),
-        SET_PRINCIPAL_INVESTIGATOR: setStateThunk("principalInvestigator"),
-        SET_ORGANIZATION: setStateThunk("organization"),
-        SET_CHEMICAL_SCHEME: setStateThunk("chemicalScheme"),
-        SET_DESCRIPTION: setStateThunk("description"),
+        SET_NAME_OF_RESEARCHER: setStateThunk('nameOfResearcher'),
+        SET_PROJECT_TITLE: setStateThunk('projectTitle'),
+        SET_LAB_LOCATION: setStateThunk('labLocation'),
+        SET_PRINCIPAL_INVESTIGATOR: setStateThunk('principalInvestigator'),
+        SET_ORGANIZATION: setStateThunk('organization'),
+        SET_CHEMICAL_SCHEME: setStateThunk('chemicalScheme'),
+        SET_DESCRIPTION: setStateThunk('description'),
 
         // Operating Params
-        SET_TEMPERATURE: setParamThunk("temperature"),
-        SET_PRESSURE: setParamThunk("pressure"),
-        SET_HEAT_OF_REACTION: setParamThunk("heatOfReaction"),
-        SET_CP: setParamThunk("cp"),
-        SET_TEMPERATURE_UNIT: setParamThunk("temperatureUnit"),
-        SET_PRESSURE_UNIT: setParamThunk("pressureUnit"),
-        SET_HEAT_OF_REACTION_UNIT: setParamThunk("heatOfReactionUnit"),
-        SET_CP_UNIT: setParamThunk("cpUnit"),
-        SET_PHYSICAL_STATE: setParamThunk("physicalState"),
-        SET_REACTION_CLASS: setParamThunk("reactionClass"),
-        SET_REACTION_SCALE: setParamThunk("reactionScale"),
-        SET_KEY_REAGENT_QUANTITY: setParamThunk("keyReagentQuantity"),
+        SET_TEMPERATURE: setParamThunk('temperature'),
+        SET_PRESSURE: setParamThunk('pressure'),
+        SET_HEAT_OF_REACTION: setParamThunk('heatOfReaction'),
+        SET_CP: setParamThunk('cp'),
+        SET_TEMPERATURE_UNIT: setParamThunk('temperatureUnit'),
+        SET_PRESSURE_UNIT: setParamThunk('pressureUnit'),
+        SET_HEAT_OF_REACTION_UNIT: setParamThunk('heatOfReactionUnit'),
+        SET_CP_UNIT: setParamThunk('cpUnit'),
+        SET_PHYSICAL_STATE: setParamThunk('physicalState'),
+        SET_REACTION_CLASS: setParamThunk('reactionClass'),
+        SET_REACTION_SCALE: setParamThunk('reactionScale'),
+        SET_KEY_REAGENT_QUANTITY: setParamThunk('keyReactantQuantity'),
 
         // Side Reactions
         ADD_SIDE_REACTION(state) {
+            if (state.operatingParams.numSideReactions === undefined) {
+                state.operatingParams.numSideReactions = 0;
+            }
             state.operatingParams.numSideReactions += 1;
+
+            if (state.operatingParams.sideReactions === undefined) {
+                state.operatingParams.sideReactions = [];
+            }
             state.operatingParams.sideReactions.push({
                 tempOnset: '',
                 pressureOnset: '',
@@ -53,6 +70,13 @@ const rheactSlice = createSlice({
             });
         },
         REMOVE_SIDE_REACTION(state, action) {
+            if (state.operatingParams.numSideReactions === undefined) {
+                state.operatingParams.numSideReactions = 0;
+            }
+            if (state.operatingParams.sideReactions === undefined) {
+                state.operatingParams.sideReactions = [];
+            }
+
             if (state.operatingParams.numSideReactions > 0) {
                 state.operatingParams.numSideReactions -= 1;
             }
@@ -61,16 +85,28 @@ const rheactSlice = createSlice({
         },
 
         SET_SR_TEMPERATURE(state, action) {
+            if (state.operatingParams.sideReactions === undefined) {
+                state.operatingParams.sideReactions = [];
+            }
+
             const { index, text } = action.payload;
             state.operatingParams.sideReactions[index].tempOnset = text;
         },
 
         SET_SR_PRESSURE(state, action) {
+            if (state.operatingParams.sideReactions === undefined) {
+                state.operatingParams.sideReactions = [];
+            }
+
             const { index, text } = action.payload;
             state.operatingParams.sideReactions[index].pressureOnset = text;
         },
 
         SET_SR_DETAILS(state, action) {
+            if (state.operatingParams.sideReactions === undefined) {
+                state.operatingParams.sideReactions = [];
+            }
+
             const { index, text } = action.payload;
             state.operatingParams.sideReactions[index].details = text;
         },
@@ -154,8 +190,8 @@ const rheactSlice = createSlice({
                 state.results = {};
             }
             state.results.hNums = action.payload;
-        }
-    }
+        },
+    },
 });
 
 export const {
@@ -206,4 +242,4 @@ export const {
     LOAD_JSON,
 } = rheactSlice.actions;
 
-export const reducer = rheactSlice.reducer;
+export const { reducer } = rheactSlice;

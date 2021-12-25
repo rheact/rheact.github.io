@@ -1,6 +1,6 @@
-import { NavLink as Link, NavbarBrand } from "reactstrap";
+import { NavLink as Link, NavbarBrand } from 'reactstrap';
 
-const AppNavbar = () => {
+const AppNavbar = function AppNavbar() {
     return (
         <div
             className="d-flex align-items-center shadow-sm px-3"

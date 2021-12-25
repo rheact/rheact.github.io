@@ -1,23 +1,22 @@
-import { connect } from "react-redux";
-import yellow from "../images/caution_thick.png";
-import red from "../images/danger_thick.png";
-import green from "../images/safe_thick.png";
-import orange from "../images/warning_thick.png";
-
+import { connect } from 'react-redux';
+import yellow from '../images/caution_thick.png';
+import red from '../images/danger_thick.png';
+import green from '../images/safe_thick.png';
+import orange from '../images/warning_thick.png';
 
 const links = [
-    "https://www.osha.gov/Publications/osha3151.pdf",
-    "https://ehs.ucmerced.edu/researchers-labs/ppe/selection",
-    "https://www.era-environmental.com/blog/personal-protective-equipment-how-to-read-an-sds",
-    "https://www.usf.edu/administrative-services/environmental-health-safety/documents/hazard_control_ppe_guide.pdf",
-    "https://www.ehs.washington.edu/system/files/resources/ppeguidelines.pdf",
-    "https://www.purdue.edu/ehps/rem/laboratory/Personal/PPE/gloveselection.pdf",
+    'https://www.osha.gov/Publications/osha3151.pdf',
+    'https://ehs.ucmerced.edu/researchers-labs/ppe/selection',
+    'https://www.era-environmental.com/blog/personal-protective-equipment-how-to-read-an-sds',
+    'https://www.usf.edu/administrative-services/environmental-health-safety/documents/hazard_control_ppe_guide.pdf',
+    'https://www.ehs.washington.edu/system/files/resources/ppeguidelines.pdf',
+    'https://www.purdue.edu/ehps/rem/laboratory/Personal/PPE/gloveselection.pdf',
 ];
 
-const Matrix = ({ results, className }) => {
+const Matrix = function ({ results, className }) {
     if (!results || !results.hazardMatrix) {
         return (
-            <h2 className={"text-muted " + className}>
+            <h2 className={`text-muted ${className}`}>
                 No hazard matrix generated.
             </h2>
         );
@@ -26,18 +25,18 @@ const Matrix = ({ results, className }) => {
     const matrix = results.hazardMatrix;
 
     const columns = [
-        "Name",
-        "Flammability",
-        "Reactivity",
-        "Skin absorption",
-        "Skin contact",
-        "Eye contact",
-        "Respiratory",
-        "Carcinogen",
-        "Reproductive hazard",
-        "Sensitizer",
-        "Other",
-        "Ingestion",
+        'Name',
+        'Flammability',
+        'Reactivity',
+        'Skin absorption',
+        'Skin contact',
+        'Eye contact',
+        'Respiratory',
+        'Carcinogen',
+        'Reproductive hazard',
+        'Sensitizer',
+        'Other',
+        'Ingestion',
     ];
 
     const newMatrix = [];
@@ -48,190 +47,190 @@ const Matrix = ({ results, className }) => {
 
     newMatrix.forEach((element) => {
         switch (element.carcinogen) {
-            case "#7fd13b":
-                element.carcinogenPic = green;
-                break;
-            case "#ffff00":
-                element.carcinogenPic = yellow;
-                break;
-            case "#ffa500":
-                element.carcinogenPic = orange;
-                break;
-            case "#c00000":
-                element.carcinogenPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.carcinogenPic = green;
+            break;
+        case '#ffff00':
+            element.carcinogenPic = yellow;
+            break;
+        case '#ffa500':
+            element.carcinogenPic = orange;
+            break;
+        case '#c00000':
+            element.carcinogenPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.eyeContact) {
-            case "#7fd13b":
-                element.eyeContactPic = green;
-                break;
-            case "#ffff00":
-                element.eyeContactPic = yellow;
-                break;
-            case "#ffa500":
-                element.eyeContactPic = orange;
-                break;
-            case "#c00000":
-                element.eyeContactPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.eyeContactPic = green;
+            break;
+        case '#ffff00':
+            element.eyeContactPic = yellow;
+            break;
+        case '#ffa500':
+            element.eyeContactPic = orange;
+            break;
+        case '#c00000':
+            element.eyeContactPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.flammability) {
-            case "#7fd13b":
-                element.flammabilityPic = green;
-                break;
-            case "#ffff00":
-                element.flammabilityPic = yellow;
-                break;
-            case "#ffa500":
-                element.flammabilityPic = orange;
-                break;
-            case "#c00000":
-                element.flammabilityPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.flammabilityPic = green;
+            break;
+        case '#ffff00':
+            element.flammabilityPic = yellow;
+            break;
+        case '#ffa500':
+            element.flammabilityPic = orange;
+            break;
+        case '#c00000':
+            element.flammabilityPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.ingestion) {
-            case "#7fd13b":
-                element.ingestionPic = green;
-                break;
-            case "#ffff00":
-                element.ingestionPic = yellow;
-                break;
-            case "#ffa500":
-                element.ingestionPic = orange;
-                break;
-            case "#c00000":
-                element.ingestionPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.ingestionPic = green;
+            break;
+        case '#ffff00':
+            element.ingestionPic = yellow;
+            break;
+        case '#ffa500':
+            element.ingestionPic = orange;
+            break;
+        case '#c00000':
+            element.ingestionPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.other) {
-            case "#7fd13b":
-                element.otherPic = green;
-                break;
-            case "#ffff00":
-                element.otherPic = yellow;
-                break;
-            case "#ffa500":
-                element.otherPic = orange;
-                break;
-            case "#c00000":
-                element.otherPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.otherPic = green;
+            break;
+        case '#ffff00':
+            element.otherPic = yellow;
+            break;
+        case '#ffa500':
+            element.otherPic = orange;
+            break;
+        case '#c00000':
+            element.otherPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.reactivity) {
-            case "#7fd13b":
-                element.reactivityPic = green;
-                break;
-            case "#ffff00":
-                element.reactivityPic = yellow;
-                break;
-            case "#ffa500":
-                element.ivityPic = orange;
-                break;
-            case "#c00000":
-                element.reactivityPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.reactivityPic = green;
+            break;
+        case '#ffff00':
+            element.reactivityPic = yellow;
+            break;
+        case '#ffa500':
+            element.ivityPic = orange;
+            break;
+        case '#c00000':
+            element.reactivityPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.reproductiveHazard) {
-            case "#7fd13b":
-                element.reproductiveHazardPic = green;
-                break;
-            case "#ffff00":
-                element.reproductiveHazardPic = yellow;
-                break;
-            case "#ffa500":
-                element.reproductiveHazardPic = orange;
-                break;
-            case "#c00000":
-                element.reproductiveHazardPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.reproductiveHazardPic = green;
+            break;
+        case '#ffff00':
+            element.reproductiveHazardPic = yellow;
+            break;
+        case '#ffa500':
+            element.reproductiveHazardPic = orange;
+            break;
+        case '#c00000':
+            element.reproductiveHazardPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.respiratory) {
-            case "#7fd13b":
-                element.respiratoryPic = green;
-                break;
-            case "#ffff00":
-                element.respiratoryPic = yellow;
-                break;
-            case "#ffa500":
-                element.respiratoryPic = orange;
-                break;
-            case "#c00000":
-                element.respiratoryPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.respiratoryPic = green;
+            break;
+        case '#ffff00':
+            element.respiratoryPic = yellow;
+            break;
+        case '#ffa500':
+            element.respiratoryPic = orange;
+            break;
+        case '#c00000':
+            element.respiratoryPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.sensitizer) {
-            case "#7fd13b":
-                element.sensitizerPic = green;
-                break;
-            case "#ffff00":
-                element.sensitizerPic = yellow;
-                break;
-            case "#ffa500":
-                element.sensitizerPic = orange;
-                break;
-            case "#c00000":
-                element.sensitizerPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.sensitizerPic = green;
+            break;
+        case '#ffff00':
+            element.sensitizerPic = yellow;
+            break;
+        case '#ffa500':
+            element.sensitizerPic = orange;
+            break;
+        case '#c00000':
+            element.sensitizerPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.skinAbsorption) {
-            case "#7fd13b":
-                element.skinAbsorptionPic = green;
-                break;
-            case "#ffff00":
-                element.skinAbsorptionPic = yellow;
-                break;
-            case "#ffa500":
-                element.skinAbsorptionPic = orange;
-                break;
-            case "#c00000":
-                element.skinAbsorptionPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.skinAbsorptionPic = green;
+            break;
+        case '#ffff00':
+            element.skinAbsorptionPic = yellow;
+            break;
+        case '#ffa500':
+            element.skinAbsorptionPic = orange;
+            break;
+        case '#c00000':
+            element.skinAbsorptionPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
 
         switch (element.skinContact) {
-            case "#7fd13b":
-                element.skinContactPic = green;
-                break;
-            case "#ffff00":
-                element.skinContactPic = yellow;
-                break;
-            case "#ffa500":
-                element.skinContactPic = orange;
-                break;
-            case "#c00000":
-                element.skinContactPic = red;
-                break;
-            default:
-                console.log("Error: Unknown value");
+        case '#7fd13b':
+            element.skinContactPic = green;
+            break;
+        case '#ffff00':
+            element.skinContactPic = yellow;
+            break;
+        case '#ffa500':
+            element.skinContactPic = orange;
+            break;
+        case '#c00000':
+            element.skinContactPic = red;
+            break;
+        default:
+            console.log('Error: Unknown value');
         }
     });
 
@@ -441,43 +440,43 @@ const Matrix = ({ results, className }) => {
 
 const styles = {
     table: {
-        borderSpacing: "0",
-        border: "1px solid black",
-        align: "center",
-        width: "100%",
-        fontSize: "1vw",
+        borderSpacing: '0',
+        border: '1px solid black',
+        align: 'center',
+        width: '100%',
+        fontSize: '1vw',
     },
 
     th: {
-        margin: "0",
-        padding: "0.5rem",
-        borderBottom: "1px solid black",
-        borderRight: "1px solid black",
-        lineHeight: "1.5",
-        textAlign: "center",
+        margin: '0',
+        padding: '0.5rem',
+        borderBottom: '1px solid black',
+        borderRight: '1px solid black',
+        lineHeight: '1.5',
+        textAlign: 'center',
     },
 
     td: {
-        margin: "0",
-        padding: "0.5rem",
-        borderBottom: "1px solid black",
-        borderRight: "1px solid black",
+        margin: '0',
+        padding: '0.5rem',
+        borderBottom: '1px solid black',
+        borderRight: '1px solid black',
     },
 
     legend: {
-        display: "flex",
-        justifyContent: "center",
-        color: "black",
+        display: 'flex',
+        justifyContent: 'center',
+        color: 'black',
     },
 
     legendItem: {
-        padding: "0em 1em",
+        padding: '0em 1em',
     },
 
     image: {
-        margin: "0px 6px",
-        width: "20px",
-        height: "20px",
+        margin: '0px 6px',
+        width: '20px',
+        height: '20px',
     },
 };
 

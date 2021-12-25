@@ -1,27 +1,27 @@
 // From old project
 
-import React from 'react'
-import { connect } from 'react-redux'
-import { Table } from 'reactstrap'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Table } from 'reactstrap';
 
-const HTable = ({ results, className }) => {
+const HTable = function ({ results, className }) {
     const columns = [
         'Name',
         'H-Number',
         'H-Statement',
-    ]
+    ];
 
-    if(!results || !results.hNums) {
-        return ( <h2 className={"text-muted " + className}>No hazard numbers or statements.</h2> );
+    if (!results || !results.hNums) {
+        return (<h2 className={`text-muted ${className}`}>No hazard numbers or statements.</h2>);
     }
 
-    const hNums = results.hNums;
+    const { hNums } = results;
 
     return (
         <div className={className}>
             <h2>Hazard Statements</h2>
 
-            <Table bordered align='center'>
+            <Table bordered align="center">
                 <thead className="bg-danger text-white">
                     <tr>
                         {columns.map((column, i) => (
@@ -37,18 +37,18 @@ const HTable = ({ results, className }) => {
 
                             <td>
                                 <div className="d-flex flex-column">
-                                    {hNums[row]['hNumbers'].split(', ').map((hNum, j) => (
+                                    {hNums[row].hNumbers.split(', ').map((hNum, j) => (
                                         <span key={j}>{hNum}</span>
                                     ))}
-                                </div>     
+                                </div>
                             </td>
 
                             <td>
                                 <div className="d-flex flex-column">
-                                    {hNums[row]['hStatements'] && hNums[row]['hStatements'].split('\n').map((hStatement, j) => (
+                                    {hNums[row].hStatements && hNums[row].hStatements.split('\n').map((hStatement, j) => (
                                         <span key={j}>{hStatement}</span>
                                     ))}
-                                </div>     
+                                </div>
                             </td>
                         </tr>
 
@@ -56,11 +56,11 @@ const HTable = ({ results, className }) => {
                 </tbody>
             </Table>
         </div>
-    )
-}
+    );
+};
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     results: state.results,
-})
+});
 
-export default connect(mapStateToProps)(HTable)
+export default connect(mapStateToProps)(HTable);
