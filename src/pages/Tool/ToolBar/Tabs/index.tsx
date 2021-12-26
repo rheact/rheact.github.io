@@ -11,7 +11,7 @@ type FormatButtonProps = {
 const FormatNavTab: FC<FormatButtonProps> = function ({ icon, route, children }) {
     return (
         <NavLink
-            className="text-center"
+            className="text-center text-black"
             tag={Link}
             to={route}
         >
