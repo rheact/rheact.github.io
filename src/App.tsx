@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import Navbar from './components/Navbar';
 import ToolPage from './pages/Tool';
-import store from './pages/Tool/store';
+import store from './store';
 import './dropzone.css';
 
 const App = function RheactToolApp() {

@@ -1,4 +1,4 @@
-import { OperatingParams } from '../pages/Tool/store/state';
+import { OperatingParams } from '../store';
 import {
     CP_STANDARDIZATION,
     HEAT_STANDARDIZATION,

@@ -2,9 +2,9 @@ import P2SACLogo from "./P2SAC.jpg";
 
 // Black Text
 const B = ({ t }) => (
-  <span className="fw-bold text-dark">
-    {t}
-  </span>
+    <span className="fw-bold text-dark">
+        {t}
+    </span>
 );
 
 const GuidePage = () => {

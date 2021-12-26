@@ -1,10 +1,16 @@
+import { FC, MouseEventHandler } from "react";
 import { useDropzone } from "react-dropzone";
 import { useDispatch } from "react-redux";
 import { useToggle } from "react-use";
 import { Button, Modal, ModalBody, ModalHeader } from "reactstrap";
-import { LOAD_JSON } from "../../store/reducer";
+import { LOAD_JSON } from "../../../../store/reducer";
 
-const DropzoneModal = ({ open, toggle }) => {
+type DropzoneModalTypes = {
+    open: boolean,
+    toggle: MouseEventHandler,
+};
+
+const DropzoneModal: FC<DropzoneModalTypes> = ({ open, toggle }) => {
     const dispatch = useDispatch();
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: async (f) => {
@@ -13,7 +19,7 @@ const DropzoneModal = ({ open, toggle }) => {
             const text = await file.text();
             const json = JSON.parse(text);
             dispatch(LOAD_JSON(json));
-            toggle();
+            (toggle as any)();
         },
         accept: ['.json', '.rheact'],
     });
@@ -25,9 +31,9 @@ const DropzoneModal = ({ open, toggle }) => {
                 Old JSON files are also accepted.
                 <div {...getRootProps({ className: "dropzone" })}>
                     <input {...getInputProps()} />
-                    <center>
+                    <div className="d-flex justify-content-center align-items-center">
                         <i className="bi-file-earmark-medical-fill" />
-                    </center>
+                    </div>
                     <p>
                         <br />
                         Drag and drop a JSON file here
@@ -40,15 +46,14 @@ const DropzoneModal = ({ open, toggle }) => {
     );
 };
 
-const LoadButton = () => {
+const LoadButton: FC<any> = () => {
     const [open, toggle] = useToggle(false);
 
     return (
         <>
-            <Button onClick={toggle} color="warning" size="sm" outline>
+            <Button onClick={toggle} color="dark" size="sm" outline>
                 <i className="bi-cloud-upload-fill" /> Load
                 <DropzoneModal
-                    className="p-0 m-0"
                     open={open}
                     toggle={toggle}
                 />

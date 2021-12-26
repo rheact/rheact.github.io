@@ -3,7 +3,6 @@ env:
     es2021: true
 extends:
     - plugin:react/recommended
-    - airbnb
 parser: "@typescript-eslint/parser"
 parserOptions:
     ecmaFeatures:
@@ -16,6 +15,8 @@ plugins:
 rules:
     {
         indent: ["error", 4],
+        "react/prop-types": 0,
+        "max-len": 0,
         "import/extensions": 0,
         "import/no-unresolved": 0,
         "no-param-reassign": 0,
@@ -24,4 +25,5 @@ rules:
         "react/jsx-indent": 0,
         "react/jsx-indent-props": 0,
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "func-names": 0,
     }

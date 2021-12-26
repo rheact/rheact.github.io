@@ -20,7 +20,7 @@ import {
     REMOVE_DILUENT,
     REMOVE_PRODUCT,
     REMOVE_REACTANT
-} from "../store/reducer";
+} from "../../../store/reducer";
 import CompoundCard from './CompoundCard';
 
 const CompoundDropzone = ({
@@ -42,8 +42,8 @@ const CompoundDropzone = ({
         disabled: noTemperature,
         onDrop: (files) => {
             const parseFile = (f) => server.parsePDF(f, operatingParams)
-            .then(data => dispatch(addAction(data)))
-            .catch(e => alert(e));
+                .then(data => dispatch(addAction(data)))
+                .catch(e => alert(e));
             files.forEach(parseFile);
         },
     });

@@ -1,19 +1,19 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  Card,
-  CardBody, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, InputGroupText, UncontrolledButtonDropdown
+    Card,
+    CardBody, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, InputGroupText, UncontrolledButtonDropdown
 } from "reactstrap";
 import {
-  SET_CP,
-  SET_CP_UNIT,
-  SET_HEAT_OF_REACTION,
-  SET_HEAT_OF_REACTION_UNIT,
-  SET_PRESSURE,
-  SET_PRESSURE_UNIT,
-  SET_TEMPERATURE,
-  SET_TEMPERATURE_UNIT
-} from "../store/reducer";
+    SET_CP,
+    SET_CP_UNIT,
+    SET_HEAT_OF_REACTION,
+    SET_HEAT_OF_REACTION_UNIT,
+    SET_PRESSURE,
+    SET_PRESSURE_UNIT,
+    SET_TEMPERATURE,
+    SET_TEMPERATURE_UNIT
+} from "../../../store/reducer";
 import { TEMPERATURE_UNITS_LIST, PRESSURE_UNITS_LIST, CP_UNITS_LIST, HEAT_UNITS_LIST } from '../../../units/constants';
 import CpIcon from "./icons/cp.png";
 import HeatIcon from "./icons/heat.png";
@@ -45,13 +45,13 @@ const ParamCard = ({ label, icon, unitList, name, valueAction, unitAction }) => 
                 <span className="fw-bolder text-center">{label}</span>
 
                 <InputGroup>
-                  <InputGroupText className="bg-light">Value</InputGroupText>
-                  <Input
-                      value={value}
-                      invalid={!value}
-                      onChange={onValueChange}
-                      placeholder={`Enter ${label} in ${unit}`}
-                  />
+                    <InputGroupText className="bg-light">Value</InputGroupText>
+                    <Input
+                        value={value}
+                        invalid={!value}
+                        onChange={onValueChange}
+                        placeholder={`Enter ${label} in ${unit}`}
+                    />
                 </InputGroup>
 
                 <UncontrolledButtonDropdown className="mt-2">
@@ -59,7 +59,7 @@ const ParamCard = ({ label, icon, unitList, name, valueAction, unitAction }) => 
                     <DropdownMenu>
                         {unitList &&
                             unitList.map((e) => (
-                                <DropdownItem outline onClick={() => dispatch(unitAction(e))}>
+                                <DropdownItem outline onClick={() => dispatch(unitAction(e))} key={e}>
                                     {e}
                                 </DropdownItem>
                             ))}

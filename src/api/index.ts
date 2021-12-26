@@ -1,6 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { Chemical, Compound, OperatingParams } from '../pages/Tool/store/state';
+import { Chemical, Compound, OperatingParams } from '../store';
 import { standardizeOperatingParams } from '../units';
 
 const HOST = process.env.REACT_APP_BACKEND_URL || '';

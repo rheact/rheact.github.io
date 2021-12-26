@@ -1,5 +1,4 @@
 import { HashRouter as MemoryRouter, Route, Switch } from "react-router-dom";
-import GuidePage from "./GuidePage";
 import OperatingParamsPage from "./OperatingParamsPage";
 import ReportDetailsPage from "./ReportDetailsPage";
 import ResultsPage from "./ResultsPage";
@@ -21,10 +20,6 @@ const ToolPage = () => {
 
                 <Route path={R.ROUTE_RESULTS}>
                     <ResultsPage />
-                </Route>
-
-                <Route>
-                    <GuidePage />
                 </Route>
             </Switch>
         </MemoryRouter>
