@@ -1,15 +1,20 @@
 import { HashRouter as MemoryRouter, Route, Switch } from "react-router-dom";
+import R from "./routes";
+import ToolBar from "./ToolBar";
 import OperatingParamsPage from "./OperatingParamsPage";
 import ReportDetailsPage from "./ReportDetailsPage";
 import ResultsPage from "./ResultsPage";
-import R from "./routes";
-import ToolBar from "./ToolBar";
+import SDSPage from "./SDSPage";
 
 const ToolPage = () => {
     return (
         <MemoryRouter initialEntries={Object.keys(R)} initialIndex={1}>
             <ToolBar />
             <Switch>
+                <Route path={R.ROUTE_SDS}>
+                    <SDSPage />
+                </Route>
+
                 <Route path={R.ROUTE_REPORT_DETAILS}>
                     <ReportDetailsPage />
                 </Route>

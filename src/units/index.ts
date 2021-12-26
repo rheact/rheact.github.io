@@ -29,7 +29,10 @@ export const standardizeOperatingParams = (ops: OperatingParams) => {
         cpUnit,
     } = ops;
 
-    const retval: OperatingParams = {};
+    const retval: OperatingParams = {
+        sideReactions: [],
+        numSideReactions: 0,
+    };
 
     if (temperatureUnit && temperature) {
         retval.temperature = standardizeTemperature(temperatureUnit, parseInt(temperature, 10))

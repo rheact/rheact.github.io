@@ -65,8 +65,8 @@ export type OperatingParams = {
     reactionClass?: string,
     reactionScale?: string,
     keyReactantQuantity?: string,
-    numSideReactions?: number,
-    sideReactions?: SideReaction[],
+    numSideReactions: number,
+    sideReactions: SideReaction[],
 };
 
 /**

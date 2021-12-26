@@ -1,10 +1,15 @@
+import { FC } from 'react';
 import { Button, Card, CardBody, CardHeader, Col, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { ADD_SIDE_REACTION, SET_SR_TEMPERATURE, SET_SR_PRESSURE, SET_SR_DETAILS, REMOVE_SIDE_REACTION } from '../../../store/reducer';
-import _ from 'lodash';
+import { SET_SR_TEMPERATURE, SET_SR_PRESSURE, SET_SR_DETAILS, REMOVE_SIDE_REACTION } from 'store/reducer';
+import { RheactState } from 'store';
 
-const SideReaction = ({ index }) => {
-    const { tempOnset, pressureOnset, details } = useSelector(store => store.operatingParams.sideReactions[index]);
+type SideReactionCardProps = {
+    index: number,
+};
+
+const SideReactionCard: FC<SideReactionCardProps> = ({ index }) => {
+    const { tempOnset, pressureOnset, details } = useSelector((store: RheactState) => store.operatingParams.sideReactions[index]);
     const dispatch = useDispatch();
 
     return (
@@ -26,7 +31,7 @@ const SideReaction = ({ index }) => {
                             <InputGroupText><i className="bi bi-thermometer-half" /></InputGroupText>
                             <Input value={tempOnset}
                                 onChange={e => dispatch(SET_SR_TEMPERATURE({ index, text: e.target.value }))} />
-                            <Button color="dark">&deg;C</Button>
+                            <InputGroupText>&deg;C</InputGroupText>
                         </InputGroup>
                     </Col>
                     <Col>
@@ -35,7 +40,7 @@ const SideReaction = ({ index }) => {
                             <InputGroupText><i className="bi bi-speedometer" /></InputGroupText>
                             <Input value={pressureOnset}
                                 onChange={e => dispatch(SET_SR_PRESSURE({ index, text: e.target.value }))} />
-                            <Button color="dark">bar</Button>
+                            <InputGroupText>bar</InputGroupText>
                         </InputGroup>
                     </Col>
                 </Row>
@@ -56,25 +61,4 @@ const SideReaction = ({ index }) => {
     );
 };
 
-
-const SideReactionsMasterCard = () => {
-    const numSideReactions = useSelector(store => store.operatingParams.numSideReactions);
-    const dispatch = useDispatch();
-
-    return (
-        <Card>
-            <CardHeader className="fw-bolder color-dark">Side Reactions</CardHeader>
-            <CardBody>
-                <div className="d-flex align-items-center mb-2">
-                    <Button onClick={() => dispatch(ADD_SIDE_REACTION())}><i className="bi bi-plus-lg" /> Add </Button>
-                    <span className="ms-auto text-muted">Enter the known side-reactions and their onset details.</span>
-                </div>
-
-                {numSideReactions > 0 && <hr />}
-                {_.range(numSideReactions).map(i => <SideReaction index={i} />)}
-            </CardBody>
-        </Card>
-    );
-};
-
-export default SideReactionsMasterCard;
+export default SideReactionCard;

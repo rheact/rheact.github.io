@@ -16,7 +16,7 @@ const setStateThunk = (key: keyof RheactState): RheactReducer => (state, action)
  * @returns A setter function that changes the key of OperatingParams to passed payload.
  */
 const setParamThunk = (key: keyof OperatingParams): RheactReducer => (state, action) => {
-    state.operatingParams[key] = action.payload;
+    (state.operatingParams as any)[key] = action.payload;
 };
 
 const rheactSlice = createSlice({

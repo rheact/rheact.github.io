@@ -1,19 +1,19 @@
+import { FC } from "react";
 import { useCallback, useEffect, useState } from "react";
 import {
-    Alert,
     Badge,
     Button,
-    Col,
     Form,
     Input,
     InputGroup,
-    InputGroupText,
-    Row,
 } from "reactstrap";
-import SigmaLogo from "./icons/sigma.png";
 
-const SearchBox = () => {
-    const [stext, setText] = useState();
+type SearchBoxProps = {
+    className: string,
+};
+
+const SearchBox: FC<SearchBoxProps> = ({ className }) => {
+    const [stext, setText] = useState<string>('');
     const [suggestions, setSuggestions] = useState([]);
 
     const onSearch = useCallback(
@@ -27,7 +27,7 @@ const SearchBox = () => {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            if (!stext) return;
+            if (!stext || stext.length < 3) return;
             fetch(
                 `https://pubchem.ncbi.nlm.nih.gov/rest/autocomplete/compound/${stext}/json?limit=7`
             )
@@ -42,50 +42,35 @@ const SearchBox = () => {
     }, [stext]);
 
     return (
-        <Form onSubmit={onSearch}>
+        <Form onSubmit={onSearch} className={className}>
             <InputGroup>
-                <InputGroupText>
-                    <img
-                        width="64px"
-                        src={SigmaLogo}
-                        alt="sigma-algrich-logo"
-                    />
-                </InputGroupText>
-
                 <Input
+                    bsSize="lg"
                     value={stext}
                     onChange={(e) => setText(e.target.value)}
                     placeholder="Search Name or CAS number"
                 />
 
                 <Button color="dark" type="submit">
-                    Go
+                    <i className="bi bi-search"/>
                 </Button>
             </InputGroup>
             <div className="text-center">
                 {stext && suggestions.map((s) => (
-                    <Badge color="primary" size="lg" onClick={() => setText(s)} className="m-2" style={{ cursor: "pointer" }}>{s}</Badge>
+                    <Badge
+                        key={s}
+                        color="primary"
+                        size="lg"
+                        onClick={() => setText(s)}
+                        className="m-2"
+                        style={{ cursor: "pointer" }}
+                    >
+                        {s}
+                    </Badge>
                 ))}
             </div>
         </Form>
     );
 };
 
-export const AlertAldrichOnly = () => {
-    return (
-        <Alert color="light">
-            <Row>
-                <Col className="fst-italic">
-                    RHEACT currently only supports SDS from Sigma-Aldrich. You
-                    can use the searchbar below to go to Sigma-Aldrich's SDS
-                    lookup website and download the SDS PDFs. Typing the name
-                    of a chemical would give completion suggestions.
-                </Col>
-            </Row>
-
-            <Row className="mt-4">
-                <SearchBox />
-            </Row>
-        </Alert>
-    );
-};
+export default SearchBox;

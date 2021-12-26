@@ -1,6 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useToggle } from "react-use";
 import {
+    ButtonDropdown,
     Card,
     CardBody, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, InputGroupText, UncontrolledButtonDropdown
 } from "reactstrap";
@@ -23,6 +25,7 @@ import TemperatureIcon from "./icons/temperature.png";
 const ParamCard = ({ label, icon, unitList, name, valueAction, unitAction }) => {
     const value = useSelector((state) => state.operatingParams[name]);
     const unit = useSelector((state) => state.operatingParams[name + "Unit"]);
+    const [unitDropdownState, toggleUnitDropdown] = useToggle();
     const dispatch = useDispatch();
 
     const onValueChange = useCallback(
@@ -50,21 +53,21 @@ const ParamCard = ({ label, icon, unitList, name, valueAction, unitAction }) => 
                         value={value}
                         invalid={!value}
                         onChange={onValueChange}
-                        placeholder={`Enter ${label} in ${unit}`}
+                        placeholder={`Enter ${unit}`}
                     />
                 </InputGroup>
 
-                <UncontrolledButtonDropdown className="mt-2">
+                <ButtonDropdown toggle={toggleUnitDropdown} isOpen={unitDropdownState} className="mt-2">
                     <DropdownToggle color="dark" caret>{unit}</DropdownToggle>
                     <DropdownMenu>
                         {unitList &&
                             unitList.map((e) => (
-                                <DropdownItem outline onClick={() => dispatch(unitAction(e))} key={e}>
+                                <DropdownItem onClick={() => dispatch(unitAction(e))} key={e}>
                                     {e}
                                 </DropdownItem>
                             ))}
                     </DropdownMenu>
-                </UncontrolledButtonDropdown>
+                </ButtonDropdown>
             </CardBody>
         </Card>
     );

@@ -1,14 +1,15 @@
 import { FC } from 'react';
 import { NavLink as Link } from 'react-router-dom';
-import { Nav, NavLink } from 'reactstrap';
+import {  Nav, NavLink } from 'reactstrap';
 import R from '../../routes';
 
 type FormatButtonProps = {
     icon: string,
     route: string,
+    label: string,
 };
 
-const FormatNavTab: FC<FormatButtonProps> = function ({ icon, route, children }) {
+const FormatNavTab: FC<FormatButtonProps> = function ({ icon, route, label }) {
     return (
         <NavLink
             className="text-center text-black"
@@ -17,29 +18,44 @@ const FormatNavTab: FC<FormatButtonProps> = function ({ icon, route, children })
         >
             <i className={icon} />
             {' '}
-            {children}
+            {label}
         </NavLink>
     );
 };
 
 const ToolPages: FC<any> = function ({ classname }) {
+    const tabs = [
+        {
+            icon: "bi-box",
+            route: R.ROUTE_OPERATION_DETAILS,
+            label: "Operation Details",
+        },
+        {
+            icon: "bi-gear",
+            route: R.ROUTE_SDS,
+            label: "SDS",
+        },
+        {
+            icon: "bi-pencil-fill",
+            route: R.ROUTE_REPORT_DETAILS,
+            label: "Report Details",
+        },
+        {
+            icon: "bi-file-earmark-bar-graph-fill",
+            route: R.ROUTE_RESULTS,
+            label: "Results",
+        },
+    ];
     return (
         <Nav tabs className={classname}>
-            <FormatNavTab icon="bi-box" route={R.ROUTE_OPERATION_DETAILS}>
-                Operation Details
-            </FormatNavTab>
-            <FormatNavTab
-                icon="bi-pencil-fill"
-                route={R.ROUTE_REPORT_DETAILS}
-            >
-                Report Details
-            </FormatNavTab>
-            <FormatNavTab
-                icon="bi bi-file-earmark-bar-graph-fill"
-                route={R.ROUTE_RESULTS}
-            >
-                Report
-            </FormatNavTab>
+            {tabs.map((e) => (
+                <FormatNavTab
+                    key={e.label}
+                    icon={e.icon}
+                    route={e.route}
+                    label={e.label}
+                />
+            ))}
         </Nav>
     );
 };

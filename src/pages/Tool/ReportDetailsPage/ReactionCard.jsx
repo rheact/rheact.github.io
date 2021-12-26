@@ -33,6 +33,7 @@ const ReactionCard = () => {
                 <Input
                     type="textarea"
                     value={chemicalScheme}
+                    placeholder="Enter LaTeX equation"
                     onChange={(e) =>
                         dispatch(SET_CHEMICAL_SCHEME(e.target.value))
                     }
@@ -53,6 +54,7 @@ const ReactionCard = () => {
                 <Input
                     type="textarea"
                     value={description}
+                    placeholder="A brief summary of the project"
                     onChange={(e) => dispatch(SET_DESCRIPTION(e.target.value))}
                 />
             </CardBody>
