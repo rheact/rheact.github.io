@@ -1,5 +1,4 @@
-import { Col, Container, Row } from "reactstrap";
-import AlertReportOnly from "./AlertReportOnly";
+import { Alert, Col, Container, Row } from "reactstrap";
 import ChemicalDetails from "./ChemicalDetails";
 import ProjectCard from "./ProjectCard";
 import ReactionCard from "./ReactionCard";
@@ -7,20 +6,22 @@ import ReactionCard from "./ReactionCard";
 const ReportDetails = () => {
     return (
         <Container fluid className="mt-2">
-            <AlertReportOnly />
+            <Alert color="info" isOpen>
+                Details in this section are for report-purposes only and have no impact on the calculations performed by the tool.
+            </Alert>
 
-            <Row>
-                <Col>
-                    <ReactionCard />
-                </Col>
-            </Row>
-
-            <Row className="mt-2 g-2">
+            <Row className="g-2">
                 <Col md={6}>
                     <ProjectCard />
                 </Col>
                 <Col md={6}>
                     <ChemicalDetails />
+                </Col>
+            </Row>
+
+            <Row className="mt-2">
+                <Col>
+                    <ReactionCard />
                 </Col>
             </Row>
         </Container>

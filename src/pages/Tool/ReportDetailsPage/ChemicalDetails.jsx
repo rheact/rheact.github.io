@@ -1,6 +1,6 @@
-import { Card, CardBody, CardHeader, Input, InputGroup, InputGroupText, Label } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { SET_REACTION_CLASS, SET_REACTION_SCALE, SET_KEY_REAGENT_QUANTITY, SET_PHYSICAL_STATE } from '../../../store/reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { Card, CardBody, Input, InputGroup, InputGroupText, Label } from 'reactstrap';
+import { SET_KEY_REAGENT_QUANTITY, SET_PHYSICAL_STATE, SET_REACTION_CLASS, SET_REACTION_SCALE } from '../../../store/reducer';
 
 const ChemicalDetails = () => {
     const dispatch = useDispatch();
@@ -13,8 +13,8 @@ const ChemicalDetails = () => {
 
     return (
         <Card>
-            <CardHeader className="fw-bolder color-dark">Chemical Details</CardHeader>
             <CardBody>
+                <div className="h5 fw-bolder">Chemical Details</div>
                 <Label>Reaction Class</Label>
                 <Input value={reactionClass} onChange={e => dispatch(SET_REACTION_CLASS(e.target.value))} />
 

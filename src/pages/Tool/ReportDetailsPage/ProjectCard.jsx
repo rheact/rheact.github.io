@@ -1,6 +1,6 @@
-import { Card, CardBody, CardHeader, Input, Label } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { SET_NAME_OF_RESEARCHER, SET_PROJECT_TITLE, SET_PRINCIPAL_INVESTIGATOR, SET_LAB_LOCATION, SET_ORGANIZATION } from '../../../store/reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { Card, CardBody, Input, Label } from 'reactstrap';
+import { SET_LAB_LOCATION, SET_NAME_OF_RESEARCHER, SET_ORGANIZATION, SET_PRINCIPAL_INVESTIGATOR, SET_PROJECT_TITLE } from '../../../store/reducer';
 
 const ProjectCard = () => {
     const dispatch = useDispatch();
@@ -14,8 +14,8 @@ const ProjectCard = () => {
 
     return (
         <Card>
-            <CardHeader className="fw-bolder color-dark">Project Information</CardHeader>
             <CardBody>
+                <div className="h5 fw-bolder">Project Information</div>
                 <Label>Name of Researcher</Label>
                 <Input value={nameOfResearcher} onChange={e => dispatch(SET_NAME_OF_RESEARCHER(e.target.value))} />
 

@@ -10,7 +10,7 @@ const SDSPage = () => {
                 <Row>
                     <Col xs={11}>
                         RHEACT currently only supports SDS from Sigma-Aldrich. You
-                        can use the searchbar below to go to Sigma-Aldrich's SDS
+                        can use the searchbar below to go to Sigma-Aldrich&apos;s SDS
                         lookup website and download the SDS PDFs. Typing the name
                         of a chemical would give completion suggestions.
                     </Col>

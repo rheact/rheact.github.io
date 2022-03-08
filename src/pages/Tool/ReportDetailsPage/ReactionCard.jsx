@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Card, CardBody, CardHeader, Input, Label } from "reactstrap";
+import { Card, CardBody, Input, Label } from "reactstrap";
 import { SET_CHEMICAL_SCHEME, SET_DESCRIPTION } from "../../../store/reducer";
 
 const ReactionCard = () => {
@@ -26,9 +26,8 @@ const ReactionCard = () => {
 
     return (
         <Card>
-            <CardHeader className="fw-bolder">Reaction Details</CardHeader>
-
             <CardBody>
+                <div className="h5 fw-bolder">Reaction Details</div>
                 <Label>Complete Balanced Reaction</Label>
                 <Input
                     type="textarea"

@@ -52,7 +52,7 @@ Final temp exceeds reactant
 flash point
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
 
@@ -67,7 +67,7 @@ Final temp exceeds reactant
 decomposition temp
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
 
@@ -82,7 +82,7 @@ Final temp exceeds reactant
 auto ignition temp
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
         }
@@ -108,7 +108,7 @@ Final temp exceeds product
 boiling point
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
 
@@ -123,7 +123,7 @@ Final temp exceeds product
 flash point
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
 
@@ -138,7 +138,7 @@ Final temp exceeds product
 decomposition temp
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
 
@@ -153,7 +153,7 @@ Final temp exceeds product
 auto ignition temp
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
         }
@@ -179,7 +179,7 @@ Final temp exceeds diluent
 boiling point
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
 
@@ -194,7 +194,7 @@ Final temp exceeds diluent
 flash point
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
 
@@ -209,7 +209,7 @@ Final temp exceeds diluent
 decomposition temp
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
 
@@ -224,7 +224,7 @@ Final temp exceeds diluent
 auto ignition temp
                         </span>
                         <br />
-                             </React.Fragment>);
+                    </React.Fragment>);
                 }
             }
         }
@@ -251,7 +251,7 @@ Final temp exceeds side reaction
 temperature onset
                             </span>
                             <br />
-                                 </React.Fragment>);
+                        </React.Fragment>);
                     }
                 }
             }

@@ -372,12 +372,12 @@ const Matrix = function ({ results, className }) {
                             <td
                                 style={{
                                     ...styles.th,
-                                    color: row.other,
-                                    backgroundColor: row.other,
+                                    color: row.ingestion,
+                                    backgroundColor: row.ingestion,
                                 }}
                             >
                                 <img
-                                    src={newMatrix[i].otherPic}
+                                    src={newMatrix[i].ingestionPic}
                                     alt="green"
                                     style={styles.image}
                                 />
@@ -385,12 +385,12 @@ const Matrix = function ({ results, className }) {
                             <td
                                 style={{
                                     ...styles.th,
-                                    color: row.ingestion,
-                                    backgroundColor: row.ingestion,
+                                    color: row.other,
+                                    backgroundColor: row.other,
                                 }}
                             >
                                 <img
-                                    src={newMatrix[i].ingestionPic}
+                                    src={newMatrix[i].otherPic}
                                     alt="green"
                                     style={styles.image}
                                 />

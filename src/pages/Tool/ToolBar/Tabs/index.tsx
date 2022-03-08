@@ -38,7 +38,7 @@ const ToolPages: FC<any> = function ({ classname }) {
         {
             icon: "bi-pencil-fill",
             route: R.ROUTE_REPORT_DETAILS,
-            label: "Report Details",
+            label: "Optional Information",
         },
         {
             icon: "bi-file-earmark-bar-graph-fill",
