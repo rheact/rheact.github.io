@@ -14,7 +14,7 @@ import {
   SET_TEMPERATURE,
   SET_TEMPERATURE_UNIT
 } from "../store/reducer";
-import { TEMPERATURE_UNITS_LIST, PRESSURE_UNITS_LIST, CP_UNITS_LIST, HEAT_UNITS_LIST } from '../../../units/constants';
+import { TEMPERATURE_UNITS_LIST, PRESSURE_UNITS_LIST, CP_UNITS_LIST, HEAT_UNITS_LIST } from '../../units/constants';
 import CpIcon from "./icons/cp.png";
 import HeatIcon from "./icons/heat.png";
 import PressureIcon from "./icons/pressure.png";

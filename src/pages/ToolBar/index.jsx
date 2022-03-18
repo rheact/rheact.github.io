@@ -1,3 +1,4 @@
+import { Button } from "reactstrap";
 import SaveLoadGroup from "./SaveLoad";
 import ToolPages from "./ToolPages";
 
@@ -8,8 +9,10 @@ const ToolBar = () => {
             style={{ backgroundColor: "white" }}
         >
             <ToolPages />
-
-            <SaveLoadGroup className="ms-auto" />
+            <Button size="sm" className="ms-auto">
+                Settings
+            </Button>
+            <SaveLoadGroup className="ms-1" />
         </div>
     );
 };

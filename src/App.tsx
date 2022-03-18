@@ -1,13 +1,11 @@
 import { Provider } from 'react-redux';
-import Navbar from './components/Navbar';
-import ToolPage from './pages/Tool';
-import store from './pages/Tool/store';
+import ToolPage from './pages';
+import store from './pages/store';
 import './dropzone.css';
 
 const App = function RheactToolApp() {
     return (
         <Provider store={store}>
-            <Navbar />
             <main>
                 <ToolPage />
             </main>

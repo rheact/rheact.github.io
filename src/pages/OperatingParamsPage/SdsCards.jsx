@@ -9,7 +9,7 @@ import {
     CardHeader,
     Col, Row
 } from "reactstrap";
-import server from "../../../api";
+import server from "../../api";
 import {
     ADD_DILUENT,
     ADD_PRODUCT,

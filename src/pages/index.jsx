@@ -3,6 +3,7 @@ import GuidePage from "./GuidePage";
 import OperatingParamsPage from "./OperatingParamsPage";
 import ReportDetailsPage from "./ReportDetailsPage";
 import ResultsPage from "./ResultsPage";
+import Questionaire from './Questionaire';
 import R from "./routes";
 import ToolBar from "./ToolBar";
 
@@ -21,6 +22,10 @@ const ToolPage = () => {
 
                 <Route path={R.ROUTE_RESULTS}>
                     <ResultsPage />
+                </Route>
+
+                <Route path={R.ROUTE_PPE_QUESTIONAIRE}>
+                    <Questionaire />
                 </Route>
 
                 <Route>
