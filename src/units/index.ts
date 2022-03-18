@@ -1,56 +1,35 @@
-import { OperatingParams } from '../store';
-import {
-    CP_STANDARDIZATION,
-    HEAT_STANDARDIZATION,
-    PRESSURE_STANDARDIZATION,
-    TEMPERATURE_STANDARDIZATION,
-    UnitStandardizationMap,
-} from './constants';
+export type UnitStandardizationMap = Record<string, (x: number) => number>;
 
-const standardizeThunk = (sMap: UnitStandardizationMap) => (unit: string, x: number) => {
-    const unitConversionFunction = sMap[unit];
-    return unitConversionFunction(x);
+export const TEMPERATURE_STANDARDIZATION: UnitStandardizationMap = {
+    '°C': (x) => x,
+    '°F': (x) => (x - 32) * (5 / 9),
+    K: (x) => x - 273,
 };
 
-export const standardizeTemperature = standardizeThunk(TEMPERATURE_STANDARDIZATION);
-export const standardizePressure = standardizeThunk(PRESSURE_STANDARDIZATION);
-export const standardizeHeat = standardizeThunk(HEAT_STANDARDIZATION);
-export const standardizeCp = standardizeThunk(CP_STANDARDIZATION);
-
-export const standardizeOperatingParams = (ops: OperatingParams) => {
-    const {
-        temperature,
-        temperatureUnit,
-        pressure,
-        pressureUnit,
-        heatOfReaction,
-        heatOfReactionUnit,
-        cp,
-        cpUnit,
-    } = ops;
-
-    const retval: OperatingParams = {
-        numSideReactions: ops.
-    };
-
-    if (temperatureUnit && temperature) {
-        retval.temperature = standardizeTemperature(temperatureUnit, parseInt(temperature, 10))
-            .toString();
-    }
-    if (pressureUnit && pressure) {
-        retval.pressure = standardizePressure(pressureUnit, parseInt(pressure, 10))
-            .toString();
-    }
-    if (heatOfReactionUnit && heatOfReaction) {
-        retval.heatOfReaction = standardizeHeat(heatOfReactionUnit, parseInt(heatOfReaction, 10))
-            .toString();
-    }
-    if (cpUnit && cp) {
-        retval.cp = standardizeCp(cpUnit, parseInt(cp, 10))
-            .toString();
-    }
-
-    return retval;
+export const PRESSURE_STANDARDIZATION: UnitStandardizationMap = {
+    bar: (x) => x,
+    kPa: (x) => x,
+    atm: (x) => x,
+    'Torr (mmHg)': (x) => x,
+    'psi (absolute)': (x) => x,
 };
 
-export * from './constants';
+export const HEAT_STANDARDIZATION: UnitStandardizationMap = {
+    'cal/g': (x) => x,
+    'kcal/g': (x) => x,
+    'cal/mol': (x) => x,
+    'kJ/mol': (x) => x,
+    'J/g': (x) => x,
+    'btu/lb': (x) => x,
+};
+
+export const CP_STANDARDIZATION: UnitStandardizationMap = {
+    'cal/g/*C': (x) => x,
+    'kJ/mol/°C = kJ/mol/K': (x) => x,
+    'kcal/mol/°C = kJ/mol/K': (x) => x,
+};
+
+export const TEMPERATURE_UNITS_LIST = Object.keys(TEMPERATURE_STANDARDIZATION);
+export const PRESSURE_UNITS_LIST = Object.keys(PRESSURE_STANDARDIZATION);
+export const HEAT_UNITS_LIST = Object.keys(HEAT_STANDARDIZATION);
+export const CP_UNITS_LIST = Object.keys(CP_STANDARDIZATION);

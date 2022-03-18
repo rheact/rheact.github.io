@@ -1,6 +1,7 @@
 import { HashRouter as MemoryRouter, Route, Switch } from "react-router-dom";
 import R from "./routes";
 import ToolBar from "./ToolBar";
+import GuidePage from "./GuidePage";
 import OperatingParamsPage from "./OperatingParamsPage";
 import ReportDetailsPage from "./ReportDetailsPage";
 import ResultsPage from "./ResultsPage";

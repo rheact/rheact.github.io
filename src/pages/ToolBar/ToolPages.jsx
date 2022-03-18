@@ -17,7 +17,7 @@ const FormatButton = ({ icon, route, children, color, className }) => (
 const ToolPages = ({ className }) => {
     return (
         <span className={className}>
-            <FormatButton icon="bi-question-circle" route={R.ROUTE_GUIDE}>
+            <FormatButton icon="bi-question-circle">
                 RHEACT
             </FormatButton>
 
