@@ -1,20 +1,13 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useToggle } from "react-use";
 import {
-  Card,
-  CardBody, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, InputGroupText, UncontrolledButtonDropdown
+    ButtonDropdown,
+    Card,
+    CardBody, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, InputGroupText
 } from "reactstrap";
-import {
-  SET_CP,
-  SET_CP_UNIT,
-  SET_HEAT_OF_REACTION,
-  SET_HEAT_OF_REACTION_UNIT,
-  SET_PRESSURE,
-  SET_PRESSURE_UNIT,
-  SET_TEMPERATURE,
-  SET_TEMPERATURE_UNIT
-} from "../store/reducer";
-import { TEMPERATURE_UNITS_LIST, PRESSURE_UNITS_LIST, CP_UNITS_LIST, HEAT_UNITS_LIST } from '../../units/constants';
+import * as STORE from "../../store";
+import * as UNITS from '../../units';
 import CpIcon from "./icons/cp.png";
 import HeatIcon from "./icons/heat.png";
 import PressureIcon from "./icons/pressure.png";
@@ -23,6 +16,7 @@ import TemperatureIcon from "./icons/temperature.png";
 const ParamCard = ({ label, icon, unitList, name, valueAction, unitAction }) => {
     const value = useSelector((state) => state.operatingParams[name]);
     const unit = useSelector((state) => state.operatingParams[name + "Unit"]);
+    const [unitDropdownState, toggleUnitDropdown] = useToggle();
     const dispatch = useDispatch();
 
     const onValueChange = useCallback(
@@ -45,26 +39,26 @@ const ParamCard = ({ label, icon, unitList, name, valueAction, unitAction }) => 
                 <span className="fw-bolder text-center">{label}</span>
 
                 <InputGroup>
-                  <InputGroupText className="bg-light">Value</InputGroupText>
-                  <Input
-                      value={value}
-                      invalid={!value}
-                      onChange={onValueChange}
-                      placeholder={`Enter ${label} in ${unit}`}
-                  />
+                    <InputGroupText className="bg-light">Value</InputGroupText>
+                    <Input
+                        value={value}
+                        invalid={!value}
+                        onChange={onValueChange}
+                        placeholder={`Enter ${unit}`}
+                    />
                 </InputGroup>
 
-                <UncontrolledButtonDropdown className="mt-2">
+                <ButtonDropdown toggle={toggleUnitDropdown} isOpen={unitDropdownState} className="mt-2">
                     <DropdownToggle color="dark" caret>{unit}</DropdownToggle>
                     <DropdownMenu>
                         {unitList &&
                             unitList.map((e) => (
-                                <DropdownItem outline onClick={() => dispatch(unitAction(e))}>
+                                <DropdownItem onClick={() => dispatch(unitAction(e))} key={e}>
                                     {e}
                                 </DropdownItem>
                             ))}
                     </DropdownMenu>
-                </UncontrolledButtonDropdown>
+                </ButtonDropdown>
             </CardBody>
         </Card>
     );
@@ -75,9 +69,9 @@ export const TemperatureCard = () => {
         label: "Temperature",
         icon: TemperatureIcon,
         name: "temperature",
-        valueAction: SET_TEMPERATURE,
-        unitAction: SET_TEMPERATURE_UNIT,
-        unitList: TEMPERATURE_UNITS_LIST,
+        valueAction: STORE.SET_TEMPERATURE,
+        unitAction: STORE.SET_TEMPERATURE_UNIT,
+        unitList: UNITS.TEMPERATURE_UNITS_LIST,
     };
 
     return <ParamCard {...props} />;
@@ -88,9 +82,9 @@ export const PressureCard = () => {
         label: "Pressure",
         icon: PressureIcon,
         name: "pressure",
-        valueAction: SET_PRESSURE,
-        unitAction: SET_PRESSURE_UNIT,
-        unitList: PRESSURE_UNITS_LIST,
+        valueAction: STORE.SET_PRESSURE,
+        unitAction: STORE.SET_PRESSURE_UNIT,
+        unitList: UNITS.PRESSURE_UNITS_LIST,
     };
 
     return <ParamCard {...props} />;
@@ -101,9 +95,9 @@ export const CpCard = () => {
         label: "Cp (mix)",
         icon: CpIcon,
         name: "cp",
-        valueAction: SET_CP,
-        unitAction: SET_CP_UNIT,
-        unitList: CP_UNITS_LIST,
+        valueAction: STORE.SET_CP,
+        unitAction: STORE.SET_CP_UNIT,
+        unitList: UNITS.CP_UNITS_LIST,
     };
 
     return <ParamCard {...props} />;
@@ -114,9 +108,9 @@ export const HeatCard = () => {
         label: "Heat of Reaction",
         icon: HeatIcon,
         name: "heatOfReaction",
-        valueAction: SET_HEAT_OF_REACTION,
-        unitAction: SET_HEAT_OF_REACTION_UNIT,
-        unitList: HEAT_UNITS_LIST,
+        valueAction: STORE.SET_HEAT_OF_REACTION,
+        unitAction: STORE.SET_HEAT_OF_REACTION_UNIT,
+        unitList: UNITS.HEAT_UNITS_LIST,
     };
 
     return <ParamCard {...props} />;

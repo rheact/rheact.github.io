@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import initialState, { OperatingParams, RheactState } from './state';
+import { initialState } from './state';
+import { OperatingParams, RheactState } from './type';
 
 type RheactReducer = (a: RheactState, b: { type: string, payload: any }) => void;
 
@@ -15,7 +16,7 @@ const setStateThunk = (key: keyof RheactState): RheactReducer => (state, action)
  * @returns A setter function that changes the key of OperatingParams to passed payload.
  */
 const setParamThunk = (key: keyof OperatingParams): RheactReducer => (state, action) => {
-    state.operatingParams[key] = action.payload;
+    (state.operatingParams as any)[key] = action.payload;
 };
 
 const rheactSlice = createSlice({
@@ -23,11 +24,9 @@ const rheactSlice = createSlice({
     initialState,
     reducers: {
         LOAD_JSON(_state, action) {
-            const loaded = _.cloneDeep(action.payload);
-            if (!loaded.results) {
-                loaded.results = {};
-            }
-            return loaded;
+            const state = _.cloneDeep(initialState);
+            _.assign(state, action.payload);
+            return state;
         },
 
         // State

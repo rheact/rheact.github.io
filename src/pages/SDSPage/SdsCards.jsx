@@ -10,17 +10,7 @@ import {
     Col, Row
 } from "reactstrap";
 import server from "../../api";
-import {
-    ADD_DILUENT,
-    ADD_PRODUCT,
-    ADD_REACTANT,
-    CHANGE_DILUENT,
-    CHANGE_PRODUCT,
-    CHANGE_REACTANT,
-    REMOVE_DILUENT,
-    REMOVE_PRODUCT,
-    REMOVE_REACTANT
-} from "../store/reducer";
+import * as STORE from '../../store';
 import CompoundCard from './CompoundCard';
 
 const CompoundDropzone = ({
@@ -42,8 +32,8 @@ const CompoundDropzone = ({
         disabled: noTemperature,
         onDrop: (files) => {
             const parseFile = (f) => server.parsePDF(f, operatingParams)
-            .then(data => dispatch(addAction(data)))
-            .catch(e => alert(e));
+                .then(data => dispatch(addAction(data)))
+                .catch(e => alert(e));
             files.forEach(parseFile);
         },
     });
@@ -86,7 +76,7 @@ const CompoundDropzone = ({
 
                 <div className="mt-2">
                     {_.range(num).map((i) => (
-                        <div className="mt-2">
+                        <div className="mt-2" key={name}>
                             <CompoundCard
                                 name={name}
                                 changeAction={changeAction}
@@ -106,9 +96,9 @@ export const ReactantDropzone = () => {
         label: "Reactants",
         name: "reactants",
         bg: "warning",
-        addAction: ADD_REACTANT,
-        changeAction: CHANGE_REACTANT,
-        removeAction: REMOVE_REACTANT,
+        addAction: STORE.ADD_REACTANT,
+        changeAction: STORE.CHANGE_REACTANT,
+        removeAction: STORE.REMOVE_REACTANT,
     };
 
     return <CompoundDropzone {...props} />;
@@ -119,9 +109,9 @@ export const ProductDropzone = () => {
         label: "Products",
         name: "products",
         bg: "success",
-        addAction: ADD_PRODUCT,
-        changeAction: CHANGE_PRODUCT,
-        removeAction: REMOVE_PRODUCT,
+        addAction: STORE.ADD_PRODUCT,
+        changeAction: STORE.CHANGE_PRODUCT,
+        removeAction: STORE.REMOVE_PRODUCT,
     };
 
     return <CompoundDropzone {...props} />;
@@ -132,9 +122,9 @@ export const DiluentDropzone = () => {
         label: "Diluents",
         name: "diluents",
         bg: "primary",
-        addAction: ADD_DILUENT,
-        changeAction: CHANGE_DILUENT,
-        removeAction: REMOVE_DILUENT,
+        addAction: STORE.ADD_DILUENT,
+        changeAction: STORE.CHANGE_DILUENT,
+        removeAction: STORE.REMOVE_DILUENT,
     };
 
     return <CompoundDropzone {...props} />;

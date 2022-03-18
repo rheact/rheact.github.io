@@ -65,8 +65,8 @@ export type OperatingParams = {
     reactionClass?: string,
     reactionScale?: string,
     keyReactantQuantity?: string,
-    numSideReactions?: number,
-    sideReactions?: SideReaction[],
+    numSideReactions: number,
+    sideReactions: SideReaction[],
 };
 
 /**
@@ -114,22 +114,3 @@ export type RheactState = {
  operatingParams: OperatingParams,
  results: Results,
 };
-
-const initialState: RheactState = {
-    type: 'CISTAR_REACTIONv2',
-    compound: {
-        numReactants: 0,
-        numProducts: 0,
-        numDiluents: 0,
-        reactants: [],
-        products: [],
-        diluents: [],
-    },
-    operatingParams: {
-        numSideReactions: 0,
-        sideReactions: [],
-    },
-    results: {},
-};
-
-export default initialState;

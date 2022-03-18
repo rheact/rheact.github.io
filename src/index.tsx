@@ -1,12 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import 'bootswatch/dist/lumen/bootstrap.min.css';
+import 'bootswatch/dist/cosmo/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
+    <App />,
     document.getElementById('root'),
 );

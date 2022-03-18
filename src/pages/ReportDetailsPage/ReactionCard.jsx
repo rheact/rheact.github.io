@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Card, CardBody, CardHeader, Input, Label } from "reactstrap";
-import { SET_CHEMICAL_SCHEME, SET_DESCRIPTION } from "../store/reducer";
+import { Card, CardBody, Input, Label } from "reactstrap";
+import * as STORE from "../../store/reducer";
 
 const ReactionCard = () => {
     const dispatch = useDispatch();
@@ -26,15 +26,15 @@ const ReactionCard = () => {
 
     return (
         <Card>
-            <CardHeader className="fw-bolder">Reaction Details</CardHeader>
-
             <CardBody>
+                <div className="h5 fw-bolder">Reaction Details</div>
                 <Label>Complete Balanced Reaction</Label>
                 <Input
                     type="textarea"
                     value={chemicalScheme}
+                    placeholder="Enter LaTeX equation"
                     onChange={(e) =>
-                        dispatch(SET_CHEMICAL_SCHEME(e.target.value))
+                        dispatch(STORE.SET_CHEMICAL_SCHEME(e.target.value))
                     }
                 />
 
@@ -53,7 +53,8 @@ const ReactionCard = () => {
                 <Input
                     type="textarea"
                     value={description}
-                    onChange={(e) => dispatch(SET_DESCRIPTION(e.target.value))}
+                    placeholder="A brief summary of the project"
+                    onChange={(e) => dispatch(STORE.SET_DESCRIPTION(e.target.value))}
                 />
             </CardBody>
         </Card>

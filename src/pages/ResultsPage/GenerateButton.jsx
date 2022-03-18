@@ -2,7 +2,7 @@ import { useCallback, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Progress } from "reactstrap";
 import server from "../../api";
-import { SET_CALCULATIONS, SET_CAMEO, SET_HAZARDS, SET_HNUMS } from "../store/reducer";
+import * as STORE from "../../store";
 
 const GenerateButton = () => {
     const state = useSelector((s) => s);
@@ -50,10 +50,10 @@ const GenerateButton = () => {
                 cameoMatrix,
                 hazardMatrix,
             ]);
-            dispatch(SET_CALCULATIONS(JSON.parse(data[0])));
-            dispatch(SET_CAMEO(JSON.parse(data[1])));
-            dispatch(SET_HAZARDS(data[2]));
-            dispatch(SET_HNUMS(hNums));
+            dispatch(STORE.SET_CALCULATIONS(JSON.parse(data[0])));
+            dispatch(STORE.SET_CAMEO(JSON.parse(data[1])));
+            dispatch(STORE.SET_HAZARDS(data[2]));
+            dispatch(STORE.SET_HNUMS(hNums));
         } catch (e) {
             console.log("ERROR IN GENERATING RESULTS.");
             console.error(e);

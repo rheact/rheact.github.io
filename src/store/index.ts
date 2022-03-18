@@ -8,3 +8,7 @@ export default configureStore({
     reducer,
     devTools: true,
 });
+
+export * from './state';
+export * from './type';
+export * from './reducer';

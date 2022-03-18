@@ -167,7 +167,7 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                     <Table bordered striped className="mt-4">
                         <tbody>
                             {propMap.map((e) => (
-                                <tr>
+                                <tr key={e.label}>
                                     <td>{e.label}</td>
                                     <td>
                                         <Input
@@ -188,7 +188,7 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                                 Page Start: {compound.ppe_pages[0]}
                             </span>
                             {compound.ppe_sections && Object.keys(compound.ppe_sections).map((k) => (
-                                <section>
+                                <section key={k}>
                                     <span className="h5">{k}</span>
                                     <p>{compound.ppe_sections[k]}</p>
                                 </section>

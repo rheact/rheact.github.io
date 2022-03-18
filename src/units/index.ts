@@ -1,4 +1,4 @@
-import { OperatingParams } from '../pages/store/state';
+import { OperatingParams } from '../store';
 import {
     CP_STANDARDIZATION,
     HEAT_STANDARDIZATION,
@@ -29,7 +29,9 @@ export const standardizeOperatingParams = (ops: OperatingParams) => {
         cpUnit,
     } = ops;
 
-    const retval: OperatingParams = {};
+    const retval: OperatingParams = {
+        numSideReactions: ops.
+    };
 
     if (temperatureUnit && temperature) {
         retval.temperature = standardizeTemperature(temperatureUnit, parseInt(temperature, 10))

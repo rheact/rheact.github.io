@@ -1,9 +1,10 @@
-import { useCallback } from "react";
+import { FC, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "reactstrap";
+import { RheactState } from '../../../store';
 
-const SaveButton = () => {
-    const state = useSelector((state) => state);
+const SaveButton: FC<any> = () => {
+    const state = useSelector((state: RheactState) => state);
     const onClick = useCallback(() => {
         const a = document.createElement("a");
         const file = new Blob([JSON.stringify(state)], { type: "text/json" });
@@ -13,7 +14,7 @@ const SaveButton = () => {
     }, [state]);
 
     return (
-        <Button size="sm" color="warning" onClick={onClick} outline>
+        <Button size="sm" color="dark" onClick={onClick} outline>
             <i className="bi-save-fill" /> Save
         </Button>
     );

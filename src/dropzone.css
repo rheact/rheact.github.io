@@ -1,3 +1,5 @@
+/* Dropzone */
+
 .dropzone {
     flex: 1;
     display: flex;
@@ -28,4 +30,19 @@
 .modal-open,
 .modal {
     padding-right: 0px !important;
+}
+
+
+/* Katex */
+
+.katex {
+	white-space: normal;
+}
+
+.katex .katex-html {
+	overflow-wrap: normal;
+}
+
+.katex .mord {
+	display: inline-block;
 }
