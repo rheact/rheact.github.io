@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { initialState } from './state';
+import { initialState } from './default';
 import { OperatingParams, RheactState } from './type';
 
 type RheactReducer = (a: RheactState, b: { type: string, payload: any }) => void;

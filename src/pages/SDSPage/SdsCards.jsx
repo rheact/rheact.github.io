@@ -26,10 +26,8 @@ const CompoundDropzone = ({
     );
     const dispatch = useDispatch();
     const num = useSelector((state) => state.compound["num" + label]);
-    const noTemperature = useMemo(() => !operatingParams.temperature && operatingParams.temperature !== 0, [operatingParams.temperature])
 
     const { getRootProps, getInputProps } = useDropzone({
-        disabled: noTemperature,
         onDrop: (files) => {
             const parseFile = (f) => server.parsePDF(f, operatingParams)
                 .then(data => dispatch(addAction(data)))
@@ -67,12 +65,6 @@ const CompoundDropzone = ({
                         </div>
                     </Col>
                 </Row>
-                {noTemperature && (
-                    <Alert color="danger" className="my-1">
-                        You need to enter a temperature value to upload SDS
-                        files!
-                    </Alert>
-                )}
 
                 <div className="mt-2">
                     {_.range(num).map((i) => (

@@ -1,31 +1,33 @@
-import { HashRouter as MemoryRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import R from "./routes";
-import ToolBar from "./ToolBar";
+import ToolBar from "./navigation";
 import GuidePage from "./GuidePage";
+import SDSPage from "./SDSPage";
 import OperatingParamsPage from "./OperatingParamsPage";
 import ReportDetailsPage from "./ReportDetailsPage";
 import ResultsPage from "./ResultsPage";
 import Questionaire from './Questionaire';
-import SDSPage from "./SDSPage";
+import PPEResultsPage from './PPEResultsPage';
+import SettingsPage from './SettingsPage';
 
-const ToolPage = () => {
+const ToolIndex = () => {
     return (
-        <MemoryRouter initialEntries={Object.keys(R)} initialIndex={1}>
+        <BrowserRouter initialEntries={Object.keys(R)} initialIndex={1}>
             <ToolBar />
             <Switch>
                 <Route path={R.ROUTE_SDS}>
                     <SDSPage />
                 </Route>
 
-                <Route path={R.ROUTE_REPORT_DETAILS}>
+                <Route path={R.ROUTE_OPERATION_DETAILS}>
                     <ReportDetailsPage />
                 </Route>
 
-                <Route path={R.ROUTE_OPERATION_DETAILS}>
+                <Route path={R.ROUTE_OPERATION_PARAMS}>
                     <OperatingParamsPage />
                 </Route>
 
-                <Route path={R.ROUTE_RESULTS}>
+                <Route path={R.ROUTE_OPERATION_REPORT}>
                     <ResultsPage />
                 </Route>
 
@@ -33,12 +35,20 @@ const ToolPage = () => {
                     <Questionaire />
                 </Route>
 
+                <Route path={R.ROUTE_PPE_REPORT}>
+                    <PPEResultsPage />
+                </Route>
+
+                <Route path={R.ROUTE_SETTINGS}>
+                    <SettingsPage />
+                </Route>
+
                 <Route>
                     <GuidePage />
                 </Route>
             </Switch>
-        </MemoryRouter>
+        </BrowserRouter>
     );
 };
 
-export default ToolPage;
+export default ToolIndex;

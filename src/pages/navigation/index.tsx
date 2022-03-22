@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Tabs from './Tabs';
-import SaveLoadGroup from './SaveLoad';
+import OpButtons from './OpButtons';
 
 const ToolBar: FC<any> = function () {
     return (
@@ -10,7 +10,7 @@ const ToolBar: FC<any> = function () {
         >
             <Tabs />
             <div className="d-flex align-items-center ms-auto">
-                <SaveLoadGroup />
+                <OpButtons />
             </div>
         </div>
     );

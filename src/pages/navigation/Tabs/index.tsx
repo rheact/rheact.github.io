@@ -26,24 +26,34 @@ const FormatNavTab: FC<FormatButtonProps> = function ({ icon, route, label }) {
 const ToolPages: FC<any> = function ({ classname }) {
     const tabs = [
         {
-            icon: "bi-box",
-            route: R.ROUTE_OPERATION_DETAILS,
-            label: "Operation Details",
-        },
-        {
             icon: "bi-gear",
             route: R.ROUTE_SDS,
             label: "SDS",
         },
         {
+            icon: "bi-box",
+            route: R.ROUTE_OPERATION_PARAMS,
+            label: "Operation Parameters",
+        },
+        {
             icon: "bi-pencil-fill",
-            route: R.ROUTE_REPORT_DETAILS,
+            route: R.ROUTE_OPERATION_DETAILS,
             label: "Optional Information",
         },
         {
             icon: "bi-file-earmark-bar-graph-fill",
-            route: R.ROUTE_RESULTS,
+            route: R.ROUTE_OPERATION_REPORT,
             label: "Results",
+        },
+        {
+            icon: "bi-file-earmark-bar-graph-fill",
+            route: R.ROUTE_PPE_QUESTIONAIRE,
+            label: "PPE Questionaire",
+        },
+        {
+            icon: "bi-file-earmark-bar-graph-fill",
+            route: R.ROUTE_PPE_REPORT,
+            label: "PPE Report",
         },
     ];
     return (

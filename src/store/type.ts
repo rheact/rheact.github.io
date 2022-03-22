@@ -25,12 +25,13 @@ export type Chemical = {
     vapourPressure?: string,
     viscosity?: string,
     molWtFraction?: string,
+    ppe_pages?: string[],
 };
 
 /**
- * Compound represents chemicals involved in a reaction.
+ * Equation represents chemicals involved in a reaction.
  */
-export type Compound = {
+export type Equation = {
     numReactants: number;
     numProducts: number;
     numDiluents: number;
@@ -110,7 +111,7 @@ export type RheactState = {
  organization?: string,
  chemicalScheme?: string,
  description?: string,
- compound: Compound,
+ compound: Equation,
  operatingParams: OperatingParams,
  results: Results,
 };

@@ -9,6 +9,6 @@ export default configureStore({
     devTools: true,
 });
 
-export * from './state';
+export * from './default';
 export * from './type';
 export * from './reducer';

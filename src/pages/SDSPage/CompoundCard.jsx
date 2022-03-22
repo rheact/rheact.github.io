@@ -181,17 +181,13 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                         </tbody>
                     </Table>
 
+                    
                     {compound.ppe_pages && compound.ppe_pages[0] && (
                         <article className="d-flex flex-column">
-                            <span className="h4">PPE</span>
-                            <span className="h5">
-                                Page Start: {compound.ppe_pages[0]}
-                            </span>
-                            {compound.ppe_sections && Object.keys(compound.ppe_sections).map((k) => (
-                                <section key={k}>
-                                    <span className="h5">{k}</span>
-                                    <p>{compound.ppe_sections[k]}</p>
-                                </section>
+                            <span className="h4">PPE Extractions</span>
+
+                            {compound.ppe_pages.map(data => (
+                                <img src={data} />
                             ))}
                         </article>
                     )}

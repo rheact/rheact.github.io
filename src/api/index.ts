@@ -1,12 +1,9 @@
 import server from './server';
-import { Compound, OperatingParams, RheactState } from '../store';
+import { Equation, OperatingParams, RheactState } from '../store';
 
 const api = {
 
     async parsePDF(f: File, operatingParams: OperatingParams) {
-        if (!operatingParams.temperature) {
-            throw Error('Temperature value required!');
-        }
 
         const formData = new FormData();
         formData.append('file', f, f.name);
@@ -20,7 +17,7 @@ const api = {
             },
         });
 
-        return JSON.parse(res.data) as Compound;
+        return JSON.parse(res.data) as Equation;
     },
 
     async getHazardMatrix(hNums: any) {

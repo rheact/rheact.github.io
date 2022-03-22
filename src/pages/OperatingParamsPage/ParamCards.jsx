@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useToggle } from "react-use";
 import {
     ButtonDropdown,
     Card,
@@ -16,7 +15,6 @@ import TemperatureIcon from "./icons/temperature.png";
 const ParamCard = ({ label, icon, unitList, name, valueAction, unitAction }) => {
     const value = useSelector((state) => state.operatingParams[name]);
     const unit = useSelector((state) => state.operatingParams[name + "Unit"]);
-    const [unitDropdownState, toggleUnitDropdown] = useToggle();
     const dispatch = useDispatch();
 
     const onValueChange = useCallback(
@@ -39,26 +37,14 @@ const ParamCard = ({ label, icon, unitList, name, valueAction, unitAction }) => 
                 <span className="fw-bolder text-center">{label}</span>
 
                 <InputGroup>
-                    <InputGroupText className="bg-light">Value</InputGroupText>
                     <Input
                         value={value}
                         invalid={!value}
                         onChange={onValueChange}
-                        placeholder={`Enter ${unit}`}
+                        placeholder={`Enter ${label}`}
                     />
+                    <InputGroupText className="bg-dark text-white">{unit}</InputGroupText>
                 </InputGroup>
-
-                <ButtonDropdown toggle={toggleUnitDropdown} isOpen={unitDropdownState} className="mt-2">
-                    <DropdownToggle color="dark" caret>{unit}</DropdownToggle>
-                    <DropdownMenu>
-                        {unitList &&
-                            unitList.map((e) => (
-                                <DropdownItem onClick={() => dispatch(unitAction(e))} key={e}>
-                                    {e}
-                                </DropdownItem>
-                            ))}
-                    </DropdownMenu>
-                </ButtonDropdown>
             </CardBody>
         </Card>
     );
