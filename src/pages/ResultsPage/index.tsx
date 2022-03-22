@@ -8,8 +8,6 @@ import HazardMatrix from './sections/HazardMatrix';
 import CameoMatrix from './sections/CameoMatrix';
 import CalculationBlock from './sections/CalculationBlock';
 
-import './results.css';
-
 const ReportSection = function ReportSection() {
     return (
         <section id="printable">

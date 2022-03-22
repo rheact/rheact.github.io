@@ -1,5 +1,5 @@
 /*
- * RHEACT JSON v2 STANDARD
+ * RHEACT JSON v3 STANDARD
  * Drafted by: Vikrant Gajria
  */
 
@@ -113,5 +113,8 @@ export type RheactState = {
  description?: string,
  compound: Equation,
  operatingParams: OperatingParams,
+ ppe_questionnaire?: {
+    [key: string]: boolean,
+ },
  results: Results,
 };

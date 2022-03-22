@@ -14,5 +14,6 @@ export const initialState: RheactState = {
         numSideReactions: 0,
         sideReactions: [],
     },
+    ppe_questionnaire: {},
     results: {},
 };

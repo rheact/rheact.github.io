@@ -190,6 +190,15 @@ const rheactSlice = createSlice({
             }
             state.results.hNums = action.payload;
         },
+
+        // Questions
+
+        SET_PPE_QUESTION(state, action) {
+            if(!state.ppe_questionnaire) {
+                state.ppe_questionnaire = {};
+            }
+            state.ppe_questionnaire[action.payload.uid] = action.payload.response;
+        }
     },
 });
 
@@ -237,6 +246,8 @@ export const {
     SET_CAMEO,
     SET_HAZARDS,
     SET_HNUMS,
+
+    SET_PPE_QUESTION,
 
     LOAD_JSON,
 } = rheactSlice.actions;

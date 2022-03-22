@@ -1,20 +1,15 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { Card, CardBody, CardHeader } from "reactstrap";
 import { Chemical, Equation, RheactState } from "store";
 
 const ExtractionCard: FC<{ chemical: Chemical }> = ({ chemical }) => {
     return (
-        <Card className="my-1">
-            <CardHeader>
-                <b>{chemical.productName} ({chemical.casNo})</b>
-            </CardHeader>
-            <CardBody className="d-flex flex-column align-items-center">
-                {chemical.ppe_pages?.map(psrc => (
-                    <img className="w-100" src={psrc} />
-                ))}
-            </CardBody>
-        </Card>
+        <div className="my-1 border border-2 p-1 d-flex flex-column align-items-center">
+            <h4 className="fw-bolder">{chemical.productName} ({chemical.casNo})</h4>
+            {chemical.ppe_pages?.map(psrc => (
+                <img style={{ width: '80%' }} src={psrc} />
+            ))}
+        </div>
     );
 };
 

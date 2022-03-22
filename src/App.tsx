@@ -1,7 +1,8 @@
 import { Provider } from 'react-redux';
 import ToolIndex from './pages/';
 import store from './store';
-import './dropzone.css';
+import './css/dropzone.css';
+import './css/printview.css';
 
 const App = function RheactToolApp() {
     return (
