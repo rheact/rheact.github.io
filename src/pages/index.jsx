@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import R from "./routes";
 import ToolBar from "./navigation";
 import GuidePage from "./GuidePage";
@@ -12,7 +12,7 @@ import SettingsPage from './SettingsPage';
 
 const ToolIndex = () => {
     return (
-        <BrowserRouter initialEntries={Object.keys(R)} initialIndex={1}>
+        <Router initialEntries={Object.keys(R)} initialIndex={1}>
             <ToolBar />
             <Switch>
                 <Route path={R.ROUTE_SDS}>
@@ -47,7 +47,7 @@ const ToolIndex = () => {
                     <GuidePage />
                 </Route>
             </Switch>
-        </BrowserRouter>
+        </Router>
     );
 };
 

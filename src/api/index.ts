@@ -4,7 +4,6 @@ import { Equation, OperatingParams, RheactState } from '../store';
 const api = {
 
     async parsePDF(f: File, operatingParams: OperatingParams) {
-
         const formData = new FormData();
         formData.append('file', f, f.name);
 
@@ -22,8 +21,11 @@ const api = {
 
     async getHazardMatrix(hNums: any) {
         const promises = Object.keys(hNums).map(async (name) => {
-            const res = await server.post('/graph', hNums[name].hNumbers, {
+            const res = await server.post('/graph', null, {
                 headers: { 'Content-Type': 'text/plain' },
+                params: {
+                    hnums: hNums[name].hNumbers,
+                },
             });
             const data = JSON.parse(res.data);
             data.name = name;
