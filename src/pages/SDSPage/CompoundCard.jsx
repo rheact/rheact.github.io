@@ -187,7 +187,7 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                             <span className="h4">PPE Extractions</span>
 
                             {compound.ppe_pages.map(data => (
-                                <img src={data} />
+                                <img key={data} alt={compound.productName} src={data} />
                             ))}
                         </article>
                     )}

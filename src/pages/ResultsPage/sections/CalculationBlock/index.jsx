@@ -12,7 +12,7 @@ const CalculationBlock = function ({ className }) {
         <div className={className}>
             <h2>Calculations</h2>
             <div className="d-flex justify-content-center">
-                <Card color="secondary" className="d-flex flex-column p-4 mx-2">
+                <Card className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Final Temperature</span>
                     <span className="h5 text-center">
                         {results.finalTemp.toFixed(3)}
@@ -21,7 +21,7 @@ const CalculationBlock = function ({ className }) {
                     </span>
                 </Card>
 
-                <Card color="secondary" className="d-flex flex-column p-4 mx-2">
+                <Card className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Adiabatic Temperature Change</span>
                     <span className="h5 text-center">
                         {results.adiabaticTemp.toFixed(3)}
@@ -30,7 +30,7 @@ const CalculationBlock = function ({ className }) {
                     </span>
                 </Card>
 
-                <Card color="secondary" className="d-flex flex-column p-4 mx-2">
+                <Card className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Adiabatic Pressure Change</span>
                     <span className="h5 text-center">
                         {results.adiabaticPressure.toFixed(3)}

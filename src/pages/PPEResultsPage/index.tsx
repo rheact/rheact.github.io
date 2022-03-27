@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Container, List, ListGroup, ListGroupItem, ListGroupItemHeading } from "reactstrap";
-import Extractions from "./extractions";
-import Recommendations from "./recommendations";
+import { Container, ListGroup, ListGroupItem, ListGroupItemHeading } from "reactstrap";
+import Extractions from "./Extractions";
+import Recommendations from "./Recommendations";
 
 const PPEResultsPage: FC<any> = () => {
     return (

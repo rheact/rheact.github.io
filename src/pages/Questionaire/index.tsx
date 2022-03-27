@@ -16,11 +16,11 @@ const PPEQuestionSingle: FC<Question> = ({ uid, question }) => {
 
     const onYes = useCallback(() => {
         dispatch(SET_PPE_QUESTION({ uid, response: true }));
-    }, [dispatch]);
+    }, [dispatch, uid]);
 
     const onNo = useCallback(() => {
         dispatch(SET_PPE_QUESTION({ uid, response: false }));
-    }, [dispatch]);
+    }, [dispatch, uid]);
 
     return (
         <ListGroupItem>
@@ -42,7 +42,7 @@ const PPEQuestionSingle: FC<Question> = ({ uid, question }) => {
 export default function PPEQuestions() {
     return (
         <ListGroup>
-            {questions.map(q => <PPEQuestionSingle {...q} />)}
+            {questions.map(q => <PPEQuestionSingle key={q.uid} {...q} />)}
         </ListGroup>
     );
 }

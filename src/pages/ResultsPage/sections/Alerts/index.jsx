@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 let key = 0;
 
 const Alert = function ({ className }) {
-    const reactionInfo = useSelector((state) => state.results.reactionInfo);
+    const reactionInfo = useSelector((state) => state.results);
     const sideReactions = useSelector((state) => state.operatingParams.sideReactions);
     const numSideReactions = useSelector((state) => state.operatingParams.numSideReactions);
 
@@ -31,10 +31,9 @@ const Alert = function ({ className }) {
                 if (Number(reactionInfo.finalTemp) > Number(reactants[i].boilingPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds reactant
-                            {i + 1}
-                            {' '}
-boiling point
+                            Final temp exceeds reactant 
+                            {' ' + reactants[i].productName + ' '}
+                            boiling point
                         </span>
                         <br />
                     </React.Fragment>);
@@ -46,10 +45,9 @@ boiling point
                 if (Number(reactionInfo.finalTemp) > Number(reactants[i].flashPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds reactant
-                            {i + 1}
-                            {' '}
-flash point
+                            Final temp exceeds reactant
+                            {' ' + reactants[i].productName + ' '}
+                            flash point
                         </span>
                         <br />
                     </React.Fragment>);
@@ -61,10 +59,9 @@ flash point
                 if (Number(reactionInfo.finalTemp) > Number(reactants[i].decompositionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds reactant
-                            {i + 1}
-                            {' '}
-decomposition temp
+                            Final temp exceeds reactant
+                            {' ' + reactants[i].productName + ' '}
+                            decomposition temp
                         </span>
                         <br />
                     </React.Fragment>);
@@ -76,10 +73,9 @@ decomposition temp
                 if (Number(reactionInfo.finalTemp) > Number(reactants[i].autoignitionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds reactant
-                            {i + 1}
-                            {' '}
-auto ignition temp
+                            Final temp exceeds reactant
+                            {' ' + reactants[i].productName + ' '}
+                            auto ignition temp
                         </span>
                         <br />
                     </React.Fragment>);
@@ -102,10 +98,9 @@ auto ignition temp
                 if (Number(reactionInfo.finalTemp) > Number(products[i].boilingPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds product
-                            {i + 1}
-                            {' '}
-boiling point
+                            Final temp exceeds product
+                            {' ' + products[i].productName + ' '}
+                            boiling point
                         </span>
                         <br />
                     </React.Fragment>);
@@ -117,10 +112,9 @@ boiling point
                 if (Number(reactionInfo.finalTemp) > Number(products[i].flashPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds product
-                            {i + 1}
-                            {' '}
-flash point
+                            Final temp exceeds product
+                            {' ' + products[i].productName + ' '}
+                            flash point
                         </span>
                         <br />
                     </React.Fragment>);
@@ -132,10 +126,9 @@ flash point
                 if (Number(reactionInfo.finalTemp) > Number(products[i].decompositionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds product
-                            {i + 1}
-                            {' '}
-decomposition temp
+                            Final temp exceeds product
+                            {' ' + products[i].productName + ' '}
+                            decomposition temp
                         </span>
                         <br />
                     </React.Fragment>);
@@ -147,10 +140,9 @@ decomposition temp
                 if (Number(reactionInfo.finalTemp) > Number(products[i].autoignitionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds product
-                            {i + 1}
-                            {' '}
-auto ignition temp
+                            Final temp exceeds product
+                            {' ' + products[i].productName + ' '}
+                            auto ignition temp
                         </span>
                         <br />
                     </React.Fragment>);
@@ -173,10 +165,9 @@ auto ignition temp
                 if (Number(reactionInfo.finalTemp) > Number(diluents[i].boilingPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds diluent
-                            {i + 1}
-                            {' '}
-boiling point
+                            Final temp exceeds diluent
+                            {' ' + diluents[i].productName + ' '}
+                            boiling point
                         </span>
                         <br />
                     </React.Fragment>);
@@ -188,10 +179,9 @@ boiling point
                 if (Number(reactionInfo.finalTemp) > Number(diluents[i].flashPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds diluent
-                            {i + 1}
-                            {' '}
-flash point
+                            Final temp exceeds diluent
+                            {' ' + diluents[i].productName + ' '}
+                            flash point
                         </span>
                         <br />
                     </React.Fragment>);
@@ -203,10 +193,9 @@ flash point
                 if (Number(reactionInfo.finalTemp) > Number(diluents[i].decompositionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds diluent
-                            {i + 1}
-                            {' '}
-decomposition temp
+                            Final temp exceeds diluent
+                            {' ' + diluents[i].productName + ' '}
+                            decomposition temp
                         </span>
                         <br />
                     </React.Fragment>);
@@ -218,10 +207,9 @@ decomposition temp
                 if (Number(reactionInfo.finalTemp) > Number(diluents[i].autoignitionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
-Final temp exceeds diluent
-                            {i + 1}
-                            {' '}
-auto ignition temp
+                            Final temp exceeds diluent
+                            {' ' + diluents[i].productName + ' '}
+                            auto ignition temp
                         </span>
                         <br />
                     </React.Fragment>);
@@ -245,10 +233,10 @@ auto ignition temp
                     if (Number(reactionInfo.finalTemp) > Number(sideReactions[i].tempOnset)) {
                         arr.push(<React.Fragment key={key++}>
                             <span style={style.alert}>
-Final temp exceeds side reaction
+                                Final temp exceeds side reaction
                                 {i + 1}
                                 {' '}
-temperature onset
+                                temperature onset
                             </span>
                             <br />
                         </React.Fragment>);
@@ -285,42 +273,42 @@ temperature onset
 
     return (
         <div className="Alert" style={style.main}>
-            <h4>Alerts</h4>
+            <h2>Calculations</h2>
 
-            { reactantAlerts.length !== 0
-            && (
-                <React.Fragment key={key++}>
-                    <br />
-                    <div>Reactant Alerts</div>
-                </React.Fragment>
-            )}
+            {reactantAlerts.length !== 0
+                && (
+                    <React.Fragment key={key++}>
+                        <br />
+                        <div>Reactant Alerts</div>
+                    </React.Fragment>
+                )}
             {reactantAlerts}
 
-            { productAlerts.length !== 0
-            && (
-                <React.Fragment key={key++}>
-                    <br />
-                    <div>Product Alerts</div>
-                </React.Fragment>
-            )}
+            {productAlerts.length !== 0
+                && (
+                    <React.Fragment key={key++}>
+                        <br />
+                        <div>Product Alerts</div>
+                    </React.Fragment>
+                )}
             {productAlerts}
 
-            { diluentAlerts.length !== 0
-            && (
-                <React.Fragment key={key++}>
-                    <br />
-                    <div>Diluent Alerts</div>
-                </React.Fragment>
-            )}
+            {diluentAlerts.length !== 0
+                && (
+                    <React.Fragment key={key++}>
+                        <br />
+                        <div>Diluent Alerts</div>
+                    </React.Fragment>
+                )}
             {diluentAlerts}
 
-            { srAlerts.length !== 0
-            && (
-                <React.Fragment key={key++}>
-                    <br />
-                    <div>Process Alerts</div>
-                </React.Fragment>
-            )}
+            {srAlerts.length !== 0
+                && (
+                    <React.Fragment key={key++}>
+                        <br />
+                        <div>Process Alerts</div>
+                    </React.Fragment>
+                )}
             {srAlerts}
 
         </div>

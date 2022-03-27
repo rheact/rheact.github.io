@@ -1,9 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    ButtonDropdown,
     Card,
-    CardBody, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup, InputGroupText
+    CardBody, Input, InputGroup, InputGroupText
 } from "reactstrap";
 import * as STORE from "../../store";
 import * as UNITS from '../../units';

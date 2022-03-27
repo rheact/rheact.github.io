@@ -26,7 +26,7 @@ const GenerateButton = () => {
         });
 
         const calculationBlock = server
-            .getCalculationBlock(state.operatingParams, state.compound)
+            .getCalculationBlock(state)
             .then((data) => {
                 changePending(-1);
                 return data;
@@ -59,7 +59,7 @@ const GenerateButton = () => {
             console.error(e);
             return;
         }
-    }, [state.compound, state.operatingParams, dispatch]);
+    }, [state, dispatch]);
 
     return (
         <Card color="light" className="p-5">
