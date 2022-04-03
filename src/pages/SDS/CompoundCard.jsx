@@ -5,16 +5,7 @@ import {
     Button,
     Card,
     CardBody,
-    CardHeader,
-    Col,
-    Collapse,
-    FormFeedback,
-    FormGroup,
-    Input,
-    InputGroup,
-    Label,
-    Row,
-    Table,
+    CardHeader, Collapse, Input, Table
 } from "reactstrap";
 
 const propMap = [
@@ -137,8 +128,9 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                     </Button>
                 </div>
             </CardHeader>
-            <CardBody>
-                <Row>
+            <Collapse isOpen={viewProps}>
+                <CardBody>
+                    {/* <Row>
                     <Col>
                         <Label>Initial Weight Fraction</Label>
                         <Input
@@ -161,9 +153,8 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                             <FormFeedback></FormFeedback>
                         </FormGroup>
                     </Col>
-                </Row>
+                </Row> */}
 
-                <Collapse isOpen={viewProps}>
                     <Table bordered striped className="mt-4">
                         <tbody>
                             {propMap.map((e) => (
@@ -181,7 +172,7 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                         </tbody>
                     </Table>
 
-                    
+
                     {compound.ppe_pages && compound.ppe_pages[0] && (
                         <article className="d-flex flex-column">
                             <span className="h4">PPE Extractions</span>
@@ -191,8 +182,8 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                             ))}
                         </article>
                     )}
-                </Collapse>
-            </CardBody>
+                </CardBody>
+            </Collapse>
         </Card>
     );
 };

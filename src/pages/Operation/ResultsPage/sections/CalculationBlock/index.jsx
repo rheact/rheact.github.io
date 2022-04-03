@@ -30,14 +30,14 @@ const CalculationBlock = function ({ className }) {
                     </span>
                 </Card>
 
-                <Card className="d-flex flex-column p-4 mx-2">
+                {/* <Card className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Adiabatic Pressure Change</span>
                     <span className="h5 text-center">
                         {results.adiabaticPressure.toFixed(3)}
                         {' '}
 bar
                     </span>
-                </Card>
+                </Card> */}
             </div>
         </div>
     );

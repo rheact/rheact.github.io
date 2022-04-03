@@ -273,7 +273,7 @@ const Alert = function ({ className }) {
 
     return (
         <div className="Alert" style={style.main}>
-            <h2>Calculations</h2>
+            <h2>Alerts</h2>
 
             {reactantAlerts.length !== 0
                 && (

@@ -36,11 +36,6 @@ const ToolPages: FC<any> = function ({ classname }) {
             label: "Operation Parameters",
         },
         {
-            icon: "bi-pencil-fill",
-            route: R.ROUTE_OPERATION_DETAILS,
-            label: "Optional Information",
-        },
-        {
             icon: "bi-file-earmark-bar-graph-fill",
             route: R.ROUTE_OPERATION_REPORT,
             label: "Operation Report",
@@ -54,6 +49,11 @@ const ToolPages: FC<any> = function ({ classname }) {
             icon: "bi-file-earmark-bar-graph-fill",
             route: R.ROUTE_PPE_REPORT,
             label: "PPE Report",
+        },
+        {
+            icon: "bi-pencil-fill",
+            route: R.ROUTE_OPERATION_DETAILS,
+            label: "Optional Information",
         },
     ];
     return (

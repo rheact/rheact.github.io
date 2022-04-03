@@ -1,13 +1,14 @@
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import R from "./routes";
 import ToolBar from "./navigation";
-import GuidePage from "./GuidePage";
-import SDSPage from "./SDSPage";
-import OperatingParamsPage from "./OperatingParamsPage";
-import ReportDetailsPage from "./ReportDetailsPage";
-import ResultsPage from "./ResultsPage";
-import Questionaire from './Questionaire';
-import PPEResultsPage from './PPEResultsPage';
+import SDSPage from "./SDS";
+// Operation
+import ParamsPage from "./Operation/ParamsPage";
+import ReportDetailsPage from "./Operation/OptionalDetailsPage";
+import ResultsPage from "./Operation/ResultsPage";
+// PPE
+import QuestionairePage from './PPE/QuestionairePage';
+import PPEResultsPage from './PPE/ResultsPage';
 import SettingsPage from './SettingsPage';
 
 const ToolIndex = () => {
@@ -15,16 +16,12 @@ const ToolIndex = () => {
         <Router initialEntries={Object.keys(R)} initialIndex={1}>
             <ToolBar />
             <Switch>
-                <Route path={R.ROUTE_SDS}>
-                    <SDSPage />
-                </Route>
-
                 <Route path={R.ROUTE_OPERATION_DETAILS}>
                     <ReportDetailsPage />
                 </Route>
 
                 <Route path={R.ROUTE_OPERATION_PARAMS}>
-                    <OperatingParamsPage />
+                    <ParamsPage />
                 </Route>
 
                 <Route path={R.ROUTE_OPERATION_REPORT}>
@@ -32,7 +29,7 @@ const ToolIndex = () => {
                 </Route>
 
                 <Route path={R.ROUTE_PPE_QUESTIONAIRE}>
-                    <Questionaire />
+                    <QuestionairePage />
                 </Route>
 
                 <Route path={R.ROUTE_PPE_REPORT}>
@@ -44,7 +41,7 @@ const ToolIndex = () => {
                 </Route>
 
                 <Route>
-                    <GuidePage />
+                    <SDSPage />
                 </Route>
             </Switch>
         </Router>

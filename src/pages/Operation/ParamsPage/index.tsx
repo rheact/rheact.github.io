@@ -1,22 +1,26 @@
 import { Col, Container, Row } from "reactstrap";
-import { CpCard, HeatCard, PressureCard, TemperatureCard } from "./ParamCards";
+import { TemperatureCard, PressureCard, HeatOfReactionCard } from "./ValueCards";
 import SideReactions from "./SideReactions";
+import BasisSelector from "./CpInput/BasisSelector";
 
 const OperatingParamsPage = () => {
     return (
         <Container className="mt-2">
             <Row className="mt-2 g-1">
-                <Col md={3} sm={6}>
+                <Col sm={4}>
                     <TemperatureCard />
                 </Col>
-                <Col md={3} sm={6}>
+                <Col sm={4}>
                     <PressureCard />
                 </Col>
-                <Col md={3} sm={6}>
-                    <HeatCard />
+                <Col sm={4}>
+                    <HeatOfReactionCard />
                 </Col>
-                <Col md={3} sm={6}>
-                    <CpCard />
+            </Row>
+
+            <Row className="mt-2">
+                <Col>
+                    <BasisSelector />
                 </Col>
             </Row>
 

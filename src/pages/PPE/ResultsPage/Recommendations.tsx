@@ -2,7 +2,7 @@ import { FC, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from "reactstrap";
 import { RheactState } from "store";
-import questions from '../../data/questions.json';
+import questions from '../../../data/questions.json';
 
 const Recommendations: FC<any> = () => {
     const resps = useSelector<RheactState>(state => state.ppe_questionnaire) as any;

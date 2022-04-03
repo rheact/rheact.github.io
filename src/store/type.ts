@@ -50,9 +50,16 @@ export type SideReaction = {
 };
 
 /**
+ * Basis of reaction is used for calculations.
+ */
+export type BasisChemical = {
+    productName: string,
+    molWt: string,
+};
+
+/**
  * OperatingParams represent data used in calulation.
  */
-
 export type OperatingParams = {
     temperature?: string,
     temperatureUnit?: string,
@@ -62,6 +69,7 @@ export type OperatingParams = {
     heatOfReactionUnit?: string,
     cp?: string,
     cpUnit?: string,
+    basis?: BasisChemical,
     physicalState?: string,
     reactionClass?: string,
     reactionScale?: string,

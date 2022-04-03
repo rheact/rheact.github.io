@@ -1,8 +1,8 @@
 import { useCallback, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Progress } from "reactstrap";
-import server from "../../api";
-import * as STORE from "../../store";
+import server from "../../../api";
+import * as STORE from "../../../store";
 
 const GenerateButton = () => {
     const state = useSelector((s) => s);
