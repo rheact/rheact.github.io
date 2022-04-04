@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, Input, Label } from "reactstrap";
-import * as STORE from "../../../store/reducer";
+import * as STORE from "store";
 
 const ReactionCard = () => {
     const dispatch = useDispatch();

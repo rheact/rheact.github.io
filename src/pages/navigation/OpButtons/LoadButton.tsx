@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { useDispatch } from "react-redux";
 import { useToggle } from "react-use";
 import { Button, Modal, ModalBody, ModalHeader } from "reactstrap";
-import { LOAD_JSON } from '../../../store';
+import { LOAD_JSON } from 'store';
 
 type DropzoneModalTypes = {
     open: boolean,

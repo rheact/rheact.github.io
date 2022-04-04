@@ -77,14 +77,14 @@ const propMap = [
     },
 ];
 
-const CompoundCard = ({ name, index, changeAction, removeAction }) => {
-    /** @type {import('../state').Chemical} */
-    const compound = useSelector((state) => state.compound[name][index]);
+const CompoundCard = ({ name: from, index, changeAction, removeAction }) => {
+    /** @type {import('store').Chemical} */
+    const chemical = useSelector((state) => state.compound[from][index]);
     const dispatch = useDispatch();
 
     const getChangeProp = useCallback(
         (key) => (e) => {
-            const update = { ...compound };
+            const update = { ...chemical };
             update[key] = e.target.value;
             dispatch(
                 changeAction({
@@ -93,7 +93,7 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                 })
             );
         },
-        [changeAction, compound, dispatch, index]
+        [changeAction, chemical, dispatch, index]
     );
     const onRemove = useCallback(
         () => dispatch(removeAction(index)),
@@ -103,13 +103,13 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
     const [viewProps, toggleProps] = useToggle();
 
     return (
-        <Card key={name} color="light">
+        <Card key={chemical.productName} color="light">
             <CardHeader className="h5 d-flex justify-content-between align-items-center">
                 <div>
                     <span className="text-primary">{index + 1}. </span>
-                    <b>{compound.productName}</b>
+                    <b>{chemical.productName}</b>
                     <span> </span>
-                    <span>(CAS-NO: {compound.casNo})</span>
+                    <span>(CAS-NO: {chemical.casNo})</span>
                 </div>
 
                 <div>
@@ -162,7 +162,7 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                                     <td>{e.label}</td>
                                     <td>
                                         <Input
-                                            value={compound[e.key]}
+                                            value={chemical[e.key]}
                                             onChange={getChangeProp(e.key)}
                                             type={e.type}
                                         />
@@ -173,12 +173,12 @@ const CompoundCard = ({ name, index, changeAction, removeAction }) => {
                     </Table>
 
 
-                    {compound.ppe_pages && compound.ppe_pages[0] && (
+                    {chemical.ppe_pages && chemical.ppe_pages[0] && (
                         <article className="d-flex flex-column">
                             <span className="h4">PPE Extractions</span>
 
-                            {compound.ppe_pages.map(data => (
-                                <img key={data} alt={compound.productName} src={data} />
+                            {chemical.ppe_pages.map(data => (
+                                <img key={data} alt={chemical.productName} src={data} />
                             ))}
                         </article>
                     )}

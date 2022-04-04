@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "reactstrap";
-import R from '../../routes';
+import R from 'pages/routes';
 
 const SettingsButton: FC<any> = () => {
     return (

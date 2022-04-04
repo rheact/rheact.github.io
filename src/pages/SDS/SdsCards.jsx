@@ -7,8 +7,8 @@ import {
     CardHeader,
     Col, Row
 } from "reactstrap";
-import server from "../../api";
-import * as STORE from '../../store';
+import server from "api";
+import * as STORE from 'store';
 import CompoundCard from './CompoundCard';
 
 const CompoundDropzone = ({

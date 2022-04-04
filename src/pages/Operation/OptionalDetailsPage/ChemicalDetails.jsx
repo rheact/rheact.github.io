@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardBody, Input, InputGroup, InputGroupText, Label } from 'reactstrap';
-import * as STORE from '../../../store';
+import * as STORE from 'store';
 
 const ChemicalDetails = () => {
     const dispatch = useDispatch();

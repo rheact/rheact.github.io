@@ -1,7 +1,8 @@
 import { Col, Container, Row } from "reactstrap";
 import { TemperatureCard, PressureCard, HeatOfReactionCard } from "./ValueCards";
 import SideReactions from "./SideReactions";
-import BasisSelector from "./CpInput/BasisSelector";
+import BasisSelector from "./BasisSelector";
+import CpInput from "./CpInput";
 
 const OperatingParamsPage = () => {
     return (
@@ -21,6 +22,12 @@ const OperatingParamsPage = () => {
             <Row className="mt-2">
                 <Col>
                     <BasisSelector />
+                </Col>
+            </Row>
+
+            <Row className="mt-2">
+                <Col>
+                    <CpInput />
                 </Col>
             </Row>
 

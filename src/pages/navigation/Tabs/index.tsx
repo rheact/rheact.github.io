@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import {  Nav, NavLink } from 'reactstrap';
-import R from '../../routes';
+import R from 'pages/routes';
 
 type FormatButtonProps = {
     icon: string,

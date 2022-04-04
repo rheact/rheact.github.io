@@ -5,7 +5,7 @@ import {
     Card,
     CardBody, Input, InputGroup, InputGroupText
 } from "reactstrap";
-import { RheactState } from "../../../../store";
+import { RheactState } from 'store';
 
 type BaseCardProps = {
     label: string,
@@ -21,6 +21,7 @@ const BaseCard: FC<BaseCardProps> = ({ label, icon, unitList, name, valueAction,
     const unit = useSelector<RheactState>((state) => (state.operatingParams as any)[name + "Unit"]) as string;
     const dispatch = useDispatch();
 
+    // TODO: Fix uncontrolled input box bug
     const onValueChange = useCallback(
         (e) => {
             dispatch(valueAction(e.target.value));
@@ -28,6 +29,7 @@ const BaseCard: FC<BaseCardProps> = ({ label, icon, unitList, name, valueAction,
         [dispatch, valueAction]
     );
 
+    // If no unit in state, set unit to the first available in list
     useEffect(() => {
         if(!unit) {
             dispatch(unitAction(unitList[0]));

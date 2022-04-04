@@ -7,18 +7,24 @@ import { BasisChemical, Equation, RheactState, SET_BASIS } from "store";
 const BasisSelector = () => {
     const dispatch = useDispatch();
     const equation = useSelector<RheactState>(state => state.compound) as Equation;
+    
+    // Collect all chemicals for selector
     const listOfChemicals = useMemo(() => {
         return _
             .concat(equation.reactants, equation.products, equation.diluents)
-            .map((c, idx) => ({
+            .map(c => ({
                 productName: c.productName,   
                 molWt: c.molWt,
             }));
     }, [equation]);
 
+    // Selection for change of basis
     const [selection, setSelection] = useState<number>(-1);
 
+    // Current setting for basis
     const currentBasis = useSelector<RheactState>(state => state.operatingParams.basis) as (BasisChemical | undefined);
+
+    // Sets a new basis
     const onChangeCallback = useCallback(() => {
         if(selection !== -1)
             dispatch(SET_BASIS(listOfChemicals[selection]))

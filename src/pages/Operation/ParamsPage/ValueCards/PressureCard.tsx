@@ -1,6 +1,6 @@
-import * as STORE from "../../../../store";
-import * as UNITS from '../../../../units';
 import BaseCard from "./BaseCard";
+import { SET_PRESSURE, SET_PRESSURE_UNIT } from 'store';
+import { PRESSURE_UNITS_LIST } from 'units';
 import PressureIcon from "./icons/pressure.png";
 
 const PressureCard = () => {
@@ -8,9 +8,9 @@ const PressureCard = () => {
         label: "Pressure",
         icon: PressureIcon,
         name: "pressure",
-        valueAction: STORE.SET_PRESSURE,
-        unitAction: STORE.SET_PRESSURE_UNIT,
-        unitList: UNITS.PRESSURE_UNITS_LIST,
+        valueAction: SET_PRESSURE,
+        unitAction: SET_PRESSURE_UNIT,
+        unitList: PRESSURE_UNITS_LIST,
     };
 
     return <BaseCard {...props} />;

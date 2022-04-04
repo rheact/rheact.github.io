@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "reactstrap";
-import { RheactState } from '../../../store';
+import { RheactState } from 'store';
 
 const SaveButton: FC<any> = () => {
     const state = useSelector((state: RheactState) => state);

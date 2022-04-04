@@ -1,6 +1,6 @@
-import * as STORE from "../../../../store";
-import * as UNITS from '../../../../units';
 import BaseCard from "./BaseCard";
+import { SET_TEMPERATURE, SET_TEMPERATURE_UNIT } from 'store';
+import { TEMPERATURE_UNITS_LIST } from 'units';
 import TemperatureIcon from "./icons/temperature.png";
 
 const TemperatureCard = () => {
@@ -8,9 +8,9 @@ const TemperatureCard = () => {
         label: "Temperature",
         icon: TemperatureIcon,
         name: "temperature",
-        valueAction: STORE.SET_TEMPERATURE,
-        unitAction: STORE.SET_TEMPERATURE_UNIT,
-        unitList: UNITS.TEMPERATURE_UNITS_LIST,
+        valueAction: SET_TEMPERATURE,
+        unitAction: SET_TEMPERATURE_UNIT,
+        unitList: TEMPERATURE_UNITS_LIST,
     };
 
     return <BaseCard {...props} />;
