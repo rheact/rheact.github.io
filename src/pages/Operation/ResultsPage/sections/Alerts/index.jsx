@@ -269,49 +269,51 @@ const Alert = function ({ className }) {
     const srAlerts = compareSideReactions();
 
     // no alerts
-    if (reactants.length !== 0 && products.length !== 0 && diluents.length !== 0 && sideReactions.length !== 0) return null;
+    if (reactants.length === 0 && products.length === 0 && diluents.length === 0 && sideReactions.length === 0)
+        return (<h2 className={`text-muted ${className}`}>No alerts.</h2>);
 
     return (
-        <div className="Alert" style={style.main}>
+        <>
             <h2>Alerts</h2>
+            <div className="Alert" style={style.main}>
+                {reactantAlerts.length !== 0
+                    && (
+                        <React.Fragment key={key++}>
+                            <br />
+                            <div>Reactant Alerts</div>
+                        </React.Fragment>
+                    )}
+                {reactantAlerts}
 
-            {reactantAlerts.length !== 0
-                && (
-                    <React.Fragment key={key++}>
-                        <br />
-                        <div>Reactant Alerts</div>
-                    </React.Fragment>
-                )}
-            {reactantAlerts}
+                {productAlerts.length !== 0
+                    && (
+                        <React.Fragment key={key++}>
+                            <br />
+                            <div>Product Alerts</div>
+                        </React.Fragment>
+                    )}
+                {productAlerts}
 
-            {productAlerts.length !== 0
-                && (
-                    <React.Fragment key={key++}>
-                        <br />
-                        <div>Product Alerts</div>
-                    </React.Fragment>
-                )}
-            {productAlerts}
+                {diluentAlerts.length !== 0
+                    && (
+                        <React.Fragment key={key++}>
+                            <br />
+                            <div>Diluent Alerts</div>
+                        </React.Fragment>
+                    )}
+                {diluentAlerts}
 
-            {diluentAlerts.length !== 0
-                && (
-                    <React.Fragment key={key++}>
-                        <br />
-                        <div>Diluent Alerts</div>
-                    </React.Fragment>
-                )}
-            {diluentAlerts}
+                {srAlerts.length !== 0
+                    && (
+                        <React.Fragment key={key++}>
+                            <br />
+                            <div>Process Alerts</div>
+                        </React.Fragment>
+                    )}
+                {srAlerts}
 
-            {srAlerts.length !== 0
-                && (
-                    <React.Fragment key={key++}>
-                        <br />
-                        <div>Process Alerts</div>
-                    </React.Fragment>
-                )}
-            {srAlerts}
-
-        </div>
+            </div>
+        </>
     );
 };
 

@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useToggle } from "react-use";
 import {
     Button,
-    Card,
-    CardBody,
-    CardHeader, Collapse, Input, Table
+    Card, CardHeader, Input, Modal, ModalBody, ModalHeader, Table
 } from "reactstrap";
 
 const propMap = [
@@ -26,6 +24,10 @@ const propMap = [
         label: "hStatements",
         key: "hStatements",
         type: "textarea",
+    },
+    {
+        label: "Specific Heap Capacity Cp",
+        key: "cp",
     },
     {
         label: "Auto-ignition temperature (°C)",
@@ -128,33 +130,11 @@ const CompoundCard = ({ name: from, index, changeAction, removeAction }) => {
                     </Button>
                 </div>
             </CardHeader>
-            <Collapse isOpen={viewProps}>
-                <CardBody>
-                    {/* <Row>
-                    <Col>
-                        <Label>Initial Weight Fraction</Label>
-                        <Input
-                            value={compound.molWtFraction}
-                            invalid={!compound.molWtFraction}
-                            onChange={getChangeProp("molWtFraction")}
-                        />
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                            <Label>Specific heat capacity - Cp</Label>
-                            <InputGroup>
-                                <Input
-                                    value={compound.cp}
-                                    invalid={!compound.cp}
-                                    onChange={getChangeProp("cp")}
-                                />
-                                <Button color="dark">cal/g/°C</Button>
-                            </InputGroup>
-                            <FormFeedback></FormFeedback>
-                        </FormGroup>
-                    </Col>
-                </Row> */}
-
+            <Modal isOpen={viewProps} size='xl'>
+                <ModalHeader toggle={toggleProps}>
+                    {chemical.productName} (CAS No: {chemical.casNo})
+                </ModalHeader>
+                <ModalBody>
                     <Table bordered striped className="mt-4">
                         <tbody>
                             {propMap.map((e) => (
@@ -182,8 +162,8 @@ const CompoundCard = ({ name: from, index, changeAction, removeAction }) => {
                             ))}
                         </article>
                     )}
-                </CardBody>
-            </Collapse>
+                </ModalBody>
+            </Modal>
         </Card>
     );
 };

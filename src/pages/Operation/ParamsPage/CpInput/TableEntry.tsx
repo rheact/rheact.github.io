@@ -79,8 +79,9 @@ const TableEntry = () => {
                     <tr>
                         <th colSpan={4}>Reactants</th>
                     </tr>
-                    {equation.reactants.map((_, i) => (
+                    {equation.reactants.map((c, i) => (
                         <ChemicalRow
+                            key={'r/' + c.productName + '/' + i}
                             listname='reactants'
                             index={i}
                             changeAction={CHANGE_REACTANT}
@@ -90,8 +91,9 @@ const TableEntry = () => {
                     <tr>
                         <th colSpan={4}>Products</th>
                     </tr>
-                    {equation.products.map((_, i) => (
+                    {equation.products.map((c, i) => (
                         <ChemicalRow
+                            key={'p/' + c.productName  + '/' + i}
                             listname='products'
                             index={i}
                             changeAction={CHANGE_PRODUCT}
@@ -101,8 +103,9 @@ const TableEntry = () => {
                     <tr>
                         <th colSpan={4}>Diluents</th>
                     </tr>
-                    {equation.diluents.map((_, i) => (
+                    {equation.diluents.map((c, i) => (
                         <ChemicalRow
+                            key={'d/' + c.productName  + '/' + i}
                             listname='diluents'
                             index={i}
                             changeAction={CHANGE_DILUENT}

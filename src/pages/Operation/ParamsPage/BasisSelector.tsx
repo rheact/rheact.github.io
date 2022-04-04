@@ -44,7 +44,12 @@ const BasisSelector = () => {
                 </Card>
 
                 <InputGroup className='mt-2'>
-                    <Input type='select' value={selection} onChange={e => setSelection(parseInt(e.target.value))}>
+                    <Input
+                        type='select'
+                        value={selection}
+                        onChange={e => setSelection(parseInt(e.target.value))}
+                        className={currentBasis === undefined ? 'border-danger' : ''}
+                    >
                         <option hidden key='default' value={-1}>Select a basis chemical</option>
                         {listOfChemicals.map(
                             (c, idx) => (

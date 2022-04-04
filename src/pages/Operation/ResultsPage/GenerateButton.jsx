@@ -13,6 +13,32 @@ const GenerateButton = () => {
     const onClick = useCallback(async () => {
         changePending(maxJobs);
 
+        const promiseCalculations = server
+            .getCalculationBlock(state)
+            .then((data) => {
+                dispatch(STORE.SET_CALCULATIONS(JSON.parse(data)));
+                return data;
+            })
+            .catch((e) => {
+                alert(e);
+            })
+            .finally(() => {
+                changePending(-1);
+            });
+
+        const promiseCameo = server
+            .getCameoTable(state.compound)
+            .then((data) => {
+                dispatch(STORE.SET_CAMEO(JSON.parse(data)));
+                return data;
+            })
+            .catch((e) => {
+                alert(e);
+            })
+            .finally(() => {
+                changePending(-1);
+            });
+
         const hNums = {};
         const allCompounds = state.compound.reactants
             .concat(state.compound.products)
@@ -24,41 +50,24 @@ const GenerateButton = () => {
                 hStatements: c.hStatements,
             };
         });
+        dispatch(STORE.SET_HNUMS(hNums));
 
-        const calculationBlock = server
-            .getCalculationBlock(state)
+        const promiseHazard = server
+            .getHazardMatrix(hNums)
             .then((data) => {
-                changePending(-1);
+                dispatch(STORE.SET_HAZARDS(data));
                 return data;
+            })
+            .catch((e) => {
+                alert(e);
+            })
+            .finally(() => {
+                changePending(-1);
             });
 
-        const cameoMatrix = server
-            .getCameoTable(state.compound)
-            .then((data) => {
-                changePending(-1);
-                return data;
-            });
-
-        const hazardMatrix = server.getHazardMatrix(hNums).then((data) => {
-            changePending(-1);
-            return data;
-        });
-
-        try {
-            const data = await Promise.all([
-                calculationBlock,
-                cameoMatrix,
-                hazardMatrix,
-            ]);
-            dispatch(STORE.SET_CALCULATIONS(JSON.parse(data[0])));
-            dispatch(STORE.SET_CAMEO(JSON.parse(data[1])));
-            dispatch(STORE.SET_HAZARDS(data[2]));
-            dispatch(STORE.SET_HNUMS(hNums));
-        } catch (e) {
-            console.log("ERROR IN GENERATING RESULTS.");
-            console.error(e);
-            return;
-        }
+        Promise.all([
+            promiseCalculations, promiseCameo, promiseHazard
+        ]);
     }, [state, dispatch]);
 
     return (

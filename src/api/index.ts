@@ -19,7 +19,7 @@ const api = {
         return JSON.parse(res.data) as Equation;
     },
 
-    async getHazardMatrix(hNums: any) {
+    getHazardMatrix(hNums: any) {
         const promises = Object.keys(hNums).map(async (name) => {
             const res = await server.post('/graph', null, {
                 headers: { 'Content-Type': 'text/plain' },
@@ -35,14 +35,16 @@ const api = {
         return Promise.all(promises);
     },
 
-    async getCalculationBlock(rstate: RheactState) {
-        const res = await server.post('/calculate', JSON.stringify(rstate));
-        return res.data;
+    getCalculationBlock(rstate: RheactState) {
+        return server
+            .post('/calculate', JSON.stringify(rstate))
+            .then(res => res.data);
     },
 
-    async getCameoTable(rstate: RheactState) {
-        const res = await server.post('/cameo', JSON.stringify(rstate));
-        return res.data;
+    getCameoTable(rstate: RheactState) {
+        return server
+            .post('/cameo', JSON.stringify(rstate))
+            .then(res => res.data);
     },
 };
 

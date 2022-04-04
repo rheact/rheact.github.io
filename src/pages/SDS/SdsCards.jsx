@@ -66,7 +66,7 @@ const CompoundDropzone = ({
 
                 <div className="mt-2">
                     {_.range(num).map((i) => (
-                        <div className="mt-2" key={name}>
+                        <div className="mt-2" key={name + i}>
                             <CompoundCard
                                 name={name}
                                 changeAction={changeAction}
