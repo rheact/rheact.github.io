@@ -13,7 +13,7 @@ const CpInput = () => {
     const [route, setRoute] = useState<number>(ROUTE_MANUAL);
 
     useEffect(() => {
-        if(route == ROUTE_TABLE) {
+        if(route === ROUTE_TABLE) {
             dispatch(SET_CP(undefined));
         }
     }, [route, dispatch]);
