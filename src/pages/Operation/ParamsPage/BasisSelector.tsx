@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, CardBody, CardHeader, Input, InputGroup } from "reactstrap";
-import { BasisChemical, Equation, RheactState, SET_BASIS } from "store";
+import { BasisChemical, Chemical, Equation, RheactState, SET_BASIS } from "store";
 
 const BasisSelector = () => {
     const dispatch = useDispatch();
@@ -10,24 +10,53 @@ const BasisSelector = () => {
     
     // Collect all chemicals for selector
     const listOfChemicals = useMemo(() => {
-        return _
-            .concat(equation.reactants, equation.products, equation.diluents)
-            .map(c => ({
-                productName: c.productName,   
-                molWt: c.molWt,
-            }));
+        const indexMap = (list: string) => (c: Chemical, index: number) => ({
+            productName: c.productName,   
+            molWt: c.molWt,
+            list,
+            index
+        });
+        const reactants = equation.reactants.map(indexMap('reactants'));
+        const products= equation.products.map(indexMap('products'));
+        const diluents = equation.diluents.map(indexMap('diluents'));
+        return _.concat(reactants, products, diluents);
     }, [equation]);
 
     // Selection for change of basis
     const [selection, setSelection] = useState<number>(-1);
 
     // Current setting for basis
-    const currentBasis = useSelector<RheactState>(state => state.operatingParams.basis) as (BasisChemical | undefined);
+    const currentBasisIndex = useSelector<RheactState>(state => state.operatingParams.basis) as (BasisChemical | undefined);
+    const currentBasis = useMemo(() => {
+        if(!currentBasisIndex)
+            return undefined;
+        
+        switch(currentBasisIndex.list) {
+            case 'reactants':
+                return equation.reactants[currentBasisIndex.index];
+            case 'products':
+                return equation.products[currentBasisIndex.index];
+            case 'diluents':
+                return equation.diluents[currentBasisIndex.index];
+        }
+
+        return {
+            productName: 'Error, contact CISTAR with project file',
+            molWt: 'nan',
+        };
+    }, [currentBasisIndex, equation]);
 
     // Sets a new basis
     const onChangeCallback = useCallback(() => {
-        if(selection !== -1)
-            dispatch(SET_BASIS(listOfChemicals[selection]))
+        if(selection === -1) {
+            return;
+        }
+
+        const selectedChemical = listOfChemicals[selection];
+        dispatch(SET_BASIS({
+            list: selectedChemical.list,
+            index: selectedChemical.index,
+        }))
     }, [dispatch, listOfChemicals, selection]);
 
     return (

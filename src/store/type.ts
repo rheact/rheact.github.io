@@ -53,8 +53,8 @@ export type SideReaction = {
  * Basis of reaction is used for calculations.
  */
 export type BasisChemical = {
-    productName: string,
-    molWt: string,
+    list: 'reactants' | 'products' | 'diluents',
+    index: number,
 };
 
 /**

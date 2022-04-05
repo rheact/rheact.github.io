@@ -11,6 +11,7 @@ type ChemicalRowProps = {
 
 const ChemicalRow: FC<ChemicalRowProps> = ({ changeAction, listname, index }) => {
     const dispatch = useDispatch();
+    const cp = useSelector<RheactState>(state =>  state.operatingParams.cp) as string;
     const unit = useSelector<RheactState>(state =>  state.operatingParams.cpUnit) as string;
     const chemical = useSelector<RheactState>(state =>  (state.compound as any)[listname][index]) as Chemical;
 
@@ -42,9 +43,10 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ changeAction, listname, index }) =>
             <td>
                 <InputGroup>
                     <Input
+                        disabled={!!cp}
                         value={chemical.cp}
                         onChange={getChangeProp('cp')}
-                        className={!chemical.cp ? 'border-danger' : ''}
+                        className={!chemical.cp && !cp ? 'border-danger' : ''}
                     />
                     <InputGroupText className="bg-dark text-white">{unit}</InputGroupText>
                 </InputGroup>
