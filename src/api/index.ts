@@ -13,7 +13,7 @@ const api = {
                     'Content-Type': 'multipart/form-data',
                 },
                 params: {
-                    temperature: operatingParams.temperature,
+                    temperature: operatingParams.temperature || 'None',
                     unit: operatingParams.temperatureUnit,
                 },
             })

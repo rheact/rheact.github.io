@@ -9,7 +9,6 @@ import ResultsPage from "./Operation/ResultsPage";
 // PPE
 import QuestionairePage from './PPE/QuestionairePage';
 import PPEResultsPage from './PPE/ResultsPage';
-import SettingsPage from './SettingsPage';
 
 const ToolIndex = () => {
     return (
@@ -34,10 +33,6 @@ const ToolIndex = () => {
 
                 <Route path={R.ROUTE_PPE_REPORT}>
                     <PPEResultsPage />
-                </Route>
-
-                <Route path={R.ROUTE_SETTINGS}>
-                    <SettingsPage />
                 </Route>
 
                 <Route>
