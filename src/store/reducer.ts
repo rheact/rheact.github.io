@@ -161,6 +161,10 @@ const rheactSlice = createSlice({
         },
 
         // Results
+        RESET_RESULTS(state, _action) {
+            state.results = undefined;
+        },
+
         SET_CALCULATIONS(state, action) {
             const { adiabaticPressure, adiabaticTemp, finalTemp } = action.payload;
             if (!state.results) {
@@ -244,6 +248,7 @@ export const {
     CHANGE_DILUENT,
     REMOVE_DILUENT,
 
+    RESET_RESULTS,
     SET_CALCULATIONS,
     SET_CAMEO,
     SET_HAZARDS,

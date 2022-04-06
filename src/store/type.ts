@@ -124,5 +124,5 @@ export type RheactState = {
  ppe_questionnaire?: {
     [key: string]: boolean,
  },
- results: Results,
+ results?: Results,
 };

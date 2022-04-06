@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, Progress } from "reactstrap";
 import server from "api";
 import * as STORE from "store";
+import { RESET_RESULTS } from "store";
 
 const GenerateButton = () => {
     const state = useSelector((s) => s);
@@ -11,6 +12,7 @@ const GenerateButton = () => {
     const maxJobs = 3;
 
     const onClick = useCallback(async () => {
+        dispatch(RESET_RESULTS());
         changePending(maxJobs);
 
         const promiseCalculations = server

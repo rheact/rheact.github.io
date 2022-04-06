@@ -1,6 +1,6 @@
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import ToolBar from "navigation";
 import R from "./routes";
-import ToolBar from "./navigation";
 import SDSPage from "./SDS";
 // Operation
 import ParamsPage from "./Operation/ParamsPage";

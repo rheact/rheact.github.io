@@ -37,18 +37,18 @@ const BasisSelector = () => {
             case 'products':
                 return equation.products[currentBasisIndex.index];
             case 'diluents':
+            default:
                 return equation.diluents[currentBasisIndex.index];
         }
-
-        return {
-            productName: 'Error, contact CISTAR with project file',
-            molWt: 'nan',
-        };
     }, [currentBasisIndex, equation]);
 
     // Sets a new basis
     const onChangeCallback = useCallback(() => {
         if(selection === -1) {
+            dispatch(SET_BASIS({
+                list: '',
+                index: -1,
+            }));
             return;
         }
 
@@ -56,7 +56,7 @@ const BasisSelector = () => {
         dispatch(SET_BASIS({
             list: selectedChemical.list,
             index: selectedChemical.index,
-        }))
+        }));
     }, [dispatch, listOfChemicals, selection]);
 
     return (
@@ -64,10 +64,10 @@ const BasisSelector = () => {
             <CardHeader className='fw-bold'>Basis of Reaction</CardHeader>
             <CardBody className='flex-column'>
 
-                <Card className={currentBasis === undefined ? 'border-danger' : ''}>
+                <Card>
                     <CardHeader>Current Basis</CardHeader>
                     <CardBody className='text-center'>
-                        {!currentBasis && "No Basis Selected"}
+                        {!currentBasis && "Total Reaction Mass"}
                         {currentBasis !== undefined && `${currentBasis.productName} / Mol Wt: ${currentBasis.molWt}`}
                     </CardBody>
                 </Card>
@@ -77,9 +77,8 @@ const BasisSelector = () => {
                         type='select'
                         value={selection}
                         onChange={e => setSelection(parseInt(e.target.value))}
-                        className={currentBasis === undefined ? 'border-danger' : ''}
                     >
-                        <option hidden key='default' value={-1}>Select a basis chemical</option>
+                        <option key='default' value={-1}>Total Reaction Mass</option>
                         {listOfChemicals.map(
                             (c, idx) => (
                                 <option key={idx} value={idx}>{c.productName} / Mol Wt: {c.molWt}</option>    

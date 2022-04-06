@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Tabs from './Tabs';
-import OpButtons from './OpButtons';
+import OpButtons from './Buttons';
 
 const ToolBar: FC<any> = function () {
     return (
