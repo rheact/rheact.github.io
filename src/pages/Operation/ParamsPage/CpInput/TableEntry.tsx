@@ -34,6 +34,13 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ changeAction, listname, index }) =>
             <td>{chemical.productName}</td>
             <td>
                 <Input
+                    value={chemical.molWt}
+                    onChange={getChangeProp('molWt')}
+                    className={!chemical.molWt ? 'border-danger' : ''}
+                />
+            </td>
+            <td>
+                <Input
                     value={chemical.molWtFraction}
                     onChange={getChangeProp('molWtFraction')}
                     className={!chemical.molWtFraction ? 'border-danger' : ''}
@@ -61,9 +68,9 @@ const TableEntry = () => {
         <div className="p-2">
             <Alert color="danger">
                 RHEACT estimates C<sub>p</sub> of individual chemicals
-                with a backend-database based on the operating temperature
-                at the time of upload of SDS. The C<sub>p</sub> is not
-                re-estimated when you change the system temperature. Please
+                with a backend-database of <b>liquid phase</b> chemicals based on the operating temperature
+                at the time of upload of SDS. The C<sub>p</sub> is <b>not
+                re-estimated when you change the system temperature</b>. Please
                 confirm the estimated C<sub>p</sub> values manually!
             </Alert>
 
@@ -72,7 +79,8 @@ const TableEntry = () => {
                     <tr>
                         <th>Index</th>
                         <th>Name</th>
-                        <th>Molecular Weight Fraction</th>
+                        <th>Molecular Weight</th>
+                        <th>Mass fraction</th>
                         <th>C<sub>p</sub></th>
                     </tr>
                 </thead>

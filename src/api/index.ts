@@ -14,7 +14,7 @@ const api = {
                 },
                 params: {
                     temperature: operatingParams.temperature || 'None',
-                    unit: operatingParams.temperatureUnit,
+                    unit: operatingParams.temperatureUnit || 'None',
                 },
             })
             .then(res => {

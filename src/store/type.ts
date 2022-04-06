@@ -3,6 +3,8 @@
  * Drafted by: Vikrant Gajria
  */
 
+import { CpUnit, HeatUnit, PressureUnit, TemperatureUnit } from "units";
+
 /**
  * Chemical represents data extracted from SDS.
  */
@@ -61,14 +63,14 @@ export type BasisChemical = {
  * OperatingParams represent data used in calulation.
  */
 export type OperatingParams = {
-    temperature?: string,
-    temperatureUnit?: string,
-    pressure?: string,
-    pressureUnit?: string,
-    heatOfReaction?: string,
-    heatOfReactionUnit?: string,
-    cp?: string,
-    cpUnit?: string,
+    temperature: string,
+    temperatureUnit: TemperatureUnit,
+    pressure: string,
+    pressureUnit: PressureUnit,
+    heatOfReaction: string,
+    heatOfReactionUnit: HeatUnit,
+    cp: string,
+    cpUnit: CpUnit,
     basis?: BasisChemical,
     physicalState?: string,
     reactionClass?: string,
