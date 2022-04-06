@@ -3,6 +3,10 @@ import { Equation, OperatingParams, RheactState } from 'store';
 
 const api = {
 
+    checkLiveness() {
+        return server.get('/').then(res => res.status === 200);
+    },
+
     parsePDF(f: File, operatingParams: OperatingParams) {
         const formData = new FormData();
         formData.append('file', f, f.name);

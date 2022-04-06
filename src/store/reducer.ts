@@ -166,13 +166,14 @@ const rheactSlice = createSlice({
         },
 
         SET_CALCULATIONS(state, action) {
-            const { adiabaticPressure, adiabaticTemp, finalTemp } = action.payload;
             if (!state.results) {
                 state.results = {};
             }
-            state.results.adiabaticPressure = adiabaticPressure;
-            state.results.adiabaticTemp = adiabaticTemp;
-            state.results.finalTemp = finalTemp;
+
+            state.results = {
+                ...state.results,
+                ...action.payload,
+            }
         },
 
         SET_CAMEO(state, action) {

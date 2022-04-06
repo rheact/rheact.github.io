@@ -3,8 +3,9 @@ import { Card } from 'reactstrap';
 
 const CalculationBlock = function ({ className }) {
     const results = useSelector((state) => state.results);
+    const operatingParams = useSelector((state) => state.operatingParams);
 
-    if (!results || !results.finalTemp || !results.adiabaticTemp || !results.adiabaticPressure) {
+    if (!results || !results.finalTempDisplay || !results.adiabaticTemp) {
         return (<h2 className={`text-muted ${className}`}>No calculations.</h2>);
     }
 
@@ -12,30 +13,34 @@ const CalculationBlock = function ({ className }) {
         <div className={className}>
             <h2>Calculations</h2>
             <div className="d-flex justify-content-center">
-                <Card className="d-flex flex-column p-4 mx-2">
-                    <span className="h6 text-center">Final Temperature</span>
-                    <span className="h5 text-center">
-                        {results.finalTemp.toFixed(3)}
-                        {' '}
-&deg;C
-                    </span>
-                </Card>
+                {results.finalTempDisplay && (
+                    <Card className="d-flex flex-column p-4 mx-2">
+                        <span className="h6 text-center">Final Temperature</span>
+                        <span className="h5 text-center">
+                            {results.finalTempDisplay.toFixed(3)}
+                            {' '}
+                            {operatingParams.temperatureUnit}
+                        </span>
+                    </Card>
+                )}
 
-                <Card className="d-flex flex-column p-4 mx-2">
-                    <span className="h6 text-center">Adiabatic Temperature Change</span>
-                    <span className="h5 text-center">
-                        {results.adiabaticTemp.toFixed(3)}
-                        {' '}
-&deg;C
-                    </span>
-                </Card>
+                {results.adiabaticTempDisplay && (
+                    <Card className="d-flex flex-column p-4 mx-2">
+                        <span className="h6 text-center">Adiabatic Temperature Change</span>
+                        <span className="h5 text-center">
+                            {results.adiabaticTemp.toFixed(3)}
+                            {' '}
+                            &deg;C
+                        </span>
+                    </Card>
+                )}
 
                 {/* <Card className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Adiabatic Pressure Change</span>
                     <span className="h5 text-center">
                         {results.adiabaticPressure.toFixed(3)}
                         {' '}
-bar
+                        {operatingParams.pressureUnit}
                     </span>
                 </Card> */}
             </div>
