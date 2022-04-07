@@ -3,7 +3,6 @@ import { Card } from 'reactstrap';
 
 const CalculationBlock = function ({ className }) {
     const results = useSelector((state) => state.results);
-    const operatingParams = useSelector((state) => state.operatingParams);
 
     if (!results || !results.finalTempDisplay || !results.adiabaticTemp) {
         return (<h2 className={`text-muted ${className}`}>No calculations.</h2>);
@@ -17,9 +16,7 @@ const CalculationBlock = function ({ className }) {
                     <Card className="d-flex flex-column p-4 mx-2">
                         <span className="h6 text-center">Final Temperature</span>
                         <span className="h5 text-center">
-                            {results.finalTempDisplay.toFixed(3)}
-                            {' '}
-                            {operatingParams.temperatureUnit}
+                            {results.finalTempDisplay}
                         </span>
                     </Card>
                 )}
@@ -28,9 +25,7 @@ const CalculationBlock = function ({ className }) {
                     <Card className="d-flex flex-column p-4 mx-2">
                         <span className="h6 text-center">Adiabatic Temperature Change</span>
                         <span className="h5 text-center">
-                            {results.adiabaticTemp.toFixed(3)}
-                            {' '}
-                            &deg;C
+                            {results.adiabaticTempDisplay}
                         </span>
                     </Card>
                 )}
@@ -38,9 +33,7 @@ const CalculationBlock = function ({ className }) {
                 {/* <Card className="d-flex flex-column p-4 mx-2">
                     <span className="h6 text-center">Adiabatic Pressure Change</span>
                     <span className="h5 text-center">
-                        {results.adiabaticPressure.toFixed(3)}
-                        {' '}
-                        {operatingParams.pressureUnit}
+                        {results.adiabaticPressure}
                     </span>
                 </Card> */}
             </div>

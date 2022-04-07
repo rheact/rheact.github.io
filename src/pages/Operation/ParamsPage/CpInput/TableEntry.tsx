@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert, Input, InputGroup, InputGroupText, Table } from "reactstrap";
+import { Alert, Button, Input, InputGroup, InputGroupText, Table } from "reactstrap";
 import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT, Chemical, Equation, RheactState } from "store";
 
 type ChemicalRowProps = {
@@ -16,8 +16,22 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ changeAction, listname, index }) =>
 
     const getChangeProp = useCallback(
         (key: keyof Chemical) => (e: ChangeEvent<HTMLInputElement>) => {
-            const update = { ...chemical };
+            const update: any = { ...chemical };
             update[key] = e.target.value as any;
+            dispatch(
+                changeAction({
+                    index,
+                    update,
+                })
+            );
+        },
+        [changeAction, index, chemical, dispatch]
+    );
+
+    const onNeglect = useCallback(
+        () => {
+            const update: Chemical = { ...chemical };
+            update.neglected = !update.neglected;
             dispatch(
                 changeAction({
                     index,
@@ -57,6 +71,16 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ changeAction, listname, index }) =>
                     <InputGroupText className="bg-dark text-white">cal/g/°C</InputGroupText>
                 </InputGroup>
             </td>
+            <td>
+                <Button
+                    color={chemical.neglected ? 'danger' : 'success'}
+                    outline
+                    onClick={onNeglect}
+                >
+                    {chemical.neglected && (<i className="bi bi-x-lg" />)}
+                    {!chemical.neglected && (<i className="bi bi-check-lg" />)}
+                </Button>
+            </td>
         </tr>
     );
 }
@@ -82,11 +106,12 @@ const TableEntry = () => {
                         <th>Molecular Weight</th>
                         <th>Mass fraction</th>
                         <th>C<sub>p</sub></th>
+                        <th>Include</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th colSpan={4}>Reactants</th>
+                        <th colSpan={6}>Reactants</th>
                     </tr>
                     {equation.reactants.map((c, i) => (
                         <ChemicalRow
@@ -98,7 +123,7 @@ const TableEntry = () => {
                     ))}
 
                     <tr>
-                        <th colSpan={4}>Products</th>
+                        <th colSpan={6}>Products</th>
                     </tr>
                     {equation.products.map((c, i) => (
                         <ChemicalRow
@@ -110,7 +135,7 @@ const TableEntry = () => {
                     ))}
 
                     <tr>
-                        <th colSpan={4}>Diluents</th>
+                        <th colSpan={6}>Diluents</th>
                     </tr>
                     {equation.diluents.map((c, i) => (
                         <ChemicalRow

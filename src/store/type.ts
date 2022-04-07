@@ -26,8 +26,10 @@ export type Chemical = {
     vapourDensity?: string,
     vapourPressure?: string,
     viscosity?: string,
-    molWtFraction?: string,
     ppe_pages?: string[],
+    ppe_pagerange?: any[],
+    molWtFraction?: string,
+    neglected: boolean,
 };
 
 /**
