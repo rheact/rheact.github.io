@@ -22,6 +22,12 @@ const OperatingParamsPage = () => {
 
             <Row className="mt-2">
                 <Col>
+                    <SettingsPanel />
+                </Col>
+            </Row>
+
+            <Row className="mt-2">
+                <Col>
                     <BasisSelector />
                 </Col>
             </Row>
@@ -35,12 +41,6 @@ const OperatingParamsPage = () => {
             <Row className="mt-2">
                 <Col>
                     <SideReactions />
-                </Col>
-            </Row>
-
-            <Row className="mt-2">
-                <Col>
-                    <SettingsPanel />
                 </Col>
             </Row>
         </Container>

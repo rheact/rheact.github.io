@@ -24,7 +24,7 @@ export enum HeatUnit {
     kJ_mol = 'kJ/mol',
     cal_mol = 'cal/mol',
     kcal_mol = 'kcal/mol',
-    btu_lb = 'btu/lb',
+    // btu_lb = 'btu/lb',
 };
 export const HEAT_UNITS_LIST = Object.values(HeatUnit);
 

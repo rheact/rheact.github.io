@@ -26,10 +26,6 @@ const propMap = [
         type: "textarea",
     },
     {
-        label: "Specific Heap Capacity Cp",
-        key: "cp",
-    },
-    {
         label: "Auto-ignition temperature (°C)",
         key: "autoIgnitionTemp",
     },
@@ -105,7 +101,7 @@ const CompoundCard = ({ name: from, index, changeAction, removeAction }) => {
     const [viewProps, toggleProps] = useToggle();
 
     return (
-        <Card key={chemical.productName} color="light">
+        <Card color="light">
             <CardHeader className="h5 d-flex justify-content-between align-items-center">
                 <div>
                     <span className="text-primary">{index + 1}. </span>
@@ -132,7 +128,7 @@ const CompoundCard = ({ name: from, index, changeAction, removeAction }) => {
             </CardHeader>
             <Modal isOpen={viewProps} size='xl'>
                 <ModalHeader toggle={toggleProps}>
-                    {chemical.productName} (CAS No: {chemical.casNo})
+                    Edit Compound
                 </ModalHeader>
                 <ModalBody>
                     <Table bordered striped className="mt-4">

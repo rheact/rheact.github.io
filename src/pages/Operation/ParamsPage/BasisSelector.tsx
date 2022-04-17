@@ -23,7 +23,7 @@ const BasisSelector = () => {
     }, [equation]);
 
     // Selection for change of basis
-    const [selection, setSelection] = useState<number>(-1);
+    const [selection, setSelection] = useState<number>();
 
     // Current setting for basis
     const currentBasisIndex = useSelector<RheactState>(state => state.operatingParams.basis) as (BasisChemical | undefined);
@@ -44,6 +44,10 @@ const BasisSelector = () => {
 
     // Sets a new basis
     const onChangeCallback = useCallback(() => {
+        if(selection === undefined) {
+            return;
+        }
+
         if(selection === -1) {
             dispatch(SET_BASIS({
                 list: '',
@@ -64,10 +68,11 @@ const BasisSelector = () => {
             <CardHeader className='fw-bold'>Basis of Reaction</CardHeader>
             <CardBody className='flex-column'>
 
-                <Card>
+                <Card className={currentBasisIndex === undefined ? "border-danger" : ""}>
                     <CardHeader>Current Basis</CardHeader>
                     <CardBody className='text-center'>
-                        {!currentBasis && "Total Reaction Mass"}
+                        {currentBasisIndex === undefined ? "Please select a basis for heat of reaction by clicking the change button below" : ""}
+                        {currentBasisIndex !== undefined && currentBasisIndex.index === -1 ? "Total Reaction Mass" : ""}
                         {currentBasis !== undefined && `${currentBasis.productName} / Mol Wt: ${currentBasis.molWt}`}
                     </CardBody>
                 </Card>
@@ -78,6 +83,7 @@ const BasisSelector = () => {
                         value={selection}
                         onChange={e => setSelection(parseInt(e.target.value))}
                     >
+                        <option key='' value={undefined}></option>
                         <option key='default' value={-1}>Total Reaction Mass</option>
                         {listOfChemicals.map(
                             (c, idx) => (

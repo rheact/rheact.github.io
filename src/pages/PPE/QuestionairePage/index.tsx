@@ -1,6 +1,6 @@
 import { FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, ButtonGroup, Col, ListGroup, ListGroupItem, Row } from "reactstrap";
+import { Alert, Button, ButtonGroup, Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
 import { RheactState, SET_PPE_QUESTION } from "store";
 import questions from 'data/questions.json';
 
@@ -41,8 +41,16 @@ const PPEQuestionSingle: FC<Question> = ({ uid, question }) => {
 
 export default function PPEQuestions() {
     return (
-        <ListGroup>
-            {questions.map(q => <PPEQuestionSingle key={q.uid} {...q} />)}
-        </ListGroup>
+        <Container>
+            <Alert>
+                This questionnaire will help you conisider PPE that may be relevant to your process.
+                <br />
+                <br />
+                Please consult the Hazard and Chemical Compatibility Matrix before answering the following questions!
+            </Alert>
+            <ListGroup>
+                {questions.map(q => <PPEQuestionSingle key={q.uid} {...q} />)}
+            </ListGroup>
+        </Container>
     );
 }

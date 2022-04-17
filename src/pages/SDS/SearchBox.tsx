@@ -26,8 +26,11 @@ const SearchBox: FC<SearchBoxProps> = ({ className }) => {
     );
 
     useEffect(() => {
+        if (!stext || stext.length < 3) {
+            setSuggestions([]);
+        }
+
         const delayDebounceFn = setTimeout(() => {
-            if (!stext || stext.length < 3) return;
             fetch(
                 `https://pubchem.ncbi.nlm.nih.gov/rest/autocomplete/compound/${stext}/json?limit=7`
             )

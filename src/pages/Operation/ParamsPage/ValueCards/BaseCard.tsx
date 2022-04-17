@@ -46,6 +46,7 @@ const BaseCard: FC<BaseCardProps> = ({ label, icon, unitList, name, valueAction,
                     <Input
                         value={value}
                         invalid={!value}
+                        type="number"
                         onChange={onValueChange}
                         placeholder={`Enter ${label}`}
                     />

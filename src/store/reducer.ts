@@ -203,6 +203,10 @@ const rheactSlice = createSlice({
             if(!state.ppe_questionnaire) {
                 state.ppe_questionnaire = {};
             }
+            if(action.payload.response === state.ppe_questionnaire[action.payload.uid]) {
+                delete state.ppe_questionnaire[action.payload.uid];
+                return;   
+            }
             state.ppe_questionnaire[action.payload.uid] = action.payload.response;
         }
     },

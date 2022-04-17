@@ -72,6 +72,7 @@ const CompoundDropzone = ({
                                 changeAction={changeAction}
                                 removeAction={removeAction}
                                 index={i}
+                                key={`${label}/${i}`}
                             />
                         </div>
                     ))}
