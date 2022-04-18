@@ -1,15 +1,27 @@
-import { useCallback } from "react";
+import { FC, FormEvent, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToggle } from "react-use";
 import {
     Button,
-    Card, CardHeader, Input, Modal, ModalBody, ModalHeader, Table
+    Card, CardBody, Input, Modal, ModalBody, ModalHeader, Table
 } from "reactstrap";
+import { InputType } from "reactstrap/types/lib/Input";
+import { Chemical, RheactState } from "store";
 
-const propMap = [
+type PropertyMap = {
+    label: string,
+    key: keyof Chemical,
+    type?: InputType,
+};
+
+const propMap: PropertyMap[] = [
     {
         label: "Name",
         key: "productName",
+    },
+    {
+        label: "Mol. Weight (g/mol)",
+        key: "molWt",
     },
     {
         label: "CAS-No",
@@ -42,10 +54,6 @@ const propMap = [
         key: "flashPt",
     },
     {
-        label: "Mol. Weight (g/mol)",
-        key: "molWt",
-    },
-    {
         label: "pH at 20°C (g/l)",
         key: "ph",
     },
@@ -75,15 +83,21 @@ const propMap = [
     },
 ];
 
-const CompoundCard = ({ name: from, index, changeAction, removeAction }) => {
-    /** @type {import('store').Chemical} */
-    const chemical = useSelector((state) => state.compound[from][index]);
+type ChemicalCardProps = {
+    from: 'reactants' | 'diluents' | 'products',
+    index: number,
+    changeAction: any,
+    removeAction: any,
+};
+
+const ChemicalCard: FC<ChemicalCardProps> = ({ from, index, changeAction, removeAction }) => {
+    const chemical = useSelector<RheactState>((state) => state.compound[from][index]) as Chemical;
     const dispatch = useDispatch();
 
     const getChangeProp = useCallback(
-        (key) => (e) => {
-            const update = { ...chemical };
-            update[key] = e.target.value;
+        (key: keyof Chemical) => (e: FormEvent<HTMLInputElement>) => {
+            const update: any = { ...chemical };
+            update[key] = e.currentTarget.value;
             dispatch(
                 changeAction({
                     index,
@@ -93,54 +107,60 @@ const CompoundCard = ({ name: from, index, changeAction, removeAction }) => {
         },
         [changeAction, chemical, dispatch, index]
     );
+
     const onRemove = useCallback(
         () => dispatch(removeAction(index)),
         [dispatch, index, removeAction]
     );
 
-    const [viewProps, toggleProps] = useToggle();
+    const [viewProps, toggleProps] = useToggle(false);
 
     return (
-        <Card color="light">
-            <CardHeader className="h5 d-flex justify-content-between align-items-center">
+        <Card>
+            <CardBody className="d-flex flex-column">
                 <div>
                     <span className="text-primary">{index + 1}. </span>
-                    <b>{chemical.productName}</b>
-                    <span> </span>
+                    <h4>{chemical.productName}</h4>
                     <span>(CAS-NO: {chemical.casNo})</span>
                 </div>
 
                 <div>
                     <Button
-                        outline
+                        size="sm"
                         className="me-2"
-                        color="primary"
+                        color="link"
                         onClick={toggleProps}
                     >
                         <i className="bi bi-pencil me-1" />
                         Edit Properties
                     </Button>
-                    <Button outline color="danger" onClick={onRemove}>
+                    <Button
+                        size="sm"
+                        color="link"
+                        className="text-danger"
+                        onClick={onRemove}
+                    >
                         <i className="bi bi-x-lg me-1" />
                         Delete
                     </Button>
                 </div>
-            </CardHeader>
+            </CardBody>
+
             <Modal isOpen={viewProps} size='xl'>
                 <ModalHeader toggle={toggleProps}>
                     Edit Compound
                 </ModalHeader>
                 <ModalBody>
-                    <Table bordered striped className="mt-4">
+                    <Table bordered className="mt-4">
                         <tbody>
-                            {propMap.map((e) => (
-                                <tr key={e.label}>
-                                    <td>{e.label}</td>
+                            {propMap.map((property) => (
+                                <tr key={property.label}>
+                                    <td>{property.label}</td>
                                     <td>
                                         <Input
-                                            value={chemical[e.key]}
-                                            onChange={getChangeProp(e.key)}
-                                            type={e.type}
+                                            value={chemical[property.key] as string}
+                                            onChange={getChangeProp(property.key)}
+                                            type={property.type}
                                         />
                                     </td>
                                 </tr>
@@ -164,4 +184,4 @@ const CompoundCard = ({ name: from, index, changeAction, removeAction }) => {
     );
 };
 
-export default CompoundCard;
+export default ChemicalCard;

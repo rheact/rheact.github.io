@@ -1,5 +1,5 @@
 import { Alert, Col, Container, Row } from "reactstrap";
-import { DiluentDropzone, ProductDropzone, ReactantDropzone } from "./SdsCards";
+import { DiluentDropzone, ProductDropzone, ReactantDropzone } from "./DropzoneCards";
 import SearchBox from "./SearchBox";
 import SigmaLogo from "./sigma.png";
 
