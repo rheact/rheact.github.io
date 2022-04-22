@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, CardBody, CardHeader, Input, InputGroup } from "reactstrap";
+import { Button, Card, CardBody, Input, InputGroup } from "reactstrap";
 import { BasisChemical, Chemical, Equation, RheactState, SET_BASIS } from "store";
 
 const BasisSelector = () => {
@@ -64,18 +64,12 @@ const BasisSelector = () => {
     }, [dispatch, listOfChemicals, selection]);
 
     return (
-        <Card>
-            <CardHeader className='fw-bold'>Basis of Reaction</CardHeader>
-            <CardBody className='flex-column'>
-
-                <Card className={currentBasisIndex === undefined ? "border-danger" : ""}>
-                    <CardHeader>Current Basis</CardHeader>
-                    <CardBody className='text-center'>
-                        {currentBasisIndex === undefined ? "Please select a basis for heat of reaction by clicking the change button below" : ""}
-                        {currentBasisIndex !== undefined && currentBasisIndex.index === -1 ? "Total Reaction Mass" : ""}
-                        {currentBasis !== undefined && `${currentBasis.productName} / Mol Wt: ${currentBasis.molWt}`}
-                    </CardBody>
-                </Card>
+        <Card className={currentBasisIndex === undefined ? "border-danger" : ""}>
+            <CardBody className='text-center'>
+                <div className='fw-bold p-2'>Current Basis for Heat of Reaction</div>
+                {currentBasisIndex === undefined ? "Please select a basis for heat of reaction by clicking the change button below" : ""}
+                {currentBasisIndex !== undefined && currentBasisIndex.index === -1 ? "Total Reaction Mass" : ""}
+                {currentBasis !== undefined && `${currentBasis.productName} / Mol Wt: ${currentBasis.molWt}`}
 
                 <InputGroup className='mt-2'>
                     <Input

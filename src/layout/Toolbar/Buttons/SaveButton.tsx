@@ -14,7 +14,7 @@ const SaveButton: FC<any> = () => {
     }, [state]);
 
     return (
-        <Button size="sm" color="dark" onClick={onClick} outline>
+        <Button size="sm" color="dark" onClick={onClick}>
             <i className="bi-save-fill" /> Save
         </Button>
     );

@@ -41,7 +41,7 @@ const PPEQuestionSingle: FC<Question> = ({ uid, question }) => {
 
 export default function PPEQuestions() {
     return (
-        <Container>
+        <Container className="p-2">
             <Alert>
                 This questionnaire will help you conisider PPE that may be relevant to your process.
                 <br />

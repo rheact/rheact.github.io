@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTimeoutFn } from "react-use";
-import { Button } from "reactstrap";
+import { Badge, Button } from "reactstrap";
 import api from 'api';
 
 enum Status {
-    Checking = 0,
-    Offline = -1,
+    Offline = 0,
     Online = 1,
 };
 
@@ -18,8 +17,8 @@ const getColor = (state: Status) => {
     return 'secondary';
 }
 
-const OnlineStatus = () => {
-    const [state, setState] = useState<Status>(Status.Checking);
+const OnlineStatus: FC<any> = ({ className }) => {
+    const [state, setState] = useState<Status>(Status.Offline);
 
     function statusCheck() {
         api.checkLiveness().then(b => {
@@ -33,11 +32,10 @@ const OnlineStatus = () => {
     useTimeoutFn(() => statusCheck, 300 * 1000);
 
     return (
-        <Button disabled outline color={getColor(state)}>
-            {state === Status.Checking && "Checking"}
+        <Badge outline color={getColor(state)}>
             {state === Status.Offline && "Offline"}
             {state === Status.Online && "Online"}
-        </Button>
+        </Badge>
     );
 };
 

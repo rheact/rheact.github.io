@@ -1,0 +1,27 @@
+#sidebar {
+    padding: 1rem;
+    width: 250px;
+    background-color: floralwhite;
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+}
+
+#sidebar .section-header {
+    font-weight: bolder;
+    font-size: smaller;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+#sidebar a {
+    font-size: small;
+    font-weight: 500;
+    color: black;
+    border-radius: 6px;
+}
+
+#sidebar a:hover, #sidebar a.active {
+    background-color: lightgreen;
+    transition: 0.4s;
+}

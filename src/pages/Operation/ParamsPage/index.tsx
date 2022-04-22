@@ -3,7 +3,6 @@ import { TemperatureCard, PressureCard, HeatOfReactionCard } from "./ValueCards"
 import SideReactions from "./SideReactions";
 import BasisSelector from "./BasisSelector";
 import CpInput from "./CpInput";
-import SettingsPanel from "./SettingsPanel";
 
 const OperatingParamsPage = () => {
     return (
@@ -22,14 +21,9 @@ const OperatingParamsPage = () => {
 
             <Row className="mt-2">
                 <Col>
-                    <SettingsPanel />
-                </Col>
-            </Row>
-
-            <Row className="mt-2">
-                <Col>
                     <BasisSelector />
                 </Col>
+
             </Row>
 
             <Row className="mt-2">

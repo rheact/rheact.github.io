@@ -1,7 +1,7 @@
+import server from "api";
 import { useCallback, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, Progress } from "reactstrap";
-import server from "api";
+import { Button, Progress } from "reactstrap";
 import * as STORE from "store";
 import { RESET_RESULTS } from "store";
 
@@ -67,7 +67,7 @@ const GenerateButton = () => {
     }, [state, dispatch]);
 
     return (
-        <Card color="light" className="p-5">
+        <div className="p-5">
             <div className="w-100 d-flex flex-column align-items-center">
                 <i
                     className={
@@ -96,7 +96,7 @@ const GenerateButton = () => {
                     </div>
                 )}
             </div>
-        </Card>
+        </div>
     );
 };
 

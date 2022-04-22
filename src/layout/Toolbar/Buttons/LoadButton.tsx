@@ -51,7 +51,7 @@ const LoadButton: FC<any> = () => {
 
     return (
         <>
-            <Button onClick={toggle} color="dark" size="sm" outline>
+            <Button onClick={toggle} color="dark" size="sm">
                 <i className="bi-cloud-upload-fill" /> Load
                 <DropzoneModal
                     open={open}

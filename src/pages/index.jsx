@@ -1,19 +1,16 @@
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import ToolBar from "navigation";
-import R from "./routes";
-import SDSPage from "./SDS";
+import { Route, Switch } from "react-router-dom";
+import ReportDetailsPage from "./Operation/OptionalDetailsPage";
 // Operation
 import ParamsPage from "./Operation/ParamsPage";
-import ReportDetailsPage from "./Operation/OptionalDetailsPage";
 import ResultsPage from "./Operation/ResultsPage";
 // PPE
 import QuestionairePage from './PPE/QuestionairePage';
 import PPEResultsPage from './PPE/ResultsPage';
+import R from "./routes";
+import SDSPage from "./SDS";
 
 const ToolIndex = () => {
     return (
-        <Router initialEntries={Object.keys(R)} initialIndex={1}>
-            <ToolBar />
             <Switch>
                 <Route path={R.ROUTE_OPERATION_DETAILS}>
                     <ReportDetailsPage />
@@ -39,7 +36,6 @@ const ToolIndex = () => {
                     <SDSPage />
                 </Route>
             </Switch>
-        </Router>
     );
 };
 
