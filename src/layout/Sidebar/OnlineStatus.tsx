@@ -1,7 +1,7 @@
+import api from 'api';
 import { FC, useEffect, useState } from "react";
 import { useTimeoutFn } from "react-use";
-import { Badge, Button } from "reactstrap";
-import api from 'api';
+import { Badge } from "reactstrap";
 
 enum Status {
     Offline = 0,

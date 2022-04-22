@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { NavLink as Link, useLocation } from 'react-router-dom';
-import {  Nav, NavLink } from 'reactstrap';
 import R from 'pages/routes';
-import './sidebar.css';
+import { FC } from 'react';
+import { NavLink as Link } from 'react-router-dom';
+import { Nav, NavLink } from 'reactstrap';
 import OnlineStatus from './OnlineStatus';
+import './sidebar.css';
 
 type FormatButtonProps = {
     icon: string,

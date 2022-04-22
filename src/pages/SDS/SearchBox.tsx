@@ -1,11 +1,9 @@
-import { FC } from "react";
-import { useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import {
     Badge,
     Button,
     Form,
-    Input,
-    InputGroup,
+    Input
 } from "reactstrap";
 
 type SearchBoxProps = {
