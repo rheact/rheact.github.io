@@ -7,28 +7,28 @@ import SigmaLogo from "./sigma.png";
 const SDSPage = () => {
     return (
         <Container className="mt-2">
-            <Alert color="light" className="fst-italic rounded">
-                <Row>
-                    <Col xs={11}>
-                        RHEACT currently only supports SDS from Sigma-Aldrich. You
-                        can use the searchbar below to go to Sigma-Aldrich&apos;s SDS
-                        lookup website and download the SDS PDFs. Typing the name
-                        of a chemical would give completion suggestions.
-                    </Col>
-                    <Col className="d-flex align-items-center" xs={1}>
-                        <img
-                            width="100%"
-                            src={SigmaLogo}
-                            alt="sigma-algrich-logo"
-                        />
-                    </Col>
-                </Row>
-                <Row>
-                    <SearchBox className="mt-2" />
-                </Row>
-            </Alert>
 
-            <Alert color="light" className="fst-italic rounded">
+            <Row className="mt-2">
+                <Col className="d-flex align-items-center" xs={1}>
+                    <img
+                        width="100%"
+                        src={SigmaLogo}
+                        alt="sigma-algrich-logo"
+                    />
+                </Col>
+                <Col xs={11}>
+                    RHEACT currently only supports SDS from Sigma-Aldrich. You
+                    can use the searchbar below to go to Sigma-Aldrich&apos;s SDS
+                    lookup website and download the SDS PDFs. Typing the name
+                    of a chemical would give completion suggestions.
+                </Col>
+            </Row>
+
+            <Row className="justify-content-center mt-2">
+                <SearchBox />
+            </Row>
+
+            <Alert color="light" className="fst-italic rounded mt-2">
                 Please enter the operation temperature here if you want the C<sub>p</sub>
                 of the SDS that you upload to be estimated from a backend database.
                 <TemperatureCard />

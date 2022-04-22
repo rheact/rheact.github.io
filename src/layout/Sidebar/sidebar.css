@@ -8,14 +8,13 @@
 
 #sidebar .section-header {
     font-weight: bolder;
-    font-size: smaller;
+    font-size: small;
     margin-top: 1rem;
     margin-bottom: 1rem;
     text-transform: uppercase;
 }
 
 #sidebar a {
-    font-size: small;
     font-weight: 500;
     color: black;
     border-radius: 6px;

@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 
 type SearchBoxProps = {
-    className: string,
+    className?: string,
 };
 
 const SearchBox: FC<SearchBoxProps> = ({ className }) => {
@@ -46,18 +46,20 @@ const SearchBox: FC<SearchBoxProps> = ({ className }) => {
 
     return (
         <Form onSubmit={onSearch} className={className}>
-            <InputGroup>
+
+            <div className="d-flex">
                 <Input
                     bsSize="lg"
                     value={stext}
+                    style={{ borderRadius: "32px" }}
                     onChange={(e) => setText(e.target.value)}
                     placeholder="Search Name or CAS number"
                 />
-
-                <Button color="dark" type="submit">
-                    <i className="bi bi-search"/>
+                <Button className="ms-1" color="primary" type="submit">
+                    <i className="bi bi-search" /> 
                 </Button>
-            </InputGroup>
+            </div>
+
             <div className="text-center">
                 {stext && suggestions.map((s) => (
                     <Badge
