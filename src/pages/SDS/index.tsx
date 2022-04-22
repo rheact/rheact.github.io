@@ -1,3 +1,4 @@
+import { TemperatureCard } from "pages/Operation/ParamsPage/ValueCards";
 import { Alert, Col, Container, Row } from "reactstrap";
 import { DiluentDropzone, ProductDropzone, ReactantDropzone } from "./DropzoneCards";
 import SearchBox from "./SearchBox";
@@ -6,7 +7,7 @@ import SigmaLogo from "./sigma.png";
 const SDSPage = () => {
     return (
         <Container className="mt-2">
-            <Alert className="fst-italic rounded">
+            <Alert color="light" className="fst-italic rounded">
                 <Row>
                     <Col xs={11}>
                         RHEACT currently only supports SDS from Sigma-Aldrich. You
@@ -25,6 +26,12 @@ const SDSPage = () => {
                 <Row>
                     <SearchBox className="mt-2" />
                 </Row>
+            </Alert>
+
+            <Alert color="light" className="fst-italic rounded">
+                Please enter the operation temperature here if you want the C<sub>p</sub>
+                of the SDS that you upload to be estimated from a backend database.
+                <TemperatureCard />
             </Alert>
 
             <div className="mt-2">

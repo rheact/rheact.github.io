@@ -64,7 +64,7 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ changeAction, listname, index }) =>
             <td>
                 <InputGroup>
                     <Input
-                        disabled={!!cp}
+                        disabled={!!cp || chemical.neglected}
                         value={chemical.cp}
                         onChange={getChangeProp('cp')}
                         className={!chemical.cp && !cp ? 'border-danger' : ''}

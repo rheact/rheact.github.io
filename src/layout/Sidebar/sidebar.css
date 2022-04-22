@@ -2,7 +2,7 @@
     padding: 1rem;
     width: 250px;
     background-color: floralwhite;
-    overflow-y: scroll;
+    overflow-y: hidden;
     flex-wrap: nowrap;
 }
 

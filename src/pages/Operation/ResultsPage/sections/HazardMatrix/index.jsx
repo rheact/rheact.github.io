@@ -35,8 +35,8 @@ const Matrix = function ({ results, className }) {
         'Carcinogen',
         'Reproductive hazard',
         'Sensitizer',
-        'Other',
         'Ingestion',
+        'Other',
     ];
 
     const newMatrix = [];

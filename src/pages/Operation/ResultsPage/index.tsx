@@ -39,11 +39,6 @@ const ResultsPage = function () {
     return (
         <>
             <div className="w-100 d-flex align-items-center p-2" style={{ backgroundColor: 'white' }}>
-                <Button className="ms-auto" color="secondary">
-                    <i className="bi bi-person-lines-fill me-1" />
-          Send Feedback
-                </Button>
-
                 <Button color="primary" className="ms-1" onClick={onPrint}>
                     <i className="bi bi-printer-fill me-1" />
           Print
