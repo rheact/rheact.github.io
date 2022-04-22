@@ -18,7 +18,7 @@ const App: FC<any> = () => {
                     <ToolIndex />
                 </main>
                 <footer className="py-5 d-flex justify-content-center align-items-center text-muted">
-                    &copy; CISTAR, 2021
+                    &copy; CISTAR, {new Date().getFullYear()}
                 </footer>
             </PageContent>
         </Root>

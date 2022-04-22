@@ -65,28 +65,31 @@ const BasisSelector = () => {
 
     return (
         <Card className={currentBasisIndex === undefined ? "border-danger" : ""}>
-            <CardBody className='text-center'>
-                <div className='fw-bold p-2'>Current Basis for Heat of Reaction</div>
-                {currentBasisIndex === undefined ? "Please select a basis for heat of reaction by clicking the change button below" : ""}
-                {currentBasisIndex !== undefined && currentBasisIndex.index === -1 ? "Total Reaction Mass" : ""}
-                {currentBasis !== undefined && `${currentBasis.productName} / Mol Wt: ${currentBasis.molWt}`}
+            <CardBody>
+                <div className='h5 fw-bold'>Current Basis for Heat of Reaction</div>
 
-                <InputGroup className='mt-2'>
-                    <Input
-                        type='select'
-                        value={selection}
-                        onChange={e => setSelection(parseInt(e.target.value))}
-                    >
-                        <option key='' value={undefined}></option>
-                        <option key='default' value={-1}>Total Reaction Mass</option>
-                        {listOfChemicals.map(
-                            (c, idx) => (
-                                <option key={idx} value={idx}>{c.productName} / Mol Wt: {c.molWt}</option>    
-                            )
-                        )}
-                    </Input>
-                    <Button type='submit' color='info' onClick={onChangeCallback}>Change Basis</Button>
-                </InputGroup>
+                <div className='text-center'>
+                    {currentBasisIndex === undefined ? "Please select a basis for heat of reaction by clicking the change button below" : ""}
+                    {currentBasisIndex !== undefined && currentBasisIndex.index === -1 ? "Total Reaction Mass" : ""}
+                    {currentBasis !== undefined && `${currentBasis.productName} / Mol Wt: ${currentBasis.molWt}`}
+
+                    <InputGroup className='mt-2'>
+                        <Input
+                            type='select'
+                            value={selection}
+                            onChange={e => setSelection(parseInt(e.target.value))}
+                        >
+                            <option key='' value={undefined}></option>
+                            <option key='default' value={-1}>Total Reaction Mass</option>
+                            {listOfChemicals.map(
+                                (c, idx) => (
+                                    <option key={idx} value={idx}>{c.productName} / Mol Wt: {c.molWt}</option>    
+                                )
+                            )}
+                        </Input>
+                        <Button type='submit' color='info' onClick={onChangeCallback}>Change Basis</Button>
+                    </InputGroup>
+                </div>
             </CardBody>
         </Card>
     );
