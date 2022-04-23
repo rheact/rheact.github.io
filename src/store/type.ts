@@ -5,6 +5,12 @@
 
 import { CpUnit, HeatUnit, PressureUnit, TemperatureUnit } from "units";
 
+export enum ComponentList {
+    reactant = "reactant",
+    product = "product",
+    diluent = "diluent",
+};
+
 /**
  * Chemical represents data extracted from SDS.
  */

@@ -1,0 +1,32 @@
+import { useSelector } from "react-redux";
+import { Table } from "reactstrap";
+import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT, Equation, REMOVE_DILUENT, REMOVE_PRODUCT, REMOVE_REACTANT, RheactState } from "store";
+import ChemicalRow from "./ChemicalRow";
+
+const ComponentTable = () => {
+    const equation = useSelector<RheactState, Equation>(state => state.compound);
+    return (
+        <Table hover>
+            <colgroup>
+                <col span={1} style={{ width: "10%" }} />
+                <col span={1} style={{ width: "15%" }} />
+                <col span={1} style={{ width: "60%" }} />
+                <col span={1} style={{ width: "15%" }} />
+            </colgroup>
+            <thead>
+                <th>Section</th>
+                <th>CAS-No</th>
+                <th>Product Name</th>
+                <th>Actions</th>
+            </thead>
+
+            <tbody>
+                {equation.reactants.map((c, i) => <ChemicalRow chemical={c} section="Reactant" index={i} changeAction={CHANGE_REACTANT} removeAction={REMOVE_REACTANT} /> )}
+                {equation.products.map((c, i) => <ChemicalRow chemical={c} section="Product" index={i} changeAction={CHANGE_PRODUCT} removeAction={REMOVE_PRODUCT} /> )}
+                {equation.diluents.map((c, i) => <ChemicalRow chemical={c} section="Diluent" index={i} changeAction={CHANGE_DILUENT} removeAction={REMOVE_DILUENT} /> )}
+            </tbody>
+        </Table>
+    );
+}
+
+export default ComponentTable;

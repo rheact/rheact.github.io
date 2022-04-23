@@ -4,11 +4,11 @@ import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import { OperatingParams, RheactState } from "store";
 
-export type DropzoneProps = {
+export type ComponentDropzoneProps = {
     addAction: any,
 };
 
-const Dropzone: FC<DropzoneProps> = ({
+const ComponentDropzone: FC<ComponentDropzoneProps> = ({
     addAction,
 }) => {
     const dispatch = useDispatch();
@@ -43,4 +43,4 @@ const Dropzone: FC<DropzoneProps> = ({
     );
 };
 
-export default Dropzone;
+export default ComponentDropzone;

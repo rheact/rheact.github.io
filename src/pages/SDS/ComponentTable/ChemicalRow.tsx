@@ -1,12 +1,9 @@
 import { FC, FormEvent, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useToggle } from "react-use";
-import {
-    Button,
-    Card, CardBody, Input, Modal, ModalBody, ModalHeader, Table
-} from "reactstrap";
+import { Button, ButtonGroup, Input, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
 import { InputType } from "reactstrap/types/lib/Input";
-import { Chemical, RheactState } from "store";
+import { Chemical } from "store";
 
 type PropertyMap = {
     label: string,
@@ -83,15 +80,22 @@ const propMap: PropertyMap[] = [
     },
 ];
 
-type ChemicalCardProps = {
-    from: 'reactants' | 'diluents' | 'products',
+
+type ChemicalRowProps = {
+    chemical: Chemical,
+    section: "Reactant" | "Product" | "Diluent",
     index: number,
     changeAction: any,
     removeAction: any,
 };
 
-const ChemicalCard: FC<ChemicalCardProps> = ({ from, index, changeAction, removeAction }) => {
-    const chemical = useSelector<RheactState>((state) => state.compound[from][index]) as Chemical;
+const sectionColorMap = {
+    "Reactant": "text-danger",
+    "Product": "text-success",
+    "Diluent": "text-info",
+}
+
+const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAction, removeAction }) => {
     const dispatch = useDispatch();
 
     const getChangeProp = useCallback(
@@ -116,35 +120,22 @@ const ChemicalCard: FC<ChemicalCardProps> = ({ from, index, changeAction, remove
     const [viewProps, toggleProps] = useToggle(false);
 
     return (
-        <Card>
-            <CardBody className="d-flex flex-column">
-                <div>
-                    <span className="text-primary">{index + 1}. </span>
-                    <h4>{chemical.productName}</h4>
-                    <span>(CAS-NO: {chemical.casNo})</span>
-                </div>
-
-                <div>
-                    <Button
-                        size="sm"
-                        className="me-2"
-                        color="link"
-                        onClick={toggleProps}
-                    >
-                        <i className="bi bi-pencil me-1" />
-                        Edit Properties
-                    </Button>
-                    <Button
-                        size="sm"
-                        color="link"
-                        className="text-danger"
-                        onClick={onRemove}
-                    >
-                        <i className="bi bi-x-lg me-1" />
-                        Delete
-                    </Button>
-                </div>
-            </CardBody>
+        <tr>
+            <td className={"fw-bold " + sectionColorMap[section]}>
+                {section}
+            </td>
+            <td>
+                {chemical.casNo}
+            </td>
+            <td>
+                {chemical.productName}    
+            </td>
+            <td>
+                <ButtonGroup size="sm">
+                    <Button color="link" onClick={toggleProps}><i className="bi bi-pencil-fill"/></Button>
+                    <Button color="link" onClick={onRemove} className="text-danger"><i className="bi bi-x-lg"/></Button>
+                </ButtonGroup>
+            </td>
 
             <Modal isOpen={viewProps} size='xl'>
                 <ModalHeader toggle={toggleProps}>
@@ -180,8 +171,8 @@ const ChemicalCard: FC<ChemicalCardProps> = ({ from, index, changeAction, remove
                     )}
                 </ModalBody>
             </Modal>
-        </Card>
+        </tr>
     );
 };
 
-export default ChemicalCard;
+export default ChemicalRow;
