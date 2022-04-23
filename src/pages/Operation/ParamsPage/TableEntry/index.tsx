@@ -1,92 +1,8 @@
-import { ChangeEvent, FC, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Alert, Button, Input, InputGroup, InputGroupText, Table } from "reactstrap";
+import { Equation, RheactState } from "model";
+import { useSelector } from "react-redux";
+import { Alert, Table } from "reactstrap";
 import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT } from "store";
-import { Chemical, Equation, RheactState } from "model";
-
-type ChemicalRowProps = {
-    changeAction: any,
-    listname: string,
-    index: number,
-};
-
-const ChemicalRow: FC<ChemicalRowProps> = ({ changeAction, listname, index }) => {
-    const dispatch = useDispatch();
-    const cp = useSelector<RheactState>(state =>  state.operatingParams.cp) as string;
-    const chemical = useSelector<RheactState>(state =>  (state.compound as any)[listname][index]) as Chemical;
-
-    const getChangeProp = useCallback(
-        (key: keyof Chemical) => (e: ChangeEvent<HTMLInputElement>) => {
-            const update: any = { ...chemical };
-            update[key] = e.target.value as any;
-            dispatch(
-                changeAction({
-                    index,
-                    update,
-                })
-            );
-        },
-        [changeAction, index, chemical, dispatch]
-    );
-
-    const onNeglect = useCallback(
-        () => {
-            const update: Chemical = { ...chemical };
-            update.neglected = !update.neglected;
-            dispatch(
-                changeAction({
-                    index,
-                    update,
-                })
-            );
-        },
-        [changeAction, index, chemical, dispatch]
-    );
-
-    return (
-        <tr>
-            <td>{index + 1}</td>
-            <td>{chemical.productName}</td>
-            <td>
-                <Input
-                    value={chemical.molWt}
-                    onChange={getChangeProp('molWt')}
-                    className={!chemical.molWt ? 'border-danger' : ''}
-                />
-            </td>
-            <td>
-                <Input
-                    value={chemical.molWtFraction}
-                    onChange={getChangeProp('molWtFraction')}
-                    className={!chemical.molWtFraction ? 'border-danger' : ''}
-                    type="number"
-                />
-            </td>
-            <td>
-                <InputGroup>
-                    <Input
-                        disabled={!!cp || chemical.neglected}
-                        value={chemical.cp}
-                        onChange={getChangeProp('cp')}
-                        className={!chemical.cp && !cp ? 'border-danger' : ''}
-                        type="number"
-                    />
-                    <InputGroupText className="bg-dark text-white">cal/g/°C</InputGroupText>
-                </InputGroup>
-            </td>
-            <td>
-                <Button
-                    color={chemical.neglected ? 'danger' : 'success'}
-                    outline
-                    onClick={onNeglect}
-                >
-                    {chemical.neglected && (<i className="bi bi-x-lg" />)}
-                    {!chemical.neglected && (<i className="bi bi-check-lg" />)}
-                </Button>
-            </td>
-        </tr>
-    );
-}
+import TableRow from "./TableRow";
 
 const TableEntry = () => {
     const equation = useSelector<RheactState>(state => state.compound) as Equation; 
@@ -114,9 +30,8 @@ const TableEntry = () => {
             <Table>
                 <thead>
                     <tr>
-                        <th>Index</th>
                         <th>Name</th>
-                        <th>Molecular Weight</th>
+                        <th>Mol. wt.</th>
                         <th>Mass fraction</th>
                         <th>C<sub>p</sub></th>
                         <th>Include component in C<sub>p, mix</sub> estimation</th>
@@ -124,10 +39,10 @@ const TableEntry = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <th colSpan={6}>Reactants</th>
+                        <th colSpan={5}>Reactants</th>
                     </tr>
                     {equation.reactants.map((c, i) => (
-                        <ChemicalRow
+                        <TableRow
                             key={'r/' + c.productName + '/' + i}
                             listname='reactants'
                             index={i}
@@ -136,10 +51,10 @@ const TableEntry = () => {
                     ))}
 
                     <tr>
-                        <th colSpan={6}>Products</th>
+                        <th colSpan={5}>Products</th>
                     </tr>
                     {equation.products.map((c, i) => (
-                        <ChemicalRow
+                        <TableRow
                             key={'p/' + c.productName  + '/' + i}
                             listname='products'
                             index={i}
@@ -148,10 +63,10 @@ const TableEntry = () => {
                     ))}
 
                     <tr>
-                        <th colSpan={6}>Diluents</th>
+                        <th colSpan={5}>Diluents</th>
                     </tr>
                     {equation.diluents.map((c, i) => (
-                        <ChemicalRow
+                        <TableRow
                             key={'d/' + c.productName  + '/' + i}
                             listname='diluents'
                             index={i}

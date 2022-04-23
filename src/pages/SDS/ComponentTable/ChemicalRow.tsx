@@ -131,6 +131,9 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
                 {chemical.productName}    
             </td>
             <td>
+                {chemical.molWt}    
+            </td>
+            <td>
                 <ButtonGroup size="sm">
                     <Button color="link" onClick={toggleProps}><i className="bi bi-pencil-fill"/></Button>
                     <Button color="link" onClick={onRemove} className="text-danger"><i className="bi bi-x-lg"/></Button>

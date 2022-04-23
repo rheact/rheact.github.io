@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import ReportDetailsPage from "./Operation/OptionalDetailsPage";
+import ReportDetailsPage from "./OptionalDetailsPage";
 // Operation
 import ParamsPage from "./Operation/ParamsPage";
 import ResultsPage from "./Operation/ResultsPage";

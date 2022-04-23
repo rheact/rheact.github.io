@@ -49,7 +49,6 @@ const SearchBox: FC<SearchBoxProps> = ({ className }) => {
                 <Input
                     bsSize="lg"
                     value={stext}
-                    style={{ borderRadius: "32px" }}
                     onChange={(e) => setText(e.target.value)}
                     placeholder="Search Name or CAS number"
                 />

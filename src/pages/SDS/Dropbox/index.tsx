@@ -63,9 +63,9 @@ const Dropbox = () => {
                 <Col md={9}>
                     <ComponentDropzone addAction={addAction} />
                 </Col>
-                <Col md={3} className="h-100 align-items-center">
-                    <span className="text-muted">Add uploaded files to:</span>
-                    <ButtonGroup>
+                <Col md={3} className="d-flex flex-column justify-content-center">
+                    <div className="text-muted">Add uploaded files to:</div>
+                    <ButtonGroup vertical>
                         <ListSelectButton target={Category.reactant} current={category} set={setCategory} />
                         <ListSelectButton target={Category.product} current={category} set={setCategory} />
                         <ListSelectButton target={Category.diluent} current={category} set={setCategory} />
