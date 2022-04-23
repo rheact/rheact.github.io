@@ -1,9 +1,13 @@
-import { Card, CardBody } from "reactstrap";
+import { RheactState } from "model";
+import { useSelector } from "react-redux";
+import { useToggle } from "react-use";
+import { Card, CardBody, Input, Label } from "reactstrap";
 import CpCard from "../ValueCards/CpCard";
-import TableEntry from "./TableEntry";
-
 
 const CpInput = () => {
+    const cp = useSelector<RheactState, string>(state => state.operatingParams.cp);
+    const [manual, toggle] = useToggle(false);
+
     return (
         <Card>
             <CardBody>
@@ -18,8 +22,12 @@ const CpInput = () => {
                     reactants and products.
                 </p>
 
-                <CpCard />
-                <TableEntry />
+                <Input disabled={cp !== ""} checked={cp !== "" || manual} onClick={toggle} type="checkbox" />
+                <Label check className="ms-1">
+                    Enter C<sub>p</sub> mixture manually
+                </Label>
+
+                {(manual || cp !== "") && <CpCard />}
             </CardBody>
         </Card>
     );

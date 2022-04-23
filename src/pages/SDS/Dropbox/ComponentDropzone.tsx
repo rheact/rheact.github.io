@@ -2,7 +2,7 @@ import server from "api";
 import { FC } from "react";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
-import { OperatingParams, RheactState } from "store";
+import { OperatingParams, RheactState } from "model";
 
 export type ComponentDropzoneProps = {
     addAction: any,

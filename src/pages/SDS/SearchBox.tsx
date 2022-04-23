@@ -53,8 +53,8 @@ const SearchBox: FC<SearchBoxProps> = ({ className }) => {
                     onChange={(e) => setText(e.target.value)}
                     placeholder="Search Name or CAS number"
                 />
-                <Button className="ms-1" color="primary" type="submit">
-                    <i className="bi bi-search" /> 
+                <Button className="ms-1 d-flex align-items-center" color="success" type="submit">
+                    <i className="bi bi-search me-2" /> Search
                 </Button>
             </div>
 

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Button, Card, CardBody, CardHeader, Col, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { SET_SR_TEMPERATURE, SET_SR_PRESSURE, SET_SR_DETAILS, REMOVE_SIDE_REACTION } from 'store/reducer';
-import { RheactState } from 'store';
+import { SET_SR_TEMPERATURE, SET_SR_PRESSURE, SET_SR_DETAILS, REMOVE_SIDE_REACTION } from 'store';
+import { RheactState } from 'model';
 
 type SideReactionCardProps = {
     index: number,

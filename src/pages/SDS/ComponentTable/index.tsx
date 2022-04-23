@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Table } from "reactstrap";
-import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT, Equation, REMOVE_DILUENT, REMOVE_PRODUCT, REMOVE_REACTANT, RheactState } from "store";
+import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT, REMOVE_DILUENT, REMOVE_PRODUCT, REMOVE_REACTANT } from "store";
+import { Equation, RheactState } from "model";
 import ChemicalRow from "./ChemicalRow";
 
 const ComponentTable = () => {

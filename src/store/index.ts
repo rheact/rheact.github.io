@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { reducer } from './reducer';
+import reducer from './reducers';
+
 
 /**
- * Store to be passed to provider
+ * Creates tore to be passed to provider
  */
-export default configureStore({
-    reducer,
-    devTools: true,
-});
+export default function createStore(preloadedState=undefined) {
+    return configureStore({
+        reducer,
+        preloadedState,
+        devTools: true,
+    });
+}
 
-export * from './default';
-export * from './type';
-export * from './reducer';
+export * from './reducers';

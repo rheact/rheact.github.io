@@ -1,7 +1,8 @@
 import { FC, useCallback, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button, ButtonGroup, Col, Container, Row } from "reactstrap";
-import { ADD_DILUENT, ADD_PRODUCT, ADD_REACTANT, Chemical, ComponentList as Category } from "store";
+import { ADD_DILUENT, ADD_PRODUCT, ADD_REACTANT } from "store";
+import { Chemical, ComponentList as Category } from "model";
 import ComponentDropzone from "./ComponentDropzone";
 
 type ListSelectButtonProps = {
@@ -12,7 +13,7 @@ type ListSelectButtonProps = {
 
 const ListSelectButton: FC<ListSelectButtonProps> = ({ target, current, set }) => {
     return (
-        <Button color="primary"
+        <Button color="dark"
                 outline
                 active={current === target}
                 onClick={() => set(target)}>

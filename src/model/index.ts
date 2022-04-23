@@ -108,7 +108,7 @@ export type HazardRow = {
 /**
  * Results returned by server
  */
-export type Results = {
+export type Report = {
  adiabaticPressure?: string,
  adiabaticTemp?: string,
  finalTemp?: string,
@@ -121,9 +121,9 @@ export type Results = {
 };
 
 /**
- * RheactState is the root state of Rheact's user input.
+ * Optional information by the user
  */
-export type RheactState = {
+export type ProjectInfo = {
  type?: string,
  nameOfResearcher?: string,
  projectTitle?: string,
@@ -132,10 +132,23 @@ export type RheactState = {
  organization?: string,
  chemicalScheme?: string,
  description?: string,
+}
+
+/**
+ * PPE Questionnaire map
+ * From question ID to response
+ */
+export type QuestionnaireResponse = {
+    [key: string]: boolean,
+}
+
+/**
+ * RheactState is the root state of Rheact's user input.
+ */
+export type RheactState = {
+ info: ProjectInfo,
  compound: Equation,
  operatingParams: OperatingParams,
- ppe_questionnaire?: {
-    [key: string]: boolean,
- },
- results?: Results,
+ ppe_questionnaire: QuestionnaireResponse,
+ results: Report,
 };

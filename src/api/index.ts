@@ -1,5 +1,5 @@
 import server from './server';
-import { Equation, OperatingParams, RheactState } from 'store';
+import { Equation, OperatingParams, RheactState } from 'model';
 
 const api = {
 

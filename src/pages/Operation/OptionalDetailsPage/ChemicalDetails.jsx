@@ -9,7 +9,7 @@ const ChemicalDetails = () => {
         reactionScale,
         physicalState,
         keyReagentQuantity,
-    } = useSelector(store => store.operatingParams);
+    } = useSelector(state => state.operatingParams);
 
     return (
         <Card>

@@ -1,5 +1,7 @@
+import { RheactState } from 'model';
 import R from 'pages/routes';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink as Link } from 'react-router-dom';
 import { Nav, NavLink } from 'reactstrap';
 import OnlineStatus from './OnlineStatus';
@@ -18,7 +20,7 @@ const NavButton: FC<FormatButtonProps> = function ({ icon, route, label }) {
             to={route}
             className="my-1"
         >
-            <i className={icon} />
+            <i className={`bi ${icon} me-2`} />
             {' '}
             {label}
         </NavLink>
@@ -26,15 +28,20 @@ const NavButton: FC<FormatButtonProps> = function ({ icon, route, label }) {
 };
 
 const ToolPages: FC = function () {
+    const title = useSelector<RheactState, string | undefined>(state => state.info.projectTitle);
+
     return (
         <Nav vertical id="sidebar">
             <div className='d-flex justify-content-between align-items-center'>
                 <span className="navbar-brand"> Rheact </span>
                 <span> <OnlineStatus/> </span>
             </div>
+            <div className='text-muted'>
+                {title}
+            </div>
 
             <span className='section-header'>Project</span>
-            <NavButton icon="bi-gear" label='Upload SDS' route={R.ROUTE_SDS} />
+            <NavButton icon="bi-gear" label='Components' route={R.ROUTE_SDS} />
             <NavButton icon="bi-pencil-fill" label='Details' route={R.ROUTE_OPERATION_DETAILS} />
             <span className='section-header'>Operation</span>
             <NavButton icon="bi-box" label='Parameters' route={R.ROUTE_OPERATION_PARAMS} />

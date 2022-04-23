@@ -1,7 +1,7 @@
 import { FC, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "reactstrap";
-import { RheactState } from 'store';
+import { RheactState } from "model";
 
 const SaveButton: FC<any> = () => {
     const state = useSelector((state: RheactState) => state);
@@ -9,7 +9,7 @@ const SaveButton: FC<any> = () => {
         const a = document.createElement("a");
         const file = new Blob([JSON.stringify(state)], { type: "text/json" });
         a.href = URL.createObjectURL(file);
-        a.download = state.projectTitle + ".rheact";
+        a.download = state.info.projectTitle + ".rheact";
         a.click();
     }, [state]);
 

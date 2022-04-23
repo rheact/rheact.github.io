@@ -321,7 +321,7 @@ const style = {
     main: {
         padding: '1rem',
         paddingTop: '2rem',
-        width: '100vw',
+        width: '100%',
         textAlign: 'center',
     },
 

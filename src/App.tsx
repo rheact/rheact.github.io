@@ -1,36 +1,35 @@
-import { FC } from 'react';
+import PageContent from 'layout/PageContent';
+import Root from 'layout/Root';
+import Sidebar from 'layout/Sidebar';
+import Toolbar from 'layout/Toolbar';
+import { FC, useState } from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter as Router } from "react-router-dom";
 import ToolIndex from './pages/';
-import Sidebar from 'layout/Sidebar';
-import store from './store';
-import PageContent from 'layout/PageContent';
-import Root from 'layout/Root';
-import Toolbar from 'layout/Toolbar';
+import createStore from './store';
 
 const App: FC<any> = () => {
+    const [store, setStore] = useState(createStore())
+
     return (
-        <Root>
-            <Sidebar />
-            <PageContent>
-                <Toolbar />
-                <main>
-                    <ToolIndex />
-                </main>
-                <footer className="py-5 d-flex justify-content-center align-items-center text-muted">
-                    &copy; CISTAR, {new Date().getFullYear()}
-                </footer>
-            </PageContent>
-        </Root>
+        <Provider store={store}>
+            <Router >
+                {/* Layout */}
+                <Root>
+                    <Sidebar />
+                    <PageContent>
+                        <Toolbar loadFn={setStore} />
+                        <main>
+                            <ToolIndex />
+                        </main>
+                        <footer className="py-5 d-flex justify-content-center align-items-center text-muted">
+                            &copy; CISTAR, {new Date().getFullYear()}
+                        </footer>
+                    </PageContent>
+                </Root>
+            </Router>
+        </Provider>
     );
 };
 
-const AppWrapped: FC<any> = () => (
-    <Provider store={store}>
-        <Router >
-            <App />
-        </Router>
-    </Provider>
-);
-
-export default AppWrapped;
+export default App;

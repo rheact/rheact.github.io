@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { Chemical, Equation, RheactState } from "store";
+import { Chemical, Equation, RheactState } from "model";
 
 const ExtractionCard: FC<{ chemical: Chemical }> = ({ chemical }) => {
     return (

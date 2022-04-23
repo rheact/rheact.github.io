@@ -2,7 +2,8 @@ import _ from 'lodash';
 import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Card, CardBody, Input, InputGroup } from "reactstrap";
-import { BasisChemical, Chemical, Equation, RheactState, SET_BASIS } from "store";
+import { SET_BASIS } from 'store';
+import { BasisChemical, Chemical, Equation, RheactState } from "model";
 
 const BasisSelector = () => {
     const dispatch = useDispatch();

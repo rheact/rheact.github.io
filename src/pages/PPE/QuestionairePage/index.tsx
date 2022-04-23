@@ -1,7 +1,8 @@
 import { FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert, Button, ButtonGroup, Col, Container, ListGroup, ListGroupItem, Row } from "reactstrap";
-import { RheactState, SET_PPE_QUESTION } from "store";
+import { SET_PPE_QUESTION } from "store";
+import { RheactState } from "model";
 import questions from 'data/questions.json';
 
 type Question = {

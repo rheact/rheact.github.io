@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { Button, Card, CardBody, CardHeader } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
-import { ADD_SIDE_REACTION } from 'store/reducer';
-import { RheactState } from 'store';
+import { ADD_SIDE_REACTION } from 'store';
+import { RheactState } from 'model';
 import SideReactionCard from './SideReactionCard';
 
 const SideReactionsMasterCard = () => {

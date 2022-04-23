@@ -1,7 +1,8 @@
 import { ChangeEvent, FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert, Button, Input, InputGroup, InputGroupText, Table } from "reactstrap";
-import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT, Chemical, Equation, RheactState } from "store";
+import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT } from "store";
+import { Chemical, Equation, RheactState } from "model";
 
 type ChemicalRowProps = {
     changeAction: any,
@@ -92,7 +93,7 @@ const TableEntry = () => {
     const cp = useSelector<RheactState>(state =>  state.operatingParams.cp) as string;
 
     return (
-        <div className="p-2">
+        <div>
             {!cp ? (
                 <Alert color="warning">
                     RHEACT estimates C<sub>p</sub> of individual chemicals

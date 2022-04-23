@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from "reactstrap";
-import { RheactState } from "store";
+import { RheactState } from "model";
 import questions from 'data/questions.json';
 
 const Recommendations: FC<any> = () => {

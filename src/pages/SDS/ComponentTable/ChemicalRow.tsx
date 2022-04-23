@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useToggle } from "react-use";
 import { Button, ButtonGroup, Input, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
 import { InputType } from "reactstrap/types/lib/Input";
-import { Chemical } from "store";
+import { Chemical } from "model";
 
 type PropertyMap = {
     label: string,

@@ -1,7 +1,7 @@
 import { Button, Card, CardBody, CardHeader, Col, Input, InputGroup, InputGroupText, Label, Row } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
-import { ADD_SIDE_REACTION, SET_SR_TEMPERATURE, SET_SR_PRESSURE, SET_SR_DETAILS, REMOVE_SIDE_REACTION } from 'store/reducer';
+import { ADD_SIDE_REACTION, SET_SR_TEMPERATURE, SET_SR_PRESSURE, SET_SR_DETAILS, REMOVE_SIDE_REACTION } from 'store';
 
 const SideReaction = ({ index }) => {
   const { tempOnset, pressureOnset, details } = useSelector(store => store.operatingParams.sideReactions[index]);

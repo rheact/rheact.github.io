@@ -10,17 +10,17 @@ const ProjectCard = () => {
         labLocation,
         principalInvestigator,
         organization,
-    } = useSelector(store => store);
+    } = useSelector(state => state.info);
 
     return (
         <Card>
             <CardBody>
                 <div className="h5 fw-bolder">Project Information</div>
-                <Label>Name of Researcher</Label>
-                <Input value={nameOfResearcher} onChange={e => dispatch(STORE.SET_NAME_OF_RESEARCHER(e.target.value))} />
-
                 <Label>Project Title</Label>
                 <Input value={projectTitle} onChange={e => dispatch(STORE.SET_PROJECT_TITLE(e.target.value))} />
+
+                <Label>Name of Researcher</Label>
+                <Input value={nameOfResearcher} onChange={e => dispatch(STORE.SET_NAME_OF_RESEARCHER(e.target.value))} />
 
                 <Label>Principal Investigator</Label>
                 <Input value={principalInvestigator} onChange={e => dispatch(STORE.SET_PRINCIPAL_INVESTIGATOR(e.target.value))} />

@@ -5,7 +5,7 @@ import * as STORE from "store";
 
 const ReactionCard = () => {
     const dispatch = useDispatch();
-    const { description, chemicalScheme } = useSelector((store) => store);
+    const { description, chemicalScheme } = useSelector(state => state.info);
     const katexRef = useRef();
 
     useEffect(() => {

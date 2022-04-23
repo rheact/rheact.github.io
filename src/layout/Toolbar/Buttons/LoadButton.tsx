@@ -1,32 +1,32 @@
-import { FC, MouseEventHandler } from "react";
+import { FC } from "react";
 import { useDropzone } from "react-dropzone";
-import { useDispatch } from "react-redux";
 import { useToggle } from "react-use";
 import { Button, Modal, ModalBody, ModalHeader } from "reactstrap";
-import { LOAD_JSON } from 'store';
+import createStore from "store";
 
 type DropzoneModalTypes = {
     open: boolean,
-    toggle: MouseEventHandler,
+    toggle: Function,
+    loadFn: Function,
 };
 
-const DropzoneModal: FC<DropzoneModalTypes> = ({ open, toggle }) => {
-    const dispatch = useDispatch();
+const DropzoneModal: FC<DropzoneModalTypes> = ({ open, toggle, loadFn }) => {
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: async (f) => {
             const file = f[0];
             if (!file) return;
             const text = await file.text();
             const json = JSON.parse(text);
-            dispatch(LOAD_JSON(json));
-            (toggle as any)();
+            const preloadedState = createStore(json);
+            loadFn(preloadedState);
+            toggle();
         },
         accept: ['.json', '.rheact'],
     });
 
     return (
         <Modal isOpen={open}>
-            <ModalHeader toggle={toggle}>Upload a RHEACT File</ModalHeader>
+            <ModalHeader toggle={() => toggle()}>Upload a RHEACT File</ModalHeader>
             <ModalBody>
                 Old JSON files are also accepted.
                 <div {...getRootProps({ className: "dropzone" })}>
@@ -46,19 +46,22 @@ const DropzoneModal: FC<DropzoneModalTypes> = ({ open, toggle }) => {
     );
 };
 
-const LoadButton: FC<any> = () => {
+type LoadButtonProps = {
+    loadFn: Function
+};
+
+const LoadButton: FC<LoadButtonProps> = ({ loadFn }) => {
     const [open, toggle] = useToggle(false);
 
     return (
-        <>
-            <Button onClick={toggle} color="dark" size="sm">
-                <i className="bi-cloud-upload-fill" /> Load
-                <DropzoneModal
-                    open={open}
-                    toggle={toggle}
-                />
-            </Button>
-        </>
+        <Button onClick={toggle} color="dark" size="sm">
+            <i className="bi-cloud-upload-fill" /> Load
+            <DropzoneModal
+                open={open}
+                toggle={toggle}
+                loadFn={loadFn}
+            />
+        </Button>
     );
 };
 

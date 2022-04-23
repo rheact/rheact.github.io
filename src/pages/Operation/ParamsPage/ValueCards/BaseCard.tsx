@@ -3,7 +3,7 @@ import { FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToggle } from "react-use";
 import { ButtonDropdown, Card, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup } from "reactstrap";
-import { OperatingParams, RheactState } from 'store';
+import { OperatingParams, RheactState } from 'model';
 
 type UnitChangeSelectorProps = {
     list: string[],
