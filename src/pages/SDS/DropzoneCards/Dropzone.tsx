@@ -21,7 +21,7 @@ const Dropzone: FC<DropzoneProps> = ({
                 (f) => (
                     server.parsePDF(f, operatingParams)
                     .then(data => dispatch(addAction(data)))
-                    .catch(_ => alert("Error: Could not parse this PDF, please send this over to Rheact team or upload a Sigma Aldrich SDS only."))
+                    .catch(_ => alert("Error: Could not parse some of the PDFs uploaded, please upload a Sigma Aldrich SDS only."))
                 )
             );
         },

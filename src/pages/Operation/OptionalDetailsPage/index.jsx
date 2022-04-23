@@ -6,7 +6,7 @@ import ReactionCard from "./ReactionCard";
 const ReportDetails = () => {
     return (
         <Container fluid className="mt-2">
-            <Alert color="info" isOpen>
+            <Alert color="light" isOpen>
                 Details in this section are for report-purposes only and have no impact on the calculations performed by the tool.
             </Alert>
 

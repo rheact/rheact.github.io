@@ -16,7 +16,7 @@ const SDSPage = () => {
                         alt="sigma-algrich-logo"
                     />
                 </Col>
-                <Col xs={11}>
+                <Col xs={11} className="text-muted fst-italic">
                     RHEACT currently only supports SDS from Sigma-Aldrich. You
                     can use the searchbar below to go to Sigma-Aldrich&apos;s SDS
                     lookup website and download the SDS PDFs. Typing the name

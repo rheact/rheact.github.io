@@ -47,6 +47,7 @@ export default function PPEQuestions() {
                 <br />
                 <br />
                 Please consult the Hazard and Chemical Compatibility Matrix before answering the following questions!
+                These matrices are in the Operations Report page.
             </Alert>
             <ListGroup>
                 {questions.map(q => <PPEQuestionSingle key={q.uid} {...q} />)}
