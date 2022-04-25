@@ -1,10 +1,12 @@
+import { Calculations, RheactState } from 'model';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Card } from 'reactstrap';
 
-const CalculationBlock = function ({ className }) {
-    const results = useSelector((state) => state.results);
+const CalculationBlock: FC<any> = function ({ className }) {
+    const results = useSelector<RheactState, Calculations | undefined>((state) => state.results.calculations);
 
-    if (!results || !results.finalTempDisplay || !results.adiabaticTemp) {
+    if (!results) {
         return (<h2 className={`text-muted ${className}`}>No calculations.</h2>);
     }
 

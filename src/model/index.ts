@@ -92,46 +92,50 @@ export type OperatingParams = {
  * Hazard Matrix
  */
 export type HazardRow = {
- carcinogen: string,
- eyeContact: string,
- flammability: string,
- ingestion: string,
- other: string,
- reactivity: string,
- reproductiveHazard: string,
- respiratory: string,
- sensitizer: string,
- skinAbsorption: string,
- skinContact: string,
+    carcinogen: string,
+    eyeContact: string,
+    flammability: string,
+    ingestion: string,
+    other: string,
+    reactivity: string,
+    reproductiveHazard: string,
+    respiratory: string,
+    sensitizer: string,
+    skinAbsorption: string,
+    skinContact: string,
 }
+
+export type Calculations = {
+    adiabaticPressure: string,
+    adiabaticTemp: string,
+    finalTemp: string,
+    adiabaticPressureDisplay: string,
+    adiabaticTempDisplay: string,
+    finalTempDisplay: string,
+};
 
 /**
  * Results returned by server
  */
 export type Report = {
- adiabaticPressure?: string,
- adiabaticTemp?: string,
- finalTemp?: string,
- adiabaticPressureDisplay?: string,
- adiabaticTempDisplay?: string,
- finalTempDisplay?: string,
- cameoMatrix?: string,
- hazardMatrix?: HazardRow[],
- hNums?: any,
+    cameoMatrix?: string,
+    calculations?: Calculations,
+    hazardMatrix?: HazardRow[],
+    hNums?: any,
 };
 
 /**
  * Optional information by the user
  */
 export type ProjectInfo = {
- type?: string,
- nameOfResearcher?: string,
- projectTitle?: string,
- labLocation?: string,
- principalInvestigator?: string,
- organization?: string,
- chemicalScheme?: string,
- description?: string,
+    type?: string,
+    nameOfResearcher?: string,
+    projectTitle?: string,
+    labLocation?: string,
+    principalInvestigator?: string,
+    organization?: string,
+    chemicalScheme?: string,
+    description?: string,
 }
 
 /**
@@ -146,9 +150,9 @@ export type QuestionnaireResponse = {
  * RheactState is the root state of Rheact's user input.
  */
 export type RheactState = {
- info: ProjectInfo,
- compound: Equation,
- operatingParams: OperatingParams,
- ppe_questionnaire: QuestionnaireResponse,
- results: Report,
+    info: ProjectInfo,
+    compound: Equation,
+    operatingParams: OperatingParams,
+    ppe_questionnaire: QuestionnaireResponse,
+    results: Report,
 };

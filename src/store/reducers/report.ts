@@ -10,10 +10,7 @@ const rheactSlice = createSlice({
         },
 
         SET_CALCULATIONS(state, action) {
-            state = {
-                ...state,
-                ...action.payload,
-            }
+            state.calculations = action.payload;
         },
 
         SET_CAMEO(state, action) {
