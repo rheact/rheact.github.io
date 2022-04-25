@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 let key = 0;
 
 const Alert = function ({ className }) {
-    const reactionInfo = useSelector((state) => state.results);
+    const calculations = useSelector((state) => state.results.calculations);
     const sideReactions = useSelector((state) => state.operatingParams.sideReactions);
     const numSideReactions = useSelector((state) => state.operatingParams.numSideReactions);
 
@@ -15,7 +15,7 @@ const Alert = function ({ className }) {
     const numProducts = useSelector((state) => state.compound.numProducts);
     const numDiluents = useSelector((state) => state.compound.numDiluents);
 
-    if (!reactionInfo) {
+    if (!calculations) {
         return (<h2 className={`text-muted ${className}`}>No alerts.</h2>);
     }
 
@@ -23,12 +23,12 @@ const Alert = function ({ className }) {
         const arr = [];
 
         // calculation failed
-        if (isNaN(reactionInfo.finalTemp)) return arr;
+        if (isNaN(calculations.finalTemp)) return arr;
 
         for (let i = 0; i < numReactants; i++) {
             // boilingPt
             if (!isNaN(Number(reactants[i].boilingPt))) {
-                if (Number(reactionInfo.finalTemp) > Number(reactants[i].boilingPt)) {
+                if (Number(calculations.finalTemp) > Number(reactants[i].boilingPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds reactant 
@@ -42,7 +42,7 @@ const Alert = function ({ className }) {
 
             // flashPt
             if (!isNaN(Number(reactants[i].flashPt))) {
-                if (Number(reactionInfo.finalTemp) > Number(reactants[i].flashPt)) {
+                if (Number(calculations.finalTemp) > Number(reactants[i].flashPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds reactant
@@ -56,7 +56,7 @@ const Alert = function ({ className }) {
 
             // decompositionTemp
             if (!isNaN(Number(reactants[i].decompositionTemp))) {
-                if (Number(reactionInfo.finalTemp) > Number(reactants[i].decompositionTemp)) {
+                if (Number(calculations.finalTemp) > Number(reactants[i].decompositionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds reactant
@@ -70,7 +70,7 @@ const Alert = function ({ className }) {
 
             // autoignitionTemp
             if (!isNaN(Number(reactants[i].autoignitionTemp))) {
-                if (Number(reactionInfo.finalTemp) > Number(reactants[i].autoignitionTemp)) {
+                if (Number(calculations.finalTemp) > Number(reactants[i].autoignitionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds reactant
@@ -90,12 +90,12 @@ const Alert = function ({ className }) {
         const arr = [];
 
         // calculation failed
-        if (isNaN(reactionInfo.finalTemp)) return arr;
+        if (isNaN(calculations.finalTemp)) return arr;
 
         for (let i = 0; i < numProducts; i++) {
             // boilingPt
             if (!isNaN(Number(products[i].boilingPt))) {
-                if (Number(reactionInfo.finalTemp) > Number(products[i].boilingPt)) {
+                if (Number(calculations.finalTemp) > Number(products[i].boilingPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds product
@@ -109,7 +109,7 @@ const Alert = function ({ className }) {
 
             // flashPt
             if (!isNaN(Number(products[i].flashPt))) {
-                if (Number(reactionInfo.finalTemp) > Number(products[i].flashPt)) {
+                if (Number(calculations.finalTemp) > Number(products[i].flashPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds product
@@ -123,7 +123,7 @@ const Alert = function ({ className }) {
 
             // decompositionTemp
             if (!isNaN(Number(products[i].decompositionTemp))) {
-                if (Number(reactionInfo.finalTemp) > Number(products[i].decompositionTemp)) {
+                if (Number(calculations.finalTemp) > Number(products[i].decompositionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds product
@@ -137,7 +137,7 @@ const Alert = function ({ className }) {
 
             // autoignitionTemp
             if (!isNaN(Number(products[i].autoignitionTemp))) {
-                if (Number(reactionInfo.finalTemp) > Number(products[i].autoignitionTemp)) {
+                if (Number(calculations.finalTemp) > Number(products[i].autoignitionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds product
@@ -157,12 +157,12 @@ const Alert = function ({ className }) {
         const arr = [];
 
         // calculation failed
-        if (isNaN(reactionInfo.finalTemp)) return arr;
+        if (isNaN(calculations.finalTemp)) return arr;
 
         for (let i = 0; i < numDiluents; i++) {
             // boilingPt
             if (!isNaN(Number(diluents[i].boilingPt))) {
-                if (Number(reactionInfo.finalTemp) > Number(diluents[i].boilingPt)) {
+                if (Number(calculations.finalTemp) > Number(diluents[i].boilingPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds diluent
@@ -176,7 +176,7 @@ const Alert = function ({ className }) {
 
             // flashPt
             if (!isNaN(Number(diluents[i].flashPt))) {
-                if (Number(reactionInfo.finalTemp) > Number(diluents[i].flashPt)) {
+                if (Number(calculations.finalTemp) > Number(diluents[i].flashPt)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds diluent
@@ -190,7 +190,7 @@ const Alert = function ({ className }) {
 
             // decompositionTemp
             if (!isNaN(Number(diluents[i].decompositionTemp))) {
-                if (Number(reactionInfo.finalTemp) > Number(diluents[i].decompositionTemp)) {
+                if (Number(calculations.finalTemp) > Number(diluents[i].decompositionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds diluent
@@ -204,7 +204,7 @@ const Alert = function ({ className }) {
 
             // autoignitionTemp
             if (!isNaN(Number(diluents[i].autoignitionTemp))) {
-                if (Number(reactionInfo.finalTemp) > Number(diluents[i].autoignitionTemp)) {
+                if (Number(calculations.finalTemp) > Number(diluents[i].autoignitionTemp)) {
                     arr.push(<React.Fragment key={key++}>
                         <span style={style.alert}>
                             Final temp exceeds diluent
@@ -224,13 +224,13 @@ const Alert = function ({ className }) {
         const arr = [];
 
         // valid final temp
-        if (!isNaN(reactionInfo.finalTemp)) {
+        if (!isNaN(calculations.finalTemp)) {
             for (let i = 0; i < numSideReactions; i++) {
                 if (sideReactions[i].tempOnset === '') continue;
 
                 // temperature onset
                 if (!isNaN(Number(sideReactions[i].tempOnset))) {
-                    if (Number(reactionInfo.finalTemp) > Number(sideReactions[i].tempOnset)) {
+                    if (Number(calculations.finalTemp) > Number(sideReactions[i].tempOnset)) {
                         arr.push(<React.Fragment key={key++}>
                             <span style={style.alert}>
                                 Final temp exceeds side reaction
