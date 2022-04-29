@@ -22,10 +22,6 @@ const api = {
                 },
             })
             .then(res => {
-                if(res.status === 422)
-                    throw Error('Wrong data sent to server');
-                if(res.status === 400)
-                    throw Error('Could not parse PDF');
                 return JSON.parse(res.data) as Equation;
             });
     },

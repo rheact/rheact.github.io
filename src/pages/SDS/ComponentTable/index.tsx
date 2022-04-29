@@ -18,7 +18,7 @@ const ComponentTable = () => {
             <thead>
                 <th>Section</th>
                 <th>CAS-No</th>
-                <th>Product Name</th>
+                <th>Component Name</th>
                 <th>Molecular Weight</th>
                 <th>Actions</th>
             </thead>

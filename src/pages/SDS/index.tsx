@@ -29,7 +29,7 @@ const SDSPage = () => {
             </Row>
 
             <Alert color="light" className="fst-italic rounded mt-2">
-                Please enter the operation temperature here if you want the C<sub>p</sub>
+                Please enter the operation temperature here if you want the C<sub>p</sub>{" "}
                 of the SDS that you upload to be estimated from a backend database.
                 <TemperatureCard />
             </Alert>

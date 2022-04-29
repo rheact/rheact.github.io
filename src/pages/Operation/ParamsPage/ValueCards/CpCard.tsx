@@ -5,7 +5,7 @@ import CpIcon from "./icons/cp.png";
 
 const CpCard = () => {
     const props = {
-        label: "Mixture Heat Capacity Unit",
+        label: "Mixture Heat Capacity",
         icon: CpIcon,
         name: "cp",
         valueAction: SET_CP,

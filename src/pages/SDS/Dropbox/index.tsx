@@ -31,7 +31,7 @@ const AddEmptyChemicalButton: FC<AddEmptyChemicalButtonProps> = ({ addAction }) 
 
     const addEmpty = useCallback(() => {
         const emptyChem: Chemical = {
-            productName: "Unknown Product",
+            productName: "Unknown Component",
             casNo: "Unknown",
             neglected: false,
         };
@@ -40,7 +40,7 @@ const AddEmptyChemicalButton: FC<AddEmptyChemicalButtonProps> = ({ addAction }) 
     }, [dispatch, addAction]);
 
     return (
-        <Button onClick={addEmpty} color="link">Add Empty Component</Button>
+        <Button onClick={addEmpty} color="link">Add component manually without uploading SDS</Button>
     );
 }
 
