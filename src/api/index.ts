@@ -26,6 +26,14 @@ const api = {
             });
     },
 
+    estimateCp(cas_no: string, temperature: string, unit: string) {
+        return server
+            .post('/estimate_cp', undefined, {
+                params: { cas_no, temperature, unit }
+            })
+            .then(res => res.data);
+    },
+
     getHazardMatrix(hNums: any) {
         const promises = Object.keys(hNums).map(async (name) => {
             const res = await server.post('/graph', null, {

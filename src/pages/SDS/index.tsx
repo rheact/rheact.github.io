@@ -1,5 +1,4 @@
-import { TemperatureCard } from "pages/Operation/ParamsPage/ValueCards";
-import { Alert, Col, Container, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import ComponentTable from "./ComponentTable";
 import Dropbox from "./Dropbox";
 import SearchBox from "./SearchBox";
@@ -27,12 +26,6 @@ const SDSPage = () => {
             <Row className="justify-content-center my-5">
                 <SearchBox />
             </Row>
-
-            <Alert color="light" className="fst-italic rounded mt-2">
-                Please enter the operation temperature here if you want the C<sub>p</sub>{" "}
-                of the SDS that you upload to be estimated from a backend database.
-                <TemperatureCard />
-            </Alert>
 
             <div className="mt-2">
                 <Dropbox />

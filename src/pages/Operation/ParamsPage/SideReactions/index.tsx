@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
-import { Button, Card, CardBody, CardHeader } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
-import { ADD_SIDE_REACTION } from 'store';
 import { RheactState } from 'model';
+import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Card, CardBody } from 'reactstrap';
+import { ADD_SIDE_REACTION } from 'store';
 import SideReactionCard from './SideReactionCard';
 
 const SideReactionsMasterCard = () => {
@@ -17,10 +17,10 @@ const SideReactionsMasterCard = () => {
 
     return (
         <Card>
-            <CardHeader className="fw-bolder color-dark">Side Reactions</CardHeader>
             <CardBody>
+                <span className="h5 fw-bolder">Side Reactions</span>
                 <div className="d-flex align-items-center mb-2">
-                    <Button onClick={() => dispatch(ADD_SIDE_REACTION())}><i className="bi bi-plus-lg" /> Add </Button>
+                    <Button size="sm" onClick={() => dispatch(ADD_SIDE_REACTION())}><i className="bi bi-plus-lg" /> Add </Button>
                     <span className="ms-auto text-muted">Enter the known side-reactions and their onset details.</span>
                 </div>
 

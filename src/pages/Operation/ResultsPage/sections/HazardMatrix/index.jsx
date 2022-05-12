@@ -139,7 +139,7 @@ const Matrix = function ({ results, className }) {
             element.reactivityPic = yellow;
             break;
         case '#ffa500':
-            element.ivityPic = orange;
+            element.reactivityPic = orange;
             break;
         case '#c00000':
             element.reactivityPic = red;
