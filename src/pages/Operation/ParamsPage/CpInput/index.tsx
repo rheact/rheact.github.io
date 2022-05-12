@@ -28,6 +28,14 @@ const CpInput = () => {
                     Enter C<sub>p</sub> of mixture manually
                 </Label>
 
+                {!manual && 
+                <p className="text-danger">
+                    RHEACT uses temperature of the operation to estimate C<sub>p</sub> of
+                    a component using C<sub>p</sub> = A + B * T. Please confirm the 
+                    estimated C<sub>p</sub> values before generating the report.
+                </p>
+                }
+
                 {(manual || cp !== "")
                     ? <CpCard />
                     : <CpTable />}
