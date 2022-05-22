@@ -30,9 +30,9 @@ const CpInput = () => {
 
                 {!manual && 
                 <p className="text-danger">
-                    RHEACT uses temperature of the operation to estimate C<sub>p</sub> of
-                    a component using C<sub>p</sub> = A + B * T. Please confirm the 
-                    estimated C<sub>p</sub> values before generating the report.
+                    Based on a backend database (imported from RAST), RHEACT uses temperature of the operation
+                        to estimate liquid C<sub>p</sub> of common components using C<sub>p</sub> = A + B * T.
+                        Please confirm the estimated liquid C<sub>p</sub> values before generating the report.
                 </p>
                 }
 
