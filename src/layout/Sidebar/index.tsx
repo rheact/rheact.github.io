@@ -33,9 +33,10 @@ const ToolPages: FC = function () {
     return (
         <Nav vertical id="sidebar">
             <div className='d-flex justify-content-between align-items-center'>
-                <span className="navbar-brand"> Rheact </span>
+                <span className="navbar-brand"> RHEACT </span>
                 <span> <OnlineStatus/> </span>
             </div>
+            <div className='full-name'>Reactive Hazard Evaluation Analysis and Compilation Tool</div>
             <div className='text-muted'>
                 {title}
             </div>

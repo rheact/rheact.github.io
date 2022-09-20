@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Card, CardBody, Input, InputGroup } from "reactstrap";
+import { Card, CardBody, Input, InputGroup } from "reactstrap";
 import { SET_BASIS } from 'store';
 import { BasisChemical, Chemical, Equation, RheactState } from "model";
 
@@ -44,25 +44,33 @@ const BasisSelector = () => {
     }, [currentBasisIndex, equation]);
 
     // Sets a new basis
-    const onChangeCallback = useCallback(() => {
-        if(selection === undefined) {
+    const handleBasisChange = useCallback((newSelection) => {
+        console.log(newSelection)
+        if(!newSelection) {
+            setSelection(undefined)
+            dispatch(SET_BASIS({
+                list: '',
+                index: undefined,
+            }));
             return;
         }
-
-        if(selection === -1) {
+        newSelection = parseInt(newSelection)
+        setSelection(newSelection)
+        if(newSelection === -1) {
             dispatch(SET_BASIS({
                 list: '',
                 index: -1,
             }));
-            return;
         }
 
-        const selectedChemical = listOfChemicals[selection];
-        dispatch(SET_BASIS({
-            list: selectedChemical.list,
-            index: selectedChemical.index,
-        }));
-    }, [dispatch, listOfChemicals, selection]);
+        if(newSelection !== -1) {
+            const selectedChemical = listOfChemicals[newSelection];
+            dispatch(SET_BASIS({
+                list: selectedChemical.list,
+                index: selectedChemical.index,
+            }));
+        }
+    }, [dispatch, listOfChemicals])
 
     return (
         <Card className={currentBasisIndex === undefined ? "border-danger" : ""}>
@@ -70,15 +78,14 @@ const BasisSelector = () => {
                 <div className='h5 fw-bold'>Current Basis for Heat of Reaction</div>
 
                 <div className='text-center'>
-                    {currentBasisIndex === undefined ? "Please select a basis for heat of reaction by clicking the change button below" : ""}
+                    {currentBasisIndex === undefined || currentBasisIndex.index === undefined ? "Please select a basis for heat of reaction by clicking the change button below" : ""}
                     {currentBasisIndex !== undefined && currentBasisIndex.index === -1 ? "Total Reaction Mass" : ""}
                     {currentBasis !== undefined && `${currentBasis.productName} / Mol Wt: ${currentBasis.molWt}`}
-
                     <InputGroup className='mt-2'>
                         <Input
                             type='select'
                             value={selection}
-                            onChange={e => setSelection(parseInt(e.target.value))}
+                            onChange={e => handleBasisChange(e.target.value)}
                         >
                             <option key='' value={undefined}></option>
                             <option key='default' value={-1}>Total Reaction Mass</option>
@@ -88,7 +95,6 @@ const BasisSelector = () => {
                                 )
                             )}
                         </Input>
-                        <Button type='submit' color='info' onClick={onChangeCallback}>Change Basis</Button>
                     </InputGroup>
                 </div>
             </CardBody>

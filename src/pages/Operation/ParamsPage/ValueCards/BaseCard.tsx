@@ -18,11 +18,14 @@ const UnitChangeSelector: FC<UnitChangeSelectorProps> = ({ list, keyName, unitAc
 
     const onSelect = useCallback((unit: string) => {
         dispatch(unitAction(unit));
-        toggle();
-    }, [dispatch, unitAction, toggle]);
+    }, [dispatch, unitAction]);
+
+    const handleToggle = useCallback(() => {
+        toggle(!open)
+    }, [toggle, open])
 
     return (
-        <ButtonDropdown isOpen={open} toggle={toggle}>
+        <ButtonDropdown isOpen={open} toggle={handleToggle}>
             <DropdownToggle caret>
                 {current}
             </DropdownToggle>
@@ -71,7 +74,6 @@ const BaseCard: FC<BaseCardProps> = ({ label, icon, unitList, name, valueAction,
                     onChange={onValueChange}
                     placeholder={`Enter ${label}`}
                 />
-
                 <UnitChangeSelector
                     keyName={name + 'Unit' as keyof OperatingParams}
                     unitAction={unitAction}

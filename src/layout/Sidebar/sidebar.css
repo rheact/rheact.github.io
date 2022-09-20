@@ -6,6 +6,10 @@
     flex-wrap: nowrap;
 }
 
+#sidebar .full-name {
+    margin: 15px 0;
+}
+
 #sidebar .section-header {
     font-weight: bolder;
     font-size: small;

@@ -1,5 +1,5 @@
 import { Chemical, RheactState } from "model";
-import { ChangeEvent, FC, useCallback } from "react";
+import { ChangeEvent, FC, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Input } from "reactstrap";
 
@@ -27,6 +27,18 @@ const MfRow: FC<MfRowProps> = ({ changeAction, listname, index }) => {
         [changeAction, index, chemical, dispatch]
     );
 
+    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+    
+    useEffect(() => {
+        const handleWheel = (e: any) => e.preventDefault();
+        inputRef.current!.addEventListener("wheel", handleWheel) 
+
+        return () => {
+            inputRef.current!.removeEventListener("wheel", handleWheel);
+        };
+    }, []);
+    
+
     return (
         <tr>
             <td>{chemical.productName}</td>
@@ -37,6 +49,7 @@ const MfRow: FC<MfRowProps> = ({ changeAction, listname, index }) => {
                     onChange={getChangeProp('molWtFraction')}
                     className={!chemical.molWtFraction ? 'border-danger' : ''}
                     type="number"
+                    innerRef={inputRef}
                 />
             </td>
         </tr>
