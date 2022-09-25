@@ -31,10 +31,20 @@ const MfRow: FC<MfRowProps> = ({ changeAction, listname, index }) => {
     
     useEffect(() => {
         const handleWheel = (e: any) => e.preventDefault();
+        const handleArrowKey = (e: any) => {
+            if(e.key === "ArrowUp" || e.key === "ArrowDown") {
+                e.preventDefault();
+            }
+
+        }
         inputRef.current!.addEventListener("wheel", handleWheel) 
+        inputRef.current!.addEventListener("keydown", handleArrowKey)
 
         return () => {
-            inputRef.current!.removeEventListener("wheel", handleWheel);
+            if(inputRef.current) {
+                inputRef.current!.removeEventListener("wheel", handleWheel);
+                inputRef.current!.removeEventListener("keydown", handleArrowKey)
+            }
         };
     }, []);
     

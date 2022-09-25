@@ -1,4 +1,8 @@
 import { Route, Switch } from "react-router-dom";
+// Welcome
+import WelcomePage from "./About/Welcome"
+// User Guide
+import UserGuidePage from "./About/UserGuide"
 import ReportDetailsPage from "./ProjectInfo";
 // Operation
 import ParamsPage from "./Operation/ParamsPage";
@@ -32,8 +36,16 @@ const ToolIndex = () => {
                     <PPEResultsPage />
                 </Route>
 
-                <Route>
+                <Route path={R.ROUTE_USER_GUIDE}>
+                    <UserGuidePage />
+                </Route>
+
+                <Route path={R.ROUTE_SDS}>
                     <SDSPage />
+                </Route>
+
+                <Route>
+                    <WelcomePage />
                 </Route>
             </Switch>
     );

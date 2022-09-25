@@ -1,5 +1,8 @@
 const R = {
     ROUTE_ABOUT: '/',
+
+    ROUTE_WELCOME: '/welcome',
+    ROUTE_USER_GUIDE: '/user_guide',
     ROUTE_SDS: '/sds',
 
     ALL_OPERATION: '/operation',

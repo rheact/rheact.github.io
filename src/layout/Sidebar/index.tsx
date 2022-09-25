@@ -40,10 +40,11 @@ const ToolPages: FC = function () {
             <div className='text-muted'>
                 {title}
             </div>
-
+            <NavButton icon="bi-house" label='Welcome' route={R.ROUTE_WELCOME} />
+            <NavButton icon="bi bi-question-circle-fill" label='User Guide' route={R.ROUTE_USER_GUIDE} />
             <span className='section-header'>Project</span>
-            <NavButton icon="bi-gear" label='Components' route={R.ROUTE_SDS} />
             <NavButton icon="bi-pencil-fill" label='Details' route={R.ROUTE_OPERATION_DETAILS} />
+            <NavButton icon="bi-gear" label='Components' route={R.ROUTE_SDS} />
             <span className='section-header'>Operation</span>
             <NavButton icon="bi-box" label='Parameters' route={R.ROUTE_OPERATION_PARAMS} />
             <NavButton icon="bi-file-earmark-bar-graph-fill" label='Report' route={R.ROUTE_OPERATION_REPORT} />

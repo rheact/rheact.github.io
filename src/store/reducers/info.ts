@@ -5,7 +5,7 @@ import { ProjectInfo } from 'model';
 const rheactSlice = createSlice({
     name: 'projectInfo',
     initialState: {
-        projectTitle: 'Untitled',
+        projectTitle: 'Project Title',
     } as ProjectInfo,
     reducers: {
         SET_NAME_OF_RESEARCHER: setStateThunk('nameOfResearcher'),

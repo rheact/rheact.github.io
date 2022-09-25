@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, Input, InputGroup } from "reactstrap";
 import { SET_BASIS } from 'store';
 import { BasisChemical, Chemical, Equation, RheactState } from "model";
+import { HeatUnit } from 'units'
 
 const BasisSelector = () => {
     const dispatch = useDispatch();
     const equation = useSelector<RheactState>(state => state.compound) as Equation;
+    const heatOfReactionUnit = useSelector<RheactState>(state => state.operatingParams.heatOfReactionUnit) as HeatUnit
     
     // Collect all chemicals for selector
     const listOfChemicals = useMemo(() => {
@@ -45,7 +47,6 @@ const BasisSelector = () => {
 
     // Sets a new basis
     const handleBasisChange = useCallback((newSelection) => {
-        console.log(newSelection)
         if(!newSelection) {
             setSelection(undefined)
             dispatch(SET_BASIS({
@@ -88,7 +89,7 @@ const BasisSelector = () => {
                             onChange={e => handleBasisChange(e.target.value)}
                         >
                             <option key='' value={undefined}></option>
-                            <option key='default' value={-1}>Total Reaction Mass</option>
+                            {!heatOfReactionUnit.endsWith('mol') && <option key='default' value={-1}>Total Reaction Mass</option>}
                             {listOfChemicals.map(
                                 (c, idx) => (
                                     <option key={idx} value={idx}>{c.productName} / Mol Wt: {c.molWt}</option>    
