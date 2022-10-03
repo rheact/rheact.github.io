@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useToggle } from "react-use";
-import { Button, Modal, ModalBody, ModalHeader } from "reactstrap";
+import { Button, Modal, ModalBody, ModalHeader, Tooltip } from "reactstrap";
 import createStore from "store";
 
 type DropzoneModalTypes = {
@@ -26,9 +26,8 @@ const DropzoneModal: FC<DropzoneModalTypes> = ({ open, toggle, loadFn }) => {
 
     return (
         <Modal isOpen={open}>
-            <ModalHeader toggle={() => toggle()}>Upload a RHEACT File</ModalHeader>
+            <ModalHeader toggle={() => toggle()}>Upload a RHEACT/JSON File</ModalHeader>
             <ModalBody>
-                Old JSON files are also accepted.
                 <div {...getRootProps({ className: "dropzone" })}>
                     <input {...getInputProps()} />
                     <div className="d-flex justify-content-center align-items-center">
@@ -36,7 +35,7 @@ const DropzoneModal: FC<DropzoneModalTypes> = ({ open, toggle, loadFn }) => {
                     </div>
                     <p>
                         <br />
-                        Drag and drop a JSON file here
+                        Drag and drop a RHEACT/JSON file here
                         <br />
                         Or click to open file selector
                     </p>
@@ -52,16 +51,32 @@ type LoadButtonProps = {
 
 const LoadButton: FC<LoadButtonProps> = ({ loadFn }) => {
     const [open, toggle] = useToggle(false);
+    const [tooltipOpen, setTooltipOpen] = useState(false);
+
+    const toggleTooltip = () => setTooltipOpen(!tooltipOpen);
 
     return (
-        <Button onClick={toggle} color="dark" size="sm">
-            <i className="bi-cloud-upload-fill" /> Load
+        <>
+        <Button onClick={toggle} color="dark" size="sm" style={{marginLeft: "40px"}}>
+            <i className="bi-cloud-upload-fill" /> Load a JSON file
             <DropzoneModal
                 open={open}
                 toggle={toggle}
                 loadFn={loadFn}
             />
         </Button>
+        <i style={{marginLeft: "5px"}} id="uploadHint" className="bi bi-question-circle"></i>
+        <Tooltip
+            style={{textTransform: "none"}}
+            placement="top"
+            isOpen={tooltipOpen}
+            autohide={false}
+            target="uploadHint"
+            toggle={toggleTooltip}
+        >
+            You can upload a RHEACT/JSON file of a previous analysis!
+        </Tooltip>
+        </>
     );
 };
 

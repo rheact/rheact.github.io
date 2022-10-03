@@ -2,6 +2,8 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { Chemical, Equation, RheactState } from "model";
 
+import "./style.css"
+
 const ExtractionCard: FC<{ chemical: Chemical }> = ({ chemical }) => {
     return (
         <div className="my-1 border border-2 p-1 d-flex flex-column align-items-center">
@@ -17,11 +19,11 @@ const Extractions: FC<any> = () => {
     const compounds = useSelector<RheactState>(state => state.compound) as Equation;
 
     return (
-        <>
+        <div className="ppe-table">
         {compounds.reactants.map(c => <ExtractionCard chemical={c} />)}
         {compounds.products.map(c => <ExtractionCard chemical={c} />)}
         {compounds.diluents.map(c => <ExtractionCard chemical={c} />)}
-        </>
+        </div>
     );
 };
 

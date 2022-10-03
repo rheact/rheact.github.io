@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { useState } from 'react'
+import { Tooltip } from "reactstrap";
 import yellow from '../images/caution_thick.png';
 import red from '../images/danger_thick.png';
 import green from '../images/safe_thick.png';
@@ -14,6 +16,11 @@ const links = [
 ];
 
 const Matrix = function ({ results, className }) {
+
+    const [tooltipOpen, setTooltipOpen] = useState(false);
+
+    const toggle = () => setTooltipOpen(!tooltipOpen);
+
     if (!results || !results.hazardMatrix) {
         return (
             <h2 className={`text-muted ${className}`}>
@@ -23,7 +30,6 @@ const Matrix = function ({ results, className }) {
     }
 
     const matrix = results.hazardMatrix;
-
     const columns = [
         'Name',
         'Flammability',
@@ -44,7 +50,6 @@ const Matrix = function ({ results, className }) {
     matrix.forEach((element) => {
         newMatrix.push({ ...element });
     });
-
     newMatrix.forEach((element) => {
         switch (element.carcinogen) {
         case '#7fd13b':
@@ -243,6 +248,21 @@ const Matrix = function ({ results, className }) {
                         {columns.map((column, i) => (
                             <th style={styles.th} key={i}>
                                 {column}
+                                {column === "Other" && 
+                                    <>
+                                        <i style={{marginLeft: "10px"}} id="otherHint" className="bi bi-question-circle"></i>
+                                        <Tooltip
+                                            style={{textTransform: "none"}}
+                                            placement="top"
+                                            isOpen={tooltipOpen}
+                                            autohide={false}
+                                            target="otherHint"
+                                            toggle={toggle}
+                                        >
+                                            H370, H372, H373, H305
+                                        </Tooltip>
+                                    </>
+                                }
                             </th>
                         ))}
                     </tr>

@@ -8,7 +8,7 @@ const ChemicalDetails = () => {
         reactionClass,
         reactionScale,
         physicalState,
-        keyReagentQuantity,
+        keyReactantQuantity,
     } = useSelector(state => state.operatingParams);
 
     return (
@@ -28,7 +28,7 @@ const ChemicalDetails = () => {
 
                 <Label>Key Reagent Quantity</Label>
                 <InputGroup>
-                    <Input value={keyReagentQuantity} onChange={e => dispatch(STORE.SET_KEY_REAGENT_QUANTITY(e.target.value))} />
+                    <Input value={keyReactantQuantity} onChange={e => dispatch(STORE.SET_KEY_REAGENT_QUANTITY(e.target.value))} />
                     <InputGroupText>
             moles
                     </InputGroupText>

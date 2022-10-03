@@ -1,5 +1,5 @@
 import { Chemical, Equation, OperatingParams, RheactState } from "model";
-import { ChangeEvent, FC, useCallback } from "react";
+import { ChangeEvent, FC, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, InputGroup, InputGroupText, Table } from "reactstrap";
 import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT } from 'store';
@@ -15,6 +15,7 @@ const CpRow: FC<CpRowProps> = ({ changeAction, listname, index }) => {
     const dispatch = useDispatch();
     const params = useSelector<RheactState, OperatingParams>(state => state.operatingParams);
     const chemical = useSelector<RheactState>(state => (state.compound as any)[listname][index]) as Chemical;
+    const [invalid, setInvalid] = useState<boolean>(false)
 
     const getChangeProp = useCallback(
         (key: keyof Chemical) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,8 +50,11 @@ const CpRow: FC<CpRowProps> = ({ changeAction, listname, index }) => {
             if(!chemical.casNo) {
                 return;
             }
-
             const data = await api.estimateCp(chemical.casNo, params.temperature, params.temperatureUnit);
+            if(data === "\"\"") {
+                setInvalid(true)
+                return;
+            }
             const update: Chemical = { ...chemical };
             update.cp = data;
             dispatch(
@@ -64,6 +68,13 @@ const CpRow: FC<CpRowProps> = ({ changeAction, listname, index }) => {
         [chemical, params.temperature, params.temperatureUnit, dispatch, changeAction, index]
     );
 
+    const removeFeedback = useCallback(
+        () => {
+            setInvalid(false)
+        },
+        []
+    )
+
     return (
         <tr className="m-1" style={{ width: '30%' }}>
             <td>{chemical.productName}</td>
@@ -71,13 +82,18 @@ const CpRow: FC<CpRowProps> = ({ changeAction, listname, index }) => {
             <td>
                 <InputGroup>
                     <Input
+                        onFocus={removeFeedback}
                         disabled={chemical.neglected}
                         value={chemical.cp}
+                        invalid={invalid}
                         onChange={getChangeProp('cp')}
                         className={!chemical.cp ? 'border-danger' : ''}
                         type="number"
                     />
                     <InputGroupText className="bg-dark text-white">cal/g/°C</InputGroupText>
+                    <div className="invalid-feedback">
+                        Liquid Cp of {chemical.productName} is not available in the RHEACT backend database. Please enter Liquid Cp values obtained from other sources.
+                    </div>
                 </InputGroup>
             </td>
 

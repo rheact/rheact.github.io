@@ -63,7 +63,10 @@ const GenerateButton = () => {
 
         Promise.all([
             promiseCalculations, promiseCameo, promiseHazard
-        ]);
+        ]).then((values) => {
+            dispatch(STORE.SET_TIME(new Date().toLocaleString()))
+            return values
+        });
     }, [state, dispatch]);
 
     return (

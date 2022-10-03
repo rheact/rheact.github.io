@@ -55,12 +55,15 @@ const MfRow: FC<MfRowProps> = ({ changeAction, listname, index }) => {
             <td>{chemical.molWt}</td>
             <td>
                 <Input
+                    invalid={!chemical.molWtFraction || parseFloat(chemical.molWtFraction) < 0 || parseFloat(chemical.molWtFraction) > 1}
                     value={chemical.molWtFraction}
                     onChange={getChangeProp('molWtFraction')}
-                    className={!chemical.molWtFraction ? 'border-danger' : ''}
                     type="number"
                     innerRef={inputRef}
                 />
+                <div id="totalMassFractionFeedback" className="invalid-feedback">
+                    {!chemical.molWtFraction ? <>Mass fraction cannot be empty!</> : <>Mass fraction must be in range [0, 1]</>}
+                </div>
             </td>
         </tr>
     );

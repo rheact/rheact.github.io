@@ -24,6 +24,10 @@ const rheactSlice = createSlice({
         SET_HNUMS(state, action) {
             state.hNums = action.payload;
         },
+
+        SET_TIME(state, action) {
+            state.generationTime = action.payload;
+        }
     },
 });
 
@@ -33,6 +37,7 @@ export const {
     SET_CAMEO,
     SET_HAZARDS,
     SET_HNUMS,
+    SET_TIME
 } = rheactSlice.actions;
 
 export const { reducer: reportReducer } = rheactSlice;

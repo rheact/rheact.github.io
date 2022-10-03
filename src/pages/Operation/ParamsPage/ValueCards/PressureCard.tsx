@@ -5,7 +5,8 @@ import PressureIcon from "./icons/pressure.png";
 
 const PressureCard = () => {
     const props = {
-        label: "Pressure",
+        labelText: "Pressure",
+        labelNode: "Pressure",
         icon: PressureIcon,
         name: "pressure",
         valueAction: SET_PRESSURE,

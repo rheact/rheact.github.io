@@ -1,26 +1,9 @@
-import { FC, useCallback, useMemo, useState } from "react";
+import { FC, useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { Button, ButtonGroup, Col, Container, Row } from "reactstrap";
-import { ADD_DILUENT, ADD_PRODUCT, ADD_REACTANT } from "store";
-import { Chemical, ComponentList as Category } from "model";
+import { Button, Col, Container, Row } from "reactstrap";
+import { ADD_REACTANT } from "store";
+import { Chemical } from "model";
 import ComponentDropzone from "./ComponentDropzone";
-
-type ListSelectButtonProps = {
-    target: Category,
-    current: Category,
-    set: Function,
-};
-
-const ListSelectButton: FC<ListSelectButtonProps> = ({ target, current, set }) => {
-    return (
-        <Button color="dark"
-                outline
-                active={current === target}
-                onClick={() => set(target)}>
-            {target}
-        </Button>
-    );
-}
 
 type AddEmptyChemicalButtonProps = {
     addAction: any,
@@ -40,22 +23,15 @@ const AddEmptyChemicalButton: FC<AddEmptyChemicalButtonProps> = ({ addAction }) 
     }, [dispatch, addAction]);
 
     return (
-        <Button onClick={addEmpty} color="link">Add component manually without uploading SDS</Button>
+        <Button onClick={addEmpty} color="primary">Add a Component</Button>
     );
 }
 
 const Dropbox = () => {
-    const [category, setCategory] = useState<Category>(Category.reactant);
 
     const addAction = useMemo(() => {
-        if(category === Category.reactant)
-            return ADD_REACTANT;
-
-        if(category === Category.product)
-            return ADD_PRODUCT;
-
-        return ADD_DILUENT;
-    }, [category]);
+        return ADD_REACTANT;
+    }, []);
 
     return (
         <Container fluid>
@@ -64,13 +40,6 @@ const Dropbox = () => {
                     <ComponentDropzone addAction={addAction} />
                 </Col>
                 <Col md={3} className="d-flex flex-column justify-content-center">
-                    <div className="text-muted">Add uploaded files to:</div>
-                    <ButtonGroup vertical>
-                        <ListSelectButton target={Category.reactant} current={category} set={setCategory} />
-                        <ListSelectButton target={Category.product} current={category} set={setCategory} />
-                        <ListSelectButton target={Category.diluent} current={category} set={setCategory} />
-                    </ButtonGroup>
-
                     <div className="text-center">
                         <AddEmptyChemicalButton addAction={addAction} />
                     </div>

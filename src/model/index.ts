@@ -122,6 +122,7 @@ export type Report = {
     calculations?: Calculations,
     hazardMatrix?: HazardRow[],
     hNums?: any,
+    generationTime?: string
 };
 
 /**

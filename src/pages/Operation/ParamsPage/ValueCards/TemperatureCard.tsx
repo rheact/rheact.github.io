@@ -5,7 +5,8 @@ import TemperatureIcon from "./icons/temperature.png";
 
 const TemperatureCard = () => {
     const props = {
-        label: "Temperature",
+        labelText: "Temperature",
+        labelNode: "Temperature",
         icon: TemperatureIcon,
         name: "temperature",
         valueAction: SET_TEMPERATURE,

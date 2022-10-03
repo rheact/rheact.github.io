@@ -1,8 +1,46 @@
-import { Equation, RheactState } from "model";
+import { FC } from 'react';
+import { Equation, Chemical, RheactState } from "model";
 import { useSelector } from "react-redux";
-import { Card, CardBody, Table } from "reactstrap";
+import { Card, CardBody, Input, Table } from "reactstrap";
 import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT } from "store";
 import MfRow from "./MfRow";
+
+type TotalMassFractionProps = {
+    reactants: Chemical[],
+    products: Chemical[],
+    diluents: Chemical[]
+};
+
+const TotalMassFraction: FC<TotalMassFractionProps> = ({reactants, products, diluents}) => {
+    let total = 0
+    reactants.map((c, i) => {
+        total += parseFloat(c.molWtFraction || '0')
+    })
+    products.map((c, i) => {
+        total += parseFloat(c.molWtFraction || '0')
+    })
+    diluents.map((c, i) => {
+        total += parseFloat(c.molWtFraction || '0')
+    })
+    const isEmpty = reactants.length == 0 && products.length == 0 && diluents.length == 0
+    return (
+        <tr>
+            <td style={{fontWeight: "bold"}}>Total</td>
+            <td>{'    '}</td>
+            <td>
+                <Input 
+                    id="totalMassFraction"
+                    readonly
+                    value={total}
+                    invalid={!isEmpty && total != 1}
+                />
+                <div id="totalMassFractionFeedback" className="invalid-feedback">
+                    Mass Fractions must sum up to 1!
+                </div>
+            </td>
+        </tr>
+    );
+}
 
 const MfEntry = () => {
     const equation = useSelector<RheactState>(state => state.compound) as Equation;
@@ -56,6 +94,11 @@ const MfEntry = () => {
                                 changeAction={CHANGE_DILUENT}
                             />
                         ))}
+                        <TotalMassFraction
+                            reactants={equation.reactants}
+                            products={equation.products}
+                            diluents={equation.diluents}
+                        />                        
                     </tbody>
                 </Table>
             </CardBody>

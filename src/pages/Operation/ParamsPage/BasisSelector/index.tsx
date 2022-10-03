@@ -25,15 +25,18 @@ const BasisSelector = () => {
         return _.concat(reactants, products, diluents);
     }, [equation]);
 
+    // Current setting for basis
+    const currentBasisIndex = useSelector<RheactState>(state => state.operatingParams.basis) as (BasisChemical | undefined);
+
     // Selection for change of basis
     const [selection, setSelection] = useState<number>();
 
-    // Current setting for basis
-    const currentBasisIndex = useSelector<RheactState>(state => state.operatingParams.basis) as (BasisChemical | undefined);
     const currentBasis = useMemo(() => {
         if(!currentBasisIndex)
             return undefined;
-        
+        if(!selection) {
+            setSelection(currentBasisIndex.index)
+        }
         switch(currentBasisIndex.list) {
             case 'reactants':
                 return equation.reactants[currentBasisIndex.index];
@@ -57,6 +60,7 @@ const BasisSelector = () => {
         }
         newSelection = parseInt(newSelection)
         setSelection(newSelection)
+        
         if(newSelection === -1) {
             dispatch(SET_BASIS({
                 list: '',
@@ -85,6 +89,7 @@ const BasisSelector = () => {
                     <InputGroup className='mt-2'>
                         <Input
                             type='select'
+                            invalid={selection === undefined}
                             value={selection}
                             onChange={e => handleBasisChange(e.target.value)}
                         >
@@ -96,6 +101,9 @@ const BasisSelector = () => {
                                 )
                             )}
                         </Input>
+                        <div className="invalid-feedback">
+                            Current Basis for Heat of Reaction cannot be empty!
+                        </div>
                     </InputGroup>
                 </div>
             </CardBody>

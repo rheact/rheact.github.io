@@ -3,11 +3,13 @@ import { Container, ListGroup, ListGroupItem, ListGroupItemHeading } from "react
 import Extractions from "./Extractions";
 import Recommendations from "./Recommendations";
 
+import './style.css'
+
 const PPEResultsPage: FC<any> = () => {
     return (
         <Container id="printable">
-            <h2>Typical Minimum PPE</h2>
-            <ListGroup>
+            <h2>Typical Minimum Personal Protective Equipment (PPE)</h2>
+            <ListGroup className="ppe-table">
                 <ListGroupItem>
                     <ListGroupItemHeading>
                         Safety glasses with side shields
@@ -39,10 +41,10 @@ const PPEResultsPage: FC<any> = () => {
                 </ListGroupItem>
             </ListGroup>
 
-            <h2>Recommendations from Questionnaire</h2>
+            <h2>PPE Recommendations from Questionnaire</h2>
             <Recommendations />
 
-            <h2>Extractions</h2>
+            <h2>Extracted PPE from SDS</h2>
             <Extractions />
         </Container>
     );

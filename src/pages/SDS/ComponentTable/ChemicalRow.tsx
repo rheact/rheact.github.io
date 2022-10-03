@@ -4,6 +4,7 @@ import { useToggle } from "react-use";
 import { Button, ButtonGroup, Input, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
 import { InputType } from "reactstrap/types/lib/Input";
 import { Chemical } from "model";
+import * as STORE from 'store';
 
 type PropertyMap = {
     label: string,
@@ -97,7 +98,6 @@ const sectionColorMap = {
 
 const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAction, removeAction }) => {
     const dispatch = useDispatch();
-
     const getChangeProp = useCallback(
         (key: keyof Chemical) => (e: FormEvent<HTMLInputElement>) => {
             const update: any = { ...chemical };
@@ -117,12 +117,50 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
         [dispatch, index, removeAction]
     );
 
+    const onChangeSection = useCallback(
+        (newSection) => {
+            // Remove curr section
+            switch(section) {
+                case 'Reactant':
+                    dispatch(STORE.REMOVE_REACTANT(index))
+                    break;
+                case 'Product':
+                    dispatch(STORE.REMOVE_PRODUCT(index))
+                    break;
+                case 'Diluent':
+                    dispatch(STORE.REMOVE_DILUENT(index))
+                    break;
+                default:
+                    console.log('Cannot remove ', section)
+            }
+            // Add new section
+            switch(newSection) {
+                case 'Reactant':
+                    dispatch(STORE.ADD_REACTANT(chemical))
+                    break;
+                case 'Product':
+                    dispatch(STORE.ADD_PRODUCT(chemical))
+                    break;
+                case 'Diluent':
+                    dispatch(STORE.ADD_DILUENT(chemical))
+                    break;
+                default:
+                    console.log('Cannot add ', newSection)
+            }
+        },
+        [dispatch]
+    );
+
     const [viewProps, toggleProps] = useToggle(false);
 
     return (
         <tr>
-            <td className={"fw-bold " + sectionColorMap[section]}>
-                {section}
+            <td>
+                <Input className={"fw-bold " + sectionColorMap[section]} type="select" value={section} onChange={e => onChangeSection(e.target.value)}>
+                    <option>Reactant</option>
+                    <option>Product</option>
+                    <option>Diluent</option>
+                </Input>
             </td>
             <td>
                 {chemical.casNo}

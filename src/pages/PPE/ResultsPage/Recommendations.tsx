@@ -12,7 +12,7 @@ const Recommendations: FC<any> = () => {
         .map(uid => questions.find(q => q.uid === uid)), [resps]);
 
     return (
-        <ListGroup>
+        <ListGroup className="ppe-table">
             {recs.map(r => (r && 
                 <ListGroupItem>
                     <ListGroupItemHeading>{r.answer}</ListGroupItemHeading>

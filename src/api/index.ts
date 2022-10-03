@@ -51,6 +51,9 @@ const api = {
     },
 
     getCalculationBlock(rstate: RheactState) {
+        if(rstate.operatingParams.basis?.index == undefined) {
+            throw Error('No basis selected for the heat of reaction');
+        }
         return server
             .post('/calculate', JSON.stringify(rstate))
             .then(res => {
@@ -66,7 +69,7 @@ const api = {
         return server
             .post('/cameo', JSON.stringify(rstate))
             .then(res => res.data);
-    },
+    }
 };
 
 export default api;
