@@ -83,7 +83,7 @@ const BasisSelector = () => {
                 <div className='h5 fw-bold'>Current Basis for Heat of Reaction</div>
 
                 <div className='text-center'>
-                    {currentBasisIndex === undefined || currentBasisIndex.index === undefined ? "Please select a basis for heat of reaction by clicking the change button below" : ""}
+                    {currentBasisIndex === undefined || currentBasisIndex.index === undefined ? "Please select a basis for heat of reaction from the drop-down below" : ""}
                     {currentBasisIndex !== undefined && currentBasisIndex.index === -1 ? "Total Reaction Mass" : ""}
                     {currentBasis !== undefined && `${currentBasis.productName} / Mol Wt: ${currentBasis.molWt}`}
                     <InputGroup className='mt-2'>

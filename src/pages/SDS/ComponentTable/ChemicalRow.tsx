@@ -6,6 +6,8 @@ import { InputType } from "reactstrap/types/lib/Input";
 import { Chemical } from "model";
 import * as STORE from 'store';
 
+import "./style.css"
+
 type PropertyMap = {
     label: string,
     key: keyof Chemical,
@@ -156,7 +158,7 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
     return (
         <tr>
             <td>
-                <Input className={"fw-bold " + sectionColorMap[section]} type="select" value={section} onChange={e => onChangeSection(e.target.value)}>
+                <Input className={"fw-bold " + sectionColorMap[section] + " comp-type-dropdown"} type="select" value={section} onChange={e => onChangeSection(e.target.value)}>
                     <option>Reactant</option>
                     <option>Product</option>
                     <option>Diluent</option>

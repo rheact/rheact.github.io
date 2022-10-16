@@ -5,6 +5,8 @@ let key = 0;
 
 const Alert = function ({ className }) {
     const calculations = useSelector((state) => state.results.calculations);
+
+    const physicalState = useSelector((state) => state.operatingParams.physicalState);
     const sideReactions = useSelector((state) => state.operatingParams.sideReactions);
     const numSideReactions = useSelector((state) => state.operatingParams.numSideReactions);
 
@@ -275,33 +277,36 @@ const Alert = function ({ className }) {
     return (
         <>
             <h2>Alerts</h2>
+            {((reactantAlerts.length === 0 && productAlerts.length === 0 && diluentAlerts.length === 0 && srAlerts.length === 0) 
+            || (physicalState === 'Gas' && srAlerts.length === 0)) 
+            && <h3 style={{margin: "auto"}}>No Alerts</h3>}
             <div className="Alert" style={style.main}>
-                {reactantAlerts.length !== 0
+                {reactantAlerts.length !== 0 && physicalState != 'Gas'
                     && (
                         <React.Fragment key={key++}>
                             <br />
                             <div>Reactant Alerts</div>
                         </React.Fragment>
                     )}
-                {reactantAlerts}
+                {physicalState != 'Gas' && reactantAlerts}
 
-                {productAlerts.length !== 0
+                {productAlerts.length !== 0 && physicalState != 'Gas'
                     && (
                         <React.Fragment key={key++}>
                             <br />
                             <div>Product Alerts</div>
                         </React.Fragment>
                     )}
-                {productAlerts}
+                {physicalState != 'Gas' && productAlerts}
 
-                {diluentAlerts.length !== 0
+                {diluentAlerts.length !== 0 && physicalState != 'Gas'
                     && (
                         <React.Fragment key={key++}>
                             <br />
                             <div>Diluent Alerts</div>
                         </React.Fragment>
                     )}
-                {diluentAlerts}
+                {physicalState != 'Gas' && diluentAlerts}
 
                 {srAlerts.length !== 0
                     && (

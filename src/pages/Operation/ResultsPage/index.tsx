@@ -60,7 +60,7 @@ Generated:
                 <div>State: {physicalState}</div>
             </Row>
             </Container>
-            {physicalState != 'Gas' && <Alerts className="mt-2" />}
+            <Alerts className="mt-2" />
             <CalculationBlock className="mt-2" />
             <HazardStatements className="mt-2" />
             <CameoMatrix className="mt-2" />

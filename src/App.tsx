@@ -16,9 +16,9 @@ const App: FC<any> = () => {
             <Router >
                 {/* Layout */}
                 <Root>
-                    <Sidebar />
+                    <Sidebar loadFn={setStore}/>
                     <PageContent>
-                        <Toolbar loadFn={setStore} />
+                        <Toolbar />
                         <main>
                             <ToolIndex />
                         </main>

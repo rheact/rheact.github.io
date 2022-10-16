@@ -21,7 +21,6 @@ const GenerateButton = () => {
                 dispatch(STORE.SET_CALCULATIONS(JSON.parse(data)));
                 return data;
             })
-            .catch((e) => alert(e.message))
             .finally(() => {
                 changePending(-1);
             });
@@ -32,7 +31,6 @@ const GenerateButton = () => {
                 dispatch(STORE.SET_CAMEO(JSON.parse(data)));
                 return data;
             })
-            .catch((e) => alert(e.message))
             .finally(() => {
                 changePending(-1);
             });
@@ -56,7 +54,6 @@ const GenerateButton = () => {
                 dispatch(STORE.SET_HAZARDS(data));
                 return data;
             })
-            .catch((e) => alert(e.message) )
             .finally(() => {
                 changePending(-1);
             });
@@ -66,7 +63,11 @@ const GenerateButton = () => {
         ]).then((values) => {
             dispatch(STORE.SET_TIME(new Date().toLocaleString()))
             return values
-        });
+        })
+        .catch((e) => {
+            alert(e.message)
+            changePending(-1*maxJobs)
+        })
     }, [state, dispatch]);
 
     return (

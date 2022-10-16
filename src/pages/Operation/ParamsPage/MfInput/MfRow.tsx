@@ -62,7 +62,7 @@ const MfRow: FC<MfRowProps> = ({ changeAction, listname, index }) => {
                     innerRef={inputRef}
                 />
                 <div id="totalMassFractionFeedback" className="invalid-feedback">
-                    {!chemical.molWtFraction ? <>Mass fraction cannot be empty!</> : <>Mass fraction must be in range [0, 1]</>}
+                    {!chemical.molWtFraction ? <>Mass fraction cannot be empty!</> : (listname === 'reactants' ? <>Mass fraction must be in range [0, 1]</> : <>Mass fraction must be in range (0, 1]</>)}
                 </div>
             </td>
         </tr>

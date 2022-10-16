@@ -57,8 +57,8 @@ const LoadButton: FC<LoadButtonProps> = ({ loadFn }) => {
 
     return (
         <>
-        <Button onClick={toggle} color="dark" size="sm" style={{marginLeft: "40px"}}>
-            <i className="bi-cloud-upload-fill" /> Load a JSON file
+        <Button onClick={toggle} color="dark" size="sm" style={{fontSize: "12px"}}>
+            <i className="bi-cloud-upload-fill" /> Load Previous Analysis
             <DropzoneModal
                 open={open}
                 toggle={toggle}

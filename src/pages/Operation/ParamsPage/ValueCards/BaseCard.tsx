@@ -1,5 +1,5 @@
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { FC, useCallback, useEffect, useRef } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToggle } from "react-use";
 import { ButtonDropdown, Card, DropdownItem, DropdownMenu, DropdownToggle, Input, InputGroup } from "reactstrap";
@@ -54,6 +54,7 @@ const BaseCard: FC<BaseCardProps> = ({ labelText, labelNode, icon, unitList, nam
     const value = useSelector<RheactState>((state) => (state.operatingParams as any)[name]) as string;
     const dispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+    const [invalid, setInvalid] = useState<boolean>(value === '')
 
     // TODO: Fix uncontrolled input box bug
     const onValueChange = useCallback(
@@ -92,9 +93,11 @@ const BaseCard: FC<BaseCardProps> = ({ labelText, labelNode, icon, unitList, nam
                 <Input
                     innerRef={inputRef}
                     value={value}
-                    invalid={!value}
+                    invalid={invalid}
                     type="number"
                     onChange={onValueChange}
+                    onFocus={() => setInvalid(false)}
+                    onBlur={() => setInvalid(value === '')}
                     placeholder={`Enter ${labelText}`}
                 />
                 <UnitChangeSelector
@@ -103,7 +106,7 @@ const BaseCard: FC<BaseCardProps> = ({ labelText, labelNode, icon, unitList, nam
                     list={unitList}
                 />
                 <div className="invalid-feedback">
-                    {labelText} cannot be empty!
+                    {labelText} field cannot be empty!
                 </div>
             </InputGroup>
             {children}

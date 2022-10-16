@@ -92,7 +92,7 @@ const CpRow: FC<CpRowProps> = ({ changeAction, listname, index }) => {
                     />
                     <InputGroupText className="bg-dark text-white">cal/g/°C</InputGroupText>
                     <div className="invalid-feedback">
-                        Liquid Cp of {chemical.productName} is not available in the RHEACT backend database. Please enter Liquid Cp values obtained from other sources.
+                        Unable to calculate Cp of {chemical.productName}!
                     </div>
                 </InputGroup>
             </td>

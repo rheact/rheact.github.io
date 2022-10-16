@@ -29,11 +29,20 @@ const CpInput = () => {
                 </Label>
 
                 {!manual && 
-                <p className="text-danger">
-                    Based on a backend database (imported from RAST), RHEACT uses temperature of the operation
-                        to estimate liquid C<sub>p</sub> of common components using C<sub>p</sub> = A + B * T.
-                        Please confirm the estimated liquid C<sub>p</sub> values before generating the report.
-                </p>
+                <>
+                    <p className="text-danger">
+                        Based on a backend database (imported from RAST), RHEACT uses temperature of the operation
+                            to estimate liquid C<sub>p</sub> of common components using C<sub>p</sub> = A + B * T.
+                            Please confirm the estimated liquid C<sub>p</sub> values before generating the report.
+                    </p>
+                    <p className="text-danger">
+                        For unavailable liquid Cp or for all gas phase Cp, please go to 
+                        <a href="webbook.nist.gov" style={{textDecoration: "none"}}> NIST Chemistry WebBook </a> 
+                        or 
+                        <a href="www.engineeringtoolbox.com" style={{textDecoration: "none"}}> The Engineering ToolBox </a> 
+                        or other sources to obtain Cp values
+                    </p>
+                </>
                 }
 
                 {(manual || cp !== "")

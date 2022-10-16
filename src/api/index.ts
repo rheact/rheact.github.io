@@ -51,12 +51,12 @@ const api = {
     },
 
     getCalculationBlock(rstate: RheactState) {
-        if(rstate.operatingParams.basis?.index == undefined) {
-            throw Error('No basis selected for the heat of reaction');
-        }
         return server
             .post('/calculate', JSON.stringify(rstate))
             .then(res => {
+                if(rstate.operatingParams.basis?.index == undefined) {
+                    throw Error('No basis selected for the heat of reaction');
+                }
                 if(res.status === 422)
                     throw Error('Wrong data sent to server');
                 if(res.status === 400)

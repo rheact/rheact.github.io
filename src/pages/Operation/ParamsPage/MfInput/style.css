@@ -1,0 +1,10 @@
+#totalMassFraction {
+    border: none;
+    background-color: white;
+    cursor: inherit;
+    box-shadow: none;
+}
+
+#totalMassFraction.is-invalid {
+    background-image: none;
+}

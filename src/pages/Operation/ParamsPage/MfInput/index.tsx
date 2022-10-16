@@ -5,6 +5,8 @@ import { Card, CardBody, Input, Table } from "reactstrap";
 import { CHANGE_DILUENT, CHANGE_PRODUCT, CHANGE_REACTANT } from "store";
 import MfRow from "./MfRow";
 
+import "./style.css"
+
 type TotalMassFractionProps = {
     reactants: Chemical[],
     products: Chemical[],
@@ -22,6 +24,7 @@ const TotalMassFraction: FC<TotalMassFractionProps> = ({reactants, products, dil
     diluents.map((c, i) => {
         total += parseFloat(c.molWtFraction || '0')
     })
+    total = parseFloat(total.toFixed(5))
     const isEmpty = reactants.length == 0 && products.length == 0 && diluents.length == 0
     return (
         <tr>
@@ -30,12 +33,12 @@ const TotalMassFraction: FC<TotalMassFractionProps> = ({reactants, products, dil
             <td>
                 <Input 
                     id="totalMassFraction"
-                    readonly
+                    readOnly
                     value={total}
-                    invalid={!isEmpty && total != 1}
+                    invalid={!isEmpty || total > 1 || total < 0.95}
                 />
                 <div id="totalMassFractionFeedback" className="invalid-feedback">
-                    Mass Fractions must sum up to 1!
+                    Total mass fraction must be in range [0.95, 1]!
                 </div>
             </td>
         </tr>
