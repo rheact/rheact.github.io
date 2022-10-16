@@ -37,15 +37,15 @@ const ToolPages: FC<ToolPagesProps> = function ({ loadFn }) {
     return (
         <Nav vertical id="sidebar">
             <div className='d-flex justify-content-between align-items-center'>
-                <span className="navbar-brand"> RHEACT </span>
+                <span className="navbar-brand" style={{fontWeight: "bold"}}> RHEACT </span>
             </div>
             <div className='full-name'>Reactive Hazard Evaluation Analysis and Compilation Tool</div>
-            <div className='text-muted'>
-                {title}
-            </div>
             <NavButton icon="bi-house" label='Welcome' route={R.ROUTE_WELCOME} />
             <NavButton icon="bi bi-question-circle-fill" label='User Guide' route={R.ROUTE_USER_GUIDE} />
             <span className='section-header'>Project</span>
+            <div className='text-muted' style={{marginBottom: "1rem"}}>
+                {title}
+            </div>
             <div id="loadBtnWrapper">
                 <LoadButton loadFn={loadFn} />
             </div>
