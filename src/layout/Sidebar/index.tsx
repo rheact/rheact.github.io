@@ -56,6 +56,11 @@ const ToolPages: FC<ToolPagesProps> = function ({ loadFn }) {
             <span className='section-header'>PPE Evaluation</span>
             <NavButton icon="bi-box" label='Questionnaire' route={R.ROUTE_PPE_QUESTIONAIRE} />
             <NavButton icon="bi-file-earmark-bar-graph-fill" label='Report' route={R.ROUTE_PPE_REPORT} />
+            <span className='section-header'>Documentation</span>
+            <NavButton icon="bi bi-file-earmark-medical" label='License' route={R.ROUTE_LICENSE} />
+            <NavButton icon="bi bi-award" label='Acknowledgements' route={R.ROUTE_ACKNOWLEDGEMENTS} />
+            <NavButton icon="bi bi-book" label='Project Publications' route={R.ROUTE_PUBLICATIONS} />
+            <NavButton icon="bi bi-envelope" label='Contact Us' route={R.ROUTE_CONTACT} />
         </Nav>
     );
 };

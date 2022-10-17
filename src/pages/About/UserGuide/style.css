@@ -6,3 +6,18 @@
 .user-guide-title {
     margin: 50px 20px;
 }
+
+ul.user-guide-list {
+    width: 1000px;
+    margin: auto;
+    /* font-size: 18px; */
+}
+
+ul.user-guide-list li {
+    margin: 10px auto;
+}
+
+.user-guide-text {
+    /* font-size: 18px; */
+    margin: 0 20px;
+}

@@ -41,7 +41,7 @@ const ReactionCard = () => {
                 <div className="d-flex justify-content-end">
                     <small className="text-muted">
                         We use{" "}
-                        <a href="https://mhchem.github.io/MathJax-mhchem/">
+                        <a target="_blank" href="https://mhchem.github.io/MathJax-mhchem/">
                             mhchem
                         </a>{" "}
                         chemical equations for rendering.{" "}

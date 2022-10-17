@@ -13,6 +13,12 @@ import PPEResultsPage from './PPE/ResultsPage';
 import R from "./routes";
 import SDSPage from "./SDS";
 
+// Documentation
+import LicensePage from './License/License';
+import AcknowledgementsPage from "./License/Acknowledgements";
+import PublicationsPage from "./Publications";
+import ContactUsPage from "./Contact";
+
 const ToolIndex = () => {
     return (
             <Switch>
@@ -42,6 +48,22 @@ const ToolIndex = () => {
 
                 <Route path={R.ROUTE_SDS}>
                     <SDSPage />
+                </Route>
+
+                <Route path={R.ROUTE_LICENSE}>
+                    <LicensePage />
+                </Route>
+
+                <Route path={R.ROUTE_ACKNOWLEDGEMENTS}>
+                    <AcknowledgementsPage />
+                </Route>
+
+                <Route path={R.ROUTE_PUBLICATIONS}>
+                    <PublicationsPage />
+                </Route>
+
+                <Route path={R.ROUTE_CONTACT}>
+                    <ContactUsPage />
                 </Route>
 
                 <Route>

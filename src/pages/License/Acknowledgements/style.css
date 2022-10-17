@@ -1,0 +1,13 @@
+.bold-text {
+    font-weight: bold;
+}
+
+.ack-text {
+    margin: 20px 0;
+}
+
+.ack-img-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}

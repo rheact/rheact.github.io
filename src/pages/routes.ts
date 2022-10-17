@@ -14,6 +14,11 @@ const R = {
     ROUTE_PPE_QUESTIONAIRE: '/ppe/questions',
     ROUTE_PPE_REPORT: '/ppe/report',
 
+    ROUTE_LICENSE: '/license',
+    ROUTE_ACKNOWLEDGEMENTS: '/acknowledgements',
+    ROUTE_PUBLICATIONS: '/publications',
+    ROUTE_CONTACT: '/contact',
+
     ROUTE_SETTINGS: '/settings',
 };
 

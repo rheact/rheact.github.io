@@ -1,0 +1,28 @@
+.center-text {
+    padding: 0 50px;
+    margin: 10px;
+}
+
+.license-text {
+    margin: 20px 0;
+}
+
+.license-list {
+    width: 1000px;
+    margin: auto;
+}
+
+.license-list li {
+    margin: 10px 0;
+}
+
+.license-img-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.license-img {
+    margin: 20px auto;
+    width: 450px;
+    height: 200px;
+}

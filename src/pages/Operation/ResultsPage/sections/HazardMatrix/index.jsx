@@ -444,7 +444,7 @@ const Matrix = function ({ results, className }) {
                     The following links can guide the PPE selection process:
                 </span>
                 {links.map((link) => (
-                    <a key={link} href={link}>
+                    <a target="_blank" key={link} href={link}>
                         {link}
                     </a>
                 ))}

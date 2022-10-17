@@ -9,6 +9,7 @@
     
 .welcome-text {
     padding: 0 100px;
+    margin: 10px;
 }
 
 ul.no-bullets {
@@ -24,4 +25,10 @@ ul.no-bullets li {
 ul.no-bullets i {
     font-size: 30px;
     margin-right: 20px;
+}
+
+#license-link {
+    display: inline-block;
+    padding-left: 0.25em;
+    padding-right: 0;
 }

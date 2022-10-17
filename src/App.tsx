@@ -8,6 +8,8 @@ import { HashRouter as Router } from "react-router-dom";
 import ToolIndex from './pages/';
 import createStore from './store';
 
+import "./style.css"
+
 const App: FC<any> = () => {
     const [store, setStore] = useState(createStore())
 
@@ -19,12 +21,15 @@ const App: FC<any> = () => {
                     <Sidebar loadFn={setStore}/>
                     <PageContent>
                         <Toolbar />
-                        <main>
-                            <ToolIndex />
-                        </main>
-                        <footer className="py-5 d-flex justify-content-center align-items-center text-muted">
-                            &copy; CISTAR, {new Date().getFullYear()}
-                        </footer>
+                        <div id="main-content-wrapper">
+                            <main>
+                                <ToolIndex />
+                            </main>
+                            <footer className="py-5 d-flex justify-content-center align-items-center text-muted">
+                            Reactive Hazard Evaluation Analysis and Compilation Tool (RHEACT) v2.0 (Beta version), Oct 15, 2022
+                                {/* &copy; CISTAR, {new Date().getFullYear()} */}
+                            </footer>
+                        </div>
                     </PageContent>
                 </Root>
             </Router>
