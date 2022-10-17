@@ -58,7 +58,7 @@ const WelcomePage = () => {
             <NavLink
                 id="license-link"
                 tag={Link}
-                to={R.ROUTE_OPERATION_DETAILS}
+                to={R.ROUTE_LICENSE}
             >
                 license
             </NavLink>.
