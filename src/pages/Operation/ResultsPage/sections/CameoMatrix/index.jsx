@@ -24,7 +24,7 @@ const ReportSection = function ({ className }) {
 
     return (
         <div className={className}>
-            <h2 className="m-0">Cameo Matrix</h2>
+            <h2 className="m-0">Chemical Compatibility Matrix</h2>
             <div className="d-flex justify-content-center">
                 <div className="Cameo" dangerouslySetInnerHTML={{ __html: data }} />
             </div>

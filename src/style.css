@@ -4,3 +4,18 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.nav-btn {
+    color: white !important;
+    border-radius: 6px;
+    margin-top: 20px;
+    background-color: #93c54b;
+}
+
+.nav-btn-left {
+    float: left;
+}
+
+.nav-btn-right {
+    float: right;
+}

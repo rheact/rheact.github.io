@@ -1,7 +1,11 @@
-import { Alert, Col, Container, Row } from "reactstrap";
+import { Alert, Col, Container, Row, NavLink } from "reactstrap";
+import { NavLink as Link } from 'react-router-dom';
+import R from 'pages/routes';
 import ChemicalDetails from "./ChemicalDetails";
 import ProjectCard from "./ProjectCard";
 import ReactionCard from "./ReactionCard";
+
+import '../../style.css'
 
 const ReportDetails = () => {
     return (
@@ -24,6 +28,13 @@ const ReportDetails = () => {
                     <ReactionCard />
                 </Col>
             </Row>
+            <NavLink
+                tag={Link}
+                to={R.ROUTE_SDS}
+                className="nav-btn nav-btn-right"
+            >
+                Next - Components
+            </NavLink>
         </Container>
     );
 };

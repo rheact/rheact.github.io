@@ -26,6 +26,7 @@ const TotalMassFraction: FC<TotalMassFractionProps> = ({reactants, products, dil
     })
     total = parseFloat(total.toFixed(5))
     const isEmpty = reactants.length == 0 && products.length == 0 && diluents.length == 0
+
     return (
         <tr>
             <td style={{fontWeight: "bold"}}>Total</td>
@@ -35,7 +36,7 @@ const TotalMassFraction: FC<TotalMassFractionProps> = ({reactants, products, dil
                     id="totalMassFraction"
                     readOnly
                     value={total}
-                    invalid={!isEmpty || total > 1 || total < 0.95}
+                    invalid={isEmpty || total > 1 || total < 0.95}
                 />
                 <div id="totalMassFractionFeedback" className="invalid-feedback">
                     Total mass fraction must be in range [0.95, 1]!

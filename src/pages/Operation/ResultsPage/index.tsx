@@ -1,6 +1,8 @@
 import { useCallback, useEffect } from 'react';
-import { Button, Container, Col, Row } from 'reactstrap';
+import { Button, Container, Row, NavLink } from 'reactstrap';
+import { NavLink as Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import R from 'pages/routes';
 import GenerateButton from './GenerateButton';
 import Alerts from './sections/Alerts';
 import HazardStatements from './sections/HazardStatements';
@@ -33,6 +35,7 @@ const ReportSection = function ReportSection() {
      }, []);
 
     return (
+        <>
         <section id="printable">
             <div className="d-flex justify-content-between">
                 <h1 className="fw-bolder">RHEACT Safety Report</h1>
@@ -63,10 +66,24 @@ Generated:
             <Alerts className="mt-2" />
             <CalculationBlock className="mt-2" />
             <HazardStatements className="mt-2" />
-            <CameoMatrix className="mt-2" />
             <HazardMatrix className="mt-2" />
-
+            <CameoMatrix className="mt-2" />
         </section>
+        <NavLink
+            tag={Link}
+            to={R.ROUTE_SDS}
+            className="nav-btn nav-btn-left"
+        >
+            Previous - Process Parameters
+        </NavLink>
+        <NavLink
+            tag={Link}
+            to={R.ROUTE_PPE_QUESTIONAIRE}
+            className="nav-btn nav-btn-right"
+        >
+            Next - PPE Evaluation
+        </NavLink>
+        </>
     );
 };
 
