@@ -30,6 +30,7 @@
 }
 
 #loadBtnWrapper {
+    margin: 20px 0 20px 10px;
     display: flex;
     align-items: center;
 }

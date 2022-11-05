@@ -5,7 +5,11 @@ import Recommendations from "./Recommendations";
 
 import './style.css'
 
-const PPEResultsPage: FC<any> = () => {
+type ResultsProps = {
+    prevButton: React.ReactNode
+}
+
+const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
     return (
         <Container id="printable">
             <h2>Typical Minimum Personal Protective Equipment (PPE)</h2>
@@ -46,6 +50,7 @@ const PPEResultsPage: FC<any> = () => {
 
             <h2>Extracted PPE from SDS</h2>
             <Extractions />
+            {prevButton}
         </Container>
     );
 };

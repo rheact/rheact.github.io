@@ -1,0 +1,58 @@
+#evaluation-steps {
+    justify-content: space-between;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+#evaluation-steps li {
+    display: flex;
+    border: none !important;
+    align-items: center;
+    padding: 0;
+}
+
+.step-content {
+    padding: 30px;
+}
+
+.step-active {
+    color: #00b309; 
+}
+
+.step-inactive {
+    color: black;
+}
+
+.step-content:hover {
+    cursor: default;
+}
+
+#evaluation-steps li:not(:first-child):before {
+    height: 1px;
+    content: "";
+    background-color: rgba(0,0,0,0.3);
+    width: 85px;
+}
+
+
+#evaluation-steps li:not(:last-child):after {
+    height: 1px;
+    content: "";
+    background-color: rgba(0,0,0,0.3);
+    width: 85px;
+}
+
+.nav-btn {
+    color: white !important;
+    border-radius: 6px;
+    margin-top: 40px;
+    background-color: #93c54b !important;
+}
+
+.nav-btn-left {
+    float: left;
+}
+
+.nav-btn-right {
+    float: right;
+}

@@ -1,14 +1,18 @@
-import { Col, Container, Row, NavLink } from "reactstrap";
-import { NavLink as Link } from 'react-router-dom';
-import R from 'pages/routes';
+import { Col, Container, Row } from "reactstrap";
+import React from 'react';
 import ComponentTable from "./ComponentTable";
 import Dropbox from "./Dropbox";
 import SearchBox from "./SearchBox";
 import SigmaLogo from "./sigma.png";
 
-import "../../style.css"
+import "../../../style.css"
 
-const SDSPage = () => {
+type SDSPageProps = {
+    prevButton: React.ReactNode,
+    nextButton: React.ReactNode
+}
+
+const SDSPage = ({ prevButton, nextButton}: SDSPageProps) => {
     return (
         <Container>
             <Row className="mt-2">
@@ -38,20 +42,8 @@ const SDSPage = () => {
             <div className="mt-2">
                 <ComponentTable />
             </div>
-            <NavLink
-                tag={Link}
-                to={R.ROUTE_OPERATION_DETAILS}
-                className="nav-btn nav-btn-left"
-            >
-                Previous - Details
-            </NavLink>
-            <NavLink
-                tag={Link}
-                to={R.ROUTE_OPERATION_PARAMS}
-                className="nav-btn nav-btn-right"
-            >
-                Next - Process Parameters
-            </NavLink>
+            {prevButton}
+            {nextButton}
         </Container>
     );
 };

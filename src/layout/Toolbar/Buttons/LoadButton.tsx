@@ -65,7 +65,7 @@ const LoadButton: FC<LoadButtonProps> = ({ loadFn }) => {
                 loadFn={loadFn}
             />
         </Button>
-        <i style={{marginLeft: "5px"}} id="uploadHint" className="bi bi-question-circle"></i>
+        <i style={{marginLeft: "10px"}} id="uploadHint" className="bi bi-question-circle"></i>
         <Tooltip
             style={{textTransform: "none"}}
             placement="top"

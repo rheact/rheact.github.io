@@ -1,18 +1,13 @@
 import { Route, Switch } from "react-router-dom";
+import R from "./routes";
 // Welcome
 import WelcomePage from "./About/Welcome"
 // User Guide
 import UserGuidePage from "./About/UserGuide"
-import ReportDetailsPage from "./ProjectInfo";
 // Operation
-import ParamsPage from "./Operation/ParamsPage";
-import ResultsPage from "./Operation/ResultsPage";
+import EvaluationPage from "./Evaluation";
 // PPE
-import QuestionairePage from './PPE/QuestionairePage';
-import PPEResultsPage from './PPE/ResultsPage';
-import R from "./routes";
-import SDSPage from "./SDS";
-
+import PPEPage from './PPE';
 // Documentation
 import LicensePage from './License/License';
 import AcknowledgementsPage from "./License/Acknowledgements";
@@ -22,32 +17,16 @@ import ContactUsPage from "./Contact";
 const ToolIndex = () => {
     return (
             <Switch>
-                <Route path={R.ROUTE_OPERATION_DETAILS}>
-                    <ReportDetailsPage />
+                <Route path={R.ROUTE_EVALUATION}>
+                    <EvaluationPage />
                 </Route>
 
-                <Route path={R.ROUTE_OPERATION_PARAMS}>
-                    <ParamsPage />
-                </Route>
-
-                <Route path={R.ROUTE_OPERATION_REPORT}>
-                    <ResultsPage />
-                </Route>
-
-                <Route path={R.ROUTE_PPE_QUESTIONAIRE}>
-                    <QuestionairePage />
-                </Route>
-
-                <Route path={R.ROUTE_PPE_REPORT}>
-                    <PPEResultsPage />
+                <Route path={R.ROUTE_PPE_EVALUATION}>
+                    <PPEPage />
                 </Route>
 
                 <Route path={R.ROUTE_USER_GUIDE}>
                     <UserGuidePage />
-                </Route>
-
-                <Route path={R.ROUTE_SDS}>
-                    <SDSPage />
                 </Route>
 
                 <Route path={R.ROUTE_LICENSE}>

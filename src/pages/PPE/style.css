@@ -1,0 +1,43 @@
+#ppe-steps {
+    justify-content: center;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+#ppe-steps li {
+    display: flex;
+    border: none !important;
+    align-items: center;
+    padding: 0;
+}
+
+.step-content {
+    padding: 30px;
+}
+
+.step-active {
+    color: #00b309; 
+}
+
+.step-inactive {
+    color: black;
+}
+
+.step-content:hover {
+    cursor: default;
+}
+
+#ppe-steps li:not(:first-child):before {
+    height: 1px;
+    content: "";
+    background-color: rgba(0,0,0,0.3);
+    width: 150px;
+}
+
+
+#ppe-steps li:not(:last-child):after {
+    height: 1px;
+    content: "";
+    background-color: rgba(0,0,0,0.3);
+    width: 150px;
+}

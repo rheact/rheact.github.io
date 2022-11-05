@@ -11,6 +11,10 @@ type Question = {
     answer: string,
 }
 
+type PPEProps = {
+    nextButton: React.ReactNode
+}
+
 const PPEQuestionSingle: FC<Question> = ({ uid, question }) => {
     const responses = useSelector<RheactState>(state => state.ppe_questionnaire || {}) as any;
     const dispatch = useDispatch();
@@ -40,7 +44,7 @@ const PPEQuestionSingle: FC<Question> = ({ uid, question }) => {
     );
 }
 
-export default function PPEQuestions() {
+export default function PPEQuestions({ nextButton }: PPEProps) {
     return (
         <Container className="p-2">
             <Alert>
@@ -53,6 +57,7 @@ export default function PPEQuestions() {
             <ListGroup>
                 {questions.map(q => <PPEQuestionSingle key={q.uid} {...q} />)}
             </ListGroup>
+            {nextButton}
         </Container>
     );
 }

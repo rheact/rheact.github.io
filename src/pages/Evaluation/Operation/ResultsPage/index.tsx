@@ -1,8 +1,6 @@
 import { useCallback, useEffect } from 'react';
-import { Button, Container, Row, NavLink } from 'reactstrap';
-import { NavLink as Link } from 'react-router-dom';
+import { Button, Container, Row } from 'reactstrap';
 import { useDispatch, useSelector } from "react-redux";
-import R from 'pages/routes';
 import GenerateButton from './GenerateButton';
 import Alerts from './sections/Alerts';
 import HazardStatements from './sections/HazardStatements';
@@ -14,7 +12,12 @@ import * as STORE from "store";
 
 import "./style.css"
 
-const ReportSection = function ReportSection() {
+type ReportProps = {
+    prevButton: React.ReactNode,
+    nextButton: React.ReactNode
+}
+
+const ReportSection = function ReportSection({ prevButton, nextButton }: ReportProps) {
     const dispatch = useDispatch();
     const { generationTime } = useSelector<RheactState>(state => state.results) as Report;
     const {
@@ -69,25 +72,13 @@ Generated:
             <HazardMatrix className="mt-2" />
             <CameoMatrix className="mt-2" />
         </section>
-        <NavLink
-            tag={Link}
-            to={R.ROUTE_SDS}
-            className="nav-btn nav-btn-left"
-        >
-            Previous - Process Parameters
-        </NavLink>
-        <NavLink
-            tag={Link}
-            to={R.ROUTE_PPE_QUESTIONAIRE}
-            className="nav-btn nav-btn-right"
-        >
-            Next - PPE Evaluation
-        </NavLink>
+        {prevButton}
+        {nextButton}
         </>
     );
 };
 
-const ResultsPage = function () {
+const ResultsPage = function ({ prevButton, nextButton }: ReportProps) {
     const onPrint = useCallback(() => {
         window.print();
     }, []);
@@ -106,7 +97,7 @@ const ResultsPage = function () {
             </div>
 
             <article className="p-5">
-                <ReportSection />
+                <ReportSection prevButton={prevButton} nextButton={nextButton}/>
             </article>
         </>
     );
