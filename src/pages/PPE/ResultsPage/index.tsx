@@ -9,6 +9,15 @@ type ResultsProps = {
     prevButton: React.ReactNode
 }
 
+const links = [
+    'https://www.osha.gov/Publications/osha3151.pdf',
+    'https://ehs.ucmerced.edu/researchers-labs/ppe/selection',
+    'https://www.era-environmental.com/blog/personal-protective-equipment-how-to-read-an-sds',
+    'https://www.usf.edu/administrative-services/environmental-health-safety/documents/hazard_control_ppe_guide.pdf',
+    'https://www.ehs.washington.edu/system/files/resources/ppeguidelines.pdf',
+    'https://www.purdue.edu/ehps/rem/laboratory/Personal/PPE/gloveselection.pdf',
+];
+
 const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
     return (
         <Container id="printable">
@@ -47,7 +56,16 @@ const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
 
             <h2>PPE Recommendations from Questionnaire</h2>
             <Recommendations />
-
+            <div className="d-flex flex-column ppe-links">
+                <span>
+                    The following links can guide the PPE selection process:
+                </span>
+                {links.map((link) => (
+                    <a target="_blank" key={link} href={link}>
+                        {link}
+                    </a>
+                ))}
+            </div>
             <h2>Extracted PPE from SDS</h2>
             <Extractions />
             {prevButton}

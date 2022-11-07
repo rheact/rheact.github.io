@@ -51,6 +51,22 @@ const EvaluationPage = () => {
     const [paramActive, setParamActive] = useState<boolean>(false);
     const [analysisActive, setAnalysisActive] = useState<boolean>(false);
 
+    const handleStepperClick = (activeF: Dispatch<SetStateAction<boolean>>) => {
+        if (detailsActive) {
+            setDetailsActive(false)
+        }
+        if (componentsActive) {
+            setComponentsActive(false)
+        }
+        if (paramActive) {
+            setParamActive(false)
+        }
+        if (analysisActive) {
+            setAnalysisActive(false)
+        }
+        activeF(true)
+    }
+
     return (
         <Container>
             <ListGroup horizontal id="evaluation-steps">
@@ -60,7 +76,9 @@ const EvaluationPage = () => {
                         detailsActive
                             ? 'step-active'
                             : 'step-inactive'
-                        )}>
+                        )}
+                        onClick={() => handleStepperClick(setDetailsActive)}
+                    >
                         <i className={`bi bi-pencil-fill me-2`} />
                         <span className="step-label">Details</span>
                     </div>
@@ -71,7 +89,9 @@ const EvaluationPage = () => {
                         componentsActive
                             ? 'step-active'
                             : 'step-inactive'
-                        )}>
+                        )}
+                        onClick={() => handleStepperClick(setComponentsActive)}
+                    >
                         <i className={`bi bi-gear me-2`} />
                         <span className="step-label">Components</span>
                     </div>
@@ -82,7 +102,9 @@ const EvaluationPage = () => {
                         paramActive
                             ? 'step-active'
                             : 'step-inactive'
-                        )}>
+                        )} 
+                        onClick={() => handleStepperClick(setParamActive)}
+                    >
                         <i className={`bi bi-box me-2`} />
                         <span className="step-label">Process Parameters</span>
                     </div>
@@ -93,7 +115,9 @@ const EvaluationPage = () => {
                         analysisActive
                             ? 'step-active'
                             : 'step-inactive'
-                        )}>
+                        )}
+                        onClick={() => handleStepperClick(setAnalysisActive)}
+                    >
                         <i className={`bi bi-file-earmark-bar-graph-fill me-2`} />
                         <span className="step-label">Analysis</span>
                     </div>

@@ -68,7 +68,11 @@ const api = {
     getCameoTable(rstate: RheactState) {
         return server
             .post('/cameo', JSON.stringify(rstate))
-            .then(res => res.data);
+            .then(res => {
+                if(res.status === 400)
+                    throw Error('Error: ' + res.data);
+                return res.data
+            });
     }
 };
 

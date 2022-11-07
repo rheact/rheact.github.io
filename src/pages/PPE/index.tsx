@@ -45,6 +45,16 @@ const PPEPage = () => {
     const [questionaireActive, setQuestionaireActive] = useState<boolean>(true);
     const [resultsActive, setResultsActive] = useState<boolean>(false);
 
+    const handleStepperClick = (activeF: Dispatch<SetStateAction<boolean>>) => {
+        if (questionaireActive) {
+            setQuestionaireActive(false)
+        }
+        if (resultsActive) {
+            setResultsActive(false)
+        }
+        activeF(true)
+    }
+
     return (
         <Container>
             <ListGroup horizontal id="ppe-steps">
@@ -54,7 +64,9 @@ const PPEPage = () => {
                         questionaireActive
                             ? 'step-active'
                             : 'step-inactive'
-                        )}>
+                        )}
+                        onClick={() => handleStepperClick(setQuestionaireActive)}
+                    >
                         <i className={`bi bi-card-list me-2`} />
                         <span className="step-label">Questionaire</span>
                     </div>
@@ -65,7 +77,9 @@ const PPEPage = () => {
                         resultsActive
                             ? 'step-active'
                             : 'step-inactive'
-                        )}>
+                        )}
+                        onClick={() => handleStepperClick(setResultsActive)}
+                    >
                         <i className={`bi bi-file-earmark-text me-2`} />
                         <span className="step-label">Report</span>
                     </div>

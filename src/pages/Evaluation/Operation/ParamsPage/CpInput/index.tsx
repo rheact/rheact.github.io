@@ -37,9 +37,9 @@ const CpInput = () => {
                     </p>
                     <p className="text-danger">
                         For unavailable liquid Cp or for all gas phase Cp, please go to 
-                        <a target="_blank" href="webbook.nist.gov" style={{textDecoration: "none"}}> NIST Chemistry WebBook </a> 
+                        <a target="_blank" href="http://webbook.nist.gov/" style={{textDecoration: "none"}}> NIST Chemistry WebBook </a> 
                         or 
-                        <a target="_blank" href="www.engineeringtoolbox.com" style={{textDecoration: "none"}}> The Engineering ToolBox </a> 
+                        <a target="_blank" href="http://www.engineeringtoolbox.com/" style={{textDecoration: "none"}}> The Engineering ToolBox </a> 
                         or other sources to obtain Cp values
                     </p>
                 </>
