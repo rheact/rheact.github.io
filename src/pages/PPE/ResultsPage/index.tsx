@@ -20,6 +20,7 @@ const links = [
 
 const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
     return (
+        <>
         <Container id="printable">
             <h2>Typical Minimum Personal Protective Equipment (PPE)</h2>
             <ListGroup className="ppe-table">
@@ -68,8 +69,9 @@ const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
             </div>
             <h2>Extracted PPE from SDS</h2>
             <Extractions />
-            {prevButton}
         </Container>
+        {prevButton}
+        </>
     );
 };
 
