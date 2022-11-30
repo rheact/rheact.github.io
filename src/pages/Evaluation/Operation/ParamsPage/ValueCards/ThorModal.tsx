@@ -2,7 +2,8 @@ import { FC, useCallback, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
 import { Equation, RheactState } from "model";
-import { SET_HEAT_OF_REACTION } from 'store';
+import { HeatUnit } from 'units'
+import { SET_HEAT_OF_REACTION, SET_HEAT_OF_REACTION_UNIT } from 'store';
 import ThorRow from './ThorRow';
 
 import './style.css'
@@ -39,6 +40,7 @@ const ComponentTable = () => {
         if(valid) {
             setHeatOfReaction(pSum - rSum)
             dispatch(SET_HEAT_OF_REACTION(pSum - rSum))
+            dispatch(SET_HEAT_OF_REACTION_UNIT(HeatUnit.kJ_mol))
         }
     }, [dispatch, equation])
 
@@ -73,7 +75,7 @@ const ComponentTable = () => {
         <Button className="green-btn" onClick={calculateHeatOfReaction}>Calculate Heat of Reaction</Button>
         { heatOfReaction != undefined &&
             <div id="thor-result">
-                Heat of Reaction: {heatOfReaction}
+                Heat of Reaction: {heatOfReaction} KJ/mol
             </div>
         }
         </>
