@@ -100,6 +100,12 @@ const sectionColorMap = {
 
 const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAction, removeAction }) => {
     const dispatch = useDispatch();
+    const [viewProps, toggleProps] = useToggle(false);
+
+    if(!chemical.phase) {
+        dispatch(STORE.CHANGE_CHEMICAL_PHASE({section, index, newPhase: 'Solid'}))
+    }
+
     const getChangeProp = useCallback(
         (key: keyof Chemical) => (e: FormEvent<HTMLInputElement>) => {
             const update: any = { ...chemical };
@@ -153,7 +159,12 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
         [dispatch]
     );
 
-    const [viewProps, toggleProps] = useToggle(false);
+    const onChangePhase = useCallback(
+        (newPhase) => {
+            dispatch(STORE.CHANGE_CHEMICAL_PHASE({section, index, newPhase}))
+        },
+        [dispatch]
+    )
 
     return (
         <tr>
@@ -172,6 +183,13 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
             </td>
             <td>
                 {chemical.molWt}    
+            </td>
+            <td>
+                <Input className={"fw-bold comp-type-dropdown"} type="select" value={chemical.phase} onChange={e => onChangePhase(e.target.value)}>
+                    <option>Solid</option>
+                    <option>Liquid</option>
+                    <option>Gas</option>
+                </Input>   
             </td>
             <td>
                 <ButtonGroup size="sm">

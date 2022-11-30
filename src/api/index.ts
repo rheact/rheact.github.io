@@ -73,6 +73,20 @@ const api = {
                     throw Error('Error: ' + res.data);
                 return res.data
             });
+    },
+
+    getHeatOfFormation(casNo: string, phase: 'Solid' | 'Liquid' | 'Gas', numberOfMoles: number) {
+        return server
+            .post('/heatOfFormation', undefined, {
+                params: { casNo, phase, numberOfMoles: numberOfMoles.toString() }
+            })
+            .then(res => {
+                if(res.status === 422)
+                    throw Error('Wrong data sent to server');
+                if(res.status === 400)
+                    throw Error(res.data);
+                return res.data
+            })
     }
 };
 

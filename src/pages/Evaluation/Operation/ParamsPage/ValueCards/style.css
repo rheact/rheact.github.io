@@ -1,0 +1,13 @@
+#thor-modal {
+    max-width: 1500px;
+}
+
+#thor-result {
+    margin: 50px;
+}
+
+.green-btn {
+    color: white !important;
+    border-radius: 6px;
+    background-color: #93c54b !important;
+}

@@ -54,7 +54,7 @@ const BaseCard: FC<BaseCardProps> = ({ labelText, labelNode, icon, unitList, nam
     const value = useSelector<RheactState>((state) => (state.operatingParams as any)[name]) as string;
     const dispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
-    const [invalid, setInvalid] = useState<boolean>(value === '')
+    const [focused, setFocused] = useState<boolean>(false)
 
     // TODO: Fix uncontrolled input box bug
     const onValueChange = useCallback(
@@ -93,11 +93,11 @@ const BaseCard: FC<BaseCardProps> = ({ labelText, labelNode, icon, unitList, nam
                 <Input
                     innerRef={inputRef}
                     value={value}
-                    invalid={invalid}
+                    invalid={!focused && value === ''}
                     type="number"
                     onChange={onValueChange}
-                    onFocus={() => setInvalid(false)}
-                    onBlur={() => setInvalid(value === '')}
+                    onFocus={() => setFocused(true)}
+                    onBlur={() => setFocused(value != '')}
                     placeholder={`Enter ${labelText}`}
                 />
                 <UnitChangeSelector

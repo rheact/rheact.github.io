@@ -11,7 +11,8 @@ const ComponentTable = () => {
             <colgroup>
                 <col span={1} style={{ width: "10%" }} />
                 <col span={1} style={{ width: "15%" }} />
-                <col span={1} style={{ width: "45%" }} />
+                <col span={1} style={{ width: "30%" }} />
+                <col span={1} style={{ width: "15%" }} />
                 <col span={1} style={{ width: "15%" }} />
                 <col span={1} style={{ width: "15%" }} />
             </colgroup>
@@ -20,6 +21,7 @@ const ComponentTable = () => {
                 <th>CAS-No</th>
                 <th>Component Name</th>
                 <th>Molecular Weight</th>
+                <th>Phase</th>
                 <th>Actions</th>
             </thead>
 

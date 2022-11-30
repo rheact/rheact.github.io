@@ -9,6 +9,8 @@ import { CpUnit, HeatUnit, PressureUnit, TemperatureUnit } from "units";
  * Chemical represents data extracted from SDS.
  */
 export type Chemical = {
+    phase: 'Solid' | 'Gas' | 'Liquid',
+    heatOfFormation?: string,
     autoIgnitionTemp?: string,
     boilingPt?: string,
     casNo?: string,

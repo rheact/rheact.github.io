@@ -17,6 +17,7 @@ const AddEmptyChemicalButton: FC<AddEmptyChemicalButtonProps> = ({ addAction }) 
             productName: "Unknown Component",
             casNo: "Unknown",
             neglected: false,
+            phase: 'Solid'
         };
 
         dispatch(addAction(emptyChem));

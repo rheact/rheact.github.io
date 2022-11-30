@@ -59,6 +59,26 @@ const rheactSlice = createSlice({
             const { index, update } = action.payload;
             state.diluents[index] = update;
         },
+
+        CHANGE_CHEMICAL_PHASE(state, action) {
+            const { section, index, newPhase } = action.payload;
+            if(section === 'Reactant') {
+                state.reactants[index].phase = newPhase
+            } else if (section === 'Product') {
+                state.products[index].phase = newPhase
+            } else {
+                state.diluents[index].phase = newPhase
+            }
+        },
+
+        SET_HEAT_OF_FORMATION(state, action) {
+            const { section, index, heatOfFormation} = action.payload
+            if(section === 'Reactant') {
+                state.reactants[index].heatOfFormation = heatOfFormation
+            } else {
+                state.products[index].heatOfFormation = heatOfFormation
+            }
+        }
     },
 });
 
@@ -74,5 +94,8 @@ export const {
     ADD_DILUENT,
     CHANGE_DILUENT,
     REMOVE_DILUENT,
+
+    CHANGE_CHEMICAL_PHASE,
+    SET_HEAT_OF_FORMATION
 } = rheactSlice.actions;
 export const { reducer: equationReducer } = rheactSlice;
