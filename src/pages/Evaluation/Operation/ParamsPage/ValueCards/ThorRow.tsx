@@ -24,7 +24,6 @@ const ThorRow: FC<ThorRowProps> = ({ chemical, section, index }) => {
     }
 
     const onChangeMoles = useCallback((moles)=> {
-        console.log('new number of moles ', moles)
         setNumberOfMoles(moles)
     }, [])
 

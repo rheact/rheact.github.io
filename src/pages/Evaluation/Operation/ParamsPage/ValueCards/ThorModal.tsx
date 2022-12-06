@@ -21,7 +21,6 @@ const ComponentTable = () => {
             if(!chem.heatOfFormation) {
                 setHeatOfReaction(undefined)
                 valid = false
-                console.log('fk reactant ', chem)
                 return
             }
             rSum += parseFloat(chem.heatOfFormation)
@@ -29,7 +28,6 @@ const ComponentTable = () => {
         equation.products.map(chem => {
             if(!chem.heatOfFormation) {
                 setHeatOfReaction(undefined)
-                console.log('fk product ', chem)
                 valid = false
                 return
             }
