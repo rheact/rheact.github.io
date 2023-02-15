@@ -20,7 +20,7 @@ const ThorRow: FC<ThorRowProps> = ({ chemical, section, index }) => {
     const [errorMsg, setErrorMsg] = useState<string>('Heat of formation cannot be empty!')
 
     if(!chemical.phase) {
-        dispatch(STORE.CHANGE_CHEMICAL_PHASE({section, index, newPhase: 'Solid'}))
+        dispatch(STORE.CHANGE_CHEMICAL_PHASE({section, index, newPhase: ''}))
     }
 
     const onChangeMoles = useCallback((moles)=> {
