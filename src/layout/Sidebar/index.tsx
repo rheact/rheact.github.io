@@ -48,6 +48,7 @@ const ToolPages: FC<ToolPagesProps> = function ({ loadFn }) {
             </div>
             <NavButton icon="bi-pencil-fill" label='Evaluate New System' route={R.ROUTE_EVALUATION} />
             <NavButton icon="bi-box" label='PPE Evaluation' route={R.ROUTE_PPE_EVALUATION} />
+            <NavButton icon="bi bi-calculator" label='Protective Action Criteria' route={R.ROUTE_PAC} />
             <NavButton icon="bi bi-file-earmark-medical" label='License' route={R.ROUTE_LICENSE} />
             <NavButton icon="bi bi-award" label='Acknowledgements' route={R.ROUTE_ACKNOWLEDGEMENTS} />
             <NavButton icon="bi bi-book" label='Project Publications' route={R.ROUTE_PUBLICATIONS} />

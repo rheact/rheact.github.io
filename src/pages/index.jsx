@@ -8,6 +8,8 @@ import UserGuidePage from "./About/UserGuide"
 import EvaluationPage from "./Evaluation";
 // PPE
 import PPEPage from './PPE';
+// PAC
+import PACPage from './PAC';
 // Documentation
 import LicensePage from './License/License';
 import AcknowledgementsPage from "./License/Acknowledgements";
@@ -23,6 +25,10 @@ const ToolIndex = () => {
 
                 <Route path={R.ROUTE_PPE_EVALUATION}>
                     <PPEPage />
+                </Route>
+
+                <Route path={R.ROUTE_PAC}>
+                    <PACPage />
                 </Route>
 
                 <Route path={R.ROUTE_USER_GUIDE}>

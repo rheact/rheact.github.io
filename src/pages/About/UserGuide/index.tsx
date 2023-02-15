@@ -7,7 +7,7 @@ const UserGuidePage = () => {
         <h2 className="user-guide-title">Quick Start Guide:</h2>
         <ul className="user-guide-list">
             <li>
-            Load RHEACT website in Chrome, Firefox, Chrome or Safari.
+            Load RHEACT website in Chrome, Firefox, or Safari.
             </li>
             <li>
             Click on "Load Previous Analysis" underneath the PROJECT Section if you have a .json (or .rheact) file with preset properties from a previous analysis. 

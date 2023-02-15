@@ -33,7 +33,7 @@ const ThorRow: FC<ThorRowProps> = ({ chemical, section, index }) => {
 
     const calculateHeatofFormation = useCallback(async () => {
 
-        if(chemical.casNo && numberOfMoles) {
+        if(chemical.casNo && chemical.phase && numberOfMoles) {
             server
             .getHeatOfFormation(chemical.casNo, chemical.phase, numberOfMoles)
             .then((res) => {

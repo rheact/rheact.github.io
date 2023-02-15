@@ -60,8 +60,8 @@ const ComponentTable = () => {
                     <th>CAS-No</th>
                     <th>Component Name</th>
                     <th>Phase</th>
-                    <th>Number of Moles</th>
-                    <th>Heat of Formation</th>
+                    <th>Stoichiometric Coefficient</th>
+                    <th>Heat of formation (KJ/mol)</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -88,8 +88,13 @@ type ThorModalProps = {
 const ThorModal: FC<ThorModalProps> = ({ open, setOpen }) => {
     return (
         <Modal isOpen={open} id='thor-modal'>
-            <ModalHeader toggle={() => setOpen(false)}>Heat of Reaction Calculation Tool</ModalHeader>
+            <ModalHeader toggle={() => setOpen(false)}>
+                Heat of Reaction Calculation Tool
+            </ModalHeader>
             <ModalBody>
+                <div id='thor-des'>
+                    This tool calculates the heat of reaction using Hess's law and the standard enthalpy of formation (25&deg;C) of each component in the defined state. The ethalpy values are based on published data in the CRC handbook of Chemistry and Physics.
+                </div>
                 <ComponentTable />
             </ModalBody>
         </Modal>

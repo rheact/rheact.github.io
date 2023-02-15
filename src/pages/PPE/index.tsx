@@ -57,34 +57,30 @@ const PPEPage = () => {
 
     return (
         <Container>
-            <ListGroup horizontal id="ppe-steps">
-                <ListGroupItem className="step">
-                    <div className={classnames(
-                        'step-content',
-                        questionaireActive
-                            ? 'step-active'
-                            : 'step-inactive'
-                        )}
-                        onClick={() => handleStepperClick(setQuestionaireActive)}
-                    >
-                        <i className={`bi bi-card-list me-2`} />
-                        <span className="step-label">Questionaire</span>
-                    </div>
-                </ListGroupItem>
-                <ListGroupItem className="step">
-                    <div className={classnames(
-                        'step-content',
-                        resultsActive
-                            ? 'step-active'
-                            : 'step-inactive'
-                        )}
-                        onClick={() => handleStepperClick(setResultsActive)}
-                    >
-                        <i className={`bi bi-file-earmark-text me-2`} />
-                        <span className="step-label">Report</span>
-                    </div>
-                </ListGroupItem>
-            </ListGroup>
+            <div className="mt-2  arrow-steps clearfix">
+                <div className={classnames(
+                    'step',
+                    questionaireActive
+                        ? 'step-active'
+                        : 'step-inactive'
+                    )}
+                    onClick={() => handleStepperClick(setQuestionaireActive)}
+                >
+                    <i className={`bi bi-card-list me-2`} />
+                    <span className="step-label">Questionaire</span>
+                </div>
+                <div className={classnames(
+                    'step',
+                    resultsActive
+                        ? 'step-active'
+                        : 'step-inactive'
+                    )}
+                    onClick={() => handleStepperClick(setResultsActive)}
+                >
+                    <i className={`bi bi-file-earmark-text me-2`} />
+                    <span className="step-label">Report</span>
+                </div>
+            </div>
             {questionaireActive && 
                 <QuestionairePage 
                     nextButton={

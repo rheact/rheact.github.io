@@ -1,0 +1,55 @@
+.title-wrapper {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.pac-chemical-selector {
+    margin: 50px auto;
+    max-width: 500px;
+}
+
+.pac-page .form-check-input:checked {
+    background-color: #93c54b;
+    border-color: #93c54b;
+}
+
+.pac-questions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.pac-answers {
+    margin: 20px 0;
+}
+
+.pac-radio-label {
+    margin-right: 50px;
+}
+
+.pac-input-label {
+    margin-right: 20px;
+}
+
+.pac-rating-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.pac-btn {
+    display: block
+}
+
+#pac-rating {
+    margin-top: 20px;
+    max-width: 500px;
+}
+
+#pac-btn-wrapper {
+    width: 500px;
+}
+
+.pac-cell {
+    margin-bottom: 20px;
+    width: 500px;
+}

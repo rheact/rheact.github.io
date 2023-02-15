@@ -1,4 +1,14 @@
 @media print { 
     /* All your print styles go here */
     #reportDetail { display: inline-block !important; } 
+    #cameo-table {
+        zoom: 80%;
+    }
+    #cameo-table .Cameo div {
+        font-size: 2vw;
+    }
+    #cameo-table img {
+        width: 20px;
+        height: 20px;
+    }
 }

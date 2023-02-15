@@ -2,6 +2,10 @@
     max-width: 1500px;
 }
 
+#thor-des {
+    margin-bottom: 16px;
+}
+
 #thor-result {
     margin: 50px;
 }

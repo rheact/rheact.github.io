@@ -23,12 +23,12 @@ const ReportSection = function ({ className }) {
         .join(red);
 
     return (
-        <div className={className}>
+        <div className={className} id="cameo-table">
             <h2 className="m-0">Chemical Compatibility Matrix</h2>
             <div className="d-flex justify-content-center">
                 <div className="Cameo" dangerouslySetInnerHTML={{ __html: data }} />
             </div>
-            <div className="w-100 text-muted">Generated using the CAMEO chemicals tool available online. For more information, check https://cameochemicals.noaa.gov/</div>
+            <div className="w-100 text-muted">Generated using the CAMEO chemicals tool available online. For more information, check <a href="https://cameochemicals.noaa.gov/" target="_blank">https://cameochemicals.noaa.gov/</a></div>
         </div>
     );
 };

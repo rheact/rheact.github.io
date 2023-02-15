@@ -37,3 +37,18 @@ export enum CpUnit {
     kJ_mol_degC = 'kJ/mol/°C',
 };
 export const CP_UNITS_LIST = Object.values(CpUnit);
+
+export enum PACPressureUnit {
+    atm_abs = 'atm (Absolute)',
+    atm_gauge = 'atm (Gauge)',
+    torr_abs = 'torr (Absolute)',
+    torr_gauge = 'torr (Gauge)',
+    kpa_abs = 'kPa (Absolute)',
+    kpa_gauge = 'kPa (Gauge)',
+    psi_abs = 'psi (Absolute)',
+    psi_gauge = 'psi (Gauge)',
+    bar_abs = 'bar (Absolute)',
+    bar_gauge = 'bar (Gauge)'
+}
+
+export const PAC_PRESSURE_UNITS_LIST = Object.values(PACPressureUnit);

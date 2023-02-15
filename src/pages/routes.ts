@@ -4,10 +4,11 @@ const R = {
     ROUTE_WELCOME: '/welcome',
     ROUTE_USER_GUIDE: '/user_guide',
 
-
     ROUTE_EVALUATION: '/evaluate',
 
     ROUTE_PPE_EVALUATION: '/ppe',
+
+    ROUTE_PAC: '/pac',
 
     ROUTE_LICENSE: '/license',
     ROUTE_ACKNOWLEDGEMENTS: '/acknowledgements',

@@ -1,7 +1,7 @@
 import { FC, FormEvent, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useToggle } from "react-use";
-import { Button, ButtonGroup, Input, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
+import { Button, ButtonGroup, InputGroup, Input, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
 import { InputType } from "reactstrap/types/lib/Input";
 import { Chemical } from "model";
 import * as STORE from 'store';
@@ -102,10 +102,6 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
     const dispatch = useDispatch();
     const [viewProps, toggleProps] = useToggle(false);
 
-    if(!chemical.phase) {
-        dispatch(STORE.CHANGE_CHEMICAL_PHASE({section, index, newPhase: 'Solid'}))
-    }
-
     const getChangeProp = useCallback(
         (key: keyof Chemical) => (e: FormEvent<HTMLInputElement>) => {
             const update: any = { ...chemical };
@@ -185,11 +181,22 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
                 {chemical.molWt}    
             </td>
             <td>
-                <Input className={"fw-bold comp-type-dropdown"} type="select" value={chemical.phase} onChange={e => onChangePhase(e.target.value)}>
-                    <option>Solid</option>
-                    <option>Liquid</option>
-                    <option>Gas</option>
-                </Input>   
+                <InputGroup>
+                    <Input 
+                        className={"fw-bold comp-type-dropdown"} 
+                        type="select" value={chemical.phase} 
+                        onChange={e => onChangePhase(e.target.value)}
+                        invalid={!chemical.phase}
+                    >
+                        <option></option>
+                        <option>Solid</option>
+                        <option>Liquid</option>
+                        <option>Gas</option>
+                    </Input>
+                    <div className="invalid-feedback">
+                        Please select a phase!
+                    </div>
+                </InputGroup>  
             </td>
             <td>
                 <ButtonGroup size="sm">
