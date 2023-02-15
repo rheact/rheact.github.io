@@ -37,7 +37,7 @@ const api = {
     getHazardMatrix(hNums: any) {
         const promises = Object.keys(hNums).map(async (name) => {
             const res = await server.post('/graph', null, {
-                headers: { 'Content-Type': 'text/plain' },
+                headers: { 'Content-Type': 'text/plain'},
                 params: {
                     hnums: hNums[name].hNumbers,
                 },
@@ -75,7 +75,7 @@ const api = {
             });
     },
 
-    getHeatOfFormation(casNo: string, phase: 'Solid' | 'Liquid' | 'Gas', numberOfMoles: number) {
+    getHeatOfFormation(casNo: string, phase: string, numberOfMoles: number) {
         return server
             .post('/heatOfFormation', undefined, {
                 params: { casNo, phase, numberOfMoles: numberOfMoles.toString() }
@@ -86,6 +86,27 @@ const api = {
                 if(res.status === 400)
                     throw Error(res.data);
                 return res.data
+            })
+    },
+    
+    getPACToxityRating(casNo: string, AQ: string, typeOfRelease: string, temp: string, tempUnit: string, pressure: string, pressureUnit: string, diameter: string, molecularWeight: string, density: string, liquidHeight: string, boilingPoint: string, heatCapacity: string, HOV: string, vaporPressure: string, vaporPressureUnit: string, dikedArea: string, totalAmount: string) {
+        return server
+            .post('/pac', undefined, {
+                params: {casNo, AQ, typeOfRelease, temp, tempUnit, pressure, pressureUnit, diameter, molecularWeight, density, liquidHeight, boilingPoint, heatCapacity, HOV, vaporPressure, vaporPressureUnit, dikedArea, totalAmount}
+            })
+    },
+
+    fetchVaporPressure(casNo: string, vaporPressureSDS: string, liquidTemp: string, liquidTempUnit: string) {
+        return server
+            .post('/vaporPressure', undefined, {
+                params: {casNo, vaporPressureSDS, liquidTemp, liquidTempUnit}
+            })
+    },
+
+    fetchLiqiudDensity(casNo: string, liquidTemp: string, liquidTempUnit: string) {
+        return server
+            .post('/liquidDensity', undefined, {
+                params: {casNo, liquidTemp, liquidTempUnit}
             })
     }
 };
