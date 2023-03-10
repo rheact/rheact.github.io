@@ -37,7 +37,7 @@ const HTable = function ({ results, className }) {
 
                             <td>
                                 <div className="d-flex flex-column">
-                                    {hNums[row].hNumbers.split(', ').map((hNum, j) => (
+                                    {hNums[row].hNumbers && hNums[row].hNumbers.split(', ').map((hNum, j) => (
                                         <span key={j}>{hNum}</span>
                                     ))}
                                 </div>

@@ -5,7 +5,7 @@
 
 .pac-chemical-selector {
     margin: 50px auto;
-    max-width: 500px;
+    max-width: 600px;
 }
 
 .pac-page .form-check-input:checked {
@@ -32,24 +32,36 @@
 }
 
 .pac-rating-wrapper {
-    display: flex;
-    justify-content: center;
+    max-width: 600px;
+    margin: auto;
 }
 
 .pac-btn {
     display: block
 }
 
-#pac-rating {
-    margin-top: 20px;
-    max-width: 500px;
-}
-
-#pac-btn-wrapper {
-    width: 500px;
-}
-
 .pac-cell {
     margin-bottom: 20px;
-    width: 500px;
+    width: 600px;
+}
+
+#pac-ul {
+    max-width: 600px;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#pac-cutoff {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#pac-rating {
+    margin-top: 20px;
+}
+
+#pac-values {
+    margin-top: 20px;
+    font-weight: bold;
 }

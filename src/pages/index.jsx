@@ -16,11 +16,11 @@ import AcknowledgementsPage from "./License/Acknowledgements";
 import PublicationsPage from "./Publications";
 import ContactUsPage from "./Contact";
 
-const ToolIndex = () => {
+const ToolIndex = ({ loadFn }) => {
     return (
             <Switch>
                 <Route path={R.ROUTE_EVALUATION}>
-                    <EvaluationPage />
+                    <EvaluationPage loadFn={loadFn} />
                 </Route>
 
                 <Route path={R.ROUTE_PPE_EVALUATION}>
@@ -43,7 +43,7 @@ const ToolIndex = () => {
                     <AcknowledgementsPage />
                 </Route>
 
-                <Route path={R.ROUTE_PUBLICATIONS}>
+                <Route path={R.ROUTE_REFERENCES}>
                     <PublicationsPage />
                 </Route>
 

@@ -114,3 +114,7 @@
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
+
+#loadBtnWrapper {
+    margin-bottom: 16px;
+}

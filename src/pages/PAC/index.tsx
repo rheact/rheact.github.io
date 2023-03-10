@@ -39,6 +39,7 @@ const PACPage = () => {
     const [showHC, setShowHC] = useState<boolean>(false)
     const [showBP, setShowBP] = useState<boolean>(false)
     const [showMW, setShowMW] = useState<boolean>(false)
+    const [showCutOff, setShowCutOff] = useState<boolean>(false);
     const [fetchedVaporPressure, setFetchedVaporPressure] = useState<string>('')
     const [liquidDensitySource, setLiquidDensitySource] = useState<string>('')
     const [openTooltip, toggleTooltip] = useToggle(false);
@@ -61,6 +62,7 @@ const PACPage = () => {
         setAQ('')
         setTypeOfRelease('')
         setToxityRating('')
+        setShowCutOff(false);
         clearValues()
     }, [])
 
@@ -86,6 +88,7 @@ const PACPage = () => {
 
     const clearRating = useCallback(() => {
         setToxityRating('')
+        setShowCutOff(false);
     }, [])
 
     const clearRadioSelectionTypeOfRelease = useCallback(() => {
@@ -126,6 +129,10 @@ const PACPage = () => {
             .getPACToxityRating(chemicalCasNo || '', AQ, typeOfRelease, operatingTemp, tempUnit, openTank ? '0' : pressure, openTank ? 'kPa' : pressureUnit, diameter, chemical.molWt || molecularWeight, density, liquidHeight, boilingPoint, heatCapacity, HOV, vaporPressure, vaporPressureUnit, dikedArea, totalAmount)
             .then((res) => {
                 setToxityRating(res.data)
+                const regex = new RegExp('[0-9]\.[0-9]');
+                if (regex.test(res.data)) {
+                    setShowCutOff(true);
+                }
                 if (res.data.includes('heat capacity')) {
                     setShowHC(true)
                 }
@@ -175,7 +182,26 @@ const PACPage = () => {
     return (
         <Container className="pac-page">
             <div className='title-wrapper'>
-                <h1>Protective Action Criteria (PAC)</h1>
+                <h1>Protective Action Criteria (PAC) Toxicity Rating</h1>
+            </div>
+            <div id='pac-desc'>
+                The Protective Action Criteria (PAC) Toxicity Rating provides a simple and standardized method of rating the relative acute 
+                health hazard potential to people at the plant and for people in neighboring plants or communities from possible chemical release 
+                incidents. It is used for
+                <ul id='pac-ul'>
+                    <li>
+                        Conducting an initial Process Hazard Analysis
+                    </li>
+                    <li>
+                        Making recommendations for eliminating, reducing or mitigating releases
+                    </li>
+                    <li>
+                        Planning emergency responses
+                    </li>
+                </ul>
+                The PAC Toxicity Rating was adapted from the published DOW’s Chemical Exposure Index (<a target="_blank" href="CEI.pdf">CEI</a>). 
+                Unlike the DOW CEI which relies on ERPG-2, the PAC Toxicity Rating depends on published PAC-2 values.
+                Read more about PAC <a target="_blank" href="https://www.energy.gov/ehss/protective-action-criteria-pac-aegls-erpgs-teels">here</a>.
             </div>
             <div className='pac-chemical-selector'>
                 <div>Select a chemical to start the evaluation</div>
@@ -827,15 +853,29 @@ const PACPage = () => {
                             Calculate PAC Toxity Rating
                         </Button>
                     </div>
-                    <div id="pac-rating">
+                    <div>
                         {
                             toxityRating && (
-                                <div>
-                                    PAC Toxity Rating: {toxityRating}
-                                </div>
+                                <>
+                                    <div id="pac-rating">{toxityRating.split('"')[1].split(';')[0]}</div>
+                                    <div id="pac-values">Values used in the calculation:</div>
+                                    {toxityRating.split('"')[1].split(';').slice(1).map(text => {
+                                        return <div>{text}</div>
+                                    })}
+                                </>
                             )
                         }
                     </div>
+                    {
+                        showCutOff && (
+                            <div id="pac-cutoff">
+                                A PAC Toxicity Rating greater than 300 requires further risk review.<br/>
+                                If further review is needed, complete the Chemical Exposure Review Process
+                                that contains a <a target="_blank" href="ContainmentAndMitigationChecklist.pdf">Containment and Mitigation Checklist</a> 
+                                &nbsp;and <a target="_blank" href="ChemicalExposureIndexReviewProcess.pdf">Review Package</a>.
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </Container>

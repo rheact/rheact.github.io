@@ -44,8 +44,12 @@ const NextButton: FC<StepButtonProps> = function ({ label, activeF, deactiveF })
     );
 };
 
+type EvaluationPageProps = {
+    loadFn: Function
+};
 
-const EvaluationPage = () => {
+
+const EvaluationPage: FC<EvaluationPageProps> = function ({ loadFn }) {
     const [detailsActive, setDetailsActive] = useState<boolean>(true);
     const [componentsActive, setComponentsActive] = useState<boolean>(false);
     const [paramActive, setParamActive] = useState<boolean>(false);
@@ -124,6 +128,7 @@ const EvaluationPage = () => {
                             deactiveF={setDetailsActive}
                         />
                     }
+                    loadFn={loadFn}
                 />
             }
             {componentsActive && 

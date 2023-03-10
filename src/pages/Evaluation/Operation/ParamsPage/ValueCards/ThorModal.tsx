@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
+import { Alert, Button, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
 import { Equation, RheactState } from "model";
 import { HeatUnit } from 'units'
 import { SET_HEAT_OF_REACTION, SET_HEAT_OF_REACTION_UNIT } from 'store';
@@ -93,6 +93,9 @@ const ThorModal: FC<ThorModalProps> = ({ open, setOpen }) => {
             </ModalHeader>
             <ModalBody>
                 <div id='thor-des'>
+                    <Alert color="light" isOpen>
+                        RHEACT does not check if your reaction scheme is correct nor if you entered a non-balanced reaction.
+                    </Alert>
                     This tool calculates the heat of reaction using Hess's law and the standard enthalpy of formation (25&deg;C) of each component in the defined state. The ethalpy values are based on published data in the CRC handbook of Chemistry and Physics.
                 </div>
                 <ComponentTable />

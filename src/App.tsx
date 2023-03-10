@@ -23,11 +23,16 @@ const App: FC<any> = () => {
                         <Toolbar />
                         <div id="main-content-wrapper">
                             <main>
-                                <ToolIndex />
+                                <ToolIndex loadFn={setStore}/>
                             </main>
-                            <footer className="py-5 d-flex justify-content-center align-items-center text-muted">
-                            Reactive Hazard Evaluation Analysis and Compilation Tool (RHEACT) v2.0 (Beta version), Oct 15, 2022
-                                {/* &copy; CISTAR, {new Date().getFullYear()} */}
+                            <footer className='py-5'>
+                                <div className="d-flex justify-content-center align-items-center text-muted">
+                                    Rheact is currrently under development with buges being fixed and new features being added; we anticipate a public stable version by May 2023
+                                </div>
+                                <div className="d-flex justify-content-center align-items-center text-muted">
+                                    Reactive Hazard Evaluation Analysis and Compilation Tool (RHEACT) v2.0 (Beta version), Oct 15, 2022
+                                    {/* &copy; CISTAR, {new Date().getFullYear()} */}
+                                </div>
                             </footer>
                         </div>
                     </PageContent>

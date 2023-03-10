@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Card, CardBody, Input, Label } from "reactstrap";
+import { Alert, Card, CardBody, Input, Label } from "reactstrap";
 import * as STORE from "store";
 
 const ReactionCard = () => {
@@ -28,6 +28,9 @@ const ReactionCard = () => {
         <Card>
             <CardBody>
                 <div className="h5 fw-bolder">Reaction Details</div>
+                <Alert color="light" isOpen>
+                    RHEACT does not check if your reaction scheme is correct nor if you entered a non-balanced reaction.
+                </Alert>
                 <Label>Complete Balanced Reaction</Label>
                 <Input
                     type="textarea"

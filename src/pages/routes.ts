@@ -12,7 +12,7 @@ const R = {
 
     ROUTE_LICENSE: '/license',
     ROUTE_ACKNOWLEDGEMENTS: '/acknowledgements',
-    ROUTE_PUBLICATIONS: '/publications',
+    ROUTE_REFERENCES: '/references',
     ROUTE_CONTACT: '/contact',
 
     ROUTE_SETTINGS: '/settings',
