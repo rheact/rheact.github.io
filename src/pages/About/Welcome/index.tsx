@@ -8,10 +8,10 @@ const WelcomePage = () => {
     return (
         <>
         <div className="welcome-center">
-            <h1>RHEACT</h1>
-            <h3 className="welcome-name">
+            <h2>RHEACT</h2>
+            <h4 className="welcome-name">
                 Reactive Hazard Evaluation Analysis and Compilation Tool
-            </h3>
+            </h4>
         </div>
         <div className="welcome-text">
         The prevalence of safety incidents in laboratory settings at academic, 

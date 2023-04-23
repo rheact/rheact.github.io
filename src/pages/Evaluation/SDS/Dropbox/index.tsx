@@ -5,11 +5,11 @@ import { ADD_REACTANT } from "store";
 import { Chemical } from "model";
 import ComponentDropzone from "./ComponentDropzone";
 
-type AddEmptyChemicalButtonProps = {
+export type AddEmptyChemicalButtonProps = {
     addAction: any,
 };
 
-const AddEmptyChemicalButton: FC<AddEmptyChemicalButtonProps> = ({ addAction }) => {
+export const AddEmptyChemicalButton: FC<AddEmptyChemicalButtonProps> = ({ addAction }) => {
     const dispatch = useDispatch();
 
     const addEmpty = useCallback(() => {

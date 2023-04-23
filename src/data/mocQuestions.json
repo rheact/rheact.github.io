@@ -1,0 +1,169 @@
+[
+    {
+        "uid": "032301",
+        "question": "Is there a change in personnel working on the project?",
+        "type": "bool",
+        "answer": {
+            "yes": "Proper onboarding of new personnel involving: \n\t1.General safety training on working in the lab area\n\t2.Specific safety training on working on the project\n\t3.Review locations of emergency devices (e.g., eye wash station, fire extinguisher, first aid, emergency telephone,…) \n\t4.Understanding of up-to-date SOP for both low-, moderate- and high-hazard equipment or procedures \n\t5. Documentation of personnel onboarding and safety training",
+            "no": "No actions are recommended to be taken since there is no personnel change"
+        }
+    },
+    {
+        "uid": "032302",
+        "question": "Is there a change in the chemical used in the project?",
+        "type": "boolPersonnel",
+        "answer": {
+            "yes": "Safe incorporation of new chemicals involving: \n\t1. Hazard analysis of the new chemical by reviewing chemical’s SDS \n\t2. Updating chemical inventory with storage location, date opened and date of expiry \n\t3. Take proper precautions in terms of compatible PPE when using the new chemical \n\t4. Check for chemical compatibility with other chemicals and materials used in project \n\t5. Update the SOP incorporating the appropriate PPE and engineering controls \n\t6. Discussion of chemical changes with lab peers and/or lab safety personnel \n\t7.Documentation of when and why the chemical change happened as well as date approved",
+            "no": {
+                "personnelChange": "As a new personnel, it is recommended to review the chemical SDS and perform a hazard assessment to ensure that all hazards, proper PPE and engineering controls were correctly identified by previous user",
+                "noPersonnelChange": "No actions are recommended to be taken since there were no changes to the chemicals used in the project"
+            }
+        }
+    },
+    {
+        "uid": "032303",
+        "question": "Is a new equipment being installed or is an existing equipment being modified?",
+        "type": "boolPersonnel",
+        "answer": {
+            "yes": "Safe installation of new equipment or the modification of existing equipment involves: \n\t1. Creating new Equipment Operating Procedure (EOP) or modifying existing EOP \n\t2. Install/update safety devices (e.g. pressure relief valves, over-temperature controls, etc.) \n\t3. Detailed Hazard Analysis of the new/modified equipment \n\t4. Discussion of equipment changes with lab peers and lab safety personnel \n\t5. Proper PPE selection and Engineering controls for equipment \n\t6. Documentation of when and why changes were made to equipment",
+            "no": {
+                "personnelChange": "As a new personnel, it is recommended to perform a hazard assessment of the equipment to ensure that all hazards, proper PPE and engineering controls were correctly identified by previous user",
+                "noPersonnelChange": "No actions needs to be taken, since no changes to equipment were identified by the user"
+            }
+        }
+    },
+    {
+        "uid": "032304",
+        "question": "Is a new procedure being made or is an existing procedure being updated for the project?",
+        "type": "boolPersonnel",
+        "answer": {
+            "yes": "Safe incorporation of new procedure or the modification of an existing procedure involves: \n\t1. Creating new Standard Operating Procedure (SOP) or modifying existing SOP \n\t2. Detailed Hazard Analysis of the new/modified procedure \n\t3. Discussion of procedure changes with lab peers and lab safety personnel \n\t4. Proper PPE selection and Engineering Control for procedure \n\t5. Documentation of when and why changes were made to procedure as well as date approved",
+            "no": {
+                "personnelChange": "As a new personnel, it is recommended to perform a hazard assessment of the process to ensure that all hazards, proper PPE and engineering controls were correctly identified by previous user",
+                "noPersonnelChange": "No actions are recommended to be taken, since no changes to procedure were identified by the user"
+            }
+        }
+    },
+    {
+        "uid": "032305",
+        "question": "Are changes being made to the operating location (i.e. a different lab room or building, in/outside fume hood)?",
+        "type": "boolPersonnel",
+        "answer": {
+            "yes": "Safe operation of process in new location involves: \n\t1. Hazard analysis to ensure that process still operates under safe limits specified by chemicals, materials, and engineering controls \n\t2. Discussion of operating location changes with lab peers and lab safety personnel \n\t3. Review locations of emergency devices (e.g., eye wash station, fire extinguisher, first aid, emergency telephone,…) \n\t4. Proper PPE selection and Engineering Controls are appropriate for new operating location \n\t5. Documentation of when and why changes were made to operating location",
+            "no": {
+                "personnelChange": "As a new personnel, it is recommended to perform a hazard assessment of the entire process to ensure that the process is being conducted safety in the current location",
+                "noPersonnelChange": "No actions are recommended to be taken, since no changes to operating location were identified by the user"
+            }
+        }
+    },
+    {
+        "uid": "032306",
+        "question": "Are changes being made to operating parameters (temperature, pressure, flow rates, amounts)?",
+        "type": "boolPersonnel",
+        "answer": {
+            "yes": "Safe incorporation of new operating parameters involves: \n\t1. Hazard analysis to ensure that process still operates under safe limits specified by chemicals, materials, and engineering controls \n\t2. Discussion of operating condition changes with lab peers and lab safety personnel \n\t3. Proper PPE selection and Engineering Controls are appropriate for new operating conditions \n\t4. Documentation of when and why changes were made to operating parameters",
+            "no": {
+                "personnelChange": "As a new personnel, it is recommended to perform a hazard assessment of the process to ensure that safe operating limits were correctly identified by previous user",
+                "noPersonnelChange": "No actions are recommended to be taken, since no changes to operating parameters were identified by the user"
+            }
+        }
+    },
+    {
+        "uid": "032307",
+        "question": "How much of the key reagent(s) (i.e. main reactant(s)) is/are being used in the process?",
+        "type": "multi",
+        "choices": [
+            "Amount ≤ 5 g or 5 mL",
+            "5 g or 5 mL < Amount < 100g or 100 mL",
+            "Amount ≥ 100 g or 100 mL"
+        ],
+        "answer": [
+            "Level 1 Review Recommended",
+            "Level 2 Review Recommended",
+            "Level 3 Review Recommended"
+        ]
+    },
+    {
+        "uid": "032308",
+        "question": "What is the total mass or volume of all components (reactant, diluent/solvent, product) of the process?",
+        "type": "multi",
+        "choices": [
+            "Amount ≤ 100 g or 100 mL",
+            "100 g or 100 mL < Amount < 5 kg or 5 L",
+            "Amount ≥ 5 kg or 5 L"
+        ],
+        "answer": [
+            "Level 1 Review Recommended",
+            "Level 2 Review Recommended",
+            "Level 3 Review Recommended"
+        ]
+    },
+    {
+        "uid": "032309",
+        "question": "Do any of the changes result in ≥ 20% increase in the amount of waste streams/emissions or create a new kind of waste or emission?",
+        "type": "bool",
+        "answer": {
+            "yes": "Minimum Level 2 Review is recommended to ensure that waste/emissions are within safe operating limits and appropriately disposed of",
+            "no": "Level 1 Review recommended to ensure that waste containment and disposal were correctly identified by previous user"
+        }
+    },
+    {
+        "uid": "032310",
+        "question": "Are you working with glassware under pressure (>1 bar) or under vacuum (<0.1 bar)?",
+        "type": "bool",
+        "answer": {
+            "yes": "Level 2 Review is recommended to ensure that operating pressures are within safe limits (typically ≤70%) of maximum allowable operating pressures (MAWP). Level 3 Review is recommended if operating pressure is ≥70% of MAWP",
+            "no": "Level 1 Review recommended"
+        }
+    },
+    {
+        "uid": "032311",
+        "question": "Are you working with metal systems (pipes, containers, valves, etc) under pressure (>5 bar)?",
+        "type": "bool",
+        "answer": {
+            "yes": "Level 2 Review is recommended if operating pressures are ≥50% but ≤70% of maximum allowable working pressures (MAWP). Level 3 Review if operating pressure is ≥70% of MAWP",
+            "no": "Level 1 Review recommended"
+        }
+    },
+    {
+        "uid": "032312",
+        "question": "What is your operating temperature?",
+        "type": "multi",
+        "choices": [
+            "0°C ≤ T ≤ 100°C",
+            "-80°C < T < 0°C or 100°C < T < 600°C",
+            "T ≤ -80°C or T ≥ 600°C"
+        ],
+        "answer": [
+            "Level 1 Review Recommended",
+            "Level 2 Review Recommended",
+            "Level 3 Review Recommended"
+        ]
+    },
+    {
+        "uid": "032313",
+        "question": "Are you working with a radiation source? (https://www.lasersafetyfacts.com/laserclasses.html)?",
+        "type": "multi",
+        "choices": [
+            "No radiation source",
+            "Class 1 Lasers (1, 1M)",
+            "Class 2 Lasers (2, 2M)",
+            "Class 3 or 4 Lasers (3R, 3B, 4)"
+        ],
+        "answer": [
+            "No Review Recommended",
+            "Level 1 Review Recommended",
+            "Level 2 Review Recommended",
+            "Level 3 Review Recommended"
+        ]
+    },
+    {
+        "uid": "032314",
+        "question": "Is the process or equipment being attended to by an operator during operation?",
+        "type": "bool",
+        "answer": {
+            "yes": "Level 1 Review Recommended",
+            "no": "Level 2 Review Recommended"
+        }
+    }
+]

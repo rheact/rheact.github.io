@@ -11,7 +11,7 @@ const ReportSection = function ({ className }) {
 
     if (!results || !results.cameoMatrix || !results.cameoMatrix.html_element) {
         return (
-            <h2 className={`text-muted ${className}`}>No cameo matrix calculated.</h2>
+            <h3 className={`text-muted ${className}`}>No cameo matrix calculated.</h3>
         );
     }
 
@@ -24,7 +24,7 @@ const ReportSection = function ({ className }) {
 
     return (
         <div className={className} id="cameo-table">
-            <h2 className="m-0">Chemical Compatibility Matrix</h2>
+            <h3 className="m-0">Chemical Compatibility Matrix</h3>
             <div className="d-flex justify-content-center">
                 <div className="Cameo" dangerouslySetInnerHTML={{ __html: data }} />
             </div>

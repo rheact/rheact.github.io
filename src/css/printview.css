@@ -2,10 +2,18 @@
     body * {
         visibility: hidden;
     }
+
+    .moc-printable,
+    .moc-printable * {
+        visibility: visible;
+    }
+
     #printable,
     #printable * {
         visibility: visible;
     }
+    
+    .moc-printable,
     #printable {
         -webkit-print-color-adjust: exact !important;
         position: absolute;
@@ -15,17 +23,27 @@
         width: 100vw;
         padding: 0;
     }
-    h2 {
+
+    
+    /* h2 {
         margin-top: 4rem;
+    } */
+
+    .page-break-before {
+        break-before: page;
+    }
+
+    .page-break-after {
+        break-after: page;
     }
     
-    .page-break-after {
+    /* .page-break-after {
         page-break-after: always;
     }
 
     .page-break-before {
         page-break-before: always;
-    }
+    } */
 }
 
 #printable {

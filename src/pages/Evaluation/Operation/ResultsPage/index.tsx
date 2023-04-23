@@ -41,7 +41,7 @@ const ReportSection = function ReportSection({ prevButton, nextButton }: ReportP
         <>
         <section id="printable">
             <div className="d-flex justify-content-between">
-                <h1 className="fw-bolder">RHEACT Safety Report</h1>
+                <h2 className="fw-bolder">RHEACT Safety Report</h2>
                 {generationTime &&
                 <span>
 Generated:
@@ -88,7 +88,7 @@ const ResultsPage = function ({ prevButton, nextButton }: ReportProps) {
             <div className="w-100 d-flex align-items-center p-2" style={{ backgroundColor: 'white' }}>
                 <Button color="primary" className="ms-1" onClick={onPrint}>
                     <i className="bi bi-printer-fill me-1" />
-          Print
+                    Print
                 </Button>
             </div>
 

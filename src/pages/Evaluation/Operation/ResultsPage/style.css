@@ -11,4 +11,7 @@
         width: 20px;
         height: 20px;
     }
+    #moc-details-printable {
+        display: inline-block !important
+    }
 }

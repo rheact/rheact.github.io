@@ -182,7 +182,7 @@ const PACPage = () => {
     return (
         <Container className="pac-page">
             <div className='title-wrapper'>
-                <h1>Protective Action Criteria (PAC) Toxicity Rating</h1>
+                <h2>Protective Action Criteria (PAC) Toxicity Rating</h2>
             </div>
             <div id='pac-desc'>
                 The Protective Action Criteria (PAC) Toxicity Rating provides a simple and standardized method of rating the relative acute 

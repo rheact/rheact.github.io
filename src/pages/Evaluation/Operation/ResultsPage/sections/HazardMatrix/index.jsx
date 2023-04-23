@@ -14,26 +14,26 @@ const Matrix = function ({ results, className }) {
 
     if (!results || !results.hazardMatrix) {
         return (
-            <h2 className={`text-muted ${className}`}>
+            <h3 className={`text-muted ${className}`}>
                 No hazard matrix generated.
-            </h2>
+            </h3>
         );
     }
 
     const matrix = results.hazardMatrix;
     const columns = [
         'Name',
-        'Flammability',
-        'Reactivity',
         'Skin absorption',
         'Skin contact',
         'Eye contact',
         'Respiratory',
+        'Ingestion',
+        'Sensitizer',
         'Carcinogen',
         'Reproductive hazard',
-        'Sensitizer',
-        'Ingestion',
-        'Other',
+        'Organ toxicity',
+        'Flammability',
+        'Reactivity or explosivity',
     ];
 
     const newMatrix = [];
@@ -110,35 +110,18 @@ const Matrix = function ({ results, className }) {
             console.log('Error: Unknown value');
         }
 
-        switch (element.other) {
+        switch (element.reactivityOrExplosivity) {
         case '#7fd13b':
-            element.otherPic = green;
+            element.reactivityOrExplosivityPic = green;
             break;
         case '#ffff00':
-            element.otherPic = yellow;
+            element.reactivityOrExplosivityPic = yellow;
             break;
         case '#ffa500':
-            element.otherPic = orange;
+            element.reactivityOrExplosivityPic = orange;
             break;
         case '#c00000':
-            element.otherPic = red;
-            break;
-        default:
-            console.log('Error: Unknown value');
-        }
-
-        switch (element.reactivity) {
-        case '#7fd13b':
-            element.reactivityPic = green;
-            break;
-        case '#ffff00':
-            element.reactivityPic = yellow;
-            break;
-        case '#ffa500':
-            element.reactivityPic = orange;
-            break;
-        case '#c00000':
-            element.reactivityPic = red;
+            element.reactivityOrExplosivityPic = red;
             break;
         default:
             console.log('Error: Unknown value');
@@ -228,11 +211,28 @@ const Matrix = function ({ results, className }) {
         default:
             console.log('Error: Unknown value');
         }
+
+        switch (element.organToxicity) {
+            case '#7fd13b':
+                element.organToxicityPic = green;
+                break;
+            case '#ffff00':
+                element.organToxicityPic = yellow;
+                break;
+            case '#ffa500':
+                element.organToxicityPic = orange;
+                break;
+            case '#c00000':
+                element.organToxicityPic = red;
+                break;
+            default:
+                console.log('Error: Unknown value');
+            }
     });
 
     return (
         <div className={className}>
-            <h2>Hazard Matrix</h2>
+            <h3>Hazard Matrix</h3>
             <table align="center" style={styles.table}>
                 <thead>
                     <tr>
@@ -263,32 +263,6 @@ const Matrix = function ({ results, className }) {
                     {matrix.map((row, i) => (
                         <tr key={i}>
                             <td style={{ ...styles.th }}>{row.name}</td>
-                            <td
-                                style={{
-                                    ...styles.th,
-                                    color: row.flammability,
-                                    backgroundColor: row.flammability,
-                                }}
-                            >
-                                <img
-                                    src={newMatrix[i].flammabilityPic}
-                                    alt="green"
-                                    style={styles.image}
-                                />
-                            </td>
-                            <td
-                                style={{
-                                    ...styles.th,
-                                    color: row.reactivity,
-                                    backgroundColor: row.reactivity,
-                                }}
-                            >
-                                <img
-                                    src={newMatrix[i].reactivityPic}
-                                    alt="green"
-                                    style={styles.image}
-                                />
-                            </td>
                             <td
                                 style={{
                                     ...styles.th,
@@ -344,6 +318,32 @@ const Matrix = function ({ results, className }) {
                             <td
                                 style={{
                                     ...styles.th,
+                                    color: row.ingestion,
+                                    backgroundColor: row.ingestion,
+                                }}
+                            >
+                                <img
+                                    src={newMatrix[i].ingestionPic}
+                                    alt="green"
+                                    style={styles.image}
+                                />
+                            </td>
+                            <td
+                                style={{
+                                    ...styles.th,
+                                    color: row.sensitizer,
+                                    backgroundColor: row.sensitizer,
+                                }}
+                            >
+                                <img
+                                    src={newMatrix[i].sensitizerPic}
+                                    alt="green"
+                                    style={styles.image}
+                                />
+                            </td>
+                            <td
+                                style={{
+                                    ...styles.th,
                                     color: row.carcinogen,
                                     backgroundColor: row.carcinogen,
                                 }}
@@ -370,12 +370,12 @@ const Matrix = function ({ results, className }) {
                             <td
                                 style={{
                                     ...styles.th,
-                                    color: row.sensitizer,
-                                    backgroundColor: row.sensitizer,
+                                    color: row.organToxicity,
+                                    backgroundColor: row.organToxicity,
                                 }}
                             >
                                 <img
-                                    src={newMatrix[i].sensitizerPic}
+                                    src={newMatrix[i].organToxicityPic}
                                     alt="green"
                                     style={styles.image}
                                 />
@@ -383,12 +383,12 @@ const Matrix = function ({ results, className }) {
                             <td
                                 style={{
                                     ...styles.th,
-                                    color: row.ingestion,
-                                    backgroundColor: row.ingestion,
+                                    color: row.flammability,
+                                    backgroundColor: row.flammability,
                                 }}
                             >
                                 <img
-                                    src={newMatrix[i].ingestionPic}
+                                    src={newMatrix[i].flammabilityPic}
                                     alt="green"
                                     style={styles.image}
                                 />
@@ -396,12 +396,12 @@ const Matrix = function ({ results, className }) {
                             <td
                                 style={{
                                     ...styles.th,
-                                    color: row.other,
-                                    backgroundColor: row.other,
+                                    color: row.reactivityOrExplosivity,
+                                    backgroundColor: row.reactivityOrExplosivity,
                                 }}
                             >
                                 <img
-                                    src={newMatrix[i].otherPic}
+                                    src={newMatrix[i].reactivityOrExplosivityPic}
                                     alt="green"
                                     style={styles.image}
                                 />

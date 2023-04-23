@@ -8,6 +8,8 @@ const R = {
 
     ROUTE_PPE_EVALUATION: '/ppe',
 
+    ROUTE_MOC_GUIDE: '/moc',
+
     ROUTE_PAC: '/pac',
 
     ROUTE_LICENSE: '/license',

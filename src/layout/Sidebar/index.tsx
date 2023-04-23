@@ -41,9 +41,10 @@ const ToolPages: FC<ToolPagesProps> = function ({ loadFn }) {
             </div>
             <div className='full-name'>Reactive Hazard Evaluation Analysis and Compilation Tool</div>
             <NavButton icon="bi-house" label='Welcome' route={R.ROUTE_WELCOME} />
-            <NavButton icon="bi bi-question-circle-fill" label='User Guide' route={R.ROUTE_USER_GUIDE} />
-            <NavButton icon="bi-pencil-fill" label='Evaluate System' route={R.ROUTE_EVALUATION} />
+            <NavButton icon="bi bi-question-circle" label='User Guide' route={R.ROUTE_USER_GUIDE} />
+            <NavButton icon="bi bi-pencil" label='Evaluate System' route={R.ROUTE_EVALUATION} />
             <NavButton icon="bi-box" label='PPE Evaluation' route={R.ROUTE_PPE_EVALUATION} />
+            <NavButton icon="bi bi-list-check" label='MOC Guide' route={R.ROUTE_MOC_GUIDE} />
             <NavButton icon="bi bi-calculator" label='Protective Action Criteria' route={R.ROUTE_PAC} />
             <NavButton icon="bi bi-file-earmark-medical" label='License' route={R.ROUTE_LICENSE} />
             <NavButton icon="bi bi-award" label='Acknowledgements' route={R.ROUTE_ACKNOWLEDGEMENTS} />

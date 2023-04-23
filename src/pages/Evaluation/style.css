@@ -1,6 +1,6 @@
 #evaluation-steps {
     justify-content: space-between;
-    font-size: 20px;
+    font-size: 16px;
     margin: 20px 0;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .step-content {
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     margin: 0 1px 0 0;
     padding: 10px 0px 10px 10px;
@@ -75,7 +75,7 @@
 }
 
 .arrow-steps .step {
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     margin: 0 4px 0 0;
     padding: 10px 0px 10px 0px;

@@ -1,0 +1,24 @@
+.moc-table {
+    white-space: pre-wrap;
+}
+
+.moc-hazard-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.moc-section-title {
+    margin-top: 20px;
+}
+
+.moc-print {
+    margin-top: 10px;
+}
+
+.moc-level {
+    margin-top: 10px;
+}
+
+.moc-question-title {
+    color: #960808;
+}

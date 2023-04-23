@@ -8,6 +8,8 @@ import UserGuidePage from "./About/UserGuide"
 import EvaluationPage from "./Evaluation";
 // PPE
 import PPEPage from './PPE';
+// MOC
+import MOCPage from './MOC';
 // PAC
 import PACPage from './PAC';
 // Documentation
@@ -25,6 +27,10 @@ const ToolIndex = ({ loadFn }) => {
 
                 <Route path={R.ROUTE_PPE_EVALUATION}>
                     <PPEPage />
+                </Route>
+
+                <Route path={R.ROUTE_MOC_GUIDE}>
+                    <MOCPage />
                 </Route>
 
                 <Route path={R.ROUTE_PAC}>

@@ -144,6 +144,65 @@ export type QuestionnaireResponse = {
 }
 
 /**
+ * MOC Project Details
+ */
+export type MOCProjectDetails = {
+    projectTitle?: string
+    nameOfResearcher?: string,
+    principalInvestigator?: string,
+    labLocation?: string,
+    organization?: string,
+    description?: string
+}
+
+/**
+ * MOC Components
+ */
+export type MOCComponents = {
+    numChemicals: number,
+    chemicals: Chemical[]
+};
+
+/**
+ * MOC Operating Parameters
+ */
+export type MOCOperatingParameters = {
+    operatingTemp: string,
+    operatingPressure: string,
+    quantityOfKeyReagent: string,
+    totalReactionScale: string
+}
+
+/**
+ * MOC Questionnaire map
+ * From question ID to response
+ */
+export type MOCQuestionnaireResponse = {
+    [key: string]: string[] | {
+        yes: string;
+        no: string;
+    } | {
+        yes: string;
+        no: {
+            personnelChange: string;
+            noPersonnelChange: string;
+        };
+    }
+}
+
+/**
+ * MOC H matrix mapping
+ * Level1: [hazard classes that are all green (Safe) and/or all yellow (Caution)]
+ * Level2: [hazard classes that has at least one orange (Warning)]
+ * Level3: [hazard classes that has at least one red (Danger)]
+ */
+export type MOCHMatrix = {
+    level1: string[],
+    level2: string[],
+    level3: string[]
+}
+
+/**
  * RheactState is the root state of Rheact's user input.
  */
 export type RheactState = {
@@ -152,4 +211,9 @@ export type RheactState = {
     operatingParams: OperatingParams,
     ppe_questionnaire: QuestionnaireResponse,
     results: Report,
+    mocProjectDetails: MOCProjectDetails,
+    mocComponents: MOCComponents,
+    mocOperatingParameters: MOCOperatingParameters,
+    mocQuestionnaireResponse: MOCQuestionnaireResponse,
+    mocHMatrix: MOCHMatrix
 };

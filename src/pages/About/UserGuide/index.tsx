@@ -4,7 +4,7 @@ import "./style.css"
 const UserGuidePage = () => {
     return (
         <>
-        <h2 className="user-guide-title">Quick Start Guide:</h2>
+        <h3 className="user-guide-title">Quick Start Guide:</h3>
         <ul className="user-guide-list">
             <li>
             Load RHEACT website in Chrome, Firefox, or Safari.
@@ -32,10 +32,10 @@ const UserGuidePage = () => {
         Note: RHEACT does not save any user-entered information in the back-end. 
         Users can save their progress ("SAVE AS JSON" at top of the page) or perform analysis from previously saved files ("LOAD PREVIOUS ANALYSIS").
         </div>
-        <h2 className="user-guide-title">Detailed User Guide: 
+        <h3 className="user-guide-title">Detailed User Guide: 
             <a target="_blank" href="https://docs.google.com/document/d/1yZA4sWsCgqMS00OPut-7Kr_PUZ0WzJB90H5rYM_jzF8/edit?usp=sharing">Live Version</a>
-        </h2>
-        <h2 className="user-guide-title">Detailed User Guide Archived Version (Last Updated: 6/29/2022 1:00 AM ET)</h2>
+        </h3>
+        <h3 className="user-guide-title">Detailed User Guide Archived Version (Last Updated: 6/29/2022 1:00 AM ET)</h3>
         <div className="user-guide-pdf">
             <iframe title="file" src="/userGuide.pdf" style={{width: "100%", height: "100%"}} />
         </div>

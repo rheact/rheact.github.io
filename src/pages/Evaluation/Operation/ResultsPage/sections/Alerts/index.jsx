@@ -18,7 +18,7 @@ const Alert = function ({ className }) {
     const numDiluents = useSelector((state) => state.compound.numDiluents);
 
     if (!calculations) {
-        return (<h2 className={`text-muted ${className}`}>No alerts.</h2>);
+        return (<h3 className={`text-muted ${className}`}>No alerts.</h3>);
     }
 
     const compareReactants = () => {
@@ -272,14 +272,14 @@ const Alert = function ({ className }) {
 
     // no alerts
     if (reactants.length === 0 && products.length === 0 && diluents.length === 0 && sideReactions.length === 0)
-        return (<h2 className={`text-muted ${className}`}>No alerts.</h2>);
+        return (<h3 className={`text-muted ${className}`}>No alerts.</h3>);
 
     return (
         <>
-            <h2>Alerts</h2>
+            <h3>Alerts</h3>
             {((reactantAlerts.length === 0 && productAlerts.length === 0 && diluentAlerts.length === 0 && srAlerts.length === 0) 
             || (physicalState === 'Gas' && srAlerts.length === 0)) 
-            && <h3 style={{margin: "auto"}}>No Alerts</h3>}
+            && <h4 style={{margin: "auto"}}>No Alerts</h4>}
             <div className="Alert" style={style.main}>
                 {reactantAlerts.length !== 0 && physicalState != 'Gas'
                     && (

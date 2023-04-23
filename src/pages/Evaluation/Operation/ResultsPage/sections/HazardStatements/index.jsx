@@ -12,14 +12,14 @@ const HTable = function ({ results, className }) {
     ];
 
     if (!results || !results.hNums) {
-        return (<h2 className={`text-muted ${className}`}>No hazard numbers or statements.</h2>);
+        return (<h3 className={`text-muted ${className}`}>No hazard numbers or statements.</h3>);
     }
 
     const { hNums } = results;
 
     return (
         <div className={className}>
-            <h2>Hazard Statements</h2>
+            <h3>Hazard Statements</h3>
 
             <Table bordered align="center">
                 <thead className="bg-danger text-white">

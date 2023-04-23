@@ -22,7 +22,7 @@ const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
     return (
         <>
         <Container id="printable">
-            <h2>Typical Minimum Personal Protective Equipment (PPE)</h2>
+            <h3 className="ppe-title">Typical Minimum Personal Protective Equipment (PPE)</h3>
             <ListGroup className="ppe-table">
                 <ListGroupItem>
                     <ListGroupItemHeading>
@@ -55,7 +55,7 @@ const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
                 </ListGroupItem>
             </ListGroup>
 
-            <h2>PPE Recommendations from Questionnaire</h2>
+            <h3>PPE Recommendations from Questionnaire</h3>
             <Recommendations />
             <div className="d-flex flex-column ppe-links">
                 <span>
@@ -67,7 +67,7 @@ const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
                     </a>
                 ))}
             </div>
-            <h2>Extracted PPE from SDS</h2>
+            <h3>Extracted PPE from SDS</h3>
             <Extractions />
         </Container>
         {prevButton}

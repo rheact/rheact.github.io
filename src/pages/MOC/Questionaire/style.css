@@ -1,0 +1,11 @@
+.moc-question {
+    font-weight: bold;
+}
+
+.moc-checkbox {
+    margin: 10px 0 10px 0;
+}
+
+.moc-checkbox input {
+    margin-right: 10px;
+}

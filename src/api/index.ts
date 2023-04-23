@@ -108,6 +108,15 @@ const api = {
             .post('/liquidDensity', undefined, {
                 params: {casNo, liquidTemp, liquidTempUnit}
             })
+    },
+
+    getMOCHMatrix(hNumsMap: {[key: string]: string}) {
+        return server
+            .post('/mocHmatrix', undefined, {
+                params: {
+                    hNumsMap: JSON.stringify(hNumsMap)
+                }
+            })
     }
 };
 
