@@ -9,7 +9,7 @@ export enum PressureUnit {
     bar = 'bar',
     kPa = 'kPa',
     atm = 'atm',
-    torr = 'torr',
+    torr = 'torr (mmHg)',
     psia = 'psia',
     psig = 'psig',
 };
@@ -41,8 +41,8 @@ export const CP_UNITS_LIST = Object.values(CpUnit);
 export enum PACPressureUnit {
     atm_abs = 'atm (Absolute)',
     atm_gauge = 'atm (Gauge)',
-    torr_abs = 'torr (Absolute)',
-    torr_gauge = 'torr (Gauge)',
+    torr_abs = 'torr/mmHg (Absolute)',
+    torr_gauge = 'torr/mmHg (Gauge)',
     kpa_abs = 'kPa (Absolute)',
     kpa_gauge = 'kPa (Gauge)',
     psi_abs = 'psi (Absolute)',

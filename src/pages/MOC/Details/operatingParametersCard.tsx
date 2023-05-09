@@ -10,7 +10,7 @@ const OperatingParametersCard = () => {
         operatingPressure,
         quantityOfKeyReagent,
         totalReactionScale
-    } = useSelector<RheactState>(state => state.mocProjectDetails) as MOCOperatingParameters;
+    } = useSelector<RheactState>(state => state.mocOperatingParameters) as MOCOperatingParameters;
 
     return (
         <Card>

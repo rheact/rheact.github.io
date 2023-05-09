@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { Container, ListGroup, ListGroupItem, ListGroupItemHeading } from "reactstrap";
+import { FC, useCallback } from "react";
+import { Container, ListGroup, ListGroupItem, ListGroupItemHeading, Button } from "reactstrap";
 import Extractions from "./Extractions";
 import Recommendations from "./Recommendations";
 
@@ -19,8 +19,19 @@ const links = [
 ];
 
 const PPEResultsPage: FC<ResultsProps> = ({ prevButton }) => {
+
+    const onPrint = useCallback(() => {
+        window.print();
+    }, []);
+
     return (
         <>
+        <div className="w-100 d-flex align-items-center p-2" style={{ backgroundColor: 'white' }}>
+            <Button color="primary" className="ms-1" onClick={onPrint}>
+                <i className="bi bi-printer-fill me-1" />
+                Print
+            </Button>
+        </div>
         <Container id="printable">
             <h3 className="ppe-title">Typical Minimum Personal Protective Equipment (PPE)</h3>
             <ListGroup className="ppe-table">

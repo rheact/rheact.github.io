@@ -6,7 +6,10 @@ const rheactSlice = createSlice({
     initialState: {} as Report,
     reducers: {
         RESET_RESULTS(state, _action) {
-            state = {};
+            // state = {};
+            state.calculations = undefined
+            state.cameoMatrix = undefined
+            state.hNums = undefined
         },
 
         SET_CALCULATIONS(state, action) {

@@ -12,12 +12,12 @@ const AcknowledgementsPage = () => {
             for various feedback and insights that guided the development of this tool.
             </div>
             <div className="license-img-wrapper">
-                <img className="license-img" src="licensePic1.png"/>
-                <img className="license-img" src="licensePic2.png"/>
+                <img className="license-img" src="cistar_logo.jpg"/>
+                <img className="license-img" src="p2sac_logo.png"/>
             </div>
             <div className="ack-text">
-                We thank the following for their various contributions to developing RHEACT during their PhD at Davidson School of Chemical Engineering, Purdue University: 
-                <span className="bold-text"> Sopuruchukwu Ezenwa, Abhijit Talpade, Pushkar Ghanekar, Jeremy Arvay, Ravi Joshi.</span>
+                We thank the following for their various contributions to developing RHEACT during their PhD at Davidson School of Chemical Engineering, Purdue University:
+                <span className="bold-text"> Sopuruchukwu Ezenwa, Brandon Bolton, Abhijit Talpade, Pushkar Ghanekar, Jeremy Arvay, Ravi Joshi.</span>
             </div>
             <div className="ack-text">
                 The following web software developers that helped make this project possible: 

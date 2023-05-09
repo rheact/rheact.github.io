@@ -7,6 +7,11 @@
     margin: 30px 20px;
 }
 
+.user-guide-sub-title {
+    /* font-size: 16px; */
+    font-weight: bold;
+}
+
 ul.user-guide-list {
     width: 1000px;
     margin: auto;
@@ -14,7 +19,7 @@ ul.user-guide-list {
 }
 
 ul.user-guide-list li {
-    margin: 10px auto;
+    margin: 5px auto;
 }
 
 .user-guide-text {

@@ -203,6 +203,41 @@ export type MOCHMatrix = {
 }
 
 /**
+ * PAC Params
+ */
+export type PACParams = {
+    chemical?: Chemical,
+    chemicalCasNo?: string,
+    AQ?: string,
+    AQKnown?: boolean,
+    typeOfRelease?: string,
+    diameter?: string,
+    toxityRating?: string,
+    pressure?: string,
+    pressureUnit?: string,
+    operatingTemp?: string,
+    operatingTempUnit?: string,
+    liquidHeight?: string,
+    density?: string,
+    vaporPressure?: string,
+    vaporPressureUnit?: string,
+    HOV?: string,
+    heatCapacity?: string,
+    boilingPoint?: string,
+    molecularWeight?: string,
+    dikedArea?: string,
+    isDikedArea?: boolean,
+    useTotalAmount?: boolean,
+    totalAmount?: string,
+    openTank?: boolean,
+    showHOV?: boolean,
+    showHC?: boolean,
+    showBP?: boolean,
+    showMW?: boolean,
+    showCutOff?: boolean
+}
+
+/**
  * RheactState is the root state of Rheact's user input.
  */
 export type RheactState = {
@@ -215,5 +250,6 @@ export type RheactState = {
     mocComponents: MOCComponents,
     mocOperatingParameters: MOCOperatingParameters,
     mocQuestionnaireResponse: MOCQuestionnaireResponse,
-    mocHMatrix: MOCHMatrix
+    mocHMatrix: MOCHMatrix,
+    pacParams: PACParams
 };

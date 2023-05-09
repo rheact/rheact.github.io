@@ -14,28 +14,26 @@ const WelcomePage = () => {
             </h4>
         </div>
         <div className="welcome-text">
-        The prevalence of safety incidents in laboratory settings at academic, 
-        industrial, and government research facilities has motivated the need for broad and systematic 
-        changes in safety practices that go beyond mere compliance to established safety standards. 
-        The development of a convenient web tool that conducts preliminary hazard analyses was identified as a need that can contribute towards reducing the occurrence and severity of safety incidents.
+        The prevalence of safety incidents in laboratory settings at academic, industrial, and government research 
+        facilities has motivated the need for broad and systematic changes in safety practices.
+        The development of a convenient web tool for preliminary hazard analyses was identified as a need 
+        that can contribute towards reducing the occurrence and severity of lab safety incidents.
         </div>
         <div className="welcome-text">
-        <span className="bold-text">RHEACT</span> provides the user with an initial evaluation of potential hazards and notifies them of any safety-concerns 
-        associated with the reaction process before conducting a laboratory experiment. 
-        This is achieved by collecting the relevant system information through Safety Data Sheet (SDS) and user-defined inputs, 
-        conducting preliminary hazard analyses, and summarizing potential safety issues.
+        <span className="bold-text">RHEACT</span> enables the initial evaluation of potential hazards and 
+        helps users quickly identify some safety-concerns associated with their experimental procedure before conducting a lab experiment.
         </div>
-        <div className="welcome-text">Furthermore, RHEACT has utility across a vast spectrum of chemical research and development (R&D) 
-        laboratories and is especially targeted towards academic research and teaching chemical labs and small and mid-size enterprises' (SME) R&D labs. 
-        Some of the capabilities provided in the current version of the tool include:</div>
+        <div className="welcome-text">Furthermore, RHEACT has utility across a vast spectrum of chemical research and development (R&D) laboratories. 
+        RHEACT is especially targeted towards academic research & teaching chemical labs as well as industrial research laboratories at small, and mid-sized enterprises (SME). 
+        Some of the capabilities in RHEACT Beta version include:</div>
         <ul className="no-bullets">
             <li>
                 <i className="bi bi-file-earmark-text"></i>
-                Parsing multiple Safety Data Sheets (SDSs) for chemical and safety information
+                Parsing multiple Safety Data Sheets (SDS) for chemical and safety information
             </li>
             <li>
                 <i className="bi bi-exclamation-triangle"></i>
-                Creating an operational chemical hazard matrix
+                Creating a visual matrix of physical and health hazards of chemicals
             </li>
             <li>
                 <i className="bi bi-droplet"></i>
@@ -46,12 +44,20 @@ const WelcomePage = () => {
                 Calculating final reaction temperature after an adiabatic temperature change
             </li>
             <li>
-                <i className="bi bi-clipboard-data"></i>
+                <i className="bi bi-patch-check"></i>
                 Providing PPE recommendations from SDS and PPE questionnaire
+            </li>
+            <li>
+                <i className="bi bi-list-stars"></i>
+                Providing Management of Change (MOC) recommendations
+            </li>
+            <li>
+                <i className="bi bi-eyedropper"></i>
+                Protective Action Criteria (PAC) for evaluating uncontrolled releases of hazardous chemicals
             </li>
         </ul>
         <div className="welcome-text">
-            We aim for RHEACT to be a quick preliminary screening tool that alerts users about hazards and pushes them to perform further analysis.
+            We aim for RHEACT to be a quick preliminary screening tool that alerts users about hazards and suggests further hazard analysis to ensure safety.
         </div>
         <div className="welcome-text">
             By using this tool you agree to the terms of the

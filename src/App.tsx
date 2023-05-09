@@ -27,10 +27,10 @@ const App: FC<any> = () => {
                             </main>
                             <footer className='py-5'>
                                 <div className="d-flex justify-content-center align-items-center text-muted">
-                                    Rheact is currrently under development with bugs being fixed and new features being added; we anticipate a public stable version by May 2023
+                                    RHEACT is currently under development and we anticipate a stable Beta version by Summer 2023
                                 </div>
                                 <div className="d-flex justify-content-center align-items-center text-muted">
-                                    Reactive Hazard Evaluation Analysis and Compilation Tool (RHEACT) v3.0 (Beta version), April 23, 2023
+                                    Reactive Hazard Evaluation Analysis and Compilation Tool (RHEACT) v3.0 (Beta version), May 9, 2023
                                     {/* &copy; CISTAR, {new Date().getFullYear()} */}
                                 </div>
                             </footer>

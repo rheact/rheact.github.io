@@ -9,7 +9,8 @@ import { mocProjectDetailsReducer } from './mocProjectDetails';
 import { mocComponentsReducer } from './mocComponents';
 import { mocOperatingParametersReducer } from './mocOperatingParameters';
 import { mocQuestionaireReducer } from './mocQuestionaire';
-import { mocHMatrixReducer } from './mocHmatrix'
+import { mocHMatrixReducer } from './mocHmatrix';
+import { pacReducer } from './pac';
 
 const reducer = combineReducers<RheactState>({
     compound: equationReducer,
@@ -21,7 +22,8 @@ const reducer = combineReducers<RheactState>({
     mocComponents: mocComponentsReducer,
     mocOperatingParameters: mocOperatingParametersReducer,
     mocQuestionnaireResponse: mocQuestionaireReducer,
-    mocHMatrix: mocHMatrixReducer
+    mocHMatrix: mocHMatrixReducer,
+    pacParams: pacReducer
 });
 
 export default reducer;
@@ -35,3 +37,4 @@ export * from './mocComponents';
 export * from './mocOperatingParameters';
 export * from './mocQuestionaire';
 export * from './mocHmatrix';
+export * from './pac';

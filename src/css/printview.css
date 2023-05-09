@@ -8,12 +8,18 @@
         visibility: visible;
     }
 
+    .pac-printable,
+    .pac-printable * {
+        visibility: visible;
+    }
+
     #printable,
     #printable * {
         visibility: visible;
     }
     
     .moc-printable,
+    .pac-printable,
     #printable {
         -webkit-print-color-adjust: exact !important;
         position: absolute;
