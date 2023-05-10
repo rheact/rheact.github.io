@@ -1,5 +1,5 @@
 #thor-modal {
-    max-width: 1500px;
+    max-width: 1200px;
 }
 
 #thor-des {
@@ -7,7 +7,7 @@
 }
 
 #thor-result {
-    margin: 50px;
+    margin: 30px 0;
 }
 
 .green-btn {

@@ -11,41 +11,65 @@ type ThorRowProps = {
     chemical: Chemical,
     section: "Reactant" | "Product" | "Diluent",
     index: number
+    changeAction: any
 };
 
-const ThorRow: FC<ThorRowProps> = ({ chemical, section, index }) => {
+const ThorRow: FC<ThorRowProps> = ({ chemical, section, index, changeAction }) => {
     const dispatch = useDispatch();
-    const [numberOfMoles, setNumberOfMoles] = useState<number>(0)
-    const [heatOfFormation, setHeatOfFormation] = useState<number>()
-    const [errorMsg, setErrorMsg] = useState<string>('Heat of formation cannot be empty!')
+    const [errorMsg, setErrorMsg] = useState<string>(chemical.heatOfFormation ? '' : 'Heat of formation cannot be empty!')
 
     if(!chemical.phase) {
         dispatch(STORE.CHANGE_CHEMICAL_PHASE({section, index, newPhase: ''}))
     }
 
     const onChangeMoles = useCallback((moles)=> {
-        setNumberOfMoles(moles)
-    }, [])
+        const update: Chemical = { ...chemical };
+        update.thor_sc = moles;
+        dispatch(
+            changeAction({
+                index,
+                update,
+            })
+        );
+    }, [chemical])
 
     const onChangeHeat = useCallback((heat) => {
-        setHeatOfFormation(heat)
+        const update: Chemical = { ...chemical };
+        update.heatOfFormation = heat;
+        dispatch(
+            changeAction({
+                index,
+                update,
+            })
+        );
+        if (!heat) {
+            setErrorMsg('Heat of formation cannot be empty!')
+        }
+    }, [chemical])
+
+    const handleOnKeyDown = useCallback((e) => {
+        if(e.key === "ArrowUp" || e.key === "ArrowDown") {
+            e.preventDefault();
+        }
     }, [])
 
     const calculateHeatofFormation = useCallback(async () => {
-
-        if(chemical.casNo && chemical.phase && numberOfMoles) {
+        if (!chemical.phase) {
+            setErrorMsg('Please specify the state of the chemical')
+        }
+        if(chemical.casNo && chemical.phase && chemical.thor_sc) {
             server
-            .getHeatOfFormation(chemical.casNo, chemical.phase, numberOfMoles)
+            .getHeatOfFormation(chemical.casNo, chemical.phase, Number(chemical.thor_sc))
             .then((res) => {
                 dispatch(STORE.SET_HEAT_OF_FORMATION({section, index, heatOfFormation: res}))
-                setHeatOfFormation(res)
+                setErrorMsg('')
             })
             .catch((e) => {
                 setErrorMsg(e.message)
             })
         }
             
-    }, [dispatch, numberOfMoles])
+    }, [dispatch, chemical])
 
     return (
         <tr>
@@ -63,9 +87,12 @@ const ThorRow: FC<ThorRowProps> = ({ chemical, section, index }) => {
             </td>
             <td>
                 <Input 
-                    invalid={!numberOfMoles || numberOfMoles <= 0}
-                    type="number" value={numberOfMoles} 
+                    invalid={!chemical.thor_sc || Number(chemical.thor_sc) <= 0}
+                    type="number"
+                    value={chemical.thor_sc} 
                     onChange={e => onChangeMoles(e.target.value)}
+                    onKeyDown={e => handleOnKeyDown(e)}
+                    onWheel={e => e.currentTarget.blur()}
                 />
                 <div className="invalid-feedback">
                     Number of moles must be a positive number!
@@ -73,10 +100,12 @@ const ThorRow: FC<ThorRowProps> = ({ chemical, section, index }) => {
             </td>
             <td>
                 <Input 
-                    invalid={!heatOfFormation}
-                    type="number" value={heatOfFormation}
+                    invalid={!chemical.heatOfFormation}
+                    type="number" 
+                    value={chemical.heatOfFormation}
                     onChange={e => onChangeHeat(e.target.value)}
-                    onFocus={_ => setErrorMsg('Heat of formation cannot be empty!')}
+                    onKeyDown={e => handleOnKeyDown(e)}
+                    onWheel={e => e.currentTarget.blur()}
                 /> 
                 <div className="invalid-feedback">
                     {errorMsg}

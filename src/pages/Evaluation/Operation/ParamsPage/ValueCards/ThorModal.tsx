@@ -1,9 +1,9 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, Button, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
-import { Equation, RheactState } from "model";
+import { Equation, OperatingParams, RheactState } from "model";
 import { HeatUnit } from 'units'
-import { SET_HEAT_OF_REACTION, SET_HEAT_OF_REACTION_UNIT } from 'store';
+import { SET_HEAT_OF_REACTION, SET_HEAT_OF_REACTION_UNIT, CHANGE_REACTANT, CHANGE_PRODUCT } from 'store';
 import ThorRow from './ThorRow';
 
 import './style.css'
@@ -11,7 +11,7 @@ import './style.css'
 const ComponentTable = () => {
     const dispatch = useDispatch();
     const equation = useSelector<RheactState, Equation>(state => state.compound);
-    const [heatOfReaction, setHeatOfReaction] = useState<number>()
+    const operatingParams = useSelector<RheactState, OperatingParams>(state => state.operatingParams);
 
     const calculateHeatOfReaction = useCallback(() => {
         let rSum = 0
@@ -19,7 +19,7 @@ const ComponentTable = () => {
         let valid = true
         equation.reactants.map(chem => {
             if(!chem.heatOfFormation) {
-                setHeatOfReaction(undefined)
+                dispatch(SET_HEAT_OF_REACTION(''))
                 valid = false
                 return
             }
@@ -27,16 +27,13 @@ const ComponentTable = () => {
         })
         equation.products.map(chem => {
             if(!chem.heatOfFormation) {
-                setHeatOfReaction(undefined)
+                dispatch(SET_HEAT_OF_REACTION(''))
                 valid = false
                 return
             }
-            console.log(chem.heatOfFormation)
-            console.log(typeof chem.heatOfFormation)
             pSum += parseFloat(chem.heatOfFormation)
         })
         if(valid) {
-            setHeatOfReaction(pSum - rSum)
             dispatch(SET_HEAT_OF_REACTION(pSum - rSum))
             dispatch(SET_HEAT_OF_REACTION_UNIT(HeatUnit.kJ_mol))
         }
@@ -66,14 +63,14 @@ const ComponentTable = () => {
                 </tr>
             </thead>
             <tbody>
-                {equation.reactants.map((c, i) => <ThorRow chemical={c} section="Reactant" index={i} /> )}
-                {equation.products.map((c, i) => <ThorRow chemical={c} section="Product" index={i} /> )}
+                {equation.reactants.map((c, i) => <ThorRow chemical={c} section="Reactant" index={i} changeAction={CHANGE_REACTANT}/> )}
+                {equation.products.map((c, i) => <ThorRow chemical={c} section="Product" index={i} changeAction={CHANGE_PRODUCT}/> )}
             </tbody>
         </Table>
         <Button className="green-btn" onClick={calculateHeatOfReaction}>Calculate Heat of Reaction</Button>
-        { heatOfReaction != undefined &&
+        { operatingParams.heatOfReaction &&
             <div id="thor-result">
-                Heat of Reaction: {heatOfReaction} KJ/mol
+                Heat of Reaction: {operatingParams.heatOfReaction} KJ/mol
             </div>
         }
         </>

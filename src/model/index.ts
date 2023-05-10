@@ -31,6 +31,8 @@ export type Chemical = {
     ppe_pages?: string[],
     ppe_pagerange?: any[],
     molWtFraction?: string,
+    // THOR Stoichiometric Coefficient
+    thor_sc?: string,
     neglected: boolean,
 };
 

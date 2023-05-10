@@ -46,8 +46,9 @@ const ComponentsCard = () => {
                             />
                         </Col>
                         <Col xs={11} className="text-muted fst-italic">
-                            RHEACT currently only supports SDS from Sigma-Aldrich. You
-                            can use the searchbar below to go to Sigma-Aldrich&apos;s SDS
+                            RHEACT currently only supports SDS from Sigma-Aldrich.
+                            The pdf parsing algorithm currently only works for SIGMA aldrich SDS downloaded in the United States. 
+                            You can use the searchbar below to go to Sigma-Aldrich&apos;s SDS
                             lookup website and download the SDS PDFs. Typing the name
                             of a chemical would give completion suggestions.
                         </Col>
