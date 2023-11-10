@@ -12,6 +12,8 @@ import PPEPage from './PPE';
 import MOCPage from './MOC';
 // PAC
 import PACPage from './PAC';
+// Resource Links
+import ResourceLinksPage from './ResourceLinks';
 // Documentation
 import LicensePage from './License/License';
 import AcknowledgementsPage from "./License/Acknowledgements";
@@ -39,6 +41,10 @@ const ToolIndex = ({ loadFn }) => {
 
                 <Route path={R.ROUTE_USER_GUIDE}>
                     <UserGuidePage />
+                </Route>
+
+                <Route path={R.ROUTE_RESOURCE_LINKS}>
+                    <ResourceLinksPage />
                 </Route>
 
                 <Route path={R.ROUTE_LICENSE}>

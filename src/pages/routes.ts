@@ -12,6 +12,8 @@ const R = {
 
     ROUTE_PAC: '/pac',
 
+    ROUTE_RESOURCE_LINKS: '/resource_links',
+
     ROUTE_LICENSE: '/license',
     ROUTE_ACKNOWLEDGEMENTS: '/acknowledgements',
     ROUTE_REFERENCES: '/references',
