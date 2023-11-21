@@ -14,7 +14,7 @@ const OperatingParametersCard = () => {
 
     return (
         <Card>
-            <CardBody>
+            <CardBody className="rh-card">
                 <div className="h5 fw-bolder">Operating Parameters</div>
                 <Label>Operating Temperature (&#8451;)</Label>
                 <Input value={operatingTemp} onChange={e => dispatch(STORE.SET_MOC_TEMP(e.target.value))} />

@@ -13,7 +13,7 @@ const ChemicalDetails = () => {
 
     return (
         <Card>
-            <CardBody>
+            <CardBody className="rh-card">
                 <div className="h5 fw-bolder">Chemical Details</div>
                 <Label>Reaction Class</Label>
                 <Input value={reactionClass} onChange={e => dispatch(STORE.SET_REACTION_CLASS(e.target.value))} />

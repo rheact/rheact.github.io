@@ -12,6 +12,9 @@
         height: 20px;
     }
     #moc-details-printable {
-        display: inline-block !important
+        display: inline-block !important;
+    }
+    #cameo-table .collapse {
+        display: block !important;
     }
 }

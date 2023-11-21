@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardBody, Input, Label } from 'reactstrap';
 import * as STORE from 'store';
 
+import "../style.css"
+
 const ProjectCard = () => {
     const dispatch = useDispatch();
     const {
@@ -14,7 +16,7 @@ const ProjectCard = () => {
 
     return (
         <Card>
-            <CardBody>
+            <CardBody className="rh-card">
                 <div className="h5 fw-bolder">Project Information</div>
                 <Label>Project Title</Label>
                 <Input value={projectTitle} onChange={e => dispatch(STORE.SET_PROJECT_TITLE(e.target.value))} />

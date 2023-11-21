@@ -244,7 +244,7 @@ const ResourceLinksPage = () => {
                                 <li><a target='_blank' href='https://www.youtube.com/playlist?list=PLLG7h7fPoH8IZ6i2rfDK0zVoompXayRL_'>ACS Chemical Safety on YouTube</a></li>
                                 <li>Laboratory Safety Institute, <a target='_blank' href='https://www.labsafety.org/lab-safety-videos'>Lab Safety Videos</a></li>
                                 <li>U.S. Chemical Safety Board, <a target='_blank' href='https://www.youtube.com/watch?v=ALBWxGik64A'>Experimenting with Danger</a></li>
-                                <li><a target='_blank' href='https://www.youtube.com/watch?v=ALBWxGik64A'>C&EN List of Labs Safety Videos</a></li>
+                                <li><a target='_blank' href='https://docs.google.com/spreadsheets/d/16CXF7AAsyd8VN7Na0dkQ1p2cB3nwrQxVZXWRWg52TDQ/edit#gid=0'>C&EN List of Labs Safety Videos</a></li>
                                 <li>University of California San Diego, <a href='https://blink.ucsd.edu/safety/research-lab/laboratory/videos.html'>Laboratory Safety Videos</a></li>
                                 <li>Rutgers University Chemical Laboratory Safety, <a target='_blank' href='https://libguides.rutgers.edu/chem_lab_safety/videos'>Training Videos</a></li>
                                 <li>SafetyVideos.com, <a target='_blank' href='https://www.safetyvideos.com/Lab_Safety_Videos_s/54.htm'>Laboratory Safety Training Videos</a></li>

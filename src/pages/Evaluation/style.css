@@ -118,3 +118,8 @@
 #loadBtnWrapper {
     margin-bottom: 16px;
 }
+
+.rh-card label {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}

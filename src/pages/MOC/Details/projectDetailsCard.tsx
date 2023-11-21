@@ -15,7 +15,7 @@ const ProjectDetailsCard = () => {
 
     return (
         <Card>
-            <CardBody>
+            <CardBody className="rh-card">
                 <div className="h5 fw-bolder">Project Information</div>
                 <Label>Project Title</Label>
                 <Input value={projectTitle} onChange={e => dispatch(STORE.SET_MOC_PROJECT_TITLE(e.target.value))} />
