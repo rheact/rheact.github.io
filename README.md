@@ -6,7 +6,7 @@ RHEACT is a lab safety tool developed at Purdue University, CISTAR with guidance
 # Brief Development Doc
 ## Setup
 - Make sure to have `conda`, `yarn`/`npm` installed.
-- Create a conda virtual environment using `environment.yaml`
+- Create a conda virtual environment using `environment.yml`
 - To start the backend service, run `./dev.sh`
 - To start the frontend service, run `REACT_APP_BACKEND_URL=http://127.0.0.1:8000 yarn start` or `REACT_APP_BACKEND_URL=http://127.0.0.1:8000 npm start` to connect to the local backend service. Run`yarn start` or `npm start` to connect with the backend service deployed on Heroku.
 
