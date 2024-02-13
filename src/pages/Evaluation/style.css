@@ -123,3 +123,21 @@
     margin-top: 0.5rem;
     margin-bottom: 0;
 }
+
+.sds-instr {
+    text-decoration: underline;
+}
+
+.sds-instr:hover {
+    cursor: pointer;
+}
+
+.sds-instr-wrapper {
+    margin: 20px 10px;
+}
+
+.sds-instr-img {
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+}

@@ -1,7 +1,7 @@
 import { FC, FormEvent, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useToggle } from "react-use";
-import { Button, ButtonGroup, InputGroup, Input, Modal, ModalBody, ModalHeader, Table } from "reactstrap";
+import { Button, ButtonGroup, InputGroup, Input, Modal, ModalBody, ModalHeader, Table, Tooltip } from "reactstrap";
 import { InputType } from "reactstrap/types/lib/Input";
 import { Chemical } from "model";
 import * as STORE from 'store';
@@ -101,6 +101,8 @@ const sectionColorMap = {
 const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAction, removeAction }) => {
     const dispatch = useDispatch();
     const [viewProps, toggleProps] = useToggle(false);
+    const [viewEditTooltip, toggleEditTooltip] = useToggle(false);
+    const [viewDelTooltip, toggleDelTooltip] = useToggle(false);
 
     const getChangeProp = useCallback(
         (key: keyof Chemical) => (e: FormEvent<HTMLInputElement>) => {
@@ -200,8 +202,26 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
             </td>
             <td>
                 <ButtonGroup size="sm">
-                    <Button color="link" onClick={toggleProps}><i className="bi bi-pencil-fill"/></Button>
-                    <Button color="link" onClick={onRemove} className="text-danger"><i className="bi bi-x-lg"/></Button>
+                    <Button color="link" onClick={toggleProps}>
+                        <i id={"edit-icon" + index} className="bi bi-pencil-fill"/>
+                        <Tooltip
+                            isOpen={viewEditTooltip}
+                            target={"edit-icon" + index}
+                            toggle={toggleEditTooltip}
+                        >
+                            Edit
+                        </Tooltip>
+                    </Button>
+                    <Button color="link" onClick={onRemove} className="text-danger">
+                        <i id={"del-icon" + index} className="bi bi-x-lg"/>
+                        <Tooltip
+                            isOpen={viewDelTooltip}
+                            target={"del-icon" + index}
+                            toggle={toggleDelTooltip}
+                        >
+                            Delete
+                        </Tooltip>
+                    </Button>
                 </ButtonGroup>
             </td>
 

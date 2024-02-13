@@ -10,7 +10,7 @@ import "./style.css"
 const ResourceLinksPage = () => {
     return (
         <>
-            <h3 className='resource-page-title'>Additional Safety Resources</h3>
+            <h3 className='resource-page-title'>Safety Resources</h3>
             <div className='resource-links-wrapper'>
                 <UncontrolledAccordion open={[]} stayOpen flush>
                     <AccordionItem>
@@ -103,7 +103,7 @@ const ResourceLinksPage = () => {
                     </AccordionItem>
                     <AccordionItem>
                         <AccordionHeader targetId='7'>
-                            Reproductive Hazards & CarcinogensChemical Glove Compatibility
+                            Reproductive Hazards & Carcinogens
                         </AccordionHeader>
                         <AccordionBody accordionId='7'>
                             <ul>

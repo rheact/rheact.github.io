@@ -47,13 +47,13 @@ const PPEQuestionSingle: FC<Question> = ({ uid, question }) => {
 export default function PPEQuestions({ nextButton }: PPEProps) {
     return (
         <Container className="p-2">
-            <Alert>
+            <div className="custom-alert">
                 This questionnaire will help you conisider PPE that may be relevant to your process.
                 <br />
                 <br />
                 Please consult the Hazard and Chemical Compatibility Matrix before answering the following questions!
                 These matrices are in the Operations Report page.
-            </Alert>
+            </div>
             <ListGroup>
                 {questions.map(q => <PPEQuestionSingle key={q.uid} {...q} />)}
             </ListGroup>

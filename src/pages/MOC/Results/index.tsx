@@ -166,7 +166,7 @@ const MOCResultsPage: FC<MOCProps> = ({ prevButton }) => {
                 <div>Quantity of Key Reagent (g/mL): {quantityOfKeyReagent || "N/A"}</div>
                 <div>Total Reaction Scale (g/mL): {totalReactionScale || "N/A"}</div>
             </Row>
-            <div className="alert alert-success fade show moc-level">
+            <div className="custom-alert moc-level">
                 Review Levels:
                 <ul>
                     <li>Level 1(Low Risk): Review by User and Lab Peers</li>

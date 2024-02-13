@@ -3,8 +3,32 @@
     min-height: 100vh;
     flex-direction: column;
     justify-content: space-between;
+    text-align: justify;
 }
 
 footer {
     font-size: 13px;
+}
+
+#disclaimer-modal {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#disclaimer-btn {
+    float: right;
+    color: white !important;
+    border-radius: 6px;
+    margin-top: 40px;
+    background-color: #93c54b !important;
+}
+
+.custom-alert {
+    color: black;
+    background-color: #e1f2e2;
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
 }

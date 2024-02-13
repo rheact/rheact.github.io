@@ -21,7 +21,7 @@ const ComponentDropzone: FC<ComponentDropzoneProps> = ({
                 (f) => (
                     server.parsePDF(f, operatingParams)
                     .then(data => dispatch(addAction(data)))
-                    .catch(_ => alert("Error: Could not parse some of the PDFs uploaded, please upload a Sigma Aldrich SDS only."))
+                    .catch(_ => alert("Error: Could not parse some of the PDFs uploaded, please upload a Sigma Aldrich SDS only. (Note: For non-US countries, kindly visit the Sigma-Aldrich website and adjust your location settings to the United States in order to access and download the US version of SDS PDFs.)"))
                 )
             );
         },

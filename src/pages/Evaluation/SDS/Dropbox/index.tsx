@@ -24,7 +24,7 @@ export const AddEmptyChemicalButton: FC<AddEmptyChemicalButtonProps> = ({ addAct
     }, [dispatch, addAction]);
 
     return (
-        <Button onClick={addEmpty} color="primary">Add a Component</Button>
+        <Button onClick={addEmpty} color="primary">Manually Add a Component</Button>
     );
 }
 
