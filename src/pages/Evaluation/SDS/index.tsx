@@ -35,8 +35,9 @@ const SDSPage = ({ prevButton, nextButton}: SDSPageProps) => {
                     of a chemical would give completion suggestions.
                 </Col>
                 <div className="custom-alert">
-                For non-US countries, kindly visit the Sigma-Aldrich website and adjust your location settings to the United States in order to access and download the US version of SDS PDFs&nbsp; 
-                <span className="sds-instr" onClick={() => setShowModal(true)}>(Click here for instructions)</span>.
+                For users accessing the Sigma-Aldrich website from non-US countries, we kindly request you to visit the website and adjust your location settings to the United States. By doing so, you'll be able to access and download the US version of Safety Data Sheets (SDS) in PDF format. If you're unsure how to change your location settings, please follow the instructions provided&nbsp;
+                <span className="sds-instr" onClick={() => setShowModal(true)}>(here)</span>.
+                If you encounter any difficulties changing your location, we recommend clearing your browser cookies or using an incognito/private browsing mode.
                 </div>
                 <Modal isOpen={showModal} size="lg" toggle={() => setShowModal()}>
                     <ModalBody>

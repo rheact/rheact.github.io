@@ -41,11 +41,11 @@
 }
 
 .pac-cell {
-    margin-bottom: 20px;
+    margin: 10px 0;
     width: 600px;
 }
 
-#pac-ul {
+.pac-ul {
     max-width: 600px;
     margin-top: 20px;
     margin-right: auto;

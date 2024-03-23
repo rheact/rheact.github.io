@@ -89,24 +89,59 @@ const api = {
             })
     },
     
-    getPACToxityRating(casNo: string, AQ: string, typeOfRelease: string, temp: string, tempUnit: string, pressure: string, pressureUnit: string, diameter: string, molecularWeight: string, density: string, liquidHeight: string, boilingPoint: string, heatCapacity: string, HOV: string, vaporPressure: string, vaporPressureUnit: string, dikedArea: string, totalAmount: string) {
+    getPACToxicityRating(casNo: string, AQ: string, typeOfRelease: string, opTemp: string, opTempUnit: string, pressure: string, pressureUnit: string, diameter: string, molecularWeight: string, density: string, liquidHeight: string, boilingPoint: string, heatCapacity: string, HOV: string, vaporPressure: string, vaporPressureUnit: string, dikedArea: string, totalAmount: string) {
         return server
             .post('/pac', undefined, {
-                params: {casNo, AQ, typeOfRelease, temp, tempUnit, pressure, pressureUnit, diameter, molecularWeight, density, liquidHeight, boilingPoint, heatCapacity, HOV, vaporPressure, vaporPressureUnit, dikedArea, totalAmount}
+                params: {casNo, AQ, typeOfRelease, opTemp, opTempUnit, pressure, pressureUnit, diameter, molecularWeight, density, liquidHeight, boilingPoint, heatCapacity, HOV, vaporPressure, vaporPressureUnit, dikedArea, totalAmount}
             })
     },
 
-    fetchVaporPressure(casNo: string, vaporPressureSDS: string, liquidTemp: string, liquidTempUnit: string) {
+    fetchVaporPressure(casNo: string, opTemp: string, opTempUnit: string, boilingPoint: string) {
         return server
             .post('/vaporPressure', undefined, {
-                params: {casNo, vaporPressureSDS, liquidTemp, liquidTempUnit}
+                params: {casNo, opTemp, opTempUnit, boilingPoint}
             })
     },
 
-    fetchLiqiudDensity(casNo: string, liquidTemp: string, liquidTempUnit: string) {
+    fetchLiquidDensity(casNo: string, liquidTemp: string, liquidTempUnit: string) {
         return server
             .post('/liquidDensity', undefined, {
                 params: {casNo, liquidTemp, liquidTempUnit}
+            })
+    },
+
+    fetchLiquidReleaseRate(pressure: string, pressureUnit: string, density: string, liquidHeight: string, diameter: string) {
+        return server
+            .post('/liquidReleaseRate', undefined, {
+                params: {pressure, pressureUnit, density, liquidHeight, diameter}
+            })
+    },
+
+    fetchPACMolecularWeight(casNo: string) {
+        return server
+            .post('/pacMW', undefined, {
+                params: {casNo}
+            })
+    },
+
+    fetchBoilingPoint(casNo: string) {
+        return server
+            .post('/boilingPoint', undefined, {
+                params: {casNo}
+            })
+    },
+
+    fetchLiqCp(casNo: string, opTemp: string, boilingPoint: string) {
+        return server
+            .post('/liqHeatCapacity', undefined, {
+                params: {casNo, opTemp, boilingPoint}
+            })
+    },
+
+    fetchLiqHOV(casNo: string, molecularWeight: string, boilingPoint: string) {
+        return server
+            .post('/liqHOV', undefined, {
+                params: {casNo, molecularWeight, boilingPoint}
             })
     },
 

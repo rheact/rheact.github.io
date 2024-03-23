@@ -214,7 +214,7 @@ export type PACParams = {
     AQKnown?: boolean,
     typeOfRelease?: string,
     diameter?: string,
-    toxityRating?: string,
+    toxicityRating?: string,
     pressure?: string,
     pressureUnit?: string,
     operatingTemp?: string,

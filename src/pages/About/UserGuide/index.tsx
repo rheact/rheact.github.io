@@ -47,7 +47,7 @@ const UserGuidePage = () => {
             Answer the questions in the "Questionnaire" tab.
             </li>
             <li>
-            Click on "Report" tab and view PPE recommendations in a report format that can be printed as pdf.
+            Click on "Report" tab and view MOC recommendations in a report format that can be printed as pdf.
             </li>
         </ul>
         <div className="user-guide-text"><span className="user-guide-sub-title">Protective Action Criteria (PAC)</span> - provides a simple and standardized method of evaluating hazardous chemical release events.</div>
@@ -68,7 +68,7 @@ const UserGuidePage = () => {
         Users can save their progress ("SAVE AS JSON" at top of the page) or perform analysis from previously saved RHEACT files ("LOAD PREVIOUS ANALYSIS").
         </div>
         <h3 className="user-guide-title">Detailed User Guide:  
-            <a target="_blank" href="https://docs.google.com/document/d/1yZA4sWsCgqMS00OPut-7Kr_PUZ0WzJB90H5rYM_jzF8/edit?usp=sharing">Live Version</a>
+            <a target="_blank" href="https://docs.google.com/document/d/1K3WNtAmeFt_Y9si05Hnk-SwjrpWeizmLb4GjF0pq2Fw/edit?usp=sharing">Live Version</a>
         </h3>
         {/* <h3 className="user-guide-title">Detailed User Guide Archived Version (Last Updated: 6/29/2022 1:00 AM ET)</h3>
         <div className="user-guide-pdf">
