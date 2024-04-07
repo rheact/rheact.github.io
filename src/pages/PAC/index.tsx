@@ -48,6 +48,7 @@ const PACPage = () => {
 
     const [chemPresent, setChemPresent] = useState<boolean>(false)
     const [PAC2, setPAC2] = useState<string>('')
+    const [PAC2Unit, setPAC2Unit] = useState<string>('')
     const [pacMW, setPACMW] = useState<string>('')
     const [pacBP, setPACBP] = useState<string>('')
     const [liqRASTCp, setLiqRASTCp] = useState<string>('')
@@ -83,10 +84,6 @@ const PACPage = () => {
 
     const onSelect = useCallback((unit: string, unitAction) => {
         dispatch(unitAction(unit))
-        fetchVaporPressure(PACParams.chemicalCasNo, PACParams.operatingTemp, unit, PACParams.boilingPoint)
-        if (debouncedCallback.current) {
-            debouncedCallback.current(PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.boilingPoint)
-        }
     }, [PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.boilingPoint])
 
     const handleToggle = useCallback((toggle, open) => {
@@ -137,9 +134,9 @@ const PACPage = () => {
         dispatch(SET_PAC_DENSITY(''))
         dispatch(SET_PAC_SHOW_CUT_OFF(false))
         dispatch(SET_PAC_Toxicity_RATING(''))
-        setChemPresent(false)
-        setPAC2('')
-        setPACMW('')
+        // setChemPresent(false)
+        // setPAC2('')
+        // setPACMW('')
         setPACBP('')
         setLiqRASTCp('')
         setCRCHOV('')
@@ -158,6 +155,13 @@ const PACPage = () => {
         dispatch(SET_PAC_SHOW_CUT_OFF(false))
         dispatch(SET_PAC_Toxicity_RATING(''))
     }, [])
+
+    const handleTempUnitChange = useCallback((unit) => {
+        fetchVaporPressure(PACParams.chemicalCasNo, PACParams.operatingTemp, unit, PACParams.boilingPoint)
+        if (debouncedCallback.current) {
+            debouncedCallback.current(PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.boilingPoint)
+        }
+    }, [PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.boilingPoint])
 
     const fetchVaporPressure = useCallback((casNo, opTemp, opTempUnit, boilingPoint) => {
         server
@@ -216,10 +220,12 @@ const PACPage = () => {
                 setChemPresent(false)
             } else {
                 let str = res.data.substring(1, res.data.length - 1)
-                let numbers = str.split(",")
-                dispatch(SET_PAC_MW(numbers[0]))
-                setPACMW(numbers[0])
-                setPAC2(numbers[1])
+                let items = str.split(",")
+                dispatch(SET_PAC_MW(items[0]))
+                fetchLiqHOV(PACParams.chemicalCasNo, items[0], PACParams.boilingPoint)
+                setPACMW(items[0])
+                setPAC2(items[1])
+                setPAC2Unit(items[2].replace(/"/g, ''))
                 setChemPresent(true)
             }
         })
@@ -233,6 +239,10 @@ const PACPage = () => {
             if (bps[0] != "Unable to find the chemical in PAC database") {
                 dispatch(SET_PAC_BOILING_POINT(bps[0]))
                 setPACBP(bps[0])
+                fetchVaporPressure(PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.operatingTempUnit, bps[0])
+                if (debouncedCallback.current) {
+                    debouncedCallback.current(PACParams.operatingTemp, bps[0])
+                }
             }
             if (bps[1] != "Unable to find the chemical in RAST database") {
                 setRASTBoilingPoint(bps[1])
@@ -245,7 +255,6 @@ const PACPage = () => {
         .fetchLiqCp(casNo, opTemp, boilingPoint)
         .then((res) => {
             if (res.data != '"Unable to calculate heat capacity from RAST."') {
-                console.log('wtf')
                 dispatch(SET_PAC_HEAT_CAPACITY(res.data))
                 setLiqRASTCp(res.data)
             }
@@ -253,6 +262,9 @@ const PACPage = () => {
     }, [])
 
     const fetchLiqHOV = useCallback((casNo, molecularWeight, boilingPoint) => {
+        if (!casNo || !molecularWeight || !boilingPoint) {
+            return
+        }
         server
         .fetchLiqHOV(casNo, molecularWeight, boilingPoint)
         .then((res) => {
@@ -287,7 +299,11 @@ const PACPage = () => {
     const changeChemicalCasNo = useCallback((newCasNo) => {
         dispatch(SET_PAC_CHAMICAL_CASNO(newCasNo))
         if(!newCasNo) {
+            setChemPresent(false)
             clearAllValues()
+            setPAC2('')
+            setPAC2Unit('')
+            setPACMW('')
         }
         let chem = equation.reactants.filter(reactant => reactant.casNo == newCasNo)
         if(chem.length == 0) {
@@ -358,6 +374,11 @@ const PACPage = () => {
         }
     }, [])
 
+    const clearCalculations = useCallback(() => {
+        setPACliquidReleaseRate('')
+        clearRating()
+    }, [])
+
     return (
         <>
         <div className="w-100 d-flex align-items-center p-2" style={{ backgroundColor: 'white' }}>
@@ -385,7 +406,7 @@ const PACPage = () => {
                         Planning emergency responses
                     </li>
                 </ul>
-                The PAC Toxicity Rating was adapted from the published DOW’s Chemical Exposure Index (<a target="_blank" href="CEI.pdf">CEI</a>). 
+                The PAC Toxicity Rating was adapted from the published DOW’s Chemical Exposure Index (<a target="_blank" href="Dow_CEI.pdf">CEI</a>). 
                 Unlike the DOW CEI which relies on ERPG-2, the PAC Toxicity Rating depends on published PAC-2 values.
                 Read more about PAC <a target="_blank" href="https://www.energy.gov/ehss/protective-action-criteria-pac-aegls-erpgs-teels">here</a>.
                 See the detailed user guide for how to use this tool. The rating is calculated based on the Airborne Quantity (AQ) of the chemical release and the PAC-2 values 
@@ -399,13 +420,14 @@ const PACPage = () => {
                 </ul>
             </div>
             <div className='pac-chemical-selector'>
-                <div>Select a chemical to start the evaluation</div>
+                <div>Select a chemical to start the evaluation (upload SDS under Evaluate System tab)</div>
                 <InputGroup>
                 <Input
                     type='select'
                     invalid={!PACParams || !PACParams.chemicalCasNo || !/^\d{2,7}-\d{2}-\d$/.test(PACParams.chemicalCasNo)}
                     value={PACParams.chemicalCasNo}
                     onChange={e => {
+                        clearCalculations()
                         changeChemicalCasNo(e.target.value)
                         if (PACParams.typeOfRelease === 'Liquid') {
                             fetchVaporPressure(e.target.value, PACParams.operatingTemp, PACParams.operatingTempUnit, PACParams.boilingPoint)
@@ -441,6 +463,7 @@ const PACPage = () => {
                                     onWheel={e => e.currentTarget.blur()}
                                     onKeyDown={e => handleOnKeyDown(e)}
                                     onChange={e => {
+                                        clearCalculations()
                                         dispatch(SET_PAC_MW(e.target.value))
                                         if (e.target.value && PACParams.boilingPoint) {
                                             fetchLiqHOV(PACParams.chemicalCasNo, e.target.value, PACParams.boilingPoint)
@@ -456,7 +479,7 @@ const PACPage = () => {
                         <div className='pac-cell custom-alert'>Molecular weight from PAC database is {pacMW ? pacMW + " g/mol" : "not available."}</div>
                         <div className='pac-cell custom-alert'>Molecular weight from SDS is {PACParams.chemical?.molWt ? PACParams.chemical?.molWt + " g/mol" : "not available."}</div>
                         {
-                            PAC2 && <div className='pac-cell custom-alert'>PAC-2 value from database is {PAC2} mg/m&#179;.</div>
+                            PAC2 && PAC2Unit && <div className='pac-cell custom-alert'>PAC-2 value from database is {PAC2} {PAC2Unit}.</div>
                         }
                         {
                             !chemPresent && <div className='pac-cell custom-alert'>Using the CAS RN, the chemical was not found in the PAC database. The current tool is limited to analysis of chemical releases of the 3146 chemicals in the published PAC database. See Dow CEI for cases where toxic levels of concern are unavailable.</div>
@@ -472,7 +495,7 @@ const PACPage = () => {
                                     target="aq-known"
                                     toggle={toggleAQTooltip}
                                 >
-                                    AQ is the mass flow rate of the chemical entering the atmosphere either as (i) vapor or (ii) liquid before flashing or pool evaporation.
+                                    AQ is the mass flow rate of the chemical vapor entering the atmosphere either from vapor release or from liquid release after flashing or pool evaporation.
                                 </Tooltip>
                              </div>
                             <div className="pac-answers">
@@ -482,6 +505,7 @@ const PACPage = () => {
                                     checked={PACParams.AQKnown}
                                     onChange={(e) => {
                                         if(e.target.checked) {
+                                            clearCalculations()
                                             dispatch(SET_PAC_AQKNOWN(true))
                                             clearAllValues()
                                         }
@@ -497,6 +521,7 @@ const PACPage = () => {
                                     checked={!isUndefined(PACParams.AQKnown) && !PACParams.AQKnown}
                                     onChange={(e) => {
                                         if(e.target.checked) {
+                                            clearCalculations()
                                             dispatch(SET_PAC_AQKNOWN(false))
                                             dispatch(SET_PAC_AQ(''))
                                         }
@@ -518,13 +543,63 @@ const PACPage = () => {
                                         value={PACParams.AQ}
                                         onWheel={e => e.currentTarget.blur()}
                                         onKeyDown={e => handleOnKeyDown(e)}
-                                        onChange={e => dispatch(SET_PAC_AQ(e.target.value))}
+                                        onChange={e => {
+                                            clearCalculations()
+                                            dispatch(SET_PAC_AQ(e.target.value))
+                                        }}
                                     />
                                 </div>
                         )
                         }
                         { !isUndefined(PACParams.AQKnown) && !PACParams.AQKnown && (
                             <>
+                                <div className={'pac-cell'}>
+                                    <Label>
+                                        Operating Temperature
+                                        <i style={{marginLeft: "10px"}} id="op-temp" className="bi bi-question-circle"></i>
+                                        <Tooltip
+                                            style={{textTransform: "none"}}
+                                            placement="top"
+                                            isOpen={viewOpTempTooltip}
+                                            target="op-temp"
+                                            toggle={toggleOpTempTooltip}
+                                        >
+                                            This is the temperature of the liquid inside the vessel or pipe.
+                                        </Tooltip>
+                                    </Label>
+                                    <InputGroup>
+                                        <Input 
+                                            type="number"
+                                            value={PACParams.operatingTemp}
+                                            onWheel={e => e.currentTarget.blur()}
+                                            onKeyDown={e => handleOnKeyDown(e)}
+                                            invalid={!PACParams.operatingTemp || !PACParams.operatingTempUnit}
+                                            onChange={e => {
+                                                clearCalculations()
+                                                handleOpTempChange(e.target.value)
+                                            }}
+                                        />
+                                        <ButtonDropdown isOpen={openTemp} toggle={() => {handleToggle(toggleTemp, openTemp)}}>
+                                            <DropdownToggle caret>
+                                                {PACParams.operatingTempUnit}
+                                            </DropdownToggle>
+                                            <DropdownMenu>
+                                                {TEMPERATURE_UNITS_LIST.map((u) => (
+                                                    <DropdownItem onClick={() => {
+                                                        clearCalculations()
+                                                        onSelect(u, SET_PAC_OPERATING_TEMP_UNIT)
+                                                        handleTempUnitChange(u)
+                                                    }}>
+                                                        {u}
+                                                    </DropdownItem>
+                                                ))}
+                                            </DropdownMenu>
+                                        </ButtonDropdown>
+                                        <div className="invalid-feedback">
+                                            Operating temperature and its unit cannot be empty!
+                                        </div>
+                                    </InputGroup>
+                                </div>
                                 <div className={'pac-cell'}>
                                     <div>Type of release:</div>
                                     <div className="pac-answers">
@@ -534,8 +609,9 @@ const PACPage = () => {
                                             checked={PACParams.typeOfRelease == 'Gas'}
                                             onChange={(e) => {
                                                 if(e.target.checked) {
+                                                    clearCalculations()
                                                     dispatch(SET_PAC_TYPE_OF_RELEASE('Gas'))
-                                                    clearRating()
+                                                    // clearRating()
                                                     clearLiquidRelatedFields()
                                                 }
                                             }}
@@ -550,6 +626,7 @@ const PACPage = () => {
                                             checked={PACParams.typeOfRelease == 'Liquid'}
                                             onChange={(e) => {
                                                 if(e.target.checked) {
+                                                    // clearCalculations()
                                                     dispatch(SET_PAC_TYPE_OF_RELEASE('Liquid'))
                                                     fetchLiquidDensity(PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.operatingTempUnit)
                                                     fetchBoilingPoint(PACParams.chemicalCasNo)
@@ -587,7 +664,10 @@ const PACPage = () => {
                                                         onWheel={e => e.currentTarget.blur()}
                                                         onKeyDown={e => handleOnKeyDown(e)}
                                                         invalid={!PACParams.pressure || !PACParams.pressureUnit}
-                                                        onChange={e => dispatch(SET_PAC_PRESSURE(e.target.value))}
+                                                        onChange={e => {
+                                                            clearRating()
+                                                            dispatch(SET_PAC_PRESSURE(e.target.value))
+                                                        }}
                                                     />
                                                     <ButtonDropdown isOpen={openPressure} toggle={() => handleToggle(togglePressure, openPressure)}>
                                                         <DropdownToggle caret>
@@ -595,7 +675,10 @@ const PACPage = () => {
                                                         </DropdownToggle>
                                                         <DropdownMenu>
                                                             {PAC_PRESSURE_UNITS_LIST.map((u) => (
-                                                                <DropdownItem onClick={() => onSelect(u, SET_PAC_PRESSURE_UNIT)}>
+                                                                <DropdownItem onClick={() => {
+                                                                    clearRating()
+                                                                    onSelect(u, SET_PAC_PRESSURE_UNIT)
+                                                                }}>
                                                                     {u}
                                                                 </DropdownItem>
                                                             ))}
@@ -667,7 +750,10 @@ const PACPage = () => {
                                                         onWheel={e => e.currentTarget.blur()}
                                                         onKeyDown={e => handleOnKeyDown(e)}
                                                         invalid={!PACParams.diameter || parseFloat(PACParams.diameter) <= 0}
-                                                        onChange={e => dispatch(SET_PAC_DIAMETER(e.target.value))}
+                                                        onChange={e => {
+                                                            clearRating()
+                                                            dispatch(SET_PAC_DIAMETER(e.target.value))
+                                                        }}
                                                     />
                                                     <div className="invalid-feedback">
                                                         Diameter must be a positive number!
@@ -695,7 +781,10 @@ const PACPage = () => {
                                                         onWheel={e => e.currentTarget.blur()}
                                                         onKeyDown={e => handleOnKeyDown(e)}
                                                         invalid={!PACParams.operatingTemp || !PACParams.operatingTempUnit}
-                                                        onChange={e => dispatch(SET_PAC_OPERATING_TEMP(e.target.value))}
+                                                        onChange={e => {
+                                                            clearRating()
+                                                            dispatch(SET_PAC_OPERATING_TEMP(e.target.value))
+                                                        }}
                                                     />
                                                     <ButtonDropdown isOpen={openTemp} toggle={() => {handleToggle(toggleTemp, openTemp)}}>
                                                         <DropdownToggle caret>
@@ -703,7 +792,10 @@ const PACPage = () => {
                                                         </DropdownToggle>
                                                         <DropdownMenu>
                                                             {TEMPERATURE_UNITS_LIST.map((u) => (
-                                                                <DropdownItem onClick={() => onSelect(u, SET_PAC_OPERATING_TEMP_UNIT)}>
+                                                                <DropdownItem onClick={() => {
+                                                                    clearRating()
+                                                                    onSelect(u, SET_PAC_OPERATING_TEMP_UNIT)
+                                                                }}>
                                                                     {u}
                                                                 </DropdownItem>
                                                             ))}
@@ -727,7 +819,10 @@ const PACPage = () => {
                                                                 onWheel={e => e.currentTarget.blur()}
                                                                 onKeyDown={e => handleOnKeyDown(e)}
                                                                 invalid={!PACParams.molecularWeight || parseFloat(PACParams.molecularWeight) <= 0}
-                                                                onChange={e => dispatch(SET_PAC_MW(e.target.value))}
+                                                                onChange={e => {
+                                                                    clearRating()
+                                                                    dispatch(SET_PAC_MW(e.target.value))
+                                                                }}
                                                             />
                                                             <div className="invalid-feedback">
                                                                 Molecular weight must be a positive number!
@@ -763,9 +858,13 @@ const PACPage = () => {
                                                         checked={PACParams.openTank}
                                                         onChange={(e) => {
                                                             if(e.target.checked) {
+                                                                clearCalculations()
                                                                 dispatch(SET_PAC_OPEN_TANK(true))
                                                                 dispatch(SET_PAC_PRESSURE(''))
                                                                 dispatch(SET_PAC_PRESSURE_UNIT(PAC_PRESSURE_UNITS_LIST[0]))
+                                                                if (debouncedCallback.current) {
+                                                                    debouncedCallback.current(PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.boilingPoint)
+                                                                }
                                                             }
                                                         }}
                                                     />
@@ -779,7 +878,11 @@ const PACPage = () => {
                                                         checked={!isUndefined(PACParams.openTank) && !PACParams.openTank}
                                                         onChange={(e) => {
                                                             if(e.target.checked) {
+                                                                clearCalculations()
                                                                 dispatch(SET_PAC_OPEN_TANK(false))
+                                                                if (debouncedCallback.current) {
+                                                                    debouncedCallback.current(PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.boilingPoint)
+                                                                }
                                                             }
                                                         }}
                                                     />
@@ -802,7 +905,10 @@ const PACPage = () => {
                                                                 onWheel={e => e.currentTarget.blur()}
                                                                 onKeyDown={e => handleOnKeyDown(e)}
                                                                 invalid={!PACParams.pressure || !PACParams.pressureUnit}
-                                                                onChange={e => dispatch(SET_PAC_PRESSURE(e.target.value))}
+                                                                onChange={e => {
+                                                                    clearCalculations()
+                                                                    dispatch(SET_PAC_PRESSURE(e.target.value))
+                                                                }}
                                                             />
                                                             <ButtonDropdown isOpen={openPressure} toggle={() => handleToggle(togglePressure, openPressure)}>
                                                                 <DropdownToggle caret>
@@ -810,7 +916,10 @@ const PACPage = () => {
                                                                 </DropdownToggle>
                                                                 <DropdownMenu>
                                                                     {PAC_PRESSURE_UNITS_LIST.map((u) => (
-                                                                        <DropdownItem onClick={() => onSelect(u, SET_PAC_PRESSURE_UNIT)}>
+                                                                        <DropdownItem onClick={() => {
+                                                                            clearCalculations()
+                                                                            onSelect(u, SET_PAC_PRESSURE_UNIT)
+                                                                        }}>
                                                                             {u}
                                                                         </DropdownItem>
                                                                     ))}
@@ -884,7 +993,10 @@ const PACPage = () => {
                                                         onWheel={e => e.currentTarget.blur()}
                                                         onKeyDown={e => handleOnKeyDown(e)}
                                                         invalid={!PACParams.diameter || parseFloat(PACParams.diameter) <= 0}
-                                                        onChange={e => dispatch(SET_PAC_DIAMETER(e.target.value))}
+                                                        onChange={e => {
+                                                            clearCalculations()
+                                                            dispatch(SET_PAC_DIAMETER(e.target.value))
+                                                        }}
                                                     />
                                                     <div className="invalid-feedback">
                                                         Diameter must be a positive number!
@@ -902,7 +1014,10 @@ const PACPage = () => {
                                                         onWheel={e => e.currentTarget.blur()}
                                                         onKeyDown={e => handleOnKeyDown(e)}
                                                         invalid={!PACParams.liquidHeight || parseFloat(PACParams.liquidHeight) <= 0}
-                                                        onChange={e => dispatch(SET_PAC_LIQUID_HEIGHT(e.target.value))}
+                                                        onChange={e => {
+                                                            clearCalculations()
+                                                            dispatch(SET_PAC_LIQUID_HEIGHT(e.target.value))
+                                                        }}
                                                     />
                                                     <div className="invalid-feedback">
                                                         Height of liquid must be a positive number!
@@ -930,7 +1045,10 @@ const PACPage = () => {
                                                         onWheel={e => e.currentTarget.blur()}
                                                         onKeyDown={e => handleOnKeyDown(e)}
                                                         invalid={!PACParams.density || parseFloat(PACParams.density) < 0}
-                                                        onChange={e => dispatch(SET_PAC_DENSITY(e.target.value))}
+                                                        onChange={e => {
+                                                            clearCalculations()
+                                                            dispatch(SET_PAC_DENSITY(e.target.value))
+                                                        }}
                                                     />
                                                     <div className="invalid-feedback">
                                                         Liquid density must be a positive number!
@@ -947,9 +1065,9 @@ const PACPage = () => {
                                             {
                                                 pacLiquidDensity && (
                                                     <div className='pac-cell custom-alert'>
-                                                        {pacLiquidDensity}
+                                                        {pacLiquidDensity}.
                                                         <div>
-                                                        (Specific gravity is relative to air (density 1000 kg/&#13221;) for gases and to water (denisty 1kg/&#13221;) for liquids and solids)
+                                                            (G = gas, L = liquid, S = solid; Specific gravity or Relative density is normalized by density of air at 20°C (1.2 kg/m3) for gases or by density of water at 4°C (1000 kg/m3) for liquids and solids)
                                                         </div>
                                                     </div>
                                                 )
@@ -962,7 +1080,7 @@ const PACPage = () => {
                                             {
                                                 pacLiquidReleaseRate && <div style={{"marginTop": "5px"}}>Calculated liquid release rate: {Number(parseFloat(pacLiquidReleaseRate).toFixed(5))} kg/s</div>
                                             }
-                                            <div className={'pac-cell'}>
+                                            <div className={'pac-cell'} style={{marginTop: "50px"}}>
                                                 <div>
                                                     Is all liquid released in greater than 15 mins?
                                                     <i style={{marginLeft: "10px"}} id="liq-15" className="bi bi-question-circle"></i>
@@ -983,6 +1101,7 @@ const PACPage = () => {
                                                         checked={!isUndefined(PACParams.useTotalAmount) && !PACParams.useTotalAmount}
                                                         onChange={(e) => {
                                                             if(e.target.checked) {
+                                                                clearRating()
                                                                 dispatch(SET_PAC_USE_TA(false))
                                                                 dispatch(SET_PAC_TOTAL_AMOUNT(''))
                                                             }
@@ -998,6 +1117,7 @@ const PACPage = () => {
                                                         checked={PACParams.useTotalAmount}
                                                         onChange={(e) => {
                                                             if(e.target.checked) {
+                                                                clearRating()
                                                                 dispatch(SET_PAC_USE_TA(true))
                                                             }
                                                         }}
@@ -1021,7 +1141,10 @@ const PACPage = () => {
                                                                 onWheel={e => e.currentTarget.blur()}
                                                                 onKeyDown={e => handleOnKeyDown(e)}
                                                                 invalid={!PACParams.totalAmount || parseFloat(PACParams.totalAmount) <= 0}
-                                                                onChange={e => dispatch(SET_PAC_TOTAL_AMOUNT(e.target.value))}
+                                                                onChange={e => {
+                                                                    clearRating()
+                                                                    dispatch(SET_PAC_TOTAL_AMOUNT(e.target.value))
+                                                                }}
                                                             />
                                                             <div className="invalid-feedback">
                                                                 Total amount of the liquid must be a positive number!
@@ -1030,7 +1153,7 @@ const PACPage = () => {
                                                     </div>
                                                 )
                                             }
-                                            <div className={'pac-cell'}>
+                                            {/* <div className={'pac-cell'}>
                                                 <Label>
                                                     Operating Temperature
                                                     <i style={{marginLeft: "10px"}} id="op-temp" className="bi bi-question-circle"></i>
@@ -1069,7 +1192,7 @@ const PACPage = () => {
                                                         Operating temperature and its unit cannot be empty!
                                                     </div>
                                                 </InputGroup>
-                                            </div>
+                                            </div> */}
                                             <div className={'pac-cell'}>
                                                 <Label>
                                                     Boiling point of liquid (unit &deg;C)
@@ -1081,7 +1204,10 @@ const PACPage = () => {
                                                         onWheel={e => e.currentTarget.blur()}
                                                         onKeyDown={e => handleOnKeyDown(e)}
                                                         invalid={!PACParams.boilingPoint}
-                                                        onChange={e => handleBPChange(e.target.value)}
+                                                        onChange={e => {
+                                                            clearRating()
+                                                            handleBPChange(e.target.value)
+                                                        }}
                                                     />
                                                     <div className="invalid-feedback">
                                                         Boiling point cannot be empty!
@@ -1091,7 +1217,7 @@ const PACPage = () => {
                                             <div className='pac-cell custom-alert'>Boiling point from PAC database is {pacBP ? pacBP + " °C" : "not available."}</div>
                                             <div className='pac-cell custom-alert'>Boiling point from SDS is {PACParams.chemical?.boilingPt ? PACParams.chemical?.boilingPt + " °C" : "not available."}</div>
                                             <div className='pac-cell custom-alert'>Boiling point from the RAST chemical database is {RASTBoilingPoint ? RASTBoilingPoint + " °C" : "not available."}</div>
-                                            <div className='pac-cell custom-alert'>No liquid is flashed if the operating temperature of the liquid is less than the normal boiling point of the liquid; otherwise the flashed fraction will be calculated.</div>
+                                            <div className='pac-cell custom-alert'>No liquid is flashed if the operating temperature of the liquid is less than the normal boiling point of the liquid; thus the Cp and Hv can be left blank. Otherwise, if operating temperature is greater than normal boiling point, the flashed fraction will be calculated using the Cp and Hv provided below or are approximated if values are unknown</div>
                                             {
                                                 PACParams.showHC && (
                                                 <>
@@ -1115,12 +1241,15 @@ const PACPage = () => {
                                                             value={PACParams.heatCapacity}
                                                             onWheel={e => e.currentTarget.blur()}
                                                             onKeyDown={e => handleOnKeyDown(e)}
-                                                            invalid={(!PACParams.heatCapacity && !PACParams.HOV) || (PACParams.heatCapacity !== undefined && PACParams.heatCapacity !== "" && parseFloat(PACParams.heatCapacity) <= 0)}
-                                                            onChange={e => dispatch(SET_PAC_HEAT_CAPACITY(e.target.value))}
+                                                            // invalid={(!PACParams.heatCapacity && !PACParams.HOV) || (PACParams.heatCapacity !== undefined && PACParams.heatCapacity !== "" && parseFloat(PACParams.heatCapacity) <= 0)}
+                                                            onChange={e => {
+                                                                clearRating()
+                                                                dispatch(SET_PAC_HEAT_CAPACITY(e.target.value))
+                                                            }}
                                                         />
-                                                        <div className="invalid-feedback">
+                                                        {/* <div className="invalid-feedback">
                                                             Heat capacity must be a positive number!
-                                                        </div>
+                                                        </div> */}
                                                     </InputGroup>
                                                 </div>
                                                 <div className='pac-cell custom-alert'>Specific heat capacity of the liquid from the RAST chemical database at the average temperature is {liqRASTCp ? liqRASTCp + "J/kg/°C" : "not available"}</div>
@@ -1148,14 +1277,17 @@ const PACPage = () => {
                                                         <Input 
                                                             type="number"
                                                             value={PACParams.HOV}
-                                                            invalid={!PACParams.HOV && !PACParams.heatCapacity}
+                                                            // invalid={!PACParams.HOV && !PACParams.heatCapacity}
                                                             onWheel={e => e.currentTarget.blur()}
                                                             onKeyDown={e => handleOnKeyDown(e)}
-                                                            onChange={e => dispatch(SET_PAC_HOV(e.target.value))}
+                                                            onChange={e => {
+                                                                clearRating()
+                                                                dispatch(SET_PAC_HOV(e.target.value))
+                                                            }}
                                                         />
-                                                        <div className="invalid-feedback">
+                                                        {/* <div className="invalid-feedback">
                                                             Heat of vapozation cannot be empty!
-                                                        </div>
+                                                        </div> */}
                                                     </InputGroup>
                                                 </div>
                                                 <div className='pac-cell custom-alert'>Heat of vaporization from the RAST chemical database at the normal boiling point is {rastHOV ? rastHOV + " J/kg" : "not available."}</div>
@@ -1175,6 +1307,7 @@ const PACPage = () => {
                                                         checked={PACParams.isDikedArea}
                                                         onChange={(e) => {
                                                             if(e.target.checked) {
+                                                                clearRating()
                                                                 dispatch(SET_PAC_IS_DA(true))
                                                             }
                                                             
@@ -1190,6 +1323,7 @@ const PACPage = () => {
                                                         checked={!isUndefined(PACParams.isDikedArea) && !PACParams.isDikedArea}
                                                         onChange={(e) => {
                                                             if(e.target.checked) {
+                                                                clearRating()
                                                                 dispatch(SET_PAC_IS_DA(false))
                                                                 dispatch(SET_PAC_DIKED_AREA(''))
                                                             }
@@ -1214,7 +1348,10 @@ const PACPage = () => {
                                                                 onWheel={e => e.currentTarget.blur()}
                                                                 onKeyDown={e => handleOnKeyDown(e)}
                                                                 invalid={!PACParams.dikedArea || parseFloat(PACParams.dikedArea) <= 0}
-                                                                onChange={e => dispatch(SET_PAC_DIKED_AREA(e.target.value))}
+                                                                onChange={e => {
+                                                                    clearRating()
+                                                                    dispatch(SET_PAC_DIKED_AREA(e.target.value))
+                                                                }}
                                                             />
                                                             <div className="invalid-feedback">
                                                                 Diked area must be a positive number!
@@ -1225,7 +1362,7 @@ const PACPage = () => {
                                             }
                                             <div className={'pac-cell'}>
                                                 <Label>
-                                                    Vapor pressure of the liquid at the pool temperature (unit: kPa):
+                                                    Vapor pressure of the liquid at the pool temperature:
                                                     <i style={{marginLeft: "10px"}} id="liq-vp" className="bi bi-question-circle"></i>
                                                     <Tooltip
                                                         style={{textTransform: "none"}}
@@ -1235,6 +1372,7 @@ const PACPage = () => {
                                                         toggle={toggleLiqVPTooltip}
                                                     >
                                                         This value can be obtained from PubChem, NIST or Engineering Toolbox.
+                                                        Characteristic pool temperature is the liquid operating temperature if below the normal boiling point; otherwise, if greater then the characteristic pool temperature is the normal boiling point.
                                                     </Tooltip>
                                                 </Label>
                                                 <InputGroup>
@@ -1244,7 +1382,10 @@ const PACPage = () => {
                                                         onWheel={e => e.currentTarget.blur()}
                                                         onKeyDown={e => handleOnKeyDown(e)}
                                                         invalid={!PACParams.vaporPressure || !PACParams.vaporPressureUnit}
-                                                        onChange={e => dispatch(SET_PAC_VAPOR_PRESSURE(e.target.value))}
+                                                        onChange={e => {
+                                                            clearRating()
+                                                            dispatch(SET_PAC_VAPOR_PRESSURE(e.target.value))
+                                                        }}
                                                     />
                                                     <ButtonDropdown isOpen={openVPressure} toggle={() => handleToggle(toggleVPressure, openVPressure)}>
                                                         <DropdownToggle caret>
@@ -1252,7 +1393,10 @@ const PACPage = () => {
                                                         </DropdownToggle>
                                                         <DropdownMenu>
                                                             {PRESSURE_UNITS_LIST.map((u) => (
-                                                                <DropdownItem onClick={() => onSelect(u, SET_PAC_VAPOR_PRESSURE_UNIT)}>
+                                                                <DropdownItem onClick={() => {
+                                                                    clearRating()
+                                                                    onSelect(u, SET_PAC_VAPOR_PRESSURE_UNIT)}
+                                                                }>
                                                                     {u}
                                                                 </DropdownItem>
                                                             ))}
@@ -1284,7 +1428,12 @@ const PACPage = () => {
                     <div>
                         {
                             PACParams.toxicityRating && (
-                                <div id="pac-rating">PAC Toxicity Rating: {PACParams.toxicityRating}</div>
+                                <>
+                                    <div id="pac-rating">PAC Toxicity Rating: {PACParams.toxicityRating}</div>
+                                    <div className='pac-cell custom-alert'>
+                                        All calculations assume a windspeed of 5 m/sec and neutral weather conditions
+                                    </div>
+                                </>
                             )
                         }
                     </div>
