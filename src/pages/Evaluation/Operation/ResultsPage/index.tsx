@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { Button, Container, Row } from 'reactstrap';
+import { Button, Container, Row, Table } from 'reactstrap';
 import { useDispatch, useSelector } from "react-redux";
 import GenerateButton from './GenerateButton';
 import Alerts from './sections/Alerts';
@@ -7,7 +7,7 @@ import HazardStatements from './sections/HazardStatements';
 import HazardMatrix from './sections/HazardMatrix';
 import CameoMatrix from './sections/CameoMatrix';
 import CalculationBlock from './sections/CalculationBlock';
-import { Report, RheactState, OperatingParams, ProjectInfo } from 'model'
+import { Report, RheactState, OperatingParams, ProjectInfo, Equation, Chemical } from 'model'
 import * as STORE from "store";
 
 import "./style.css"
@@ -15,6 +15,54 @@ import "./style.css"
 type ReportProps = {
     prevButton: React.ReactNode,
     nextButton: React.ReactNode
+}
+
+const ReportChemicalRow = ({ chemical, section }: { chemical: Chemical; section: string }) => {
+    return (
+        <tr>
+            <td>
+                {section}
+            </td>
+            <td>
+                {chemical.casNo}
+            </td>
+            <td>
+                {chemical.productName}    
+            </td>
+            <td>
+                {chemical.molWt}    
+            </td>
+            <td>
+                {chemical.phase}
+            </td>
+        </tr>
+    )
+}
+
+const ChemicalTable = ({ equation }: { equation: Equation }) => {
+    return (
+        <Table hover>
+            <colgroup>
+                <col span={1} style={{ width: "12%" }} />
+                <col span={1} style={{ width: "15%" }} />
+                <col span={1} style={{ width: "28%" }} />
+                <col span={1} style={{ width: "20%" }} />
+                <col span={1} style={{ width: "15%" }} />
+            </colgroup>
+            <thead>
+                <th>Section</th>
+                <th>CAS-No</th>
+                <th>Component Name</th>
+                <th>Molecular Weight</th>
+                <th>Phase</th>
+            </thead>
+            <tbody>
+                {equation.reactants.map((c, i) => <ReportChemicalRow chemical={c} section="Reactant" /> )}
+                {equation.products.map((c, i) => <ReportChemicalRow chemical={c} section="Product" /> )}
+                {equation.diluents.map((c, i) => <ReportChemicalRow chemical={c} section="Diluent" /> )}
+            </tbody>
+        </Table>
+    )
 }
 
 const ReportSection = function ReportSection({ prevButton, nextButton }: ReportProps) {
@@ -26,6 +74,8 @@ const ReportSection = function ReportSection({ prevButton, nextButton }: ReportP
         labLocation,
         principalInvestigator,
         organization,
+        chemicalScheme,
+        description
     } = useSelector<RheactState>(state => state.info) as ProjectInfo;
     const {
         reactionClass,
@@ -33,6 +83,9 @@ const ReportSection = function ReportSection({ prevButton, nextButton }: ReportP
         physicalState,
         keyReactantQuantity,
     } = useSelector<RheactState>(state => state.operatingParams) as OperatingParams;
+
+    const equation = useSelector<RheactState, Equation>(state => state.compound);
+
     useEffect(() => {
         dispatch(STORE.SET_TIME(''));
      }, []);
@@ -59,7 +112,10 @@ Generated:
                 <div>Principal Investigator: {principalInvestigator || "N/A"}</div>
                 <div>Lab Location: {labLocation || "N/A"}</div>
                 <div>Organization: {organization || "N/A"}</div>
+                <div>Chemical Reaction: {chemicalScheme || "N/A"}</div>
+                <div>Project Description: {description || "N/A"}</div>
                 <div className="h5 fw-bolder">Chemical Details</div>
+                <ChemicalTable equation={equation}/>
                 <div>Reaction Class: {reactionClass || "N/A"}</div>
                 <div>Reaction Scale: {reactionScale ? reactionScale + "kg" : "N/A"}</div>
                 <div>Key Reagent Quantity: {keyReactantQuantity ? keyReactantQuantity + "moles" : "N/A"}</div>
