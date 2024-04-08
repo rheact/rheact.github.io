@@ -216,7 +216,7 @@ const PACPage = () => {
         server
         .fetchPACMolecularWeight(casNo)
         .then((res) => {
-            if (res.data == 'Unable to find the chemical in PAC database') {
+            if (res.data == '"Unable to find the chemical in PAC database"') {
                 setChemPresent(false)
             } else {
                 let str = res.data.substring(1, res.data.length - 1)
@@ -349,7 +349,7 @@ const PACPage = () => {
                 fetchLiqHOV(PACParams.chemicalCasNo, PACParams.molecularWeight, boilingPoint)
             }
         }, 500),
-        [PACParams.chemicalCasNo, PACParams.operatingTempUnit]
+        [PACParams.chemicalCasNo, PACParams.molecularWeight, PACParams.operatingTempUnit]
     )
 
     const handleBPChange = useCallback((newBP) => {
@@ -358,7 +358,8 @@ const PACPage = () => {
         if (debouncedCallback.current) {
             debouncedCallback.current(PACParams.operatingTemp, newBP)
         }
-    }, [PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.operatingTempUnit])
+        fetchLiqHOV(PACParams.chemicalCasNo, PACParams.molecularWeight, newBP)
+    }, [PACParams.chemicalCasNo, PACParams.molecularWeight, PACParams.operatingTemp, PACParams.operatingTempUnit])
 
     const handleOpTempChange = useCallback((newOpTemp) => {
         dispatch(SET_PAC_OPERATING_TEMP(newOpTemp))

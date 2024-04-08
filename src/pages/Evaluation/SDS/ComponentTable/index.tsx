@@ -26,9 +26,9 @@ const ComponentTable = () => {
             </thead>
 
             <tbody>
-                {equation.reactants.map((c, i) => <ChemicalRow chemical={c} section="Reactant" index={i} changeAction={CHANGE_REACTANT} removeAction={REMOVE_REACTANT} /> )}
-                {equation.products.map((c, i) => <ChemicalRow chemical={c} section="Product" index={i} changeAction={CHANGE_PRODUCT} removeAction={REMOVE_PRODUCT} /> )}
-                {equation.diluents.map((c, i) => <ChemicalRow chemical={c} section="Diluent" index={i} changeAction={CHANGE_DILUENT} removeAction={REMOVE_DILUENT} /> )}
+                {equation.reactants.map((c, i) => <ChemicalRow key={c.casNo + "reactant" + c.phase} chemical={c} section="Reactant" index={i} changeAction={CHANGE_REACTANT} removeAction={REMOVE_REACTANT} /> )}
+                {equation.products.map((c, i) => <ChemicalRow key={c.casNo + "product" + c.phase} chemical={c} section="Product" index={i} changeAction={CHANGE_PRODUCT} removeAction={REMOVE_PRODUCT} /> )}
+                {equation.diluents.map((c, i) => <ChemicalRow key={c.casNo + "diluent" + c.phase} chemical={c} section="Diluent" index={i} changeAction={CHANGE_DILUENT} removeAction={REMOVE_DILUENT} /> )}
             </tbody>
         </Table>
     );

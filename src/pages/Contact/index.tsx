@@ -5,7 +5,7 @@ const ContactUsPage = () => {
         <div className="center-text">
             <div>For questions and inquiries about RHEACT, please contact:
                 <ul className="contact-list">
-                    <li>Andrew Norfleet (<a target="_blank" href = "mailto: anorfleet@purdue.edu">anorfleet@purdue.edu</a>)</li>
+                    <li>Andrew Norfleet (<a target="_blank" href = "mailto: anorfle@purdue.edu">anorfle@purdue.edu</a>)</li>
                     <li>Sopuru Ezenwa (<a target="_blank" href = "mailto: sezenwa@purdue.edu">sezenwa@purdue.edu</a>)</li>
                     <li>Prof. Ray Mentzer (<a target="_blank" href = "mailto: rmentzer@purdue.edu">rmentzer@purdue.edu</a>)</li>
                 </ul>

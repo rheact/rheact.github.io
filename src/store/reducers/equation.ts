@@ -20,12 +20,14 @@ const rheactSlice = createSlice({
             if (state.numReactants > 0) {
                 state.numReactants -= 1;
             }
-
-            state.reactants.splice(action.payload, 1);
+            
+            state.reactants = state.reactants.filter(reactant => reactant.casNo !== action.payload)
+            // state.reactants.splice(action.payload, 1);
         },
         CHANGE_REACTANT(state, action) {
             const { index, update } = action.payload;
             state.reactants[index] = update;
+
         },
 
         ADD_PRODUCT(state, action) {
@@ -37,7 +39,8 @@ const rheactSlice = createSlice({
                 state.numProducts -= 1;
             }
 
-            state.products.splice(action.payload, 1);
+            // state.products.splice(action.payload, 1);
+            state.products = state.products.filter(product => product.casNo !== action.payload)
         },
         CHANGE_PRODUCT(state, action) {
             const { index, update } = action.payload;
@@ -53,7 +56,8 @@ const rheactSlice = createSlice({
                 state.numDiluents -= 1;
             }
 
-            state.diluents.splice(action.payload, 1);
+            // state.diluents.splice(action.payload, 1);
+            state.diluents = state.diluents.filter(diluent => diluent.casNo !== action.payload)
         },
         CHANGE_DILUENT(state, action) {
             const { index, update } = action.payload;

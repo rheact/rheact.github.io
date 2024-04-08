@@ -128,13 +128,13 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
             // Remove curr section
             switch(section) {
                 case 'Reactant':
-                    dispatch(STORE.REMOVE_REACTANT(index))
+                    dispatch(STORE.REMOVE_REACTANT(chemical.casNo))
                     break;
                 case 'Product':
-                    dispatch(STORE.REMOVE_PRODUCT(index))
+                    dispatch(STORE.REMOVE_PRODUCT(chemical.casNo))
                     break;
                 case 'Diluent':
-                    dispatch(STORE.REMOVE_DILUENT(index))
+                    dispatch(STORE.REMOVE_DILUENT(chemical.casNo))
                     break;
                 default:
                     console.log('Cannot remove ', section)
