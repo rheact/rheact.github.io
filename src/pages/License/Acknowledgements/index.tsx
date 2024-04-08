@@ -17,7 +17,7 @@ const AcknowledgementsPage = () => {
             </div>
             <div className="ack-text">
                 We thank the following for their various contributions to developing RHEACT during their PhD at Davidson School of Chemical Engineering, Purdue University:
-                <span className="bold-text"> Sopuruchukwu Ezenwa, Brandon Bolton, Abhijit Talpade, Pushkar Ghanekar, Jeremy Arvay, Ravi Joshi.</span>
+                <span className="bold-text"> Sopuruchukwu Ezenwa, Brandon Bolton, Abhijit Talpade, Pushkar Ghanekar, Jeremy Arvay, Ravi Joshi, Andrew Norfleet.</span>
             </div>
             <div className="ack-text">
                 The following web software developers that helped make this project possible: 

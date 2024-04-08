@@ -239,7 +239,7 @@ const PACPage = () => {
             if (bps[0] != "Unable to find the chemical in PAC database") {
                 dispatch(SET_PAC_BOILING_POINT(bps[0]))
                 setPACBP(bps[0])
-                fetchVaporPressure(PACParams.chemicalCasNo, PACParams.operatingTemp, PACParams.operatingTempUnit, bps[0])
+                fetchVaporPressure(casNo, PACParams.operatingTemp, PACParams.operatingTempUnit, bps[0])
                 if (debouncedCallback.current) {
                     debouncedCallback.current(PACParams.operatingTemp, bps[0])
                 }
@@ -248,7 +248,7 @@ const PACPage = () => {
                 setRASTBoilingPoint(bps[1])
             }
         })
-    }, [])
+    }, [PACParams.operatingTemp, PACParams.operatingTempUnit])
 
     const fetchLiqCp = useCallback((casNo, opTemp, boilingPoint) => {
         server
@@ -1073,7 +1073,7 @@ const PACPage = () => {
                                                 )
                                                 
                                             }
-                                            <div className='pac-cell custom-alert'>Liquid density from the RAST chemical database is {chemLiquidDensity ? chemLiquidDensity + " g/mL" : "not available."}</div>
+                                            <div className='pac-cell custom-alert'>Liquid density calculated from the RAST chemical database at {PACParams.operatingTemp}{PACParams.operatingTempUnit} is {chemLiquidDensity ? chemLiquidDensity : "not available."}</div>
                                             <Button className="green-btn" onClick={() => fetchLiquidReleaseRate(PACParams.openTank ? '101.3' : PACParams.pressure || '', PACParams.openTank ? 'kPa' : PACParams.pressureUnit || '', PACParams.density, PACParams.liquidHeight, PACParams.diameter)}>
                                                 Show the calculated liquid release rate
                                             </Button>
@@ -1261,7 +1261,7 @@ const PACPage = () => {
                                                 <>
                                                 <div className={'pac-cell'}>
                                                     <Label>
-                                                        Heat of vaporization capacity of the liquid at the boiling point of the liquid (unit: J/kg):
+                                                        Heat of vaporization of the liquid at the boiling point of the liquid (unit: J/kg):
                                                         <i style={{marginLeft: "10px"}} id="liq-hov" className="bi bi-question-circle"></i>
                                                         <Tooltip
                                                             style={{textTransform: "none"}}

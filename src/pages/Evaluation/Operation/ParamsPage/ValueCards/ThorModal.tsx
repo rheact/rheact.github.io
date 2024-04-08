@@ -93,7 +93,12 @@ const ThorModal: FC<ThorModalProps> = ({ open, setOpen }) => {
                     <Alert color="light" isOpen>
                         RHEACT does not check if your reaction scheme is correct nor if you entered a non-balanced reaction.
                     </Alert>
-                    This tool calculates the heat of reaction using Hess's law and the standard enthalpy of formation (25&deg;C) of each component in the defined state. The ethalpy values are based on published data in the CRC handbook of Chemistry and Physics.
+                    This tool calculates the heat of reaction using Hess's law and the standard enthalpy of formation (25&deg;C) of each component in the defined state. The enthalpy values are based on published data in the following sources:
+                    <ul>
+                        <li>CRC Handbook of Chemistry and Physics, 95th ed.; Haynes, W. M., Ed.; CRC Press, 2014</li>
+                        <li>Pedley, J. B.; Naylor, R. D. “Thermochemical Data of Organic Compounds”; Chapmam and Hall, 1986</li>
+                        <li>Wagman, D. D. et al. “The NBS Tables of Chemical Thermodynamic Properties: Selected Values for Inorganic and C1 and C2 Organic Substances in SI Units”. J. Phys. Chem. Ref. Data 1982, 11 (Suppl. 2), 2-1 - 2-392</li>
+                    </ul>
                 </div>
                 <ComponentTable />
             </ModalBody>
