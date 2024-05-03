@@ -91,7 +91,7 @@ const ThorModal: FC<ThorModalProps> = ({ open, setOpen }) => {
             <ModalBody>
                 <div id='thor-des'>
                     <Alert color="light" isOpen>
-                        RHEACT does not check if your reaction scheme is correct nor if you entered a non-balanced reaction.
+                        RHEACT does not check if your reaction scheme is correct nor if you entered a non-balanced reaction. Please enter the stoichiometric coefficients from a balanced equation.
                     </Alert>
                     This tool calculates the heat of reaction using Hess's law and the standard enthalpy of formation (25&deg;C) of each component in the defined state. The enthalpy values are based on published data in the following sources:
                     <ul>

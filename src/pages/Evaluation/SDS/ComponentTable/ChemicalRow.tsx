@@ -128,13 +128,13 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
             // Remove curr section
             switch(section) {
                 case 'Reactant':
-                    dispatch(STORE.REMOVE_REACTANT(chemical.casNo))
+                    dispatch(STORE.REMOVE_REACTANT(index))
                     break;
                 case 'Product':
-                    dispatch(STORE.REMOVE_PRODUCT(chemical.casNo))
+                    dispatch(STORE.REMOVE_PRODUCT(index))
                     break;
                 case 'Diluent':
-                    dispatch(STORE.REMOVE_DILUENT(chemical.casNo))
+                    dispatch(STORE.REMOVE_DILUENT(index))
                     break;
                 default:
                     console.log('Cannot remove ', section)
@@ -154,7 +154,7 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
                     console.log('Cannot add ', newSection)
             }
         },
-        [dispatch]
+        [dispatch, index, chemical, section]
     );
 
     const onChangePhase = useCallback(
@@ -203,20 +203,20 @@ const ChemicalRow: FC<ChemicalRowProps> = ({ chemical, section, index, changeAct
             <td>
                 <ButtonGroup size="sm">
                     <Button color="link" onClick={toggleProps}>
-                        <i id={"edit-icon" + index} className="bi bi-pencil-fill"/>
+                        <i id={"edit-icon" + section + index} className="bi bi-pencil-fill"/>
                         <Tooltip
                             isOpen={viewEditTooltip}
-                            target={"edit-icon" + index}
+                            target={"edit-icon" + section + index}
                             toggle={toggleEditTooltip}
                         >
                             Edit
                         </Tooltip>
                     </Button>
                     <Button color="link" onClick={onRemove} className="text-danger">
-                        <i id={"del-icon" + index} className="bi bi-x-lg"/>
+                        <i id={"del-icon" + section + index} className="bi bi-x-lg"/>
                         <Tooltip
                             isOpen={viewDelTooltip}
-                            target={"del-icon" + index}
+                            target={"del-icon" + section + index}
                             toggle={toggleDelTooltip}
                         >
                             Delete

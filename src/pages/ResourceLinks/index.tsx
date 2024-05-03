@@ -123,6 +123,7 @@ const ResourceLinksPage = () => {
                                 <li><a target='_blank' href='https://doi.org/10.1002/9780470938195'>Dow’s Fire & Explosion Index Hazard Classification Guide</a>, 1st ed.; John Wiley & Sons, Ltd, 1994</li>
                                 <li>Willey, R. J. Layer of Protection Analysis. Procedia Eng. 2014, 84, 12−22</li>
                                 <li>AIChE Center for Chemical Process Safety. Layer of Protection Analysis Simplified Process Risk Assessment; CCPS concept book: New York, 2001</li>
+                                <li>Stoessel, F. <a target='_blank' href='https://onlinelibrary.wiley.com/doi/10.1002/9783527696918.fmatter'>Thermal Safety of Chemical Processes: Risk Assessment and Process Design</a>, 2nd edition; Wiley; Weinheim, Germany, 2020</li>
                             </ul>
                         </AccordionBody>
                     </AccordionItem>

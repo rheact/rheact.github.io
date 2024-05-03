@@ -95,7 +95,7 @@ const ThorRow: FC<ThorRowProps> = ({ chemical, section, index, changeAction }) =
                     onWheel={e => e.currentTarget.blur()}
                 />
                 <div className="invalid-feedback">
-                    Number of moles must be a positive number!
+                    Stoichiometric coefficient must be a positive number!
                 </div>
             </td>
             <td>
