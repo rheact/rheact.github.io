@@ -86,6 +86,11 @@ const GenerateButton = () => {
                     size="lg"
                     onClick={onClick}
                 >
+                    { pending > 0 && (
+                        <Spinner size="sm">
+                            Loading...
+                        </Spinner>
+                    )}
                     Click Here to Generate Report
                 </Button>
                 {pending > 0 && (
