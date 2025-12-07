@@ -1,7 +1,7 @@
 import server from "api";
 import { useCallback, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Progress, Spinner } from "reactstrap";
+import { Button, Progress } from "reactstrap";
 import * as STORE from "store";
 import { RESET_RESULTS } from "store";
 
@@ -86,11 +86,6 @@ const GenerateButton = () => {
                     size="lg"
                     onClick={onClick}
                 >
-                    { pending > 0 && (
-                        <Spinner size="sm">
-                            Loading...
-                        </Spinner>
-                    )}
                     Click Here to Generate Report
                 </Button>
                 {pending > 0 && (
