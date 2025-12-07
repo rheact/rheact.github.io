@@ -1,7 +1,7 @@
 import server from "api";
 import { useCallback, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Progress } from "reactstrap";
+import { Button, Progress, Spinner } from "reactstrap";
 import * as STORE from "store";
 import { RESET_RESULTS } from "store";
 
